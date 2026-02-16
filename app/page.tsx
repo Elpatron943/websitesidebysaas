@@ -16,8 +16,10 @@ function Logo({ className = '' }: { className?: string }) {
   return <span className={`font-bold text-xl text-slate-900 ${className}`}>Side by SaaS</span>
 }
 
+const PLATFORM_URL = process.env.NEXT_PUBLIC_PLATFORM_URL || 'https://app.sidebysaas.com'
+
 export default function Home() {
-  const platformUrl = process.env.NEXT_PUBLIC_PLATFORM_URL || 'http://localhost:3000'
+  const platformUrl = PLATFORM_URL
   const [openMenu, setOpenMenu] = useState<'acheteur' | 'editeur' | 'blog' | null>(null)
   const [authDropdown, setAuthDropdown] = useState<'connexion' | 'commencer' | null>(null)
   const navRef = useRef<HTMLDivElement>(null)
@@ -96,7 +98,7 @@ export default function Home() {
                     <Link href="/editeur/direction/marketing" className="block w-full text-left pl-5 pr-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium">Marketing</Link>
                     <Link href="/editeur/direction/rh" className="block w-full text-left pl-5 pr-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium">RH</Link>
                     <div className="border-t border-slate-100 mt-2 pt-2">
-                      <a href={`${platformUrl}/auth/editor`} className="block w-full text-left px-4 py-2.5 text-blue-600 hover:bg-blue-50 font-semibold">Créer mon espace éditeur →</a>
+                      <a href={`${platformUrl}/auth/register?redirectTo=/editor`} className="block w-full text-left px-4 py-2.5 text-blue-600 hover:bg-blue-50 font-semibold">Créer mon espace éditeur →</a>
                     </div>
                   </div>
                 )}

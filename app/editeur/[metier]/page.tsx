@@ -61,7 +61,7 @@ export default function EditeurMetierPage({ params }: { params: { metier: string
   const data = metier ? METIERS[metier] : null
   if (!data) notFound()
 
-  const platformUrl = process.env.NEXT_PUBLIC_PLATFORM_URL || 'http://localhost:3000'
+  const platformUrl = process.env.NEXT_PUBLIC_PLATFORM_URL || 'https://app.sidebysaas.com'
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -100,7 +100,7 @@ export default function EditeurMetierPage({ params }: { params: { metier: string
           <div className="mt-14 text-center">
             <div className="inline-flex flex-col items-center gap-5 rounded-2xl bg-white border border-slate-200/90 shadow-sm px-8 py-8 sm:px-10 sm:py-9 max-w-md">
               <p className="text-slate-700 font-medium text-lg leading-snug">Prêt à maîtriser votre positionnement sur Side by SaaS ?</p>
-              <a href={`${platformUrl}/auth/editor`} className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl shadow-sm hover:shadow transition-all">
+              <a href={`${platformUrl}/auth/register?redirectTo=/editor`} className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl shadow-sm hover:shadow transition-all">
                 Créer mon espace éditeur
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
               </a>

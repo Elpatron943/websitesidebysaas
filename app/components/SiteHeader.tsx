@@ -16,8 +16,10 @@ function Logo() {
   return <span className="font-bold text-xl text-slate-900">Side by SaaS</span>
 }
 
+const PLATFORM_URL = process.env.NEXT_PUBLIC_PLATFORM_URL || 'https://app.sidebysaas.com'
+
 export function SiteHeader() {
-  const platformUrl = process.env.NEXT_PUBLIC_PLATFORM_URL || 'http://localhost:3000'
+  const platformUrl = PLATFORM_URL
   const [openMenu, setOpenMenu] = useState<'acheteur' | 'editeur' | 'blog' | null>(null)
   const navRef = useRef<HTMLDivElement>(null)
 
@@ -90,7 +92,7 @@ export function SiteHeader() {
                   <Link href="/editeur/direction/marketing" className="block w-full text-left pl-5 pr-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium">Marketing</Link>
                   <Link href="/editeur/direction/rh" className="block w-full text-left pl-5 pr-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium">RH</Link>
                   <div className="border-t border-slate-100 mt-2 pt-2">
-                    <a href={`${platformUrl}/auth/editor`} className="block w-full text-left px-4 py-2.5 text-blue-600 hover:bg-blue-50 font-semibold">Créer mon espace éditeur →</a>
+                    <a href={`${platformUrl}/auth/register?redirectTo=/editor`} className="block w-full text-left px-4 py-2.5 text-blue-600 hover:bg-blue-50 font-semibold">Créer mon espace éditeur →</a>
                   </div>
                 </div>
               )}
@@ -117,7 +119,16 @@ export function SiteHeader() {
             </div>
           </nav>
           <div className="flex items-center space-x-4">
-            <a href={`${platformUrl}/auth/editor`} className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium text-sm">
+            <a href={`${platformUrl}/auth/login?redirectTo=/buyer`} className="text-slate-600 hover:text-slate-900 font-medium transition-colors text-sm">
+              Connexion
+            </a>
+            <a href={`${platformUrl}/auth/login?redirectTo=/editor`} className="text-slate-600 hover:text-slate-900 font-medium transition-colors text-sm">
+              Portail éditeur
+            </a>
+            <a href={`${platformUrl}/auth/register?redirectTo=/buyer`} className="text-slate-600 hover:text-slate-900 font-medium transition-colors text-sm">
+              Créer compte acheteur
+            </a>
+            <a href={`${platformUrl}/auth/register?redirectTo=/editor`} className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium text-sm">
               Créer mon espace éditeur
             </a>
           </div>

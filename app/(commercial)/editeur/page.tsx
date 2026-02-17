@@ -11,7 +11,7 @@ export default function EditeurPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center">
-              <NavLogo height={112} />
+              <NavLogo height={90} />
             </Link>
             <Link href="/" className="text-slate-600 hover:text-slate-900 font-medium text-sm">
               ← Retour à l&apos;accueil
@@ -91,7 +91,7 @@ export default function EditeurPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2 text-slate-400 hover:text-white">
-              <NavLogo height={64} />
+              <NavLogo height={80} />
               <span>© 2024</span>
             </Link>
             <Link href="/" className="text-slate-400 hover:text-white text-sm">Retour à l&apos;accueil</Link>

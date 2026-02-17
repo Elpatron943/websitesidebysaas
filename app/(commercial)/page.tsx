@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { NavLogo } from '@/app/components/NavLogo'
+import { AcheteurNavMenu } from '@/app/components/AcheteurNavMenu'
 import { BLOG_CATEGORIES } from '@/lib/blog-categories'
 import { getLoginUrl, getSignupUrl } from '@/lib/commercial-auth-links'
 
@@ -52,7 +53,7 @@ export default function Home() {
                 onClick={() => router.push('/')}
                 className="flex items-center cursor-pointer"
               >
-                <NavLogo height={112} />
+                <NavLogo height={90} />
               </button>
             </div>
             <nav ref={navRef} className="hidden md:flex items-center gap-1 relative">
@@ -69,23 +70,7 @@ export default function Home() {
                   </svg>
                 </button>
                 {openMenu === 'acheteur' && (
-                  <div className="absolute top-full left-0 mt-1 w-60 bg-white rounded-xl shadow-lg border border-slate-200 py-2 z-50">
-                    <button type="button" onClick={() => { router.push('/acheteur#tarifs'); setOpenMenu(null) }} className="block w-full text-left px-4 py-2.5 text-primary-600 hover:bg-primary-50 font-semibold border-b border-slate-100">
-                      Tarifs
-                    </button>
-                    <p className="px-4 py-2 text-xs font-semibold text-slate-400 uppercase tracking-wider">Par directions</p>
-                    <button type="button" onClick={() => { router.push('/acheteur/directions/achats'); setOpenMenu(null) }} className="block w-full text-left pl-5 pr-4 py-2 text-slate-700 hover:bg-primary-50 hover:text-primary-700 font-medium">Achats</button>
-                    <button type="button" onClick={() => { router.push('/acheteur/directions/finance'); setOpenMenu(null) }} className="block w-full text-left pl-5 pr-4 py-2 text-slate-700 hover:bg-primary-50 hover:text-primary-700 font-medium">Finance</button>
-                    <button type="button" onClick={() => { router.push('/acheteur/directions/marketing'); setOpenMenu(null) }} className="block w-full text-left pl-5 pr-4 py-2 text-slate-700 hover:bg-primary-50 hover:text-primary-700 font-medium">Marketing</button>
-                    <button type="button" onClick={() => { router.push('/acheteur/directions/direction'); setOpenMenu(null) }} className="block w-full text-left pl-5 pr-4 py-2 text-slate-700 hover:bg-primary-50 hover:text-primary-700 font-medium">Direction</button>
-                    <button type="button" onClick={() => { router.push('/acheteur/directions/rh'); setOpenMenu(null) }} className="block w-full text-left pl-5 pr-4 py-2 text-slate-700 hover:bg-primary-50 hover:text-primary-700 font-medium">RH</button>
-                    <button type="button" onClick={() => { router.push('/acheteur/directions/it'); setOpenMenu(null) }} className="block w-full text-left pl-5 pr-4 py-2 text-slate-700 hover:bg-primary-50 hover:text-primary-700 font-medium">IT / DSI</button>
-                    <button type="button" onClick={() => { router.push('/acheteur/directions/juridique'); setOpenMenu(null) }} className="block w-full text-left pl-5 pr-4 py-2 text-slate-700 hover:bg-primary-50 hover:text-primary-700 font-medium">Juridique</button>
-                    <button type="button" onClick={() => { router.push('/acheteur/directions/operations'); setOpenMenu(null) }} className="block w-full text-left pl-5 pr-4 py-2 text-slate-700 hover:bg-primary-50 hover:text-primary-700 font-medium">Opérations</button>
-                    <div className="border-t border-slate-100 mt-2 pt-2">
-                      <button type="button" onClick={() => { router.push('/acheteur#calculateur-economies'); setOpenMenu(null) }} className="block w-full text-left px-4 py-2.5 text-slate-700 hover:bg-primary-50 hover:text-primary-700 font-medium">Par taille d&apos;entreprise</button>
-                    </div>
-                  </div>
+                  <AcheteurNavMenu linkStyle="router" onNavigate={() => setOpenMenu(null)} isOpen={openMenu === 'acheteur'} />
                 )}
               </div>
               {/* 2. Je suis éditeur de SaaS */}

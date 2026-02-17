@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import { NavLogo } from '@/app/components/NavLogo'
+import { AcheteurNavMenu } from '@/app/components/AcheteurNavMenu'
 
 const BLOG_CATEGORIES = [
   { slug: 'pour-les-acheteurs', name: 'Pour les acheteurs' },
@@ -35,7 +36,7 @@ export function SiteHeader() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center">
-            <NavLogo height={36} />
+            <NavLogo height={90} />
           </Link>
           <nav ref={navRef} className="hidden md:flex items-center gap-1 relative">
             <div className="relative">
@@ -50,21 +51,7 @@ export function SiteHeader() {
                 </svg>
               </button>
               {openMenu === 'acheteur' && (
-                <div className="absolute top-full left-0 mt-1 w-60 bg-white rounded-xl shadow-lg border border-slate-200 py-2 z-50">
-                  <Link href="/acheteur#tarifs" className="block w-full text-left px-4 py-2.5 text-blue-600 hover:bg-blue-50 font-semibold border-b border-slate-100">Tarifs</Link>
-                  <p className="px-4 py-2 text-xs font-semibold text-slate-400 uppercase tracking-wider">Par directions</p>
-                  <Link href="/acheteur/directions/achats" className="block w-full text-left pl-5 pr-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium">Achats</Link>
-                  <Link href="/acheteur/directions/finance" className="block w-full text-left pl-5 pr-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium">Finance</Link>
-                  <Link href="/acheteur/directions/marketing" className="block w-full text-left pl-5 pr-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium">Marketing</Link>
-                  <Link href="/acheteur/directions/direction" className="block w-full text-left pl-5 pr-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium">Direction</Link>
-                  <Link href="/acheteur/directions/rh" className="block w-full text-left pl-5 pr-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium">RH</Link>
-                  <Link href="/acheteur/directions/it" className="block w-full text-left pl-5 pr-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium">IT / DSI</Link>
-                  <Link href="/acheteur/directions/juridique" className="block w-full text-left pl-5 pr-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium">Juridique</Link>
-                  <Link href="/acheteur/directions/operations" className="block w-full text-left pl-5 pr-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium">Opérations</Link>
-                  <div className="border-t border-slate-100 mt-2 pt-2">
-                    <Link href="/acheteur#calculateur-economies" className="block w-full text-left px-4 py-2.5 text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium">Par taille d&apos;entreprise</Link>
-                  </div>
-                </div>
+                <AcheteurNavMenu linkStyle="link" onNavigate={() => setOpenMenu(null)} isOpen={openMenu === 'acheteur'} />
               )}
             </div>
             <div className="relative">

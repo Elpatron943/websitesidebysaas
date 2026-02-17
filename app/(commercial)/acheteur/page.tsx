@@ -271,7 +271,7 @@ export default function AcheteurPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center">
-              <NavLogo height={112} />
+              <NavLogo height={90} />
             </Link>
             <Link href="/" className="text-slate-600 hover:text-slate-900 font-medium text-sm">
               ← Retour à l&apos;accueil
@@ -465,10 +465,13 @@ export default function AcheteurPage() {
           <div className="text-center">
             <button
               type="button"
-              onClick={() => setShowSourcingResults(true)}
+              onClick={() => {
+                setShowSourcingResults(true)
+                setTimeout(() => document.getElementById('sourcing-resultats')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 150)
+              }}
               disabled={!hasSourcingSelection}
               className={`px-6 py-3 rounded-lg font-medium transition-colors ${
-                hasSourcingSelection ? 'bg-primary-600 text-white hover:bg-primary-700' : 'bg-slate-200 text-slate-500 cursor-not-allowed'
+                hasSourcingSelection ? 'bg-primary-600 text-white hover:bg-primary-700 cursor-pointer' : 'bg-slate-200 text-slate-500 cursor-not-allowed'
               }`}
             >
               Voir les éditeurs qui couvrent ces critères
@@ -478,7 +481,7 @@ export default function AcheteurPage() {
 
           {/* Page de résultats : éditeurs couvrant tous les critères */}
           {showSourcingResults && (
-            <div className="mt-10 pt-8 border-t border-slate-200">
+            <div id="sourcing-resultats" className="mt-10 pt-8 border-t border-slate-200 scroll-mt-24">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-lg font-bold text-slate-900">Résultats</h3>
                 <button type="button" onClick={() => setShowSourcingResults(false)} className="text-sm text-primary-600 hover:text-primary-700 font-medium">Fermer les résultats</button>
@@ -705,7 +708,7 @@ export default function AcheteurPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2 text-slate-400 hover:text-white">
-              <NavLogo height={64} />
+              <NavLogo height={80} />
               <span>© 2024</span>
             </Link>
             <Link href="/" className="text-slate-400 hover:text-white text-sm">Retour à l&apos;accueil</Link>

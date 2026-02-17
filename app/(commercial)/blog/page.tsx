@@ -63,12 +63,13 @@ function BlogPageContent() {
           </div>
           <Link
             href="/"
-            className="text-blue-600 hover:text-blue-700 font-medium text-sm"
+            className="text-primary-600 hover:text-primary-700 font-medium text-sm"
           >
             ← Retour à l&apos;accueil
           </Link>
         </div>
 
+        {/* Filtre par catégorie */}
         <div className="mb-8">
           <p className="text-sm font-medium text-slate-500 mb-2">Catégories</p>
           <div className="flex flex-wrap gap-2">
@@ -77,8 +78,8 @@ function BlogPageContent() {
               onClick={() => setSelectedCategory('')}
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                 selectedCategory === ''
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-white text-slate-700 border border-slate-200 hover:border-blue-300 hover:bg-blue-50'
+                  ? 'bg-primary-600 text-white'
+                  : 'bg-white text-slate-700 border border-slate-200 hover:border-primary-300 hover:bg-primary-50'
               }`}
             >
               Toutes
@@ -90,8 +91,8 @@ function BlogPageContent() {
                 onClick={() => setSelectedCategory(cat.slug)}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                   selectedCategory === cat.slug
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-white text-slate-700 border border-slate-200 hover:border-blue-300 hover:bg-blue-50'
+                    ? 'bg-primary-600 text-white'
+                    : 'bg-white text-slate-700 border border-slate-200 hover:border-primary-300 hover:bg-primary-50'
                 }`}
               >
                 {cat.name}
@@ -100,6 +101,7 @@ function BlogPageContent() {
           </div>
         </div>
 
+        {/* Liste des articles */}
         {loading ? (
           <div className="py-12 text-center text-slate-500">
             Chargement des articles…
@@ -121,9 +123,9 @@ function BlogPageContent() {
               <li key={post.id}>
                 <Link
                   href={`/blog/${post.slug}`}
-                  className="block bg-white rounded-xl border border-slate-200 p-6 hover:border-blue-200 hover:shadow-md transition-all"
+                  className="block bg-white rounded-xl border border-slate-200 p-6 hover:border-primary-200 hover:shadow-md transition-all"
                 >
-                  <span className="text-xs font-semibold text-blue-600 uppercase tracking-wide">
+                  <span className="text-xs font-semibold text-primary-600 uppercase tracking-wide">
                     {BLOG_CATEGORIES.find((c) => c.slug === post.category_slug)?.name ?? post.category_slug}
                   </span>
                   <h2 className="text-xl font-bold text-slate-900 mt-1 mb-2">

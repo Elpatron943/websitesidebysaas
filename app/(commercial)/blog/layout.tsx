@@ -1,6 +1,6 @@
 export const metadata = {
-  title: 'Blog | Side by SaaS',
-  description: 'Articles et actualités Side by SaaS – acheteurs et éditeurs SaaS.',
+  title: 'Blog | Battle Cardz',
+  description: 'Articles et actualités Battle Cardz – acheteurs et éditeurs SaaS.',
 }
 
 export default function BlogLayout({

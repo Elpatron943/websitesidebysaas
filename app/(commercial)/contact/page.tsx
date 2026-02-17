@@ -7,7 +7,7 @@ export default function Contact() {
         <h1 className="text-4xl font-bold text-slate-900 mb-8">Contact</h1>
         <div className="bg-white rounded-xl shadow-lg p-8">
           <p className="text-slate-600 mb-4">
-            Pour toute question ou demande, n&apos;hésitez pas à nous contacter.
+            Pour toute question ou demande, n'hésitez pas à nous contacter.
           </p>
           <div className="space-y-4">
             <div>
@@ -16,7 +16,7 @@ export default function Contact() {
               </label>
               <input
                 type="email"
-                className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-600 focus:border-transparent"
                 placeholder="votre@email.com"
               />
             </div>
@@ -26,20 +26,20 @@ export default function Contact() {
               </label>
               <textarea
                 rows={6}
-                className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-600 focus:border-transparent"
                 placeholder="Votre message..."
               />
             </div>
-            <button className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+            <button className="w-full bg-primary-600 text-white py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors">
               Envoyer
             </button>
           </div>
           <div className="mt-6">
-            <Link
+            <Link 
               href="/"
-              className="text-blue-600 hover:text-blue-700 font-medium"
+              className="text-primary-600 hover:text-primary-700 font-medium"
             >
-              ← Retour à l&apos;accueil
+              ← Retour à l'accueil
             </Link>
           </div>
         </div>

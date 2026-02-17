@@ -7,18 +7,18 @@ export default function About() {
         <h1 className="text-4xl font-bold text-slate-900 mb-8">À propos</h1>
         <div className="bg-white rounded-xl shadow-lg p-8 space-y-6">
           <p className="text-slate-600">
-            Side by SaaS est une plateforme de benchmark SaaS basée exclusivement sur des données d&apos;achats réels,
+            Battle Cardz est une plateforme de benchmark SaaS basée exclusivement sur des données d'achats réels, 
             partagées anonymement par des acheteurs professionnels.
           </p>
           <p className="text-slate-600">
-            Notre mission : permettre aux acheteurs de comparer des logiciels SaaS de manière factuelle,
+            Notre mission : permettre aux acheteurs de comparer des logiciels SaaS de manière factuelle, 
             sans marketing éditeur, en exposant les prix réellement payés.
           </p>
-          <Link
+          <Link 
             href="/"
-            className="text-blue-600 hover:text-blue-700 font-medium inline-block"
+            className="text-primary-600 hover:text-primary-700 font-medium inline-block"
           >
-            ← Retour à l&apos;accueil
+            ← Retour à l'accueil
           </Link>
         </div>
       </div>

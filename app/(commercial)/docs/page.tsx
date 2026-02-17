@@ -7,13 +7,13 @@ export default function Docs() {
         <h1 className="text-4xl font-bold text-slate-900 mb-8">Documentation</h1>
         <div className="bg-white rounded-xl shadow-lg p-8">
           <p className="text-slate-600 mb-4">
-            La documentation complète de Side by SaaS sera disponible prochainement.
+            La documentation complète de Battle Cardz sera disponible prochainement.
           </p>
-          <Link
+          <Link 
             href="/"
-            className="text-blue-600 hover:text-blue-700 font-medium"
+            className="text-primary-600 hover:text-primary-700 font-medium"
           >
-            ← Retour à l&apos;accueil
+            ← Retour à l'accueil
           </Link>
         </div>
       </div>

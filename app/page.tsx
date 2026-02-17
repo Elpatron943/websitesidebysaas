@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
+import { NavLogo } from '@/app/components/NavLogo'
 
 const BLOG_CATEGORIES = [
   { slug: 'pour-les-acheteurs', name: 'Pour les acheteurs' },
@@ -11,10 +12,6 @@ const BLOG_CATEGORIES = [
   { slug: 'etudes-tendances', name: 'Études & tendances' },
   { slug: 'actualites-sidebysaas', name: 'Actualités Side by SaaS' },
 ]
-
-function Logo({ className = '' }: { className?: string }) {
-  return <span className={`font-bold text-xl text-slate-900 ${className}`}>Side by SaaS</span>
-}
 
 const PLATFORM_URL = process.env.NEXT_PUBLIC_PLATFORM_URL || 'https://app.sidebysaas.com'
 
@@ -43,7 +40,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center cursor-pointer">
-              <Logo />
+              <NavLogo height={36} />
             </Link>
             <nav ref={navRef} className="hidden md:flex items-center gap-1 relative">
               <div className="relative">
@@ -59,7 +56,7 @@ export default function Home() {
                 </button>
                 {openMenu === 'acheteur' && (
                   <div className="absolute top-full left-0 mt-1 w-60 bg-white rounded-xl shadow-lg border border-slate-200 py-2 z-50">
-                    <a href={`${platformUrl}/acheteur#tarifs`} className="block w-full text-left px-4 py-2.5 text-blue-600 hover:bg-blue-50 font-semibold border-b border-slate-100">Tarifs</a>
+                    <Link href="/acheteur#tarifs" className="block w-full text-left px-4 py-2.5 text-blue-600 hover:bg-blue-50 font-semibold border-b border-slate-100">Tarifs</Link>
                     <p className="px-4 py-2 text-xs font-semibold text-slate-400 uppercase tracking-wider">Par directions</p>
                     <Link href="/acheteur/directions/achats" className="block w-full text-left pl-5 pr-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium">Achats</Link>
                     <Link href="/acheteur/directions/finance" className="block w-full text-left pl-5 pr-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium">Finance</Link>
@@ -70,7 +67,7 @@ export default function Home() {
                     <Link href="/acheteur/directions/juridique" className="block w-full text-left pl-5 pr-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium">Juridique</Link>
                     <Link href="/acheteur/directions/operations" className="block w-full text-left pl-5 pr-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium">Opérations</Link>
                     <div className="border-t border-slate-100 mt-2 pt-2">
-                      <a href={`${platformUrl}/acheteur#calculateur-economies`} className="block w-full text-left px-4 py-2.5 text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium">Par taille d&apos;entreprise</a>
+                      <Link href="/acheteur#calculateur-economies" className="block w-full text-left px-4 py-2.5 text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium">Par taille d&apos;entreprise</Link>
                     </div>
                   </div>
                 )}
@@ -186,13 +183,13 @@ export default function Home() {
           <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">À qui s&apos;adresse la plateforme ?</h2>
           <p className="text-slate-600 mb-10">Choisissez votre profil pour découvrir une page qui vous est dédiée.</p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <a
-              href={`${platformUrl}/acheteur`}
+            <Link
+              href="/acheteur"
               className="w-full sm:w-auto bg-blue-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg flex items-center justify-center gap-2"
             >
               <span>🛒</span>
               Je suis acheteur
-            </a>
+            </Link>
             <a
               href={`${platformUrl}/editeur`}
               className="w-full sm:w-auto bg-white text-blue-600 px-8 py-4 rounded-xl text-lg font-semibold hover:bg-slate-50 transition-colors border-2 border-blue-600 flex items-center justify-center gap-2"
@@ -225,7 +222,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="flex items-center space-x-3 mb-4 md:mb-0">
-              <Logo className="text-white" />
+              <NavLogo height={32} className="[filter:brightness(0)_invert(1)]" />
               <span className="text-slate-400">© {new Date().getFullYear()}</span>
             </div>
             <div className="flex items-center space-x-6 text-sm text-slate-400">

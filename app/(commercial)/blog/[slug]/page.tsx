@@ -63,7 +63,7 @@ export default function BlogPostPage() {
         <SiteHeader />
         <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <h1 className="text-2xl font-bold text-slate-900 mb-4">Article introuvable</h1>
-          <Link href="/blog" className="text-blue-600 hover:text-blue-700 font-medium">
+          <Link href="/blog" className="text-primary-600 hover:text-primary-700 font-medium">
             ← Retour au blog
           </Link>
         </main>
@@ -85,7 +85,7 @@ export default function BlogPostPage() {
         </Link>
         <article className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
           <div className="p-6 md:p-10">
-            <span className="text-xs font-semibold text-blue-600 uppercase tracking-wide">
+            <span className="text-xs font-semibold text-primary-600 uppercase tracking-wide">
               {categoryName}
             </span>
             <h1 className="text-3xl font-bold text-slate-900 mt-2 mb-4">

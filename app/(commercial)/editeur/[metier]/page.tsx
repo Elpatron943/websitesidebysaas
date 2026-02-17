@@ -1,6 +1,19 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { SiteHeader } from '@/app/components/SiteHeader'
+import { getSignupUrl } from '@/lib/commercial-auth-links'
+
+import productBanner from '../Product/Product.png'
+import salesBanner from '../Sales/sales.png'
+import directionBanner from '../direction/direction.png'
+
+const BANNERS: Record<string, { src: typeof productBanner; alt: string }> = {
+  product: { src: productBanner, alt: 'Éditeur SaaS Product' },
+  sales: { src: salesBanner, alt: 'Éditeur SaaS Sales' },
+  marketing: { src: salesBanner, alt: 'Éditeur SaaS Marketing' },
+  direction: { src: directionBanner, alt: 'Éditeur SaaS Direction' },
+}
 
 const METIERS: Record<string, { title: string; subtitle: string; arguments: { titre: string; description: string }[] }> = {
   product: {
@@ -46,10 +59,10 @@ const METIERS: Record<string, { title: string; subtitle: string; arguments: { ti
 }
 
 const CARD_ICONS = [
-  <svg key="0" className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>,
-  <svg key="1" className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>,
-  <svg key="2" className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>,
-  <svg key="3" className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>,
+  <svg key="0" className="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>,
+  <svg key="1" className="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>,
+  <svg key="2" className="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>,
+  <svg key="3" className="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>,
 ]
 
 export function generateStaticParams() {
@@ -59,52 +72,99 @@ export function generateStaticParams() {
 export default function EditeurMetierPage({ params }: { params: { metier: string } }) {
   const metier = params.metier?.toLowerCase()
   const data = metier ? METIERS[metier] : null
-  if (!data) notFound()
+  const banner = metier ? BANNERS[metier] : null
 
-  const platformUrl = process.env.NEXT_PUBLIC_PLATFORM_URL || 'https://app.sidebysaas.com'
+  if (!data) notFound()
 
   return (
     <div className="min-h-screen bg-slate-50">
       <SiteHeader />
+
       <main>
-        <section className="relative w-full aspect-[21/9] min-h-[200px] bg-gradient-to-br from-slate-600 to-slate-800" aria-hidden />
+        <section className="relative w-full aspect-[21/9] min-h-[200px] bg-slate-200">
+          {banner && (
+            <Image
+              src={banner.src}
+              alt={banner.alt}
+              fill
+              className="object-cover"
+              sizes="100vw"
+              priority
+            />
+          )}
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent" aria-hidden />
+        </section>
+
         <section className="relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-blue-50/60 via-white to-slate-50/80" aria-hidden />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary-50/60 via-white to-slate-50/80" aria-hidden />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(2,132,199,0.08),transparent)]" aria-hidden />
           <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-14 text-center">
-            <Link href="/" className="inline-flex items-center gap-1.5 text-slate-500 hover:text-slate-800 text-sm font-medium mb-10 transition-colors">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-1.5 text-slate-500 hover:text-slate-800 text-sm font-medium mb-10 transition-colors"
+            >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
               Retour à l&apos;accueil
             </Link>
-            <p className="text-xs font-semibold text-blue-600 uppercase tracking-[0.2em] mb-4">Éditeur de SaaS</p>
-            <h1 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-4">Pour les équipes {data.title}</h1>
-            <p className="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto">{data.subtitle}</p>
+            <p className="text-xs font-semibold text-primary-600 uppercase tracking-[0.2em] mb-4">
+              Éditeur de SaaS
+            </p>
+            <h1 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-4">
+              Pour les équipes {data.title}
+            </h1>
+            <p className="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto">
+              {data.subtitle}
+            </p>
           </div>
         </section>
+
         <section className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
           <div className="space-y-4">
             {data.arguments.map((arg, index) => (
-              <article key={index} className="group relative bg-white rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-md hover:border-blue-200/80 transition-all duration-200 overflow-hidden">
-                <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden />
+              <article
+                key={index}
+                className="group relative bg-white rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-md hover:border-primary-200/80 transition-all duration-200 overflow-hidden"
+              >
+                <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary-500 to-primary-600 opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden />
                 <div className="flex gap-5 p-6 sm:p-7">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-primary-50 flex items-center justify-center text-primary-600">
                     {CARD_ICONS[index % CARD_ICONS.length]}
                   </div>
                   <div className="min-w-0 flex-1">
-                    <h2 className="text-base font-semibold text-slate-900 mb-2 leading-snug">{arg.titre}</h2>
-                    <p className="text-slate-600 text-[15px] leading-relaxed">{arg.description}</p>
+                    <h2 className="text-base font-semibold text-slate-900 mb-2 leading-snug">
+                      {arg.titre}
+                    </h2>
+                    <p className="text-slate-600 text-[15px] leading-relaxed">
+                      {arg.description}
+                    </p>
                   </div>
                 </div>
               </article>
             ))}
           </div>
+
           <div className="mt-14 text-center">
             <div className="inline-flex flex-col items-center gap-5 rounded-2xl bg-white border border-slate-200/90 shadow-sm px-8 py-8 sm:px-10 sm:py-9 max-w-md">
-              <p className="text-slate-700 font-medium text-lg leading-snug">Prêt à maîtriser votre positionnement sur Side by SaaS ?</p>
-              <a href={`${platformUrl}/auth/register?redirectTo=/editor`} className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl shadow-sm hover:shadow transition-all">
-                Créer mon espace éditeur
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-              </a>
-              <p className="text-xs text-slate-500">Gratuit pour commencer</p>
+              <p className="text-slate-700 font-medium text-lg leading-snug">
+                Prêt à maîtriser votre positionnement sur Battle Cardz ?
+              </p>
+              {getSignupUrl('/editor') ? (
+                <a
+                  href={getSignupUrl('/editor')!}
+                  className="inline-flex items-center justify-center gap-2 bg-primary-600 hover:bg-primary-700 text-white font-semibold px-6 py-3 rounded-xl shadow-sm hover:shadow transition-all"
+                >
+                  Créer mon espace éditeur
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                </a>
+              ) : (
+                <span className="inline-flex items-center justify-center gap-2 bg-primary-600 text-white font-semibold px-6 py-3 rounded-xl shadow-sm cursor-default">
+                  Créer mon espace éditeur
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                </span>
+              )}
+              <p className="text-xs text-slate-500">
+                Gratuit pour commencer
+              </p>
             </div>
           </div>
         </section>

@@ -15,10 +15,11 @@ const BANNERS: Record<string, { src: typeof productBanner; alt: string }> = {
   direction: { src: directionBanner, alt: 'Éditeur SaaS Direction' },
 }
 
-const METIERS: Record<string, { title: string; subtitle: string; arguments: { titre: string; description: string }[] }> = {
+const METIERS: Record<string, { title: string; intro: string; subtitle: string; arguments: { titre: string; description: string }[] }> = {
   product: {
     title: 'Product',
-    subtitle: 'Pilotez votre roadmap et votre positionnement avec des signaux marché concrets.',
+    intro: 'En vous inscrivant sur Side by SaaS, vous accédez aux comparaisons et aux prix réellement payés par les acheteurs. En tant qu\'équipe Product, vous pilotez votre roadmap et votre positionnement avec des signaux marché concrets, sans dépendre du seul retour commercial.',
+    subtitle: 'Ce que vous trouverez en vous inscrivant',
     arguments: [
       { titre: 'Positionnement face à la concurrence', description: 'Voyez comment vos produits sont comparés aux autres. Identifiez les forces et faiblesses perçues pour prioriser votre backlog et vos messages produit.' },
       { titre: 'Prix et positionnement réel du marché', description: 'Les acheteurs partagent les prix qu\'ils paient. Utilisez ces données agrégées pour calibrer votre pricing et vos packages sans dépendre du seul discours commercial.' },
@@ -28,7 +29,8 @@ const METIERS: Record<string, { title: string; subtitle: string; arguments: { ti
   },
   sales: {
     title: 'Sales',
-    subtitle: 'Armez vos équipes commerciales avec des arguments factuels et des données de marché.',
+    intro: 'En vous inscrivant, vous armez vos équipes commerciales avec des données réelles : prix pratiqués, Battle Cards et comparatifs. En tant qu\'équipe Sales, vous négociez en connaissance de cause et renforcez la crédibilité en démo et en closing.',
+    subtitle: 'Ce que vous trouverez en vous inscrivant',
     arguments: [
       { titre: 'Arguments de vente factuels', description: 'Basez vos démonstrations sur des comparaisons réelles (prix, fonctionnalités) plutôt que sur du marketing. Les Battle Cards donnent un langage commun avec l\'acheteur.' },
       { titre: 'Prix de référence et fourchettes marché', description: 'Connaissez les prix réellement payés dans chaque contexte. Négociez en connaissance de cause et évitez les déconvenues en fin de cycle.' },
@@ -38,7 +40,8 @@ const METIERS: Record<string, { title: string; subtitle: string; arguments: { ti
   },
   marketing: {
     title: 'Marketing',
-    subtitle: 'Construisez des messages différenciants et pilotez votre visibilité là où on vous compare.',
+    intro: 'En vous inscrivant, vous maîtrisez votre présence là où les acheteurs vous comparent déjà. En tant qu\'équipe Marketing, vous construisez des messages alignés sur le marché, des études de positionnement et du contenu basé sur des données réelles plutôt que sur des promesses.',
+    subtitle: 'Ce que vous trouverez en vous inscrivant',
     arguments: [
       { titre: 'Visibilité là où on vous compare', description: 'Les acheteurs comparent déjà vos solutions. Rejoignez la plateforme pour maîtriser votre présence : certifiez votre entreprise et contrôlez le message.' },
       { titre: 'Messages alignés sur le marché', description: 'Utilisez les comparaisons (fonctionnalités, prix, retours) pour aligner vos campagnes sur ce que le marché perçoit vraiment. Évitez le décalage entre promesse et réalité.' },
@@ -48,7 +51,8 @@ const METIERS: Record<string, { title: string; subtitle: string; arguments: { ti
   },
   direction: {
     title: 'Direction',
-    subtitle: 'Vision marché, stratégie et pilotage de l\'offre avec des données acheteurs.',
+    intro: 'En vous inscrivant, vous disposez d\'une vision marché factuelle pour la stratégie et le pilotage de l\'offre, sans dépendre du seul retour commercial.',
+    subtitle: 'Ce que vous trouverez en vous inscrivant',
     arguments: [
       { titre: 'Vision marché factuelle', description: 'Prix pratiqués, positionnement perçu et concurrence directe : une vue agrégée pour les décisions stratégiques, sans dépendre du seul retour commercial.' },
       { titre: 'Pilotage de l\'offre et du pricing', description: 'Les données de comparaison et les Battle Cards éclairent les choix d\'offre, de packaging et de positionnement tarifaire face à la concurrence.' },
@@ -69,8 +73,9 @@ export function generateStaticParams() {
   return Object.keys(METIERS).map((metier) => ({ metier }))
 }
 
-export default function EditeurMetierPage({ params }: { params: { metier: string } }) {
-  const metier = params.metier?.toLowerCase()
+export default async function EditeurMetierPage({ params }: { params: Promise<{ metier: string }> }) {
+  const { metier: m } = await params
+  const metier = m?.toLowerCase()
   const data = metier ? METIERS[metier] : null
   const banner = metier ? BANNERS[metier] : null
 
@@ -112,7 +117,10 @@ export default function EditeurMetierPage({ params }: { params: { metier: string
             <h1 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-4">
               Pour les équipes {data.title}
             </h1>
-            <p className="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto mb-6">
+              {data.intro}
+            </p>
+            <p className="text-sm font-semibold text-primary-600 uppercase tracking-wider">
               {data.subtitle}
             </p>
           </div>
@@ -146,7 +154,7 @@ export default function EditeurMetierPage({ params }: { params: { metier: string
           <div className="mt-14 text-center">
             <div className="inline-flex flex-col items-center gap-5 rounded-2xl bg-white border border-slate-200/90 shadow-sm px-8 py-8 sm:px-10 sm:py-9 max-w-md">
               <p className="text-slate-700 font-medium text-lg leading-snug">
-                Prêt à maîtriser votre positionnement sur Battle Cardz ?
+                Inscrivez-vous pour accéder à ces avantages
               </p>
               {getSignupUrl('/editor') ? (
                 <a

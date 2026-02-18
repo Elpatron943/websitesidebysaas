@@ -1,7 +1,9 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { SiteHeader } from '@/app/components/SiteHeader'
 import { getLoginUrl } from '@/lib/commercial-auth-links'
+import { getAcheteurBannerUrl } from '@/lib/acheteur-banner'
 
 const SECTEURS: Record<string, { title: string; intro: string; subtitle: string; arguments: { titre: string; description: string }[] }> = {
   education: {
@@ -199,11 +201,18 @@ export default async function AcheteurSecteurPage({ params }: { params: Promise<
   const data = secteur ? SECTEURS[secteur] : null
   if (!data) notFound()
 
+  const bannerUrl = getAcheteurBannerUrl('secteurs', secteur)
+
   return (
     <div className="min-h-screen bg-slate-50">
       <SiteHeader />
       <main>
-        <section className="relative w-full aspect-[21/9] min-h-[200px] bg-gradient-to-br from-primary-600 to-primary-800" aria-hidden />
+        <section className="relative w-full aspect-[21/9] min-h-[200px] bg-gradient-to-br from-primary-600 to-primary-800 overflow-hidden" aria-hidden>
+          {bannerUrl ? (
+            <Image src={bannerUrl} alt="" fill className="object-cover" sizes="100vw" priority />
+          ) : null}
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/30 to-transparent" aria-hidden />
+        </section>
         <section className="relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-primary-50/60 via-white to-slate-50/80" aria-hidden />
           <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-14 text-center">

@@ -37,24 +37,6 @@ function getEditorsMatchingCriteria(selectedFeatures: Set<string>): string[] {
   })
 }
 
-/** Types de logiciels (une entreprise a souvent un outil par type — comparer entre types pour éviter les doublons) */
-const SOFTWARE_TYPES: Record<string, { name: string; features: string[] }> = {
-  crm: { name: 'CRM', features: ['Reporting & tableaux de bord', 'Gestion des contacts', 'Gestion du pipeline', 'Email intégré', 'API & intégrations', 'Tableaux de bord personnalisables', 'Import/Export', 'Rôles et permissions', 'Mobile'] },
-  projet: { name: 'Gestion de projet', features: ['Reporting & tableaux de bord', 'Gestion des tâches', 'Tableaux de bord personnalisables', 'API & intégrations', 'Collaboration', 'Import/Export', 'Rôles et permissions', 'Calendrier & plannings', 'Suivi des activités'] },
-  rh: { name: 'RH', features: ['Reporting & tableaux de bord', 'Gestion des absences', 'Rôles et permissions', 'Import/Export', 'Tableaux de bord personnalisables', 'Workflows', 'Notifications', 'Historique et audit'] },
-  compta: { name: 'Comptabilité', features: ['Reporting & tableaux de bord', 'Import/Export', 'Rôles et permissions', 'Tableaux de bord personnalisables', 'API & intégrations', 'Facturation', 'Historique et audit', 'Personnalisation des champs'] },
-  marketing: { name: 'Marketing', features: ['Reporting & tableaux de bord', 'API & intégrations', 'Automation des tâches', 'Tableaux de bord personnalisables', 'Import/Export', 'Rôles et permissions', 'Segmentation', 'Notifications'] },
-}
-const SOFTWARE_TYPE_IDS = Object.keys(SOFTWARE_TYPES)
-
-/** Fonctionnalités communes à tous les types de logiciels sélectionnés (intersection) */
-function getCommonFeaturesAcrossTypes(typeIds: string[]): string[] {
-  if (typeIds.length < 2) return []
-  const sets = typeIds.map((id) => new Set(SOFTWARE_TYPES[id]?.features ?? []))
-  const first = sets[0]
-  return Array.from(first).filter((f) => sets.every((s) => s.has(f)))
-}
-
 // Ensemble des fonctionnalités CRM pour le sourcing (cases à cocher)
 const CRM_FEATURES_SOURCING = [
   'Automation des tâches', 'Reporting & tableaux de bord', 'API & intégrations', 'Support 24/7',
@@ -120,6 +102,7 @@ function BattleCardTable({ selectedIds, onBack }: { selectedIds: string[]; onBac
 export default function AcheteurPage() {
   const router = useRouter()
   const [employees, setEmployees] = useState(50)
+  const [savingsRatePct, setSavingsRatePct] = useState(25)
   const [pricingTiers, setPricingTiers] = useState<BuyerPricingTierWithSize[]>([])
   const [pricingLoading, setPricingLoading] = useState(true)
   const [checkoutTierId, setCheckoutTierId] = useState<string | null>(null)
@@ -133,13 +116,20 @@ export default function AcheteurPage() {
   const [showBattleCard, setShowBattleCard] = useState(false)
   const [sourcingFeatures, setSourcingFeatures] = useState<Set<string>>(new Set())
   const [showSourcingResults, setShowSourcingResults] = useState(false)
-  const [commonTypesSelected, setCommonTypesSelected] = useState<string[]>([])
-  const [showCommonFeaturesResults, setShowCommonFeaturesResults] = useState(false)
+  const [roiLevier, setRoiLevier] = useState<'efficacite' | 'revenus' | 'evitement' | 'consolidation' | null>(null)
+  const [roiUsers, setRoiUsers] = useState(25)
+  const [roiCostPerUserMonth, setRoiCostPerUserMonth] = useState(39)
+  const [roiHourlyCost, setRoiHourlyCost] = useState(45)
+  const [roiHoursSavedPerUserWeek, setRoiHoursSavedPerUserWeek] = useState(2)
+  const [roiUpliftPct, setRoiUpliftPct] = useState(3)
+  const [roiBaseRevenueMonth, setRoiBaseRevenueMonth] = useState(100000)
+  const [roiAvoidedCostYear, setRoiAvoidedCostYear] = useState(50000)
+  const [roiCurrentToolsCostYear, setRoiCurrentToolsCostYear] = useState(15000)
+  /** Si > 0, coût annuel = ce forfait (sinon = utilisateurs × coût/mois × 12) */
+  const [roiFlatCostYear, setRoiFlatCostYear] = useState(0)
 
   const sourcingMatchingEditors = getEditorsMatchingCriteria(sourcingFeatures)
   const hasSourcingSelection = sourcingFeatures.size > 0
-  const commonFeaturesAcrossTypes = getCommonFeaturesAcrossTypes(commonTypesSelected)
-  const hasCommonTypesSelection = commonTypesSelected.length >= 2
 
   const scrollTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
   const handleSolutionClick = (solution: string) => {
@@ -158,16 +148,29 @@ export default function AcheteurPage() {
       return next
     })
   }
-  const handleCommonTypeClick = (typeId: string) => {
-    if (commonTypesSelected.includes(typeId)) setCommonTypesSelected(commonTypesSelected.filter((t) => t !== typeId))
-    else if (commonTypesSelected.length < 5) setCommonTypesSelected([...commonTypesSelected, typeId])
-  }
 
   const saasTools = employees <= 10 ? 25 : Math.min(152, Math.round(25 + (152 - 25) * (employees - 10) / (1000 - 10)))
   const annualSpend = employees * 4800
-  const potentialSavings = annualSpend * 0.25
+  const potentialSavings = annualSpend * (Math.max(0, Math.min(100, savingsRatePct)) / 100)
   const tiersForOffer = pricingTiers.length > 0 ? pricingTiers : FALLBACK_PRICING_TIERS
   const offerForEmployees = getPricingTierForEffectif(tiersForOffer, employees)
+
+  const roiAnnualCost = roiFlatCostYear > 0
+    ? Math.max(0, roiFlatCostYear)
+    : Math.max(0, roiUsers) * Math.max(0, roiCostPerUserMonth) * 12
+  const roiAnnualGain = roiLevier === 'efficacite'
+    ? Math.max(0, roiUsers) * Math.max(0, roiHoursSavedPerUserWeek) * Math.max(0, roiHourlyCost) * 52
+    : roiLevier === 'revenus'
+      ? Math.max(0, roiBaseRevenueMonth) * 12 * (Math.max(0, roiUpliftPct) / 100)
+      : roiLevier === 'evitement'
+        ? Math.max(0, roiAvoidedCostYear)
+        : roiLevier === 'consolidation'
+          ? Math.max(0, roiCurrentToolsCostYear)
+          : 0
+  const roiAnnualNet = roiAnnualGain - roiAnnualCost
+  const roiRatio = roiAnnualCost > 0 ? (roiAnnualNet / roiAnnualCost) : null
+  const roiPaybackMonths = roiAnnualGain > 0 ? (roiAnnualCost / roiAnnualGain) * 12 : null
+  const canShowRoiResult = roiLevier != null && roiAnnualCost > 0
 
   useEffect(() => {
     let cancelled = false
@@ -269,13 +272,24 @@ export default function AcheteurPage() {
     <main className="min-h-screen bg-white">
       <header className="bg-white border-b border-slate-200 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between gap-4">
             <Link href="/" className="flex items-center">
               <NavLogo height={90} />
             </Link>
-            <Link href="/" className="text-slate-600 hover:text-slate-900 font-medium text-sm">
-              ← Retour à l&apos;accueil
-            </Link>
+            <div className="flex items-center gap-3">
+              <Link href="/" className="text-slate-600 hover:text-slate-900 font-medium text-sm">
+                ← Retour à l&apos;accueil
+              </Link>
+              {getSignupUrl('/acheteur') ? (
+                <a href={getSignupUrl('/acheteur')!} className="inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-semibold bg-primary-600 text-white hover:bg-primary-700 transition-colors">
+                  Créer mon compte acheteur
+                </a>
+              ) : (
+                <span className="inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-semibold bg-primary-600 text-white cursor-default">
+                  Créer mon compte acheteur
+                </span>
+              )}
+            </div>
           </div>
         </div>
       </header>
@@ -287,9 +301,20 @@ export default function AcheteurPage() {
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
             Comparez les prix réels, négociez en connaissance de cause
           </h1>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto mb-8">
             Side by SaaS vous donne accès aux prix réellement payés par d&apos;autres entreprises, aux comparaisons de fonctionnalités et aux benchmarks. Évitez de surpayer vos logiciels SaaS.
           </p>
+          {getSignupUrl('/acheteur') ? (
+            <a href={getSignupUrl('/acheteur')!} className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-lg font-semibold bg-primary-600 text-white hover:bg-primary-700 transition-colors shadow-sm">
+              Créer mon compte acheteur
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+            </a>
+          ) : (
+            <span className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-lg font-semibold bg-primary-600 text-white cursor-default shadow-sm">
+              Créer mon compte acheteur
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+            </span>
+          )}
         </div>
 
         {/* 4 valeurs ajoutées */}
@@ -309,9 +334,9 @@ export default function AcheteurPage() {
             <h3 className="text-xl font-bold text-slate-900 mb-2">Sourcer de nouveaux fournisseurs</h3>
             <p className="text-slate-600 text-sm">Découvrez des alternatives performantes utilisées par des entreprises similaires.</p>
           </div>
-          <button type="button" onClick={() => scrollTo('fonctionnalites-communes')} className="text-left bg-slate-50 p-6 rounded-xl border border-slate-200 hover:border-orange-200 hover:shadow-md transition-all">
+          <button type="button" onClick={() => scrollTo('calcul-roi')} className="text-left bg-slate-50 p-6 rounded-xl border border-slate-200 hover:border-orange-200 hover:shadow-md transition-all">
             <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4"><span className="text-2xl">🔗</span></div>
-            <h3 className="text-xl font-bold text-slate-900 mb-2">Identifier les fonctionnalités communes</h3>
+            <h3 className="text-xl font-bold text-slate-900 mb-2">Calculer le ROI de mon SaaS</h3>
             <p className="text-slate-600 text-sm">Évitez les doublons et optimisez votre stack.</p>
             <p className="text-primary-600 font-medium text-sm mt-3">Tester la simulation →</p>
           </button>
@@ -343,6 +368,33 @@ export default function AcheteurPage() {
               <label className="block text-sm font-medium text-slate-700 mb-2">Outils SaaS estimés : <span className="text-primary-600 font-bold">{saasTools}</span></label>
               <p className="text-xs text-slate-500">Source : Zylo 2025 — entreprises 1-500 sal. utilisent en moyenne 152 applications SaaS.</p>
             </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-4">
+                Taux d&apos;économies (négociation) : <span className="text-primary-600 font-bold">{Math.max(0, Math.min(100, savingsRatePct))}%</span>
+              </label>
+              <input
+                type="range"
+                min="10"
+                max="30"
+                step="1"
+                value={Math.max(10, Math.min(30, savingsRatePct))}
+                onChange={(e) => setSavingsRatePct(Number(e.target.value))}
+                className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-primary-600"
+              />
+              <div className="flex justify-between text-xs text-slate-500 mt-2"><span>10%</span><span>30%</span></div>
+              <p className="text-xs text-slate-500 mt-2">
+                Source :{' '}
+                <a
+                  href="https://yousign.com/blog/saas-contract-negotiation-strategies"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-primary-600 hover:underline"
+                >
+                  Yousign (2025)
+                </a>
+                {' '}— les organisations qui négocient activement obtiennent typiquement 10–30% d&apos;économies sur les contrats SaaS.
+              </p>
+            </div>
           </div>
           <div className="bg-white rounded-xl p-6 border border-primary-200">
             <div className="flex items-baseline justify-center gap-2">
@@ -366,7 +418,7 @@ export default function AcheteurPage() {
                     type="button"
                     disabled={checkoutTierId === offerForEmployees.id}
                     onClick={() => handleSubscribe(offerForEmployees)}
-                    className="mt-3 px-4 py-2 rounded-lg text-sm font-medium bg-primary-600 text-white hover:bg-primary-700 disabled:opacity-60"
+                    className="mt-3 px-4 py-2 rounded-lg text-sm font-semibold border border-primary-300 bg-primary-50 text-primary-800 hover:bg-primary-100 disabled:opacity-60"
                   >
                     {checkoutTierId === offerForEmployees.id ? 'Redirection…' : 'Souscrire'}
                   </button>
@@ -514,82 +566,160 @@ export default function AcheteurPage() {
           )}
         </div>
 
-        {/* Identifier les fonctionnalités communes */}
-        <div id="fonctionnalites-communes" className="mb-16 scroll-mt-24">
+        {/* Calculer le ROI de mon SaaS */}
+        <div id="calcul-roi" className="mb-16 scroll-mt-24">
           <div className="bg-slate-50 rounded-2xl border border-slate-200 border-l-4 border-orange-500 p-8 md:p-12 shadow-sm">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center shrink-0">
                 <svg className="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                 </svg>
               </div>
-              <span className="text-sm font-semibold uppercase tracking-wide text-orange-800">Identifier les fonctionnalités communes</span>
-            </div>
-            <div className="flex items-start gap-4 mb-6">
-              <div className="hidden sm:block w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center shrink-0">
-                <svg className="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
-                </svg>
-              </div>
-              <div>
-                <h2 className="text-xl md:text-2xl font-bold text-slate-900 mb-1">Évitez les doublons, optimisez votre stack</h2>
-                <p className="text-slate-600 text-sm">Évitez les doublons et optimisez votre stack. Sélectionnez au moins 2 types de logiciels différents pour voir les fonctionnalités qu&apos;ils ont souvent en commun — un seul outil peut peut-être les couvrir.</p>
-              </div>
-            </div>
-            <p className="text-sm font-medium text-slate-700 mb-3">Choisissez 2 à 5 types de logiciels (ex. CRM + Projet + RH)</p>
-            <div className="flex flex-wrap gap-3 mb-6">
-              {SOFTWARE_TYPE_IDS.map((typeId) => (
-                <button
-                  key={typeId}
-                  type="button"
-                  onClick={() => handleCommonTypeClick(typeId)}
-                  className={`px-5 py-2.5 rounded-lg font-medium transition-colors border-2 ${
-                    commonTypesSelected.includes(typeId) ? 'bg-primary-600 text-white border-primary-600' : 'bg-white text-slate-700 border-slate-300 hover:border-primary-600 hover:bg-primary-50'
-                  }`}
-                >
-                  {SOFTWARE_TYPES[typeId].name}
-                  {commonTypesSelected.includes(typeId) && ' ✓'}
-                </button>
-              ))}
-            </div>
-            <div className="text-center">
-              <button
-                type="button"
-                onClick={() => setShowCommonFeaturesResults(true)}
-                disabled={!hasCommonTypesSelection}
-                className={`px-6 py-3 rounded-lg font-medium transition-colors ${
-                  hasCommonTypesSelection ? 'bg-primary-600 text-white hover:bg-primary-700' : 'bg-slate-200 text-slate-500 cursor-not-allowed'
-                }`}
-              >
-                Voir les fonctionnalités communes
-              </button>
-              {!hasCommonTypesSelection && <p className="text-sm text-slate-500 mt-2">Sélectionnez au moins 2 types de logiciels</p>}
+              <span className="text-sm font-semibold uppercase tracking-wide text-orange-800">Calculer le ROI de mon SaaS</span>
             </div>
 
-            {showCommonFeaturesResults && (
-              <div className="mt-10 pt-8 border-t border-slate-200">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-bold text-slate-900">Fonctionnalités communes</h3>
-                  <button type="button" onClick={() => setShowCommonFeaturesResults(false)} className="text-sm text-primary-600 hover:text-primary-700 font-medium">Fermer</button>
-                </div>
-                <p className="text-slate-600 text-sm mb-4">
-                  Présentes dans tous les types sélectionnés ({commonTypesSelected.map((t) => SOFTWARE_TYPES[t].name).join(', ')}) — un outil que vous avez déjà peut peut-être les couvrir.
-                </p>
-                {commonFeaturesAcrossTypes.length === 0 ? (
-                  <p className="text-slate-500 text-sm py-4">Aucune fonctionnalité commune à ces types de logiciels.</p>
-                ) : (
-                  <ul className="bg-white rounded-xl border border-slate-200 divide-y divide-slate-100">
-                    {commonFeaturesAcrossTypes.map((feature) => (
-                      <li key={feature} className="px-4 py-3 flex items-center gap-2 text-slate-700">
-                        <span className="text-green-600 font-medium">✓</span>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-                <p className="text-slate-500 text-xs mt-4">Évitez les doublons : si un outil de votre stack couvre déjà ces fonctionnalités, vous pouvez optimiser vos achats.</p>
+            {/* 1. Levier de valeur (catégorie) */}
+            <div className="mb-8">
+              <h2 className="text-lg font-bold text-slate-900 mb-1">1. Le levier de valeur (la catégorie)</h2>
+              <p className="text-slate-600 text-sm mb-4">Choisissez un seul levier principal. On ne calcule pas le ROI de la même façon pour tous.</p>
+              <div className="grid sm:grid-cols-2 gap-3">
+                {[
+                  { id: 'efficacite' as const, label: 'Efficacité opérationnelle', desc: 'On gagne du temps sur une tâche existante.' },
+                  { id: 'revenus' as const, label: 'Génération de revenus', desc: "L'outil aide directement à vendre plus." },
+                  { id: 'evitement' as const, label: 'Évitement de coûts / risques', desc: "L'outil remplace un prestataire ou évite une amende (ex. RGPD, cybersécurité)." },
+                  { id: 'consolidation' as const, label: 'Consolidation', desc: "L'outil remplace 3 anciens outils." },
+                ].map((item) => (
+                  <button
+                    key={item.id}
+                    type="button"
+                    onClick={() => { setRoiLevier(item.id) }}
+                    className={`relative text-left px-5 py-4 rounded-xl border-2 transition-all ${
+                      roiLevier === item.id
+                        ? 'bg-orange-600 text-white border-orange-700 shadow-lg ring-2 ring-orange-400 ring-offset-2'
+                        : 'bg-white text-slate-700 border-slate-300 hover:border-orange-300 hover:bg-orange-50'
+                    }`}
+                  >
+                    {roiLevier === item.id && (
+                      <span className="absolute top-2 right-2 rounded-full bg-white/25 px-2 py-0.5 text-xs font-bold uppercase">Sélectionné</span>
+                    )}
+                    <span className="font-semibold block">{item.label}</span>
+                    <span className={`text-sm mt-1 block ${roiLevier === item.id ? 'text-white' : 'text-slate-500'}`}>{item.desc}</span>
+                  </button>
+                ))}
               </div>
-            )}
+            </div>
+
+            {/* 2. Mesure de gain (KPI) + coût SaaS */}
+            <div className="pt-6 border-t border-slate-200">
+              <h2 className="text-lg font-bold text-slate-900 mb-1">2. L&apos;unité de mesure de gain (le KPI)</h2>
+              <p className="text-slate-600 text-sm mb-6">Quantifiez l&apos;impact avec une unité numérique, puis comparez au coût du SaaS.</p>
+
+              <div className={`grid gap-4 mb-6 ${roiLevier === 'efficacite' ? 'md:grid-cols-3' : 'md:grid-cols-2'}`}>
+                <div className="bg-white rounded-xl border border-slate-200 p-4">
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Nombre d&apos;utilisateurs</label>
+                  <input type="number" min={0} value={roiUsers} onChange={(e) => setRoiUsers(Math.max(0, Number(e.target.value) || 0))} className="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary-600 focus:border-transparent" />
+                  <p className="text-xs text-slate-500 mt-1">Utilisé pour le coût SaaS (si pas de forfait ci-dessous).</p>
+                </div>
+                <div className="bg-white rounded-xl border border-slate-200 p-4">
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Coût SaaS (€/utilisateur/mois)</label>
+                  <input type="number" min={0} value={roiCostPerUserMonth} onChange={(e) => setRoiCostPerUserMonth(Math.max(0, Number(e.target.value) || 0))} className="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary-600 focus:border-transparent" />
+                  <p className="text-xs text-slate-500 mt-1">Utilisé si vous ne saisissez pas de forfait annuel.</p>
+                </div>
+                {roiLevier === 'efficacite' && (
+                  <div className="bg-white rounded-xl border border-slate-200 p-4">
+                    <label className="block text-sm font-medium text-slate-700 mb-1">Coût horaire moyen (€/h)</label>
+                    <input type="number" min={0} value={roiHourlyCost} onChange={(e) => setRoiHourlyCost(Math.max(0, Number(e.target.value) || 0))} className="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary-600 focus:border-transparent" />
+                    <p className="text-xs text-slate-500 mt-1">Pour convertir les heures gagnées en gain annuel.</p>
+                  </div>
+                )}
+              </div>
+              <div className="mb-6">
+                <label className="block text-sm font-medium text-slate-700 mb-1">Ou coût annuel du SaaS en forfait (€/an)</label>
+                <input type="number" min={0} placeholder="0 = calcul à partir des utilisateurs ci-dessus" value={roiFlatCostYear} onChange={(e) => setRoiFlatCostYear(Math.max(0, Number(e.target.value) || 0))} className="w-full max-w-xs px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary-600 focus:border-transparent" />
+                <p className="text-xs text-slate-500 mt-1">Si vous saisissez un montant, il est utilisé comme coût annuel (les champs utilisateurs / €/mois sont ignorés pour le coût).</p>
+              </div>
+
+              {!roiLevier ? (
+                <p className="text-sm text-slate-500">Sélectionnez un levier ci-dessus pour afficher les champs KPI.</p>
+              ) : (
+                <div className="grid md:grid-cols-2 gap-4">
+                  {roiLevier === 'efficacite' && (
+                    <div className="bg-white rounded-xl border border-slate-200 p-4">
+                      <p className="text-slate-700 font-medium mb-2">Heures gagnées par utilisateur et par semaine</p>
+                      <input type="number" min={0} step={0.25} value={roiHoursSavedPerUserWeek} onChange={(e) => setRoiHoursSavedPerUserWeek(Math.max(0, Number(e.target.value) || 0))} className="w-full max-w-xs px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary-600 focus:border-transparent" />
+                      <p className="text-xs text-slate-500 mt-1">Exemple : 2 h/semaine</p>
+                    </div>
+                  )}
+                  {roiLevier === 'revenus' && (
+                    <>
+                      <div className="bg-white rounded-xl border border-slate-200 p-4">
+                        <p className="text-slate-700 font-medium mb-2">CA de base (€/mois)</p>
+                        <input type="number" min={0} value={roiBaseRevenueMonth} onChange={(e) => setRoiBaseRevenueMonth(Math.max(0, Number(e.target.value) || 0))} className="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary-600 focus:border-transparent" />
+                      </div>
+                      <div className="bg-white rounded-xl border border-slate-200 p-4">
+                        <p className="text-slate-700 font-medium mb-2">Gain estimé (%)</p>
+                        <input type="number" min={0} step={0.1} value={roiUpliftPct} onChange={(e) => setRoiUpliftPct(Math.max(0, Number(e.target.value) || 0))} className="w-full max-w-xs px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary-600 focus:border-transparent" />
+                        <p className="text-xs text-slate-500 mt-1">Exemple : +3%</p>
+                      </div>
+                    </>
+                  )}
+                  {roiLevier === 'evitement' && (
+                    <div className="bg-white rounded-xl border border-slate-200 p-4">
+                      <p className="text-slate-700 font-medium mb-2">Coût évité (€/an)</p>
+                      <input type="number" min={0} value={roiAvoidedCostYear} onChange={(e) => setRoiAvoidedCostYear(Math.max(0, Number(e.target.value) || 0))} className="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary-600 focus:border-transparent" />
+                      <p className="text-xs text-slate-500 mt-1">Exemple : 50 000 €/an</p>
+                    </div>
+                  )}
+                  {roiLevier === 'consolidation' && (
+                    <div className="bg-white rounded-xl border border-slate-200 p-4">
+                      <p className="text-slate-700 font-medium mb-2">Coût actuel des outils remplacés (€/an)</p>
+                      <input type="number" min={0} value={roiCurrentToolsCostYear} onChange={(e) => setRoiCurrentToolsCostYear(Math.max(0, Number(e.target.value) || 0))} className="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary-600 focus:border-transparent" />
+                      <p className="text-xs text-slate-500 mt-1">Exemple : 15 000 €/an</p>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {canShowRoiResult && (
+                <div className="mt-8 bg-white rounded-2xl border border-slate-200 p-6">
+                  <div className="flex items-center justify-between gap-4 flex-wrap">
+                    <h3 className="text-lg font-bold text-slate-900">Résultat</h3>
+                    {roiRatio != null && (
+                      <span className={`px-3 py-1 rounded-full text-sm font-semibold ${roiRatio >= 0 ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
+                        ROI annuel : {(roiRatio * 100).toFixed(0)}%
+                      </span>
+                    )}
+                  </div>
+                  <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4 mt-4">
+                    <div className="rounded-xl border border-slate-200 p-4">
+                      <p className="text-xs text-slate-500">Gain annuel estimé</p>
+                      <p className="text-xl font-bold text-slate-900">{Math.round(roiAnnualGain).toLocaleString('fr-FR')} €</p>
+                    </div>
+                    <div className="rounded-xl border border-slate-200 p-4">
+                      <p className="text-xs text-slate-500">Coût annuel SaaS</p>
+                      <p className="text-xl font-bold text-slate-900">{Math.round(roiAnnualCost).toLocaleString('fr-FR')} €</p>
+                    </div>
+                    <div className="rounded-xl border border-slate-200 p-4">
+                      <p className="text-xs text-slate-500">Net annuel</p>
+                      <p className={`text-xl font-bold ${roiAnnualNet >= 0 ? 'text-green-700' : 'text-red-700'}`}>{Math.round(roiAnnualNet).toLocaleString('fr-FR')} €</p>
+                    </div>
+                    <div className="rounded-xl border border-slate-200 p-4">
+                      <p className="text-xs text-slate-500">Payback</p>
+                      <p className="text-xl font-bold text-slate-900">{roiPaybackMonths == null ? '—' : `${roiPaybackMonths.toFixed(1)} mois`}</p>
+                    </div>
+                    <div className="rounded-xl border border-amber-200 bg-amber-50 p-4">
+                      <p className="text-xs text-amber-800 font-medium">Coût de l&apos;inaction</p>
+                      <p className="text-xl font-bold text-amber-900">{Math.round(roiAnnualGain).toLocaleString('fr-FR')} €<span className="text-sm font-normal text-amber-700">/an</span></p>
+                      <p className="text-xs text-amber-700 mt-1">Sur 3 ans : {Math.round(roiAnnualGain * 3).toLocaleString('fr-FR')} €</p>
+                    </div>
+                  </div>
+                  <p className="text-sm text-slate-600 mt-4">
+                    <strong>Coût de l&apos;inaction</strong> : ce que vous renoncez à gagner (ou à éviter) chaque année en n&apos;adoptant pas l&apos;outil.
+                  </p>
+                  <p className="text-xs text-slate-500 mt-2">Estimation indicative : ajustez les hypothèses (utilisateurs, coût, KPI) pour refléter votre contexte.</p>
+                </div>
+              )}
+            </div>
           </div>
         </div>
 

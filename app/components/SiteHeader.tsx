@@ -70,13 +70,7 @@ export function SiteHeader() {
                   <Link href="/editeur/product" className="block w-full text-left px-4 py-2.5 text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium">Product</Link>
                   <Link href="/editeur/sales" className="block w-full text-left px-4 py-2.5 text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium">Sales</Link>
                   <Link href="/editeur/marketing" className="block w-full text-left px-4 py-2.5 text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium">Marketing</Link>
-                  <p className="px-4 py-2 text-xs font-semibold text-slate-400 uppercase tracking-wider">Direction</p>
-                  <Link href="/editeur/direction" className="block w-full text-left pl-5 pr-4 py-2 text-slate-600 hover:bg-blue-50 font-medium">Vue d&apos;ensemble</Link>
-                  <Link href="/editeur/direction/achats" className="block w-full text-left pl-5 pr-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium">Achats</Link>
-                  <Link href="/editeur/direction/finance" className="block w-full text-left pl-5 pr-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium">Finance</Link>
-                  <Link href="/editeur/direction/marketing" className="block w-full text-left pl-5 pr-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium">Marketing</Link>
-                  <Link href="/editeur/direction/rh" className="block w-full text-left pl-5 pr-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium">RH</Link>
-                  <div className="border-t border-slate-100 mt-2 pt-2">
+                  <div className="mt-1">
                     <a href={`${platformUrl}/auth/register?redirectTo=/editor`} className="block w-full text-left px-4 py-2.5 text-blue-600 hover:bg-blue-50 font-semibold">Créer mon espace éditeur →</a>
                   </div>
                 </div>

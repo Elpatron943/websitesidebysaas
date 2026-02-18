@@ -42,8 +42,11 @@ const SECTEURS = [
   { path: 'energie-utilities', label: 'Énergie & Utilities' },
 ] as const
 
+const PLATFORM_URL = process.env.NEXT_PUBLIC_PLATFORM_URL || 'https://app.sidebysaas.com'
+
 export function AcheteurNavMenu({ linkStyle = 'link', onNavigate, isOpen = true }: AcheteurNavMenuProps) {
   const router = useRouter()
+  const platformUrl = PLATFORM_URL
   const [expanded, setExpanded] = useState<'directions' | 'secteurs' | null>(null)
 
   useEffect(() => {
@@ -118,6 +121,16 @@ export function AcheteurNavMenu({ linkStyle = 'link', onNavigate, isOpen = true 
         ) : (
           <button type="button" onClick={() => nav('/acheteur#calculateur-economies')} className={itemClass}>Par taille d&apos;entreprise</button>
         )}
+      </div>
+
+      <div className="border-t border-slate-100 mt-2 pt-2">
+        <a
+          href={`${platformUrl}/auth/register?redirectTo=/buyer`}
+          onClick={onNavigate}
+          className={itemClassBlue}
+        >
+          Je crée mon espace acheteur →
+        </a>
       </div>
     </div>
   )

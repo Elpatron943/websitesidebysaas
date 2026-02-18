@@ -90,13 +90,7 @@ export default function Home() {
                     <button type="button" onClick={() => { router.push('/editeur/product'); setOpenMenu(null) }} className="block w-full text-left px-4 py-2.5 text-slate-700 hover:bg-primary-50 hover:text-primary-700 font-medium">Product</button>
                     <button type="button" onClick={() => { router.push('/editeur/sales'); setOpenMenu(null) }} className="block w-full text-left px-4 py-2.5 text-slate-700 hover:bg-primary-50 hover:text-primary-700 font-medium">Sales</button>
                     <button type="button" onClick={() => { router.push('/editeur/marketing'); setOpenMenu(null) }} className="block w-full text-left px-4 py-2.5 text-slate-700 hover:bg-primary-50 hover:text-primary-700 font-medium">Marketing</button>
-                    <p className="px-4 py-2 text-xs font-semibold text-slate-400 uppercase tracking-wider">Direction</p>
-                    <button type="button" onClick={() => { router.push('/editeur/direction'); setOpenMenu(null) }} className="block w-full text-left pl-5 pr-4 py-2 text-slate-600 hover:bg-primary-50 font-medium">Vue d&apos;ensemble</button>
-                    <button type="button" onClick={() => { router.push('/editeur/direction/achats'); setOpenMenu(null) }} className="block w-full text-left pl-5 pr-4 py-2 text-slate-700 hover:bg-primary-50 hover:text-primary-700 font-medium">Achats</button>
-                    <button type="button" onClick={() => { router.push('/editeur/direction/finance'); setOpenMenu(null) }} className="block w-full text-left pl-5 pr-4 py-2 text-slate-700 hover:bg-primary-50 hover:text-primary-700 font-medium">Finance</button>
-                    <button type="button" onClick={() => { router.push('/editeur/direction/marketing'); setOpenMenu(null) }} className="block w-full text-left pl-5 pr-4 py-2 text-slate-700 hover:bg-primary-50 hover:text-primary-700 font-medium">Marketing</button>
-                    <button type="button" onClick={() => { router.push('/editeur/direction/rh'); setOpenMenu(null) }} className="block w-full text-left pl-5 pr-4 py-2 text-slate-700 hover:bg-primary-50 hover:text-primary-700 font-medium">RH</button>
-                    <div className="border-t border-slate-100 mt-2 pt-2">
+                    <div className="mt-1">
                       <button
                         type="button"
                         onClick={() => { const u = getSignupUrl('/editor'); if (u) window.location.href = u; setOpenMenu(null) }}
@@ -132,6 +126,9 @@ export default function Home() {
                   </div>
                 )}
               </div>
+              <a href="https://app.sidebysaas.com/forum" target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 font-medium transition-colors">
+                Forum Inside by SaaS
+              </a>
             </nav>
             <div className="flex items-center space-x-4" ref={authDropRef}>
               <>

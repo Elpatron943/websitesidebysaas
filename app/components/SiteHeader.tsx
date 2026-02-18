@@ -96,6 +96,9 @@ export function SiteHeader() {
                 </div>
               )}
             </div>
+            <a href="https://app.sidebysaas.com/forum" target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 font-medium transition-colors">
+              Forum Inside by SaaS
+            </a>
           </nav>
           <div className="flex items-center space-x-4">
             <a href={`${platformUrl}/auth/login?redirectTo=/buyer`} className="text-slate-600 hover:text-slate-900 font-medium transition-colors text-sm">

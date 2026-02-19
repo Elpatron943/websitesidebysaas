@@ -12,6 +12,8 @@ type AcheteurNavMenuProps = {
   isOpen?: boolean
   /** 'dropdown' = position absolue (desktop), 'inline' = dans le flux (menu mobile) */
   variant?: 'dropdown' | 'inline'
+  /** Préfixe pour les liens (ex: /fr, /en) */
+  localePrefix?: string
 }
 
 const DIRECTIONS = [
@@ -46,10 +48,11 @@ const SECTEURS = [
 
 const PLATFORM_URL = process.env.NEXT_PUBLIC_PLATFORM_URL || 'https://app.sidebysaas.com'
 
-export function AcheteurNavMenu({ linkStyle = 'link', onNavigate, isOpen = true, variant = 'dropdown' }: AcheteurNavMenuProps) {
+export function AcheteurNavMenu({ linkStyle = 'link', onNavigate, isOpen = true, variant = 'dropdown', localePrefix = '' }: AcheteurNavMenuProps) {
   const router = useRouter()
   const platformUrl = PLATFORM_URL
   const [expanded, setExpanded] = useState<'directions' | 'secteurs' | null>(null)
+  const p = (path: string) => `${localePrefix}${path}`
 
   useEffect(() => {
     if (!isOpen) setExpanded(null)
@@ -72,9 +75,9 @@ export function AcheteurNavMenu({ linkStyle = 'link', onNavigate, isOpen = true,
     <div className={wrapperClass}>
       {/* Niveau 1 : sous-menus regroupés */}
       {linkStyle === 'link' ? (
-        <Link href="/acheteur#tarifs" className={`${itemClassBlue} border-b border-slate-100`} onClick={onNavigate}>Tarifs</Link>
+        <Link href={p('/acheteur#tarifs')} className={`${itemClassBlue} border-b border-slate-100`} onClick={onNavigate}>Tarifs</Link>
       ) : (
-        <button type="button" onClick={() => { nav('/acheteur#tarifs'); }} className={`${itemClassBlue} border-b border-slate-100 w-full`}>Tarifs</button>
+        <button type="button" onClick={() => { nav(p('/acheteur#tarifs')); }} className={`${itemClassBlue} border-b border-slate-100 w-full`}>Tarifs</button>
       )}
 
       <div className="border-b border-slate-100">
@@ -90,9 +93,9 @@ export function AcheteurNavMenu({ linkStyle = 'link', onNavigate, isOpen = true,
           <div className="pb-2">
             {DIRECTIONS.map(({ path, label }) =>
               linkStyle === 'link' ? (
-                <Link key={path} href={`/acheteur/directions/${path}`} className={subItemClass} onClick={onNavigate}>{label}</Link>
+                <Link key={path} href={p(`/acheteur/directions/${path}`)} className={subItemClass} onClick={onNavigate}>{label}</Link>
               ) : (
-                <button key={path} type="button" onClick={() => nav(`/acheteur/directions/${path}`)} className={subItemClass}>{label}</button>
+                <button key={path} type="button" onClick={() => nav(p(`/acheteur/directions/${path}`))} className={subItemClass}>{label}</button>
               )
             )}
           </div>
@@ -112,9 +115,9 @@ export function AcheteurNavMenu({ linkStyle = 'link', onNavigate, isOpen = true,
           <div className="pb-2 max-h-[50vh] overflow-y-auto">
             {SECTEURS.map(({ path, label }) =>
               linkStyle === 'link' ? (
-                <Link key={path} href={`/acheteur/secteurs/${path}`} className={subItemClass} onClick={onNavigate}>{label}</Link>
+                <Link key={path} href={p(`/acheteur/secteurs/${path}`)} className={subItemClass} onClick={onNavigate}>{label}</Link>
               ) : (
-                <button key={path} type="button" onClick={() => nav(`/acheteur/secteurs/${path}`)} className={subItemClass}>{label}</button>
+                <button key={path} type="button" onClick={() => nav(p(`/acheteur/secteurs/${path}`))} className={subItemClass}>{label}</button>
               )
             )}
           </div>
@@ -123,9 +126,9 @@ export function AcheteurNavMenu({ linkStyle = 'link', onNavigate, isOpen = true,
 
       <div className="pt-2">
         {linkStyle === 'link' ? (
-          <Link href="/acheteur#calculateur-economies" className={itemClass} onClick={onNavigate}>Par taille d&apos;entreprise</Link>
+          <Link href={p('/acheteur#calculateur-economies')} className={itemClass} onClick={onNavigate}>Par taille d&apos;entreprise</Link>
         ) : (
-          <button type="button" onClick={() => nav('/acheteur#calculateur-economies')} className={itemClass}>Par taille d&apos;entreprise</button>
+          <button type="button" onClick={() => nav(p('/acheteur#calculateur-economies'))} className={itemClass}>Par taille d&apos;entreprise</button>
         )}
       </div>
 

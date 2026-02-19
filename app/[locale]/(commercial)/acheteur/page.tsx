@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
 import { NavLogo } from '@/app/components/NavLogo'
 import { getLoginUrl, getSignupUrl } from '@/lib/commercial-auth-links'
 import {
@@ -101,6 +101,9 @@ function BattleCardTable({ selectedIds, onBack }: { selectedIds: string[]; onBac
 
 export default function AcheteurPage() {
   const router = useRouter()
+  const pathname = usePathname()
+  const locale = pathname?.startsWith('/en') ? 'en' : 'fr'
+  const prefix = `/${locale}`
   const [employees, setEmployees] = useState(50)
   const savingsRatePct = 32
   const [pricingTiers, setPricingTiers] = useState<BuyerPricingTierWithSize[]>([])
@@ -236,12 +239,12 @@ export default function AcheteurPage() {
   const handleSubscribe = async (tier: BuyerPricingTierWithSize) => {
     setCheckoutError(null)
     if (!user) {
-      const url = getSignupUrl('/acheteur')
+      const url = getSignupUrl(`${prefix}/acheteur`)
       if (url) window.location.href = url
       return
     }
     if (!tier.stripe_price_id && !(tier.size_tier != null && tier.size_tier.effectif_min <= 1000)) {
-      router.push('/contact')
+      router.push(`${prefix}/contact`)
       return
     }
     setCheckoutTierId(tier.id)
@@ -273,15 +276,15 @@ export default function AcheteurPage() {
       <header className="bg-white border-b border-slate-200 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
           <div className="flex items-center justify-between gap-4">
-            <Link href="/" className="flex items-center">
+            <Link href={prefix} className="flex items-center">
               <NavLogo height={90} />
             </Link>
             <div className="flex items-center gap-3">
-              <Link href="/" className="text-slate-600 hover:text-slate-900 font-medium text-sm">
+              <Link href={prefix} className="text-slate-600 hover:text-slate-900 font-medium text-sm">
                 ← Retour à l&apos;accueil
               </Link>
-              {getSignupUrl('/acheteur') ? (
-                <a href={getSignupUrl('/acheteur')!} className="inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-semibold bg-primary-600 text-white hover:bg-primary-700 transition-colors">
+              {getSignupUrl(`${prefix}/acheteur`) ? (
+                <a href={getSignupUrl(`${prefix}/acheteur`)!} className="inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-semibold bg-primary-600 text-white hover:bg-primary-700 transition-colors">
                   Créer mon compte acheteur
                 </a>
               ) : (
@@ -304,8 +307,8 @@ export default function AcheteurPage() {
           <p className="text-lg text-slate-600 max-w-2xl mx-auto mb-8">
             Side by SaaS vous donne accès aux prix réellement payés par d&apos;autres entreprises, aux comparaisons de fonctionnalités et aux benchmarks. Évitez de surpayer vos logiciels SaaS.
           </p>
-          {getSignupUrl('/acheteur') ? (
-            <a href={getSignupUrl('/acheteur')!} className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-lg font-semibold bg-primary-600 text-white hover:bg-primary-700 transition-colors shadow-sm">
+          {getSignupUrl(`${prefix}/acheteur`) ? (
+            <a href={getSignupUrl(`${prefix}/acheteur`)!} className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-lg font-semibold bg-primary-600 text-white hover:bg-primary-700 transition-colors shadow-sm">
               Créer mon compte acheteur
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </a>
@@ -727,8 +730,8 @@ export default function AcheteurPage() {
                   <li className="flex items-start gap-2"><span className="text-green-600">✓</span> 1 fiche / 5 avis complets</li>
                 </ul>
                 <div className="mt-auto pt-4">
-                  {getSignupUrl('/buyer') ? (
-                    <a href={getSignupUrl('/buyer')!} className="block w-full py-3 px-4 rounded-lg font-medium bg-primary-600 text-white hover:bg-primary-700 text-center transition-colors">
+                  {getSignupUrl(`${prefix}/acheteur`) ? (
+                    <a href={getSignupUrl(`${prefix}/acheteur`)!} className="block w-full py-3 px-4 rounded-lg font-medium bg-primary-600 text-white hover:bg-primary-700 text-center transition-colors">
                       Commencer gratuitement
                     </a>
                   ) : (
@@ -790,8 +793,8 @@ export default function AcheteurPage() {
           {checkoutError && <p className="text-center text-red-600 text-sm mt-4">{checkoutError}</p>}
           {!user && (
             <p className="text-center text-slate-500 text-sm mt-4">
-              {getSignupUrl('/acheteur') ? (
-                <a href={getSignupUrl('/acheteur')!} className="text-primary-600 hover:underline font-medium">Créer un compte</a>
+              {getSignupUrl(`${prefix}/acheteur`) ? (
+                <a href={getSignupUrl(`${prefix}/acheteur`)!} className="text-primary-600 hover:underline font-medium">Créer un compte</a>
               ) : (
                 <span className="text-primary-600 font-medium">Créer un compte</span>
               )}{' '}
@@ -803,8 +806,8 @@ export default function AcheteurPage() {
         {/* CTA inscription */}
         <div className="mt-16 text-center">
           <p className="text-slate-600 mb-4">Pas encore inscrit ? Commencez gratuitement.</p>
-          {getSignupUrl('/acheteur') ? (
-            <a href={getSignupUrl('/acheteur')!} className="inline-flex items-center justify-center px-8 py-4 rounded-lg text-lg font-semibold bg-primary-600 text-white hover:bg-primary-700 transition-colors">
+          {getSignupUrl(`${prefix}/acheteur`) ? (
+            <a href={getSignupUrl(`${prefix}/acheteur`)!} className="inline-flex items-center justify-center px-8 py-4 rounded-lg text-lg font-semibold bg-primary-600 text-white hover:bg-primary-700 transition-colors">
               Créer mon compte acheteur
             </a>
           ) : (
@@ -818,11 +821,11 @@ export default function AcheteurPage() {
       <footer className="bg-slate-900 text-white border-t border-slate-800 mt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-2 text-slate-400 hover:text-white">
+            <Link href={prefix} className="flex items-center gap-2 text-slate-400 hover:text-white">
               <NavLogo height={80} />
               <span>© 2024</span>
             </Link>
-            <Link href="/" className="text-slate-400 hover:text-white text-sm">Retour à l&apos;accueil</Link>
+            <Link href={prefix} className="text-slate-400 hover:text-white text-sm">Retour à l&apos;accueil</Link>
           </div>
         </div>
       </footer>
@@ -839,7 +842,7 @@ export default function AcheteurPage() {
                 </button>
               </div>
               <p className="text-slate-600 text-sm mb-6">
-                Offre Sur mesure (1001+ salariés). L&apos;équipe commerciale vous recontactera à l&apos;adresse <strong>sales@battle-cardz.com</strong>.
+                Offre Sur mesure (1001+ salariés). L&apos;équipe commerciale vous recontactera à l&apos;adresse <strong>sales@sidebysaas.com</strong>.
               </p>
               {demoStatus === 'success' ? (
                 <div className="text-center py-4">

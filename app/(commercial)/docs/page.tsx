@@ -7,7 +7,7 @@ export default function Docs() {
         <h1 className="text-4xl font-bold text-slate-900 mb-8">Documentation</h1>
         <div className="bg-white rounded-xl shadow-lg p-8">
           <p className="text-slate-600 mb-4">
-            La documentation complète de Battle Cardz sera disponible prochainement.
+            La documentation complète de Side By SaaS sera disponible prochainement.
           </p>
           <Link 
             href="/"

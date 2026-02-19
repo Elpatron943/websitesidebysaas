@@ -1,14 +1,17 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { NavLogo } from '@/app/components/NavLogo'
 import { AcheteurNavMenu } from '@/app/components/AcheteurNavMenu'
+import { useLocale, useTranslations } from '@/app/components/LocaleProvider'
 
-const BLOG_CATEGORIES = [
-  { slug: 'comparaison-benchmarks', name: 'Comparaison & benchmarks' },
-  { slug: 'prix-negociation', name: 'Prix & négociation' },
-  { slug: 'etudes-tendances', name: 'Études & tendances' },
+const BLOG_CATEGORY_KEYS: { slug: string; key: string }[] = [
+  { slug: 'comparaison-benchmarks', key: 'header.categoryComparison' },
+  { slug: 'prix-negociation', key: 'header.categoryPricing' },
+  { slug: 'etudes-tendances', key: 'header.categoryStudies' },
 ]
 
 const PLATFORM_URL = process.env.NEXT_PUBLIC_PLATFORM_URL || 'https://app.sidebysaas.com'
@@ -87,6 +90,12 @@ function IconX({ className = 'h-6 w-6' }: { className?: string }) {
 
 export function SiteHeader() {
   const platformUrl = PLATFORM_URL
+  const t = useTranslations()
+  const locale = useLocale()
+  const pathname = usePathname()
+  const prefix = `/${locale}`
+  const otherLocale = locale === 'en' ? 'fr' : 'en'
+  const switchPath = pathname ? `/${otherLocale}${pathname.replace(/^\/[a-z]{2}/, '') || ''}` : `/${otherLocale}`
   const [openMenu, setOpenMenu] = useState<'acheteur' | 'editeur' | 'blog' | null>(null)
   const [authOpen, setAuthOpen] = useState<'connexion' | 'commencer' | null>(null)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -129,19 +138,26 @@ export function SiteHeader() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-14 items-center justify-between gap-6">
           <Link
-            href="/"
+            href={prefix}
             className="flex items-center shrink-0 transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-lg"
-            aria-label="Side by SaaS - Accueil"
+            aria-label="Side by SaaS"
           >
             <NavLogo height={48} />
           </Link>
+
+          {/* Sélecteur de langue */}
+          <div className="flex items-center gap-1 shrink-0">
+            <Link href={switchPath} className="px-2 py-1.5 text-sm font-medium rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900" aria-label={locale === 'fr' ? 'Switch to English' : 'Passer en français'}>
+              {locale === 'fr' ? 'EN' : 'FR'}
+            </Link>
+          </div>
 
           {/* Bouton menu mobile + espaceur */}
           <div className="flex items-center flex-1 md:flex-none md:flex-0">
             <button
               type="button"
-              className="md:hidden flex items-center justify-center w-10 h-10 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors"
-              onClick={() => setMobileMenuOpen(true)}
+              className="md:hidden flex items-center justify-center min-w-[44px] min-h-[44px] rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 active:bg-slate-200 transition-colors touch-manipulation"
+              onClick={(e) => { e.stopPropagation(); setMobileMenuOpen(true) }}
               aria-label="Ouvrir le menu"
               aria-expanded={mobileMenuOpen}
             >
@@ -162,11 +178,11 @@ export function SiteHeader() {
                 <span className={iconWrapClass}>
                   <IconAcheteur />
                 </span>
-                <span className="whitespace-nowrap">J&apos;utilise des SaaS</span>
+                <span className="whitespace-nowrap">{t('header.useSaaS')}</span>
                 <ChevronDown open={openMenu === 'acheteur'} />
               </button>
               {openMenu === 'acheteur' && (
-                <AcheteurNavMenu linkStyle="link" onNavigate={() => setOpenMenu(null)} isOpen={true} />
+                <AcheteurNavMenu linkStyle="link" onNavigate={() => setOpenMenu(null)} isOpen={true} localePrefix={prefix} />
               )}
             </div>
             <div className="relative">
@@ -181,16 +197,16 @@ export function SiteHeader() {
                 <span className={iconWrapClass}>
                   <IconEditeur />
                 </span>
-                <span className="whitespace-nowrap">Je suis éditeur</span>
+                <span className="whitespace-nowrap">{t('header.iAmEditor')}</span>
                 <ChevronDown open={openMenu === 'editeur'} />
               </button>
               {openMenu === 'editeur' && (
                 <div className={dropdownPanelClass}>
-                  <Link href="/editeur/product" className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors">Product</Link>
-                  <Link href="/editeur/sales" className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors">Sales</Link>
-                  <Link href="/editeur/marketing" className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors">Marketing</Link>
+                  <Link href={`${prefix}/editeur/product`} className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors">Product</Link>
+                  <Link href={`${prefix}/editeur/sales`} className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors">Sales</Link>
+                  <Link href={`${prefix}/editeur/marketing`} className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors">Marketing</Link>
                   <div className="my-1 border-t border-slate-100" />
-                  <a href={`${platformUrl}/auth/register?redirectTo=/editor`} className="block px-4 py-2.5 text-sm text-blue-600 hover:bg-blue-50 font-semibold transition-colors">Créer mon espace éditeur →</a>
+                  <a href={`${platformUrl}/auth/register?redirectTo=/editor`} className="block px-4 py-2.5 text-sm text-blue-600 hover:bg-blue-50 font-semibold transition-colors">{t('header.createEditorSpace')}</a>
                 </div>
               )}
             </div>
@@ -206,14 +222,14 @@ export function SiteHeader() {
                 <span className={iconWrapClass}>
                   <IconBlog />
                 </span>
-                <span>Blog</span>
+                <span>{t('header.blog')}</span>
                 <ChevronDown open={openMenu === 'blog'} />
               </button>
               {openMenu === 'blog' && (
                 <div className={dropdownPanelClass}>
-                  <Link href="/blog" className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors">Toutes les catégories</Link>
-                  {BLOG_CATEGORIES.map((cat) => (
-                    <Link key={cat.slug} href={`/blog?category=${encodeURIComponent(cat.slug)}`} className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors">{cat.name}</Link>
+                  <Link href={`${prefix}/blog`} className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors">{t('header.allCategories')}</Link>
+                  {BLOG_CATEGORY_KEYS.map((cat) => (
+                    <Link key={cat.slug} href={`${prefix}/blog?category=${encodeURIComponent(cat.slug)}`} className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors">{t(cat.key)}</Link>
                   ))}
                 </div>
               )}
@@ -227,7 +243,7 @@ export function SiteHeader() {
               <span className={iconWrapClass}>
                 <IconForum />
               </span>
-              <span>Forum</span>
+              <span>{t('header.forum')}</span>
             </a>
           </nav>
 
@@ -244,13 +260,13 @@ export function SiteHeader() {
                 <span className={iconWrapClass}>
                   <IconConnexion />
                 </span>
-                <span>Connexion</span>
+                <span>{t('header.login')}</span>
                 <ChevronDown open={authOpen === 'connexion'} />
               </button>
               {authOpen === 'connexion' && (
                 <div className="absolute right-0 top-full mt-1.5 min-w-[11rem] bg-white rounded-xl shadow-lg border border-slate-200/80 py-1.5 z-50">
-                  <a href={`${platformUrl}/auth/login?redirectTo=/buyer`} className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors">Portail acheteur</a>
-                  <a href={`${platformUrl}/auth/login?redirectTo=/editor`} className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors">Portail éditeur</a>
+                  <a href={`${platformUrl}/auth/login?redirectTo=/buyer`} className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors">{t('header.buyerPortal')}</a>
+                  <a href={`${platformUrl}/auth/login?redirectTo=/editor`} className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors">{t('header.editorPortal')}</a>
                 </div>
               )}
             </div>
@@ -265,13 +281,13 @@ export function SiteHeader() {
                 <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20 text-white">
                   <IconCommencer />
                 </span>
-                <span>Commencer</span>
+                <span>{t('header.getStarted')}</span>
                 <ChevronDown open={authOpen === 'commencer'} />
               </button>
               {authOpen === 'commencer' && (
                 <div className="absolute right-0 top-full mt-1.5 min-w-[12rem] bg-white rounded-xl shadow-lg border border-slate-200/80 py-1.5 z-50">
-                  <a href={`${platformUrl}/auth/register?redirectTo=/buyer`} className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors">Créer un compte acheteur</a>
-                  <a href={`${platformUrl}/auth/register?redirectTo=/editor`} className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors">Créer mon espace éditeur</a>
+                  <a href={`${platformUrl}/auth/register?redirectTo=/buyer`} className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors">{t('header.createBuyerAccount')}</a>
+                  <a href={`${platformUrl}/auth/register?redirectTo=/editor`} className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors">{t('header.createEditorAccount')}</a>
                 </div>
               )}
             </div>
@@ -279,32 +295,31 @@ export function SiteHeader() {
         </div>
       </div>
 
-      {/* Menu mobile (drawer) */}
-      {mobileMenuOpen && (
+      {/* Menu mobile (drawer) - rendu via portal pour éviter les problèmes de z-index/overflow */}
+      {mobileMenuOpen && typeof document !== 'undefined' && createPortal(
         <>
           <div
-            className="fixed inset-0 z-40 bg-slate-900/20 md:hidden"
+            className="fixed inset-0 z-[100] bg-slate-900/20 md:hidden"
             aria-hidden
             onClick={closeMobileMenu}
           />
           <div
-            className="fixed top-0 right-0 bottom-0 z-50 w-full max-w-[min(20rem,100%)] bg-white shadow-xl overflow-y-auto md:hidden"
+            className="fixed top-14 left-0 right-0 bottom-0 z-[101] bg-white shadow-xl overflow-y-auto md:hidden"
             role="dialog"
             aria-label="Menu de navigation"
           >
             <div className="flex items-center justify-between h-14 px-4 border-b border-slate-200 shrink-0">
-              <span className="text-sm font-semibold text-slate-700">Menu</span>
+              <span className="text-sm font-semibold text-slate-700">{t('header.menu')}</span>
               <button
                 type="button"
                 className="flex items-center justify-center w-10 h-10 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors"
                 onClick={closeMobileMenu}
-                aria-label="Fermer le menu"
+                aria-label={t('header.closeMenu')}
               >
                 <IconX />
               </button>
             </div>
             <nav className="p-4 space-y-1">
-              {/* J'utilise des SaaS */}
               <div className="border-b border-slate-100">
                 <button
                   type="button"
@@ -314,18 +329,17 @@ export function SiteHeader() {
                 >
                   <span className="flex items-center gap-2.5">
                     <span className={iconWrapClass}><IconAcheteur className="h-4 w-4" /></span>
-                    J&apos;utilise des SaaS
+                    {t('header.useSaaS')}
                   </span>
                   <ChevronDown open={mobileAccordion === 'acheteur'} />
                 </button>
                 {mobileAccordion === 'acheteur' && (
                   <div className="pb-2 pl-1">
-                    <AcheteurNavMenu linkStyle="link" onNavigate={closeMobileMenu} isOpen variant="inline" />
+                    <AcheteurNavMenu linkStyle="link" onNavigate={closeMobileMenu} isOpen variant="inline" localePrefix={prefix} />
                   </div>
                 )}
               </div>
 
-              {/* Je suis éditeur */}
               <div className="border-b border-slate-100">
                 <button
                   type="button"
@@ -335,22 +349,21 @@ export function SiteHeader() {
                 >
                   <span className="flex items-center gap-2.5">
                     <span className={iconWrapClass}><IconEditeur className="h-4 w-4" /></span>
-                    Je suis éditeur
+                    {t('header.iAmEditor')}
                   </span>
                   <ChevronDown open={mobileAccordion === 'editeur'} />
                 </button>
                 {mobileAccordion === 'editeur' && (
                   <div className="pb-2 pl-1 space-y-0.5">
-                    <Link href="/editeur/product" className="block py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>Product</Link>
-                    <Link href="/editeur/sales" className="block py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>Sales</Link>
-                    <Link href="/editeur/marketing" className="block py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>Marketing</Link>
+                    <Link href={`${prefix}/editeur/product`} className="block py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>Product</Link>
+                    <Link href={`${prefix}/editeur/sales`} className="block py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>Sales</Link>
+                    <Link href={`${prefix}/editeur/marketing`} className="block py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>Marketing</Link>
                     <div className="my-2 border-t border-slate-100" />
-                    <a href={`${platformUrl}/auth/register?redirectTo=/editor`} className="block py-2.5 px-4 text-sm text-blue-600 font-semibold hover:bg-blue-50 rounded-lg" onClick={closeMobileMenu}>Créer mon espace éditeur →</a>
+                    <a href={`${platformUrl}/auth/register?redirectTo=/editor`} className="block py-2.5 px-4 text-sm text-blue-600 font-semibold hover:bg-blue-50 rounded-lg" onClick={closeMobileMenu}>{t('header.createEditorSpace')}</a>
                   </div>
                 )}
               </div>
 
-              {/* Blog */}
               <div className="border-b border-slate-100">
                 <button
                   type="button"
@@ -360,21 +373,20 @@ export function SiteHeader() {
                 >
                   <span className="flex items-center gap-2.5">
                     <span className={iconWrapClass}><IconBlog className="h-4 w-4" /></span>
-                    Blog
+                    {t('header.blog')}
                   </span>
                   <ChevronDown open={mobileAccordion === 'blog'} />
                 </button>
                 {mobileAccordion === 'blog' && (
                   <div className="pb-2 pl-1 space-y-0.5">
-                    <Link href="/blog" className="block py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>Toutes les catégories</Link>
-                    {BLOG_CATEGORIES.map((cat) => (
-                      <Link key={cat.slug} href={`/blog?category=${encodeURIComponent(cat.slug)}`} className="block py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>{cat.name}</Link>
+                    <Link href={`${prefix}/blog`} className="block py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>{t('header.allCategories')}</Link>
+                    {BLOG_CATEGORY_KEYS.map((cat) => (
+                      <Link key={cat.slug} href={`${prefix}/blog?category=${encodeURIComponent(cat.slug)}`} className="block py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>{t(cat.key)}</Link>
                     ))}
                   </div>
                 )}
               </div>
 
-              {/* Forum */}
               <div className="border-b border-slate-100">
                 <a
                   href="https://app.sidebysaas.com/forum"
@@ -384,11 +396,10 @@ export function SiteHeader() {
                   onClick={closeMobileMenu}
                 >
                   <span className={iconWrapClass}><IconForum className="h-4 w-4" /></span>
-                  Forum
+                  {t('header.forum')}
                 </a>
               </div>
 
-              {/* Connexion */}
               <div className="border-b border-slate-100">
                 <button
                   type="button"
@@ -398,19 +409,18 @@ export function SiteHeader() {
                 >
                   <span className="flex items-center gap-2.5">
                     <span className={iconWrapClass}><IconConnexion className="h-4 w-4" /></span>
-                    Connexion
+                    {t('header.login')}
                   </span>
                   <ChevronDown open={mobileAccordion === 'connexion'} />
                 </button>
                 {mobileAccordion === 'connexion' && (
                   <div className="pb-2 pl-1 space-y-0.5">
-                    <a href={`${platformUrl}/auth/login?redirectTo=/buyer`} className="block py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>Portail acheteur</a>
-                    <a href={`${platformUrl}/auth/login?redirectTo=/editor`} className="block py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>Portail éditeur</a>
+                    <a href={`${platformUrl}/auth/login?redirectTo=/buyer`} className="block py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>{t('header.buyerPortal')}</a>
+                    <a href={`${platformUrl}/auth/login?redirectTo=/editor`} className="block py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>{t('header.editorPortal')}</a>
                   </div>
                 )}
               </div>
 
-              {/* Commencer */}
               <div className="border-b border-slate-100">
                 <button
                   type="button"
@@ -420,20 +430,21 @@ export function SiteHeader() {
                 >
                   <span className="flex items-center gap-2.5">
                     <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-600"><IconCommencer className="h-4 w-4" /></span>
-                    Commencer
+                    {t('header.getStarted')}
                   </span>
                   <ChevronDown open={mobileAccordion === 'commencer'} />
                 </button>
                 {mobileAccordion === 'commencer' && (
                   <div className="pb-2 pl-1 space-y-0.5">
-                    <a href={`${platformUrl}/auth/register?redirectTo=/buyer`} className="block py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>Créer un compte acheteur</a>
-                    <a href={`${platformUrl}/auth/register?redirectTo=/editor`} className="block py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>Créer mon espace éditeur</a>
+                    <a href={`${platformUrl}/auth/register?redirectTo=/buyer`} className="block py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>{t('header.createBuyerAccount')}</a>
+                    <a href={`${platformUrl}/auth/register?redirectTo=/editor`} className="block py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>{t('header.createEditorAccount')}</a>
                   </div>
                 )}
               </div>
             </nav>
           </div>
-        </>
+        </>,
+        document.body
       )}
     </header>
   )

@@ -106,9 +106,7 @@ export default function BlogPostPage() {
               ) : null}
             </div>
             {post.body ? (
-              <div className="prose prose-slate max-w-none whitespace-pre-wrap text-slate-700">
-                {post.body}
-              </div>
+              <div dangerouslySetInnerHTML={{ __html: post.body }} />
             ) : post.excerpt ? (
               <p className="text-slate-600">{post.excerpt}</p>
             ) : null}

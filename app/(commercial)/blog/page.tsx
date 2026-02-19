@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo, Suspense } from 'react'
 import Link from 'next/link'
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams, useRouter, usePathname } from 'next/navigation'
 import { SiteHeader } from '@/app/components/SiteHeader'
 import { BLOG_CATEGORIES, type BlogCategorySlug } from '@/lib/blog-categories'
 
@@ -18,37 +18,64 @@ interface BlogPost {
 
 const VALID_CATEGORY_SLUGS: Set<string> = new Set(BLOG_CATEGORIES.map((c) => c.slug))
 
+const POSTS_PER_PAGE = 20
+
 function BlogPageContent() {
+  const router = useRouter()
+  const pathname = usePathname()
   const searchParams = useSearchParams()
   const categoryFromUrl = useMemo((): BlogCategorySlug | '' => {
     const c = searchParams.get('category')?.trim() ?? ''
     return (c && VALID_CATEGORY_SLUGS.has(c) ? c : '') as BlogCategorySlug | ''
   }, [searchParams])
+  const pageFromUrl = useMemo(() => {
+    const p = parseInt(searchParams.get('page') || '1', 10)
+    return p >= 1 ? p : 1
+  }, [searchParams])
   const [selectedCategory, setSelectedCategory] = useState<BlogCategorySlug | ''>(categoryFromUrl)
+  const [currentPage, setCurrentPage] = useState(pageFromUrl)
 
   useEffect(() => {
     setSelectedCategory(categoryFromUrl)
   }, [categoryFromUrl])
+  useEffect(() => {
+    setCurrentPage(pageFromUrl)
+  }, [pageFromUrl])
   const [posts, setPosts] = useState<BlogPost[]>([])
+  const [pagination, setPagination] = useState<{ page: number; total: number; totalPages: number } | null>(null)
   const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [selectedCategory])
 
   useEffect(() => {
     let cancelled = false
     async function load() {
       setLoading(true)
-      const url = selectedCategory
-        ? `/api/blog/posts?category=${encodeURIComponent(selectedCategory)}`
-        : '/api/blog/posts'
-      const res = await fetch(url)
-      const data = await res.json().catch(() => ({ posts: [] }))
+      const params = new URLSearchParams()
+      if (selectedCategory) params.set('category', selectedCategory)
+      params.set('page', String(currentPage))
+      params.set('limit', String(POSTS_PER_PAGE))
+      const res = await fetch(`/api/blog/posts?${params.toString()}`)
+      const data = await res.json().catch(() => ({ posts: [], pagination: null }))
       if (!cancelled) {
         setPosts(data.posts ?? [])
+        setPagination(data.pagination ?? null)
         setLoading(false)
       }
     }
     load()
     return () => { cancelled = true }
-  }, [selectedCategory])
+  }, [selectedCategory, currentPage])
+
+  const goToPage = (page: number) => {
+    const params = new URLSearchParams()
+    if (selectedCategory) params.set('category', selectedCategory)
+    if (page > 1) params.set('page', String(page))
+    const qs = params.toString()
+    router.push(pathname + (qs ? `?${qs}` : ''))
+  }
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -75,7 +102,11 @@ function BlogPageContent() {
           <div className="flex flex-wrap gap-2">
             <button
               type="button"
-              onClick={() => setSelectedCategory('')}
+              onClick={() => {
+                setSelectedCategory('')
+                setCurrentPage(1)
+                router.push(pathname)
+              }}
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                 selectedCategory === ''
                   ? 'bg-primary-600 text-white'
@@ -88,7 +119,11 @@ function BlogPageContent() {
               <button
                 key={cat.slug}
                 type="button"
-                onClick={() => setSelectedCategory(cat.slug)}
+                onClick={() => {
+                  setSelectedCategory(cat.slug)
+                  setCurrentPage(1)
+                  router.push(`${pathname}?category=${encodeURIComponent(cat.slug)}`)
+                }}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                   selectedCategory === cat.slug
                     ? 'bg-primary-600 text-white'
@@ -150,6 +185,39 @@ function BlogPageContent() {
               </li>
             ))}
           </ul>
+        )}
+
+        {/* Pagination */}
+        {!loading && pagination && pagination.totalPages > 1 && (
+          <nav
+            className="mt-10 pt-8 border-t border-slate-200 flex flex-wrap items-center justify-between gap-4"
+            aria-label="Pagination des articles"
+          >
+            <p className="text-sm text-slate-600">
+              Page {pagination.page} sur {pagination.totalPages}
+              <span className="text-slate-500 ml-1">
+                ({pagination.total} article{pagination.total > 1 ? 's' : ''})
+              </span>
+            </p>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => goToPage(pagination.page - 1)}
+                disabled={pagination.page <= 1}
+                className="px-4 py-2 rounded-lg text-sm font-medium border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white transition-colors"
+              >
+                ← Précédent
+              </button>
+              <button
+                type="button"
+                onClick={() => goToPage(pagination.page + 1)}
+                disabled={pagination.page >= pagination.totalPages}
+                className="px-4 py-2 rounded-lg text-sm font-medium border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white transition-colors"
+              >
+                Suivant →
+              </button>
+            </div>
+          </nav>
         )}
       </main>
     </div>

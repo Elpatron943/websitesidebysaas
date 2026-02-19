@@ -102,7 +102,7 @@ function BattleCardTable({ selectedIds, onBack }: { selectedIds: string[]; onBac
 export default function AcheteurPage() {
   const router = useRouter()
   const [employees, setEmployees] = useState(50)
-  const [savingsRatePct, setSavingsRatePct] = useState(25)
+  const savingsRatePct = 32
   const [pricingTiers, setPricingTiers] = useState<BuyerPricingTierWithSize[]>([])
   const [pricingLoading, setPricingLoading] = useState(true)
   const [checkoutTierId, setCheckoutTierId] = useState<string | null>(null)
@@ -369,30 +369,11 @@ export default function AcheteurPage() {
               <p className="text-xs text-slate-500">Source : Zylo 2025 — entreprises 1-500 sal. utilisent en moyenne 152 applications SaaS.</p>
             </div>
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-4">
-                Taux d&apos;économies (négociation) : <span className="text-primary-600 font-bold">{Math.max(0, Math.min(100, savingsRatePct))}%</span>
+              <label className="block text-sm font-medium text-slate-700 mb-2">
+                Taux d&apos;économies (négociation) : <span className="text-primary-600 font-bold">{savingsRatePct}%</span>
               </label>
-              <input
-                type="range"
-                min="10"
-                max="30"
-                step="1"
-                value={Math.max(10, Math.min(30, savingsRatePct))}
-                onChange={(e) => setSavingsRatePct(Number(e.target.value))}
-                className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-primary-600"
-              />
-              <div className="flex justify-between text-xs text-slate-500 mt-2"><span>10%</span><span>30%</span></div>
-              <p className="text-xs text-slate-500 mt-2">
-                Source :{' '}
-                <a
-                  href="https://yousign.com/blog/saas-contract-negotiation-strategies"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-primary-600 hover:underline"
-                >
-                  Yousign (2025)
-                </a>
-                {' '}— les organisations qui négocient activement obtiennent typiquement 10–30% d&apos;économies sur les contrats SaaS.
+              <p className="text-xs text-slate-500">
+                Moyenne des économies obtenues par les organisations qui négocient activement leurs contrats SaaS.
               </p>
             </div>
           </div>

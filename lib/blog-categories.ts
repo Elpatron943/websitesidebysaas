@@ -3,12 +3,9 @@
  */
 
 export const BLOG_CATEGORIES = [
-  { slug: 'pour-les-acheteurs', name: 'Pour les acheteurs', sortOrder: 1 },
-  { slug: 'pour-les-editeurs', name: 'Pour les éditeurs', sortOrder: 2 },
-  { slug: 'comparaison-benchmarks', name: 'Comparaison & benchmarks', sortOrder: 3 },
-  { slug: 'prix-negociation', name: 'Prix & négociation', sortOrder: 4 },
-  { slug: 'etudes-tendances', name: 'Études & tendances', sortOrder: 5 },
-  { slug: 'actualites-sidebysaas', name: 'Actualités Side by SaaS', sortOrder: 6 },
+  { slug: 'comparaison-benchmarks', name: 'Comparaison & benchmarks', sortOrder: 1 },
+  { slug: 'prix-negociation', name: 'Prix & négociation', sortOrder: 2 },
+  { slug: 'etudes-tendances', name: 'Études & tendances', sortOrder: 3 },
 ] as const
 
 export type BlogCategorySlug = (typeof BLOG_CATEGORIES)[number]['slug']

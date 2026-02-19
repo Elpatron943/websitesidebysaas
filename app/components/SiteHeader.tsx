@@ -6,12 +6,9 @@ import { NavLogo } from '@/app/components/NavLogo'
 import { AcheteurNavMenu } from '@/app/components/AcheteurNavMenu'
 
 const BLOG_CATEGORIES = [
-  { slug: 'pour-les-acheteurs', name: 'Pour les acheteurs' },
-  { slug: 'pour-les-editeurs', name: 'Pour les éditeurs' },
   { slug: 'comparaison-benchmarks', name: 'Comparaison & benchmarks' },
   { slug: 'prix-negociation', name: 'Prix & négociation' },
   { slug: 'etudes-tendances', name: 'Études & tendances' },
-  { slug: 'actualites-sidebysaas', name: 'Actualités Side by SaaS' },
 ]
 
 const PLATFORM_URL = process.env.NEXT_PUBLIC_PLATFORM_URL || 'https://app.sidebysaas.com'
@@ -102,7 +99,7 @@ export function SiteHeader() {
             className="flex items-center shrink-0 transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-lg"
             aria-label="Side by SaaS - Accueil"
           >
-            <NavLogo height={36} />
+            <NavLogo height={48} />
           </Link>
 
           <nav ref={navRef} className="hidden md:flex md:items-center md:gap-1 md:flex-1 md:justify-center">

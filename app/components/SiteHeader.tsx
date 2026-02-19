@@ -70,12 +70,33 @@ function ChevronDown({ open }: { open: boolean }) {
     </svg>
   )
 }
+function IconMenu({ className = 'h-6 w-6' }: { className?: string }) {
+  return (
+    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
+  )
+}
+function IconX({ className = 'h-6 w-6' }: { className?: string }) {
+  return (
+    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  )
+}
 
 export function SiteHeader() {
   const platformUrl = PLATFORM_URL
   const [openMenu, setOpenMenu] = useState<'acheteur' | 'editeur' | 'blog' | null>(null)
   const [authOpen, setAuthOpen] = useState<'connexion' | 'commencer' | null>(null)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [mobileAccordion, setMobileAccordion] = useState<'acheteur' | 'editeur' | 'blog' | 'connexion' | 'commencer' | null>(null)
   const navRef = useRef<HTMLDivElement>(null)
+
+  const closeMobileMenu = () => {
+    setMobileMenuOpen(false)
+    setMobileAccordion(null)
+  }
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
@@ -90,6 +111,19 @@ export function SiteHeader() {
     }
   }, [openMenu, authOpen])
 
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden'
+      setOpenMenu(null)
+      setAuthOpen(null)
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [mobileMenuOpen])
+
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 backdrop-blur-sm">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -101,6 +135,19 @@ export function SiteHeader() {
           >
             <NavLogo height={48} />
           </Link>
+
+          {/* Bouton menu mobile + espaceur */}
+          <div className="flex items-center flex-1 md:flex-none md:flex-0">
+            <button
+              type="button"
+              className="md:hidden flex items-center justify-center w-10 h-10 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors"
+              onClick={() => setMobileMenuOpen(true)}
+              aria-label="Ouvrir le menu"
+              aria-expanded={mobileMenuOpen}
+            >
+              <IconMenu />
+            </button>
+          </div>
 
           <nav ref={navRef} className="hidden md:flex md:items-center md:gap-1 md:flex-1 md:justify-center">
             <div className="relative">
@@ -231,6 +278,163 @@ export function SiteHeader() {
           </div>
         </div>
       </div>
+
+      {/* Menu mobile (drawer) */}
+      {mobileMenuOpen && (
+        <>
+          <div
+            className="fixed inset-0 z-40 bg-slate-900/20 md:hidden"
+            aria-hidden
+            onClick={closeMobileMenu}
+          />
+          <div
+            className="fixed top-0 right-0 bottom-0 z-50 w-full max-w-[min(20rem,100%)] bg-white shadow-xl overflow-y-auto md:hidden"
+            role="dialog"
+            aria-label="Menu de navigation"
+          >
+            <div className="flex items-center justify-between h-14 px-4 border-b border-slate-200 shrink-0">
+              <span className="text-sm font-semibold text-slate-700">Menu</span>
+              <button
+                type="button"
+                className="flex items-center justify-center w-10 h-10 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors"
+                onClick={closeMobileMenu}
+                aria-label="Fermer le menu"
+              >
+                <IconX />
+              </button>
+            </div>
+            <nav className="p-4 space-y-1">
+              {/* J'utilise des SaaS */}
+              <div className="border-b border-slate-100">
+                <button
+                  type="button"
+                  className="flex items-center justify-between w-full py-3 text-left text-slate-700 font-medium hover:text-slate-900"
+                  onClick={() => setMobileAccordion(mobileAccordion === 'acheteur' ? null : 'acheteur')}
+                  aria-expanded={mobileAccordion === 'acheteur'}
+                >
+                  <span className="flex items-center gap-2.5">
+                    <span className={iconWrapClass}><IconAcheteur className="h-4 w-4" /></span>
+                    J&apos;utilise des SaaS
+                  </span>
+                  <ChevronDown open={mobileAccordion === 'acheteur'} />
+                </button>
+                {mobileAccordion === 'acheteur' && (
+                  <div className="pb-2 pl-1">
+                    <AcheteurNavMenu linkStyle="link" onNavigate={closeMobileMenu} isOpen variant="inline" />
+                  </div>
+                )}
+              </div>
+
+              {/* Je suis éditeur */}
+              <div className="border-b border-slate-100">
+                <button
+                  type="button"
+                  className="flex items-center justify-between w-full py-3 text-left text-slate-700 font-medium hover:text-slate-900"
+                  onClick={() => setMobileAccordion(mobileAccordion === 'editeur' ? null : 'editeur')}
+                  aria-expanded={mobileAccordion === 'editeur'}
+                >
+                  <span className="flex items-center gap-2.5">
+                    <span className={iconWrapClass}><IconEditeur className="h-4 w-4" /></span>
+                    Je suis éditeur
+                  </span>
+                  <ChevronDown open={mobileAccordion === 'editeur'} />
+                </button>
+                {mobileAccordion === 'editeur' && (
+                  <div className="pb-2 pl-1 space-y-0.5">
+                    <Link href="/editeur/product" className="block py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>Product</Link>
+                    <Link href="/editeur/sales" className="block py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>Sales</Link>
+                    <Link href="/editeur/marketing" className="block py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>Marketing</Link>
+                    <div className="my-2 border-t border-slate-100" />
+                    <a href={`${platformUrl}/auth/register?redirectTo=/editor`} className="block py-2.5 px-4 text-sm text-blue-600 font-semibold hover:bg-blue-50 rounded-lg" onClick={closeMobileMenu}>Créer mon espace éditeur →</a>
+                  </div>
+                )}
+              </div>
+
+              {/* Blog */}
+              <div className="border-b border-slate-100">
+                <button
+                  type="button"
+                  className="flex items-center justify-between w-full py-3 text-left text-slate-700 font-medium hover:text-slate-900"
+                  onClick={() => setMobileAccordion(mobileAccordion === 'blog' ? null : 'blog')}
+                  aria-expanded={mobileAccordion === 'blog'}
+                >
+                  <span className="flex items-center gap-2.5">
+                    <span className={iconWrapClass}><IconBlog className="h-4 w-4" /></span>
+                    Blog
+                  </span>
+                  <ChevronDown open={mobileAccordion === 'blog'} />
+                </button>
+                {mobileAccordion === 'blog' && (
+                  <div className="pb-2 pl-1 space-y-0.5">
+                    <Link href="/blog" className="block py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>Toutes les catégories</Link>
+                    {BLOG_CATEGORIES.map((cat) => (
+                      <Link key={cat.slug} href={`/blog?category=${encodeURIComponent(cat.slug)}`} className="block py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>{cat.name}</Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Forum */}
+              <div className="border-b border-slate-100">
+                <a
+                  href="https://app.sidebysaas.com/forum"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2.5 py-3 text-slate-700 font-medium hover:text-slate-900"
+                  onClick={closeMobileMenu}
+                >
+                  <span className={iconWrapClass}><IconForum className="h-4 w-4" /></span>
+                  Forum
+                </a>
+              </div>
+
+              {/* Connexion */}
+              <div className="border-b border-slate-100">
+                <button
+                  type="button"
+                  className="flex items-center justify-between w-full py-3 text-left text-slate-700 font-medium hover:text-slate-900"
+                  onClick={() => setMobileAccordion(mobileAccordion === 'connexion' ? null : 'connexion')}
+                  aria-expanded={mobileAccordion === 'connexion'}
+                >
+                  <span className="flex items-center gap-2.5">
+                    <span className={iconWrapClass}><IconConnexion className="h-4 w-4" /></span>
+                    Connexion
+                  </span>
+                  <ChevronDown open={mobileAccordion === 'connexion'} />
+                </button>
+                {mobileAccordion === 'connexion' && (
+                  <div className="pb-2 pl-1 space-y-0.5">
+                    <a href={`${platformUrl}/auth/login?redirectTo=/buyer`} className="block py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>Portail acheteur</a>
+                    <a href={`${platformUrl}/auth/login?redirectTo=/editor`} className="block py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>Portail éditeur</a>
+                  </div>
+                )}
+              </div>
+
+              {/* Commencer */}
+              <div className="border-b border-slate-100">
+                <button
+                  type="button"
+                  className="flex items-center justify-between w-full py-3 text-left text-slate-700 font-medium hover:text-slate-900"
+                  onClick={() => setMobileAccordion(mobileAccordion === 'commencer' ? null : 'commencer')}
+                  aria-expanded={mobileAccordion === 'commencer'}
+                >
+                  <span className="flex items-center gap-2.5">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-600"><IconCommencer className="h-4 w-4" /></span>
+                    Commencer
+                  </span>
+                  <ChevronDown open={mobileAccordion === 'commencer'} />
+                </button>
+                {mobileAccordion === 'commencer' && (
+                  <div className="pb-2 pl-1 space-y-0.5">
+                    <a href={`${platformUrl}/auth/register?redirectTo=/buyer`} className="block py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>Créer un compte acheteur</a>
+                    <a href={`${platformUrl}/auth/register?redirectTo=/editor`} className="block py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>Créer mon espace éditeur</a>
+                  </div>
+                )}
+              </div>
+            </nav>
+          </div>
+        </>
+      )}
     </header>
   )
 }

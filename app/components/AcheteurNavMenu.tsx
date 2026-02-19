@@ -10,6 +10,8 @@ type AcheteurNavMenuProps = {
   onNavigate?: () => void
   /** Quand false, le sous-menu ouvert est réinitialisé */
   isOpen?: boolean
+  /** 'dropdown' = position absolue (desktop), 'inline' = dans le flux (menu mobile) */
+  variant?: 'dropdown' | 'inline'
 }
 
 const DIRECTIONS = [
@@ -44,7 +46,7 @@ const SECTEURS = [
 
 const PLATFORM_URL = process.env.NEXT_PUBLIC_PLATFORM_URL || 'https://app.sidebysaas.com'
 
-export function AcheteurNavMenu({ linkStyle = 'link', onNavigate, isOpen = true }: AcheteurNavMenuProps) {
+export function AcheteurNavMenu({ linkStyle = 'link', onNavigate, isOpen = true, variant = 'dropdown' }: AcheteurNavMenuProps) {
   const router = useRouter()
   const platformUrl = PLATFORM_URL
   const [expanded, setExpanded] = useState<'directions' | 'secteurs' | null>(null)
@@ -62,8 +64,12 @@ export function AcheteurNavMenu({ linkStyle = 'link', onNavigate, isOpen = true 
   const itemClassBlue = 'block w-full text-left px-4 py-2.5 text-primary-600 hover:bg-primary-50 font-semibold'
   const subItemClass = 'block w-full text-left pl-5 pr-4 py-2 text-slate-700 hover:bg-primary-50 hover:text-primary-700 font-medium'
 
+  const wrapperClass = variant === 'inline'
+    ? 'w-full py-2 border-b border-slate-100'
+    : 'absolute top-full left-0 mt-1 w-60 bg-white rounded-xl shadow-lg border border-slate-200 py-2 z-50 max-h-[85vh] overflow-y-auto'
+
   return (
-    <div className="absolute top-full left-0 mt-1 w-60 bg-white rounded-xl shadow-lg border border-slate-200 py-2 z-50 max-h-[85vh] overflow-y-auto">
+    <div className={wrapperClass}>
       {/* Niveau 1 : sous-menus regroupés */}
       {linkStyle === 'link' ? (
         <Link href="/acheteur#tarifs" className={`${itemClassBlue} border-b border-slate-100`} onClick={onNavigate}>Tarifs</Link>

@@ -1,18 +1,24 @@
 import { NextRequest } from 'next/server'
+import { getBlogPostBySlug, getBlogPosts } from '@/lib/blog-posts'
 
 export const dynamic = 'force-dynamic'
 
 /**
- * API blog sans Supabase : retourne une liste vide (ou 404 pour un slug).
- * Les articles peuvent être fournis plus tard par un CMS ou des fichiers statiques.
+ * API blog : sert les articles depuis lib/blog-posts.ts.
  */
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url)
   const slug = searchParams.get('slug')?.trim() || null
+  const category = searchParams.get('category')?.trim() || null
 
   if (slug) {
-    return Response.json({ error: 'Not found' }, { status: 404 })
+    const post = getBlogPostBySlug(slug)
+    if (!post) {
+      return Response.json({ error: 'Not found' }, { status: 404 })
+    }
+    return Response.json({ post })
   }
 
-  return Response.json({ posts: [] })
+  const posts = getBlogPosts(category || undefined)
+  return Response.json({ posts })
 }

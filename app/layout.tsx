@@ -16,8 +16,12 @@ export const metadata: Metadata = {
   title: "Side by SaaS | Benchmark et comparaison SaaS",
   description: "Plateforme de benchmark SaaS basée sur des données d'achats réels. Comparez, négociez et pilotez vos logiciels.",
   icons: {
-    icon: "/logo/favicon.png",
+    icon: [
+      { url: "/logo/favicon.png", type: "image/png", sizes: "32x32" },
+      { url: "/logo/favicon.png", type: "image/png", sizes: "48x48" },
+    ],
     apple: "/logo/favicon.png",
+    shortcut: "/favicon.ico",
   },
 };
 

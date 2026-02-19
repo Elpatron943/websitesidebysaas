@@ -21,9 +21,9 @@ export function NavLogo({ className = '', height = 40 }: NavLogoProps) {
   }
 
   return (
-    <span className={`relative block shrink-0 ${className}`} style={{ height, width: height * 4 }}>
+    <span className={`relative block shrink-0 ${className}`} style={{ height, width: height }}>
       <Image
-        src="/logo/logo.png"
+        src="/logo/navicon.png"
         alt="Side by SaaS"
         fill
         className="object-contain object-left"

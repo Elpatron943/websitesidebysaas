@@ -1,174 +1,18 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { NavLogo } from '@/app/components/NavLogo'
-import { AcheteurNavMenu } from '@/app/components/AcheteurNavMenu'
-import { BLOG_CATEGORIES } from '@/lib/blog-categories'
-import { getLoginUrl, getSignupUrl } from '@/lib/commercial-auth-links'
+import { SiteHeader } from '@/app/components/SiteHeader'
 
 export default function Home() {
   const router = useRouter()
-  const [openMenu, setOpenMenu] = useState<'acheteur' | 'editeur' | 'blog' | null>(null)
-  const [authDropdown, setAuthDropdown] = useState<'connexion' | 'commencer' | null>(null)
-  const navRef = useRef<HTMLDivElement>(null)
-  const authDropRef = useRef<HTMLDivElement>(null)
-
-  // Fermer les menus en cliquant à l'extérieur
-  useEffect(() => {
-    const handleClick = (e: MouseEvent) => {
-      const target = e.target as Node
-      if (navRef.current && !navRef.current.contains(target)) setOpenMenu(null)
-      if (authDropRef.current && !authDropRef.current.contains(target)) setAuthDropdown(null)
-    }
-    if (openMenu || authDropdown) {
-      document.addEventListener('click', handleClick)
-      return () => document.removeEventListener('click', handleClick)
-    }
-  }, [openMenu, authDropdown])
 
   const handleBuyerClick = () => router.push('/acheteur')
   const handleEditorClick = () => router.push('/editeur')
 
-  const handleLogin = (profile: 'buyer' | 'editor') => {
-    setAuthDropdown(null)
-    const url = getLoginUrl(profile === 'buyer' ? '/buyer' : '/editor')
-    if (url) window.location.href = url
-  }
-
-  const handleStart = (profile: 'buyer' | 'editor') => {
-    setAuthDropdown(null)
-    const url = getSignupUrl(profile === 'buyer' ? '/buyer' : '/editor')
-    if (url) window.location.href = url
-  }
-
   return (
     <main className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="bg-white border-b border-slate-200 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <button 
-                onClick={() => router.push('/')}
-                className="flex items-center cursor-pointer"
-              >
-                <NavLogo height={90} />
-              </button>
-            </div>
-            <nav ref={navRef} className="hidden md:flex items-center gap-1 relative">
-              {/* 1. J'utilise des SaaS */}
-              <div className="relative">
-                <button
-                  type="button"
-                  onClick={(e) => { e.stopPropagation(); setOpenMenu(openMenu === 'acheteur' ? null : 'acheteur') }}
-                  className="flex items-center gap-1 px-4 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 font-medium transition-colors"
-                >
-                  J&apos;utilise des SaaS
-                  <svg className={`w-4 h-4 transition-transform ${openMenu === 'acheteur' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                {openMenu === 'acheteur' && (
-                  <AcheteurNavMenu linkStyle="router" onNavigate={() => setOpenMenu(null)} isOpen={openMenu === 'acheteur'} />
-                )}
-              </div>
-              {/* 2. Je suis éditeur de SaaS */}
-              <div className="relative">
-                <button
-                  type="button"
-                  onClick={(e) => { e.stopPropagation(); setOpenMenu(openMenu === 'editeur' ? null : 'editeur') }}
-                  className="flex items-center gap-1 px-4 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 font-medium transition-colors"
-                >
-                  Je suis éditeur de SaaS
-                  <svg className={`w-4 h-4 transition-transform ${openMenu === 'editeur' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                {openMenu === 'editeur' && (
-                  <div className="absolute top-full left-0 mt-1 w-60 bg-white rounded-xl shadow-lg border border-slate-200 py-2 z-50">
-                    <button type="button" onClick={() => { router.push('/editeur/product'); setOpenMenu(null) }} className="block w-full text-left px-4 py-2.5 text-slate-700 hover:bg-primary-50 hover:text-primary-700 font-medium">Product</button>
-                    <button type="button" onClick={() => { router.push('/editeur/sales'); setOpenMenu(null) }} className="block w-full text-left px-4 py-2.5 text-slate-700 hover:bg-primary-50 hover:text-primary-700 font-medium">Sales</button>
-                    <button type="button" onClick={() => { router.push('/editeur/marketing'); setOpenMenu(null) }} className="block w-full text-left px-4 py-2.5 text-slate-700 hover:bg-primary-50 hover:text-primary-700 font-medium">Marketing</button>
-                    <div className="mt-1">
-                      <button
-                        type="button"
-                        onClick={() => { const u = getSignupUrl('/editor'); if (u) window.location.href = u; setOpenMenu(null) }}
-                        className="block w-full text-left px-4 py-2.5 text-primary-600 hover:bg-primary-50 font-semibold"
-                      >
-                        Créer mon espace éditeur →
-                      </button>
-                    </div>
-                  </div>
-                )}
-              </div>
-              <div className="relative">
-                <button
-                  type="button"
-                  onClick={(e) => { e.stopPropagation(); setOpenMenu(openMenu === 'blog' ? null : 'blog') }}
-                  className="flex items-center gap-1 px-4 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 font-medium transition-colors"
-                >
-                  Blog
-                  <svg className={`w-4 h-4 transition-transform ${openMenu === 'blog' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                {openMenu === 'blog' && (
-                  <div className="absolute top-full left-0 mt-1 w-56 bg-white rounded-xl shadow-lg border border-slate-200 py-2 z-50">
-                    <button type="button" onClick={() => { router.push('/blog'); setOpenMenu(null) }} className="block w-full text-left px-4 py-2.5 text-slate-700 hover:bg-primary-50 hover:text-primary-700 font-medium">
-                      Toutes les catégories
-                    </button>
-                    {BLOG_CATEGORIES.map((cat) => (
-                      <button key={cat.slug} type="button" onClick={() => { router.push(`/blog?category=${encodeURIComponent(cat.slug)}`); setOpenMenu(null) }} className="block w-full text-left px-4 py-2.5 text-slate-700 hover:bg-primary-50 hover:text-primary-700 font-medium">
-                        {cat.name}
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-              <a href="https://app.sidebysaas.com/forum" target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 font-medium transition-colors">
-                Forum Inside by SaaS
-              </a>
-            </nav>
-            <div className="flex items-center space-x-4" ref={authDropRef}>
-              <>
-                  <div className="relative">
-                    <button 
-                      type="button"
-                      onClick={(e) => { e.stopPropagation(); setAuthDropdown(authDropdown === 'connexion' ? null : 'connexion') }}
-                      className="text-slate-600 hover:text-slate-900 font-medium transition-colors flex items-center gap-1"
-                    >
-                      Connexion
-                      <svg className={`w-4 h-4 transition-transform ${authDropdown === 'connexion' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-                    </button>
-                    {authDropdown === 'connexion' && (
-                      <div className="absolute right-0 top-full mt-1 w-52 bg-white rounded-xl shadow-lg border border-slate-200 py-2 z-50">
-                        <button type="button" onClick={() => handleLogin('buyer')} className="block w-full text-left px-4 py-2.5 text-slate-700 hover:bg-primary-50 hover:text-primary-700 font-medium">Portail acheteur</button>
-                        <button type="button" onClick={() => handleLogin('editor')} className="block w-full text-left px-4 py-2.5 text-slate-700 hover:bg-primary-50 hover:text-primary-700 font-medium">Portail éditeur</button>
-                      </div>
-                    )}
-                  </div>
-                  <div className="relative">
-                    <button 
-                      type="button"
-                      onClick={(e) => { e.stopPropagation(); setAuthDropdown(authDropdown === 'commencer' ? null : 'commencer') }}
-                      className="bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors font-medium flex items-center gap-1"
-                    >
-                      Commencer
-                      <svg className={`w-4 h-4 transition-transform ${authDropdown === 'commencer' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-                    </button>
-                    {authDropdown === 'commencer' && (
-                      <div className="absolute right-0 top-full mt-1 w-56 bg-white rounded-xl shadow-lg border border-slate-200 py-2 z-50">
-                        <button type="button" onClick={() => handleStart('buyer')} className="block w-full text-left px-4 py-2.5 text-slate-700 hover:bg-primary-50 hover:text-primary-700 font-medium">Créer un compte acheteur</button>
-                        <button type="button" onClick={() => handleStart('editor')} className="block w-full text-left px-4 py-2.5 text-slate-700 hover:bg-primary-50 hover:text-primary-700 font-medium">Créer mon espace éditeur</button>
-                      </div>
-                    )}
-                  </div>
-              </>
-            </div>
-          </div>
-        </div>
-      </header>
+      <SiteHeader />
 
       {/* Entrée plateforme — pas de contenu commercial (site commercial = projet séparé) */}
       <section className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">

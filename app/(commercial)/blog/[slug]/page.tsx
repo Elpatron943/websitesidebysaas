@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import { SiteHeader } from '@/app/components/SiteHeader'
 import { BLOG_CATEGORIES } from '@/lib/blog-categories'
+import { getSignupUrl } from '@/lib/commercial-auth-links'
 
 interface BlogPost {
   id: string
@@ -15,6 +16,7 @@ interface BlogPost {
   body: string | null
   published_at: string
   created_at: string
+  reading_minutes?: number
 }
 
 export default function BlogPostPage() {
@@ -91,16 +93,18 @@ export default function BlogPostPage() {
             <h1 className="text-3xl font-bold text-slate-900 mt-2 mb-4">
               {post.title}
             </h1>
-            <time
-              dateTime={post.published_at}
-              className="text-sm text-slate-500 block mb-6"
-            >
-              {new Date(post.published_at).toLocaleDateString('fr-FR', {
-                day: 'numeric',
-                month: 'long',
-                year: 'numeric',
-              })}
-            </time>
+            <div className="flex flex-wrap items-center gap-3 text-sm text-slate-500 mb-6">
+              <time dateTime={post.published_at}>
+                {new Date(post.published_at).toLocaleDateString('fr-FR', {
+                  day: 'numeric',
+                  month: 'long',
+                  year: 'numeric',
+                })}
+              </time>
+              {post.reading_minutes ? (
+                <span>• Temps de lecture : {post.reading_minutes} min</span>
+              ) : null}
+            </div>
             {post.body ? (
               <div className="prose prose-slate max-w-none whitespace-pre-wrap text-slate-700">
                 {post.body}
@@ -108,6 +112,39 @@ export default function BlogPostPage() {
             ) : post.excerpt ? (
               <p className="text-slate-600">{post.excerpt}</p>
             ) : null}
+
+            {/* CTA inscription acheteur */}
+            <div className="mt-10 pt-8 border-t border-slate-200">
+              <div className="rounded-xl bg-primary-50 border border-primary-100 p-6 text-center">
+                <p className="text-slate-800 font-semibold mb-2">
+                  Prêt à comparer vos outils SaaS avec des données réelles ?
+                </p>
+                <p className="text-slate-600 text-sm mb-4">
+                  Rejoignez Side by SaaS et accédez aux prix pratiqués par d&apos;autres acheteurs.
+                </p>
+                {getSignupUrl('/buyer') ? (
+                  <a
+                    href={getSignupUrl('/buyer')!}
+                    className="inline-flex items-center justify-center gap-2 bg-primary-600 hover:bg-primary-700 text-white font-semibold px-6 py-3 rounded-xl shadow-sm hover:shadow transition-all"
+                  >
+                    Créer mon compte acheteur
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </a>
+                ) : (
+                  <Link
+                    href="/acheteur"
+                    className="inline-flex items-center justify-center gap-2 bg-primary-600 hover:bg-primary-700 text-white font-semibold px-6 py-3 rounded-xl shadow-sm hover:shadow transition-all"
+                  >
+                    Découvrir l&apos;espace acheteur
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </Link>
+                )}
+              </div>
+            </div>
           </div>
         </article>
       </main>

@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { SiteHeader } from '@/app/components/SiteHeader'
-import { getLoginUrl, getSignupUrl } from '@/lib/commercial-auth-links'
+import { getLoginUrl } from '@/lib/commercial-auth-links'
 import { getAcheteurBannerUrl } from '@/lib/acheteur-banner'
 
 const DIRECTIONS: Record<string, { title: string; intro: string; subtitle: string; arguments: { titre: string; description: string }[] }> = {
@@ -113,7 +113,6 @@ export default async function AcheteurDirectionPage({ params }: { params: Promis
   const data = sous ? DIRECTIONS[sous] : null
   if (!data) notFound()
 
-  const signupUrl = getSignupUrl('/acheteur')
   const loginUrl = getLoginUrl('/acheteur')
   const bannerUrl = getAcheteurBannerUrl('directions', sous)
 
@@ -177,20 +176,13 @@ export default async function AcheteurDirectionPage({ params }: { params: Promis
                 Prêt à comparer et négocier avec des données réelles ?
               </p>
               <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto sm:justify-center">
-                {signupUrl ? (
-                  <a
-                    href={signupUrl}
-                    className="inline-flex items-center justify-center gap-2 bg-primary-600 hover:bg-primary-700 text-white font-semibold px-6 py-3 rounded-xl shadow-sm hover:shadow transition-all w-full sm:w-auto"
-                  >
-                    Créer mon compte acheteur
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-                  </a>
-                ) : (
-                  <span className="inline-flex items-center justify-center gap-2 bg-primary-600 text-white font-semibold px-6 py-3 rounded-xl shadow-sm cursor-default w-full sm:w-auto">
-                    Créer mon compte acheteur
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-                  </span>
-                )}
+                <Link
+                  href="/acheteur"
+                  className="inline-flex items-center justify-center gap-2 bg-primary-600 hover:bg-primary-700 text-white font-semibold px-6 py-3 rounded-xl shadow-sm hover:shadow transition-all w-full sm:w-auto"
+                >
+                  Découvrir l&apos;espace acheteur
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                </Link>
                 {loginUrl && (
                   <a
                     href={loginUrl}

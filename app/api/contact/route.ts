@@ -1,7 +1,6 @@
 import { NextRequest } from 'next/server'
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
 const TO_EMAIL = 'sales@sidebysaas.com'
 const FROM_EMAIL = process.env.RESEND_FROM ?? 'Contact Site <onboarding@resend.dev>'
 
@@ -18,7 +17,8 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    if (!process.env.RESEND_API_KEY) {
+    const apiKey = process.env.RESEND_API_KEY
+    if (!apiKey) {
       console.error('RESEND_API_KEY is not set')
       return Response.json(
         { error: 'Configuration email manquante.' },
@@ -26,6 +26,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    const resend = new Resend(apiKey)
     const { data, error } = await resend.emails.send({
       from: FROM_EMAIL,
       to: [TO_EMAIL],

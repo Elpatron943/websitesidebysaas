@@ -45,6 +45,70 @@ const CRM_FEATURES_SOURCING = [
   'Import/Export', 'Rôles et permissions', 'Historique et audit',
 ]
 
+// Filtres et données exemple pour l’affichage « solution logicielle » (prix constatés)
+const SECTEURS_ACTIVITE = [
+  { id: 'tous', label: 'Tous les secteurs' },
+  { id: 'technologie', label: 'Technologie' },
+  { id: 'industrie', label: 'Industrie' },
+  { id: 'commerce', label: 'Commerce & Retail' },
+  { id: 'services', label: 'Services professionnels' },
+  { id: 'education', label: 'Éducation' },
+  { id: 'public', label: 'Secteur public' },
+  { id: 'immobilier', label: 'Immobilier' },
+] as const
+
+const TRANCHES_EFFECTIF = [
+  { id: '1-50', label: '1–50 salariés' },
+  { id: '51-250', label: '51–250 salariés' },
+  { id: '251-1000', label: '251–1000 salariés' },
+  { id: '1000+', label: '1000+ salariés' },
+] as const
+
+type SecteurId = (typeof SECTEURS_ACTIVITE)[number]['id']
+type TrancheId = (typeof TRANCHES_EFFECTIF)[number]['id']
+
+// Données fictives : une solution exemple avec prix min / médian / moyen / max selon filtres (pour démo)
+function getSolutionDemo(secteur: SecteurId, tranche: TrancheId): {
+  name: string
+  stars: number
+  minPrice: number
+  medianPrice: number
+  avgPrice: number
+  maxPrice: number
+} {
+  const base = { name: 'Flowbase Pro', stars: 4.5, medianPrice: 45, avgPrice: 52 }
+  const sectorDelta: Record<string, { median: number; avg: number }> = {
+    tous: { median: 0, avg: 0 },
+    technologie: { median: -3, avg: -2 },
+    industrie: { median: 2, avg: 4 },
+    commerce: { median: 0, avg: 1 },
+    services: { median: -2, avg: 0 },
+    education: { median: -5, avg: -4 },
+    public: { median: -4, avg: -3 },
+    immobilier: { median: 1, avg: 2 },
+  }
+  const trancheDelta: Record<string, { median: number; avg: number }> = {
+    '1-50': { median: 5, avg: 6 },
+    '51-250': { median: 0, avg: 0 },
+    '251-1000': { median: -3, avg: -2 },
+    '1000+': { median: -8, avg: -6 },
+  }
+  const s = sectorDelta[secteur] ?? sectorDelta.tous
+  const t = trancheDelta[tranche] ?? trancheDelta['51-250']
+  const medianPrice = Math.max(10, base.medianPrice + s.median + t.median)
+  const avgPrice = Math.max(12, base.avgPrice + s.avg + t.avg)
+  // Fourchette réaliste : min ~ -25 % de la moyenne, max ~ +35 %
+  const minPrice = Math.max(8, Math.round(avgPrice * 0.72))
+  const maxPrice = Math.round(avgPrice * 1.38)
+  return {
+    ...base,
+    minPrice,
+    medianPrice,
+    avgPrice,
+    maxPrice,
+  }
+}
+
 function BattleCardTable({ selectedIds, onBack }: { selectedIds: string[]; onBack: () => void }) {
   const selected = selectedIds.filter((id) => CRM_EXAMPLE[id])
   const bestValueId = selected.length >= 2
@@ -130,6 +194,8 @@ export default function AcheteurPage() {
   const [roiCurrentToolsCostYear, setRoiCurrentToolsCostYear] = useState(15000)
   /** Si > 0, coût annuel = ce forfait (sinon = utilisateurs × coût/mois × 12) */
   const [roiFlatCostYear, setRoiFlatCostYear] = useState(0)
+  const [solutionFilterSecteur, setSolutionFilterSecteur] = useState<SecteurId>('tous')
+  const [solutionFilterTranche, setSolutionFilterTranche] = useState<TrancheId>('51-250')
 
   const sourcingMatchingEditors = getEditorsMatchingCriteria(sourcingFeatures)
   const hasSourcingSelection = sourcingFeatures.size > 0
@@ -345,80 +411,154 @@ export default function AcheteurPage() {
           </button>
         </div>
 
-        {/* Économiser — Calculateur ROI */}
+        {/* Solution logicielle — prix constatés (exemple) */}
         <div id="calculateur-economies" className="bg-slate-50 rounded-2xl p-8 md:p-12 mb-16 scroll-mt-24 border-l-4 border-green-500">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center shrink-0 text-xl">💰</div>
-            <span className="text-sm font-semibold uppercase tracking-wide text-green-800">Économiser</span>
+            <span className="text-sm font-semibold uppercase tracking-wide text-green-800">Prix constatés</span>
           </div>
-          <h2 className="text-2xl font-bold text-slate-900 mb-8 text-center">Estimez vos économies potentielles</h2>
-          <div className="space-y-8 mb-8">
+          <h2 className="text-2xl font-bold text-slate-900 mb-2 text-center">Exemple de solution et prix observés</h2>
+          <p className="text-slate-600 text-center mb-8 max-w-xl mx-auto">
+            Filtrez par secteur et tranche d&apos;effectif pour voir les prix médian et moyen constatés par les acheteurs.
+          </p>
+          <div className="flex flex-wrap gap-4 mb-8">
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-4">
-                Nombre d&apos;employés : <span className="text-primary-600 font-bold">{employees > 1000 ? '1000+' : employees}</span>
-              </label>
-              <input
-                type="range"
-                min="10"
-                max="1500"
-                value={Math.min(1500, Math.max(10, employees))}
-                onChange={(e) => setEmployees(Number(e.target.value))}
-                className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-primary-600"
-              />
-              <div className="flex justify-between text-xs text-slate-500 mt-2"><span>10</span><span>1000+</span></div>
+              <label className="block text-sm font-medium text-slate-700 mb-1">Secteur d&apos;activité</label>
+              <select
+                value={solutionFilterSecteur}
+                onChange={(e) => setSolutionFilterSecteur(e.target.value as SecteurId)}
+                className="px-4 py-2 rounded-lg border border-slate-300 bg-white text-slate-800 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 min-w-[200px]"
+              >
+                {SECTEURS_ACTIVITE.map((s) => (
+                  <option key={s.id} value={s.id}>{s.label}</option>
+                ))}
+              </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">Outils SaaS estimés : <span className="text-primary-600 font-bold">{saasTools}</span></label>
-              <p className="text-xs text-slate-500">Source : Zylo 2025 — entreprises 1-500 sal. utilisent en moyenne 152 applications SaaS.</p>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">
-                Taux d&apos;économies (négociation) : <span className="text-primary-600 font-bold">{savingsRatePct}%</span>
-              </label>
-              <p className="text-xs text-slate-500">
-                Moyenne des économies obtenues par les organisations qui négocient activement leurs contrats SaaS.
-              </p>
+              <label className="block text-sm font-medium text-slate-700 mb-1">Tranche d&apos;effectif</label>
+              <select
+                value={solutionFilterTranche}
+                onChange={(e) => setSolutionFilterTranche(e.target.value as TrancheId)}
+                className="px-4 py-2 rounded-lg border border-slate-300 bg-white text-slate-800 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 min-w-[200px]"
+              >
+                {TRANCHES_EFFECTIF.map((t) => (
+                  <option key={t.id} value={t.id}>{t.label}</option>
+                ))}
+              </select>
             </div>
           </div>
-          <div className="bg-white rounded-xl p-6 border border-primary-200">
-            <div className="flex items-baseline justify-center gap-2">
-              <span className="text-3xl md:text-4xl font-bold text-primary-700">{Math.round(potentialSavings / 1000)}k€</span>
-              <span className="text-slate-600">d&apos;économies potentielles par an</span>
-            </div>
-            <p className="text-sm text-slate-500 text-center mt-2">Sur un budget annuel estimé de {Math.round(annualSpend / 1000)}k€ (4 800€/employé/an)</p>
-            {offerForEmployees && (
-              <div className="mt-6 pt-4 border-t border-slate-200">
-                <p className="text-sm font-medium text-slate-700 mb-2">Votre offre ({employees > 1000 ? '1000+' : employees} sal.) : {offerForEmployees.size_tier?.name ?? offerForEmployees.name}</p>
-                <p className="text-sm text-slate-600">Prix d&apos;abonnement</p>
-                <p className="text-slate-800 font-semibold">{formatPriceDisplay(offerForEmployees.price_per_month_eur, offerForEmployees.price_display_label, !(offerForEmployees.price_per_month_eur != null || (offerForEmployees.price_display_label != null && String(offerForEmployees.price_display_label).trim() !== '')))}</p>
-                <p className="text-sm text-slate-600 mt-2">Temps pour rentabiliser</p>
-                <p className="text-sm text-primary-700 font-medium">
-                  {potentialSavings > 0 && (offerForEmployees.price_per_month_eur != null || offerForEmployees.price_per_year_eur != null)
-                    ? formatRentabilisation(offerForEmployees.price_per_month_eur ?? 0, potentialSavings, offerForEmployees.price_per_year_eur)
-                    : (offerForEmployees.price_per_month_eur == null && offerForEmployees.price_per_year_eur == null ? 'Sur devis' : '—')}
-                </p>
-                {(offerForEmployees.stripe_price_id || (offerForEmployees.size_tier && offerForEmployees.size_tier.effectif_min <= 1000)) && (
-                  <button
-                    type="button"
-                    disabled={checkoutTierId === offerForEmployees.id}
-                    onClick={() => handleSubscribe(offerForEmployees)}
-                    className="mt-3 px-4 py-2 rounded-lg text-sm font-semibold border border-primary-300 bg-primary-50 text-primary-800 hover:bg-primary-100 disabled:opacity-60"
-                  >
-                    {checkoutTierId === offerForEmployees.id ? 'Redirection…' : 'Souscrire'}
-                  </button>
-                )}
-                {!offerForEmployees.stripe_price_id && (!offerForEmployees.size_tier || (offerForEmployees.size_tier.effectif_min ?? 0) > 1000) && (
-                  <button
-                    type="button"
-                    onClick={openDemoModal}
-                    className="mt-3 px-4 py-2 rounded-lg text-sm font-medium bg-primary-600 text-white hover:bg-primary-700"
-                  >
-                    Sur mesure
-                  </button>
-                )}
+          {(() => {
+            const solution = getSolutionDemo(solutionFilterSecteur, solutionFilterTranche)
+            const fullStars = Math.floor(solution.stars)
+            const hasHalf = solution.stars % 1 >= 0.5
+            const emptyStars = 5 - fullStars - (hasHalf ? 1 : 0)
+            return (
+              <div className="bg-white rounded-xl p-6 md:p-8 border border-primary-200 shadow-sm">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+                  <h3 className="text-xl md:text-2xl font-bold text-slate-900">{solution.name}</h3>
+                  <div className="flex items-center gap-1" aria-label={`${solution.stars} sur 5 étoiles`}>
+                    {Array.from({ length: fullStars }, (_, i) => (
+                      <span key={i} className="text-amber-400" aria-hidden>★</span>
+                    ))}
+                    {hasHalf && <span className="text-amber-400 text-[0.9em] align-middle" aria-hidden>½</span>}
+                    {Array.from({ length: emptyStars }, (_, i) => (
+                      <span key={`e-${i}`} className="text-slate-300" aria-hidden>☆</span>
+                    ))}
+                    <span className="ml-2 text-slate-600 text-sm font-medium">{solution.stars} / 5</span>
+                  </div>
+                </div>
+                <p className="text-sm text-slate-500 mb-6">Apprécié par les utilisateurs — prix constatés sur la base des données Side by SaaS.</p>
+                {(() => {
+                  const pctLow = solution.avgPrice > 0 ? Math.round((solution.minPrice / solution.avgPrice) * 100) : 0
+                  const pctHigh = solution.avgPrice > 0 ? Math.round((solution.maxPrice / solution.avgPrice) * 100) : 0
+                  return (
+                    <div className="grid sm:grid-cols-3 gap-4">
+                      <div className="rounded-xl bg-green-50 border border-green-200 p-4">
+                        <p className="text-sm font-medium text-green-800 mb-1">Prix le plus bas constaté</p>
+                        <p className="text-xl font-bold text-green-800">{solution.minPrice} € <span className="text-sm font-normal text-slate-500">/ utilisateur / mois</span></p>
+                        <p className="text-sm text-green-700 mt-1">{pctLow} % du prix moyen</p>
+                      </div>
+                      <div className="rounded-xl bg-slate-50 border border-primary-200 p-4">
+                        <p className="text-sm font-medium text-slate-600 mb-1">Prix moyen constaté</p>
+                        <p className="text-xl font-bold text-primary-700">{solution.avgPrice} € <span className="text-sm font-normal text-slate-500">/ utilisateur / mois</span></p>
+                        <p className="text-sm text-slate-600 mt-1">100 % — référence</p>
+                      </div>
+                      <div className="rounded-xl bg-amber-50 border border-amber-200 p-4">
+                        <p className="text-sm font-medium text-amber-800 mb-1">Prix le plus haut constaté</p>
+                        <p className="text-xl font-bold text-amber-800">{solution.maxPrice} € <span className="text-sm font-normal text-slate-500">/ utilisateur / mois</span></p>
+                        <p className="text-sm text-amber-700 mt-1">{pctHigh} % du prix moyen</p>
+                      </div>
+                    </div>
+                  )
+                })()}
+                {/* Où vous vous situez : barre avec zones et prix client (fixe 50 €) */}
+                <div className="mt-8 pt-6 border-t border-slate-200">
+                  <h4 className="text-base font-semibold text-slate-900 mb-2">Où vous situez-vous ?</h4>
+                  <p className="text-sm text-slate-600 mb-3">Votre prix (50 €/utilisateur/mois) par rapport aux autres acheteurs.</p>
+                  {(() => {
+                    const clientPrice = 50
+                    const range = solution.maxPrice - solution.minPrice
+                    const hasClientPrice = range > 0
+                    const positionPct = hasClientPrice ? Math.max(0, Math.min(100, ((clientPrice - solution.minPrice) / range) * 100)) : null
+                    const zoneWidths = { low: 25, mid: 50, high: 25 }
+                    const inZone = hasClientPrice && positionPct != null
+                      ? positionPct < zoneWidths.low
+                        ? 'low'
+                        : positionPct < zoneWidths.low + zoneWidths.mid
+                          ? 'mid'
+                          : 'high'
+                      : null
+                    const pctBelow = positionPct != null ? Math.round(positionPct) : null
+                    const pctAbove = pctBelow != null ? 100 - pctBelow : null
+                    return (
+                      <>
+                        <div className="relative pt-5 pb-1">
+                          <div className="relative h-10 rounded-lg overflow-hidden flex bg-slate-100">
+                            <div className="h-full bg-green-200 flex-shrink-0" style={{ width: `${zoneWidths.low}%` }} title="Extrémité basse (25 %)" />
+                            <div className="h-full bg-primary-200 flex-shrink-0" style={{ width: `${zoneWidths.mid}%` }} title="Fourchette moyenne (50 %)" />
+                            <div className="h-full bg-amber-200 flex-shrink-0" style={{ width: `${zoneWidths.high}%` }} title="Extrémité haute (25 %)" />
+                            {hasClientPrice && positionPct != null && (
+                              <div
+                                className="absolute top-0 bottom-0 w-1 bg-slate-900 rounded-full shadow-md -translate-x-1/2 z-10"
+                                style={{ left: `${positionPct}%` }}
+                                title={`Votre prix : ${clientPrice} €`}
+                              />
+                            )}
+                          </div>
+                          {hasClientPrice && positionPct != null && (
+                            <span className="absolute text-xs font-semibold text-slate-800 whitespace-nowrap -translate-x-1/2" style={{ left: `${positionPct}%`, top: 0 }}>Vous</span>
+                          )}
+                        </div>
+                        <div className="flex justify-between text-xs text-slate-500 mt-1 mb-2">
+                          <span>{solution.minPrice} €</span>
+                          <span>{solution.avgPrice} € (moyenne)</span>
+                          <span>{solution.maxPrice} €</span>
+                        </div>
+                        <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-slate-600 mb-2">
+                          <span className="inline-flex items-center gap-1"><span className="w-2.5 h-2.5 rounded bg-green-200" /> Extrémité basse (25 %)</span>
+                          <span className="inline-flex items-center gap-1"><span className="w-2.5 h-2.5 rounded bg-primary-200" /> Fourchette moyenne (50 %)</span>
+                          <span className="inline-flex items-center gap-1"><span className="w-2.5 h-2.5 rounded bg-amber-200" /> Extrémité haute (25 %)</span>
+                        </div>
+                        {hasClientPrice && pctBelow != null && pctAbove != null && (
+                          <div className="rounded-lg bg-slate-50 border border-slate-200 p-3 text-sm">
+                            <p className="font-medium text-slate-800">
+                              Votre prix ({clientPrice} €) : environ <strong>{pctBelow} %</strong> des acheteurs paient moins que vous, <strong>{pctAbove} %</strong> paient plus.
+                            </p>
+                            {inZone && (
+                              <p className="text-slate-600 mt-1">
+                                Vous êtes dans la {inZone === 'low' ? 'extrémité basse' : inZone === 'mid' ? 'fourchette moyenne' : 'extrémité haute'} des prix constatés.
+                              </p>
+                            )}
+                          </div>
+                        )}
+                      </>
+                    )
+                  })()}
+                </div>
+                <p className="text-xs text-slate-500 mt-4">Prix médian constaté : <strong>{solution.medianPrice} €</strong> / utilisateur / mois. Données indicatives selon le secteur et la tranche d&apos;effectif sélectionnés.</p>
               </div>
-            )}
-          </div>
+            )
+          })()}
         </div>
 
         {/* Comparer les fonctionnalités — Battle cards */}

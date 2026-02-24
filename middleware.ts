@@ -21,16 +21,16 @@ export function middleware(request: NextRequest) {
     return res
   }
 
-  // No locale: redirect to /fr/...
+  // No locale: redirect permanently to /fr/... (308 = permanent, so Google indexes /fr as the canonical homepage)
   const defaultLocale = 'fr'
   const newPath = pathname === '/' ? `/${defaultLocale}` : `/${defaultLocale}${pathname}`
   const url = request.nextUrl.clone()
   url.pathname = newPath
-  const res = NextResponse.redirect(url)
+  const res = NextResponse.redirect(url, 308)
   res.cookies.set(LOCALE_COOKIE, defaultLocale, { path: '/' })
   return res
 }
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|logo).*)'],
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|logo|sitemap.xml|robots.txt).*)'],
 }

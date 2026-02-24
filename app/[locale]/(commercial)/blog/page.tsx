@@ -38,7 +38,7 @@ export default async function BlogPage({ params, searchParams }: Props) {
   const resolvedSearch = await searchParams
   const categoryParam = resolvedSearch.category?.trim() ?? ''
   const category: BlogCategorySlug | '' =
-    categoryParam && VALID_CATEGORY_SLUGS.has(categoryParam) ? (categoryParam as BlogCategorySlug) : ''
+    categoryParam && VALID_CATEGORY_SLUGS.has(categoryParam as BlogCategorySlug) ? (categoryParam as BlogCategorySlug) : ''
   const page = Math.max(1, parseInt(resolvedSearch.page || '1', 10) || 1)
 
   const allPosts = getBlogPosts(category || undefined)

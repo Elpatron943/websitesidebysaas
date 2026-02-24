@@ -1,11 +1,9 @@
-'use client'
-
-import { useState, useEffect, useMemo, Suspense } from 'react'
 import Link from 'next/link'
-import { useSearchParams, useRouter, usePathname } from 'next/navigation'
+import type { Metadata } from 'next'
 import { SiteHeader } from '@/app/components/SiteHeader'
 import { BLOG_CATEGORIES, type BlogCategorySlug } from '@/lib/blog-categories'
-import { useLocale, useTranslations } from '@/app/components/LocaleProvider'
+import { getBlogPosts } from '@/lib/blog-posts'
+import { getMessages, t, isValidLocale, type Locale } from '@/lib/i18n'
 
 const CATEGORY_KEYS: Record<string, string> = {
   'comparaison-benchmarks': 'header.categoryComparison',
@@ -13,68 +11,44 @@ const CATEGORY_KEYS: Record<string, string> = {
   'etudes-tendances': 'header.categoryStudies',
 }
 
-interface BlogPost {
-  id: string
-  category_slug: string
-  title: string
-  slug: string
-  excerpt: string | null
-  published_at: string
-  created_at: string
-}
-
-const VALID_CATEGORY_SLUGS: Set<string> = new Set(BLOG_CATEGORIES.map((c) => c.slug))
+const VALID_CATEGORY_SLUGS = new Set(BLOG_CATEGORIES.map((c) => c.slug))
 const POSTS_PER_PAGE = 20
 
-function BlogPageContent() {
-  const t = useTranslations()
-  const locale = useLocale()
-  const prefix = `/${locale}`
-  const router = useRouter()
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
-  const categoryFromUrl = useMemo((): BlogCategorySlug | '' => {
-    const c = searchParams.get('category')?.trim() ?? ''
-    return (c && VALID_CATEGORY_SLUGS.has(c) ? c : '') as BlogCategorySlug | ''
-  }, [searchParams])
-  const pageFromUrl = useMemo(() => {
-    const p = parseInt(searchParams.get('page') || '1', 10)
-    return p >= 1 ? p : 1
-  }, [searchParams])
-  const [selectedCategory, setSelectedCategory] = useState<BlogCategorySlug | ''>(categoryFromUrl)
-  const [currentPage, setCurrentPage] = useState(pageFromUrl)
-  useEffect(() => { setSelectedCategory(categoryFromUrl) }, [categoryFromUrl])
-  useEffect(() => { setCurrentPage(pageFromUrl) }, [pageFromUrl])
-  const [posts, setPosts] = useState<BlogPost[]>([])
-  const [pagination, setPagination] = useState<{ page: number; total: number; totalPages: number } | null>(null)
-  const [loading, setLoading] = useState(true)
-  useEffect(() => { setCurrentPage(1) }, [selectedCategory])
-  useEffect(() => {
-    let cancelled = false
-    async function load() {
-      setLoading(true)
-      const params = new URLSearchParams()
-      if (selectedCategory) params.set('category', selectedCategory)
-      params.set('page', String(currentPage))
-      params.set('limit', String(POSTS_PER_PAGE))
-      const res = await fetch(`/api/blog/posts?${params.toString()}`)
-      const data = await res.json().catch(() => ({ posts: [], pagination: null }))
-      if (!cancelled) {
-        setPosts(data.posts ?? [])
-        setPagination(data.pagination ?? null)
-        setLoading(false)
-      }
-    }
-    load()
-    return () => { cancelled = true }
-  }, [selectedCategory, currentPage])
-  const goToPage = (page: number) => {
-    const params = new URLSearchParams()
-    if (selectedCategory) params.set('category', selectedCategory)
-    if (page > 1) params.set('page', String(page))
-    const qs = params.toString()
-    router.push(pathname + (qs ? `?${qs}` : ''))
+type Props = {
+  params: Promise<{ locale: string }>
+  searchParams: Promise<{ category?: string; page?: string }>
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params
+  const lang = isValidLocale(locale) ? locale : 'fr'
+  const m = getMessages(lang)
+  return {
+    title: `${t(m, 'blog.title')} | Side by SaaS`,
+    description: t(m, 'blog.subtitle'),
   }
+}
+
+export default async function BlogPage({ params, searchParams }: Props) {
+  const { locale: localeParam } = await params
+  const locale: Locale = isValidLocale(localeParam) ? localeParam : 'fr'
+  const prefix = `/${locale}`
+  const m = getMessages(locale)
+
+  const resolvedSearch = await searchParams
+  const categoryParam = resolvedSearch.category?.trim() ?? ''
+  const category: BlogCategorySlug | '' =
+    categoryParam && VALID_CATEGORY_SLUGS.has(categoryParam) ? (categoryParam as BlogCategorySlug) : ''
+  const page = Math.max(1, parseInt(resolvedSearch.page || '1', 10) || 1)
+
+  const allPosts = getBlogPosts(category || undefined)
+  const total = allPosts.length
+  const totalPages = Math.ceil(total / POSTS_PER_PAGE)
+  const currentPage = Math.min(page, totalPages || 1)
+  const offset = (currentPage - 1) * POSTS_PER_PAGE
+  const posts = allPosts.slice(offset, offset + POSTS_PER_PAGE)
+
+  const pagination = totalPages > 0 ? { page: currentPage, total, totalPages } : null
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -82,94 +56,121 @@ function BlogPageContent() {
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-slate-900 mb-2">{t('blog.title')}</h1>
-            <p className="text-slate-600">{t('blog.subtitle')}</p>
+            <h1 className="text-3xl font-bold text-slate-900 mb-2">{t(m, 'blog.title')}</h1>
+            <p className="text-slate-600">{t(m, 'blog.subtitle')}</p>
           </div>
           <Link href={prefix} className="text-primary-600 hover:text-primary-700 font-medium text-sm">
-            ← {t('common.backToHome')}
+            ← {t(m, 'common.backToHome')}
           </Link>
         </div>
         <div className="mb-8">
           <div className="flex flex-wrap gap-2">
-            <button
-              type="button"
-              onClick={() => { setSelectedCategory(''); setCurrentPage(1); router.push(pathname) }}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${selectedCategory === '' ? 'bg-primary-600 text-white' : 'bg-white text-slate-700 border border-slate-200 hover:border-primary-300 hover:bg-primary-50'}`}
+            <Link
+              href={`${prefix}/blog`}
+              className={`inline-block px-4 py-2 rounded-lg text-sm font-medium transition-colors ${category === '' ? 'bg-primary-600 text-white' : 'bg-white text-slate-700 border border-slate-200 hover:border-primary-300 hover:bg-primary-50'}`}
             >
-              {t('blog.all')}
-            </button>
+              {t(m, 'blog.all')}
+            </Link>
             {BLOG_CATEGORIES.map((cat) => (
-              <button
+              <Link
                 key={cat.slug}
-                type="button"
-                onClick={() => { setSelectedCategory(cat.slug); setCurrentPage(1); router.push(`${pathname}?category=${encodeURIComponent(cat.slug)}`) }}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${selectedCategory === cat.slug ? 'bg-primary-600 text-white' : 'bg-white text-slate-700 border border-slate-200 hover:border-primary-300 hover:bg-primary-50'}`}
+                href={`${prefix}/blog?category=${encodeURIComponent(cat.slug)}`}
+                className={`inline-block px-4 py-2 rounded-lg text-sm font-medium transition-colors ${category === cat.slug ? 'bg-primary-600 text-white' : 'bg-white text-slate-700 border border-slate-200 hover:border-primary-300 hover:bg-primary-50'}`}
               >
-                {t(CATEGORY_KEYS[cat.slug] ?? cat.slug)}
-              </button>
+                {t(m, CATEGORY_KEYS[cat.slug] ?? cat.slug)}
+              </Link>
             ))}
           </div>
         </div>
-        {loading ? (
-          <div className="py-12 text-center text-slate-500">{t('blog.loading')}</div>
-        ) : posts.length === 0 ? (
+        {posts.length === 0 ? (
           <div className="bg-white rounded-xl border border-slate-200 p-8 text-center">
-            <p className="text-slate-600 mb-2">{selectedCategory ? t('blog.noPostsCategory') : t('blog.noPosts')}</p>
-            <p className="text-sm text-slate-500">{t('blog.comeBack')}</p>
+            <p className="text-slate-600 mb-2">
+              {category ? t(m, 'blog.noPostsCategory') : t(m, 'blog.noPosts')}
+            </p>
+            <p className="text-sm text-slate-500">{t(m, 'blog.comeBack')}</p>
           </div>
         ) : (
           <ul className="space-y-6">
             {posts.map((post) => (
               <li key={post.id}>
-                <Link href={`${prefix}/blog/${post.slug}`} className="block bg-white rounded-xl border border-slate-200 p-6 hover:border-primary-200 hover:shadow-md transition-all">
+                <Link
+                  href={`${prefix}/blog/${post.slug}`}
+                  className="block bg-white rounded-xl border border-slate-200 p-6 hover:border-primary-200 hover:shadow-md transition-all"
+                >
                   <span className="text-xs font-semibold text-primary-600 uppercase tracking-wide">
-                    {t(CATEGORY_KEYS[post.category_slug] ?? post.category_slug)}
+                    {t(m, CATEGORY_KEYS[post.category_slug] ?? post.category_slug)}
                   </span>
                   <h2 className="text-xl font-bold text-slate-900 mt-1 mb-2">{post.title}</h2>
-                  {post.excerpt && <p className="text-slate-600 text-sm line-clamp-2">{post.excerpt}</p>}
-                  <time dateTime={post.published_at} className="text-xs text-slate-400 mt-2 block">
-                    {new Date(post.published_at).toLocaleDateString(locale === 'en' ? 'en-GB' : 'fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}
+                  {post.excerpt && (
+                    <p className="text-slate-600 text-sm line-clamp-2">{post.excerpt}</p>
+                  )}
+                  <time
+                    dateTime={post.published_at}
+                    className="text-xs text-slate-400 mt-2 block"
+                  >
+                    {new Date(post.published_at).toLocaleDateString(
+                      locale === 'en' ? 'en-GB' : 'fr-FR',
+                      { day: 'numeric', month: 'long', year: 'numeric' }
+                    )}
                   </time>
                 </Link>
               </li>
             ))}
           </ul>
         )}
-        {!loading && pagination && pagination.totalPages > 1 && (
+        {pagination && pagination.totalPages > 1 && (
           <nav className="mt-10 pt-8 border-t border-slate-200 flex flex-wrap items-center justify-between gap-4">
             <p className="text-sm text-slate-600">
               {pagination.page} / {pagination.totalPages}
               <span className="text-slate-500 ml-1">({pagination.total})</span>
             </p>
             <div className="flex items-center gap-2">
-              <button type="button" onClick={() => goToPage(pagination.page - 1)} disabled={pagination.page <= 1} className="px-4 py-2 rounded-lg text-sm font-medium border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed">
-                ←
-              </button>
-              <button type="button" onClick={() => goToPage(pagination.page + 1)} disabled={pagination.page >= pagination.totalPages} className="px-4 py-2 rounded-lg text-sm font-medium border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed">
-                →
-              </button>
+              {pagination.page > 1 ? (
+                <Link
+                  href={
+                    `${prefix}/blog` +
+                    (() => {
+                      const prev = pagination.page - 1
+                      const q = new URLSearchParams()
+                      if (category) q.set('category', category)
+                      if (prev > 1) q.set('page', String(prev))
+                      const s = q.toString()
+                      return s ? `?${s}` : ''
+                    })()
+                  }
+                  className="px-4 py-2 rounded-lg text-sm font-medium border border-slate-200 bg-white text-slate-700 hover:bg-slate-50"
+                >
+                  ←
+                </Link>
+              ) : (
+                <span className="px-4 py-2 rounded-lg text-sm font-medium border border-slate-200 bg-slate-50 text-slate-400 cursor-not-allowed">
+                  ←
+                </span>
+              )}
+              {pagination.page < pagination.totalPages ? (
+                <Link
+                  href={
+                    `${prefix}/blog` +
+                    (() => {
+                      const q = new URLSearchParams()
+                      if (category) q.set('category', category)
+                      q.set('page', String(pagination.page + 1))
+                      return `?${q.toString()}`
+                    })()
+                  }
+                  className="px-4 py-2 rounded-lg text-sm font-medium border border-slate-200 bg-white text-slate-700 hover:bg-slate-50"
+                >
+                  →
+                </Link>
+              ) : (
+                <span className="px-4 py-2 rounded-lg text-sm font-medium border border-slate-200 bg-slate-50 text-slate-400 cursor-not-allowed">
+                  →
+                </span>
+              )}
             </div>
           </nav>
         )}
       </main>
     </div>
-  )
-}
-
-export default function BlogPage() {
-  const t = useTranslations()
-  return (
-    <Suspense
-      fallback={
-        <div className="min-h-screen bg-slate-50">
-          <SiteHeader />
-          <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <p className="text-slate-600">{t('common.loading')}</p>
-          </main>
-        </div>
-      }
-    >
-      <BlogPageContent />
-    </Suspense>
   )
 }

@@ -960,12 +960,16 @@ export default function AcheteurPage() {
 
       <footer className="bg-slate-900 text-white border-t border-slate-800 mt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <Link href={prefix} className="flex items-center gap-2 text-slate-400 hover:text-white">
               <NavLogo height={80} />
-              <span>© 2024</span>
+              <span>© {new Date().getFullYear()}</span>
             </Link>
-            <Link href={prefix} className="text-slate-400 hover:text-white text-sm">Retour à l&apos;accueil</Link>
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-1 text-sm text-slate-400">
+              <Link href={prefix} className="hover:text-white">Retour à l&apos;accueil</Link>
+              <Link href={`${prefix}/mentions`} className="hover:text-white">Mentions légales</Link>
+              <Link href={`${prefix}/cgu`} className="hover:text-white">CGU</Link>
+            </div>
           </div>
         </div>
       </footer>

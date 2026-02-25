@@ -102,9 +102,11 @@ export default function EditeurPage() {
               <NavLogo height={80} className="[filter:brightness(0)_invert(1)]" />
               <span className="text-slate-400">{t('footer.copyright')} {new Date().getFullYear()}</span>
             </div>
-            <Link href={prefix} className="text-slate-400 hover:text-white text-sm transition-colors">
-              {t('common.backToHome')}
-            </Link>
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-1 text-sm text-slate-400">
+              <Link href={prefix} className="hover:text-white transition-colors">{t('common.backToHome')}</Link>
+              <Link href={`${prefix}/mentions`} className="hover:text-white transition-colors">{t('footer.legal')}</Link>
+              <Link href={`${prefix}/cgu`} className="hover:text-white transition-colors">{t('footer.terms')}</Link>
+            </div>
           </div>
         </div>
       </footer>

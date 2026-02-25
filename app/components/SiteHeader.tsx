@@ -134,7 +134,11 @@ export function SiteHeader() {
   }, [mobileMenuOpen])
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 backdrop-blur-sm">
+    <>
+      <div className="bg-primary-600 text-white text-center py-2 px-4 text-sm font-medium" role="status">
+        {t('home.freeUntilApril')}
+      </div>
+      <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 backdrop-blur-sm">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-14 items-center justify-between gap-6">
           <Link
@@ -447,5 +451,6 @@ export function SiteHeader() {
         document.body
       )}
     </header>
+    </>
   )
 }

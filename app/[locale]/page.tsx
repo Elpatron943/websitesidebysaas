@@ -130,10 +130,12 @@ export default function Home() {
               <NavLogo height={80} className="[filter:brightness(0)_invert(1)]" />
               <span className="text-slate-400">{t('footer.copyright')} {new Date().getFullYear()}</span>
             </div>
-            <div className="flex items-center space-x-6 text-sm text-slate-400">
+            <div className="flex flex-wrap items-center justify-center md:justify-end gap-x-6 gap-y-1 text-sm text-slate-400">
               <Link href={`${prefix}/docs`} className="hover:text-white transition-colors">{t('common.documentation')}</Link>
               <Link href={`${prefix}/about`} className="hover:text-white transition-colors">{t('common.about')}</Link>
               <Link href={`${prefix}/contact`} className="hover:text-white transition-colors">{t('common.contact')}</Link>
+              <Link href={`${prefix}/mentions`} className="hover:text-white transition-colors">{t('footer.legal')}</Link>
+              <Link href={`${prefix}/cgu`} className="hover:text-white transition-colors">{t('footer.terms')}</Link>
             </div>
           </div>
         </div>

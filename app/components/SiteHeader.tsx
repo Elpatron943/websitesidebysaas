@@ -162,7 +162,7 @@ export function SiteHeader() {
               type="button"
               className="md:hidden flex items-center justify-center min-w-[44px] min-h-[44px] rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 active:bg-slate-200 transition-colors touch-manipulation"
               onClick={(e) => { e.stopPropagation(); setMobileMenuOpen(true) }}
-              aria-label="Ouvrir le menu"
+              aria-label={t('header.openMenu')}
               aria-expanded={mobileMenuOpen}
             >
               <IconMenu />

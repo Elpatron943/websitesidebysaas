@@ -18,10 +18,10 @@ export const metadata: Metadata = {
   description: "Plateforme de benchmark SaaS basée sur des données d'achats réels. Comparez, négociez et pilotez vos logiciels.",
   icons: {
     icon: [
-      { url: "/logo/favicon.png", type: "image/png", sizes: "32x32" },
-      { url: "/logo/favicon.png", type: "image/png", sizes: "48x48" },
+      { url: "/logo/navicon.png", type: "image/png", sizes: "32x32" },
+      { url: "/logo/navicon.png", type: "image/png", sizes: "48x48" },
     ],
-    apple: "/logo/favicon.png",
+    apple: "/logo/navicon.png",
     shortcut: "/favicon.ico",
   },
 };

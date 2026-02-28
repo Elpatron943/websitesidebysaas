@@ -50,11 +50,11 @@ export default function EditeurPage() {
               </li>
             </ul>
             {getSignupUrl('/editor') ? (
-              <a href={getSignupUrl('/editor')!} className="inline-flex items-center justify-center w-full sm:w-auto px-8 py-3.5 rounded-xl text-center font-semibold bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow-sm">
+              <a href={getSignupUrl('/editor')!} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center w-full sm:w-auto px-8 py-3.5 rounded-xl text-center font-semibold bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow-sm">
                 {t('editeur.discoverPage')}
               </a>
             ) : (
-              <a href={`${PLATFORM_URL}/auth/register?redirectTo=/editor`} className="inline-flex items-center justify-center w-full sm:w-auto px-8 py-3.5 rounded-xl text-center font-semibold bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow-sm">
+              <a href={`${PLATFORM_URL}/auth/register?redirectTo=/editor`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center w-full sm:w-auto px-8 py-3.5 rounded-xl text-center font-semibold bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow-sm">
                 {t('editeur.discoverPage')}
               </a>
             )}
@@ -83,11 +83,11 @@ export default function EditeurPage() {
           <h2 className="text-2xl font-bold text-slate-900 mb-4">{t('editeur.ctaTitle')}</h2>
           <p className="text-slate-600 mb-6 max-w-xl mx-auto">{t('editeur.ctaSubtitle')}</p>
           {getSignupUrl('/editor') ? (
-            <a href={getSignupUrl('/editor')!} className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-lg font-semibold bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow-lg">
+            <a href={getSignupUrl('/editor')!} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-lg font-semibold bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow-lg">
               <span>📦</span> {t('editeur.createSpace')}
             </a>
           ) : (
-            <a href={`${PLATFORM_URL}/auth/register?redirectTo=/editor`} className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-lg font-semibold bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow-lg">
+            <a href={`${PLATFORM_URL}/auth/register?redirectTo=/editor`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-lg font-semibold bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow-lg">
               <span>📦</span> {t('editeur.createSpace')}
             </a>
           )}

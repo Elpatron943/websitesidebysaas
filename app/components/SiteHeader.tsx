@@ -210,7 +210,7 @@ export function SiteHeader() {
                   <Link href={`${prefix}/editeur/sales`} className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors">Sales</Link>
                   <Link href={`${prefix}/editeur/marketing`} className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors">Marketing</Link>
                   <div className="my-1 border-t border-slate-100" />
-                  <a href={`${platformUrl}/auth/register?redirectTo=/editor`} className="block px-4 py-2.5 text-sm text-blue-600 hover:bg-blue-50 font-semibold transition-colors">{t('header.createEditorSpace')}</a>
+                  <a href={`${platformUrl}/auth/register?redirectTo=/editor`} target="_blank" rel="noopener noreferrer" className="block px-4 py-2.5 text-sm text-blue-600 hover:bg-blue-50 font-semibold transition-colors">{t('header.createEditorSpace')}</a>
                 </div>
               )}
             </div>
@@ -269,8 +269,8 @@ export function SiteHeader() {
               </button>
               {authOpen === 'connexion' && (
                 <div className="absolute right-0 top-full mt-1.5 min-w-[11rem] bg-white rounded-xl shadow-lg border border-slate-200/80 py-1.5 z-50">
-                  <a href={`${platformUrl}/auth/login?redirectTo=/buyer`} className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors">{t('header.buyerPortal')}</a>
-                  <a href={`${platformUrl}/auth/login?redirectTo=/editor`} className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors">{t('header.editorPortal')}</a>
+                  <a href={`${platformUrl}/auth/login?redirectTo=/buyer`} target="_blank" rel="noopener noreferrer" className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors">{t('header.buyerPortal')}</a>
+                  <a href={`${platformUrl}/auth/login?redirectTo=/editor`} target="_blank" rel="noopener noreferrer" className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors">{t('header.editorPortal')}</a>
                 </div>
               )}
             </div>
@@ -290,8 +290,8 @@ export function SiteHeader() {
               </button>
               {authOpen === 'commencer' && (
                 <div className="absolute right-0 top-full mt-1.5 min-w-[12rem] bg-white rounded-xl shadow-lg border border-slate-200/80 py-1.5 z-50">
-                  <a href={`${platformUrl}/auth/register?redirectTo=/buyer`} className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors">{t('header.createBuyerAccount')}</a>
-                  <a href={`${platformUrl}/auth/register?redirectTo=/editor`} className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors">{t('header.createEditorAccount')}</a>
+                  <a href={`${platformUrl}/auth/register?redirectTo=/buyer`} target="_blank" rel="noopener noreferrer" className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors">{t('header.createBuyerAccount')}</a>
+                  <a href={`${platformUrl}/auth/register?redirectTo=/editor`} target="_blank" rel="noopener noreferrer" className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors">{t('header.createEditorAccount')}</a>
                 </div>
               )}
             </div>
@@ -363,7 +363,7 @@ export function SiteHeader() {
                     <Link href={`${prefix}/editeur/sales`} className="block py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>Sales</Link>
                     <Link href={`${prefix}/editeur/marketing`} className="block py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>Marketing</Link>
                     <div className="my-2 border-t border-slate-100" />
-                    <a href={`${platformUrl}/auth/register?redirectTo=/editor`} className="block py-2.5 px-4 text-sm text-blue-600 font-semibold hover:bg-blue-50 rounded-lg" onClick={closeMobileMenu}>{t('header.createEditorSpace')}</a>
+                    <a href={`${platformUrl}/auth/register?redirectTo=/editor`} target="_blank" rel="noopener noreferrer" className="block py-2.5 px-4 text-sm text-blue-600 font-semibold hover:bg-blue-50 rounded-lg" onClick={closeMobileMenu}>{t('header.createEditorSpace')}</a>
                   </div>
                 )}
               </div>
@@ -419,8 +419,8 @@ export function SiteHeader() {
                 </button>
                 {mobileAccordion === 'connexion' && (
                   <div className="pb-2 pl-1 space-y-0.5">
-                    <a href={`${platformUrl}/auth/login?redirectTo=/buyer`} className="block py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>{t('header.buyerPortal')}</a>
-                    <a href={`${platformUrl}/auth/login?redirectTo=/editor`} className="block py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>{t('header.editorPortal')}</a>
+                    <a href={`${platformUrl}/auth/login?redirectTo=/buyer`} target="_blank" rel="noopener noreferrer" className="block py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>{t('header.buyerPortal')}</a>
+                    <a href={`${platformUrl}/auth/login?redirectTo=/editor`} target="_blank" rel="noopener noreferrer" className="block py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>{t('header.editorPortal')}</a>
                   </div>
                 )}
               </div>
@@ -440,8 +440,8 @@ export function SiteHeader() {
                 </button>
                 {mobileAccordion === 'commencer' && (
                   <div className="pb-2 pl-1 space-y-0.5">
-                    <a href={`${platformUrl}/auth/register?redirectTo=/buyer`} className="block py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>{t('header.createBuyerAccount')}</a>
-                    <a href={`${platformUrl}/auth/register?redirectTo=/editor`} className="block py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>{t('header.createEditorAccount')}</a>
+                    <a href={`${platformUrl}/auth/register?redirectTo=/buyer`} target="_blank" rel="noopener noreferrer" className="block py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>{t('header.createBuyerAccount')}</a>
+                    <a href={`${platformUrl}/auth/register?redirectTo=/editor`} target="_blank" rel="noopener noreferrer" className="block py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>{t('header.createEditorAccount')}</a>
                   </div>
                 )}
               </div>

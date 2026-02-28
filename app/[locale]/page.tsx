@@ -112,10 +112,10 @@ export default function Home() {
           <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">{t('home.cta.title')}</h2>
           <p className="text-slate-600 mb-8">{t('home.cta.subtitle')}</p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href={`${platformUrl}/auth/register?redirectTo=/buyer`} className="w-full sm:w-auto bg-blue-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg">
+            <a href={`${platformUrl}/auth/register?redirectTo=/buyer`} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-blue-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg">
               {t('home.cta.createBuyer')}
             </a>
-            <a href={`${platformUrl}/auth/register?redirectTo=/editor`} className="w-full sm:w-auto bg-white text-blue-600 px-8 py-4 rounded-xl text-lg font-semibold hover:bg-slate-50 transition-colors border-2 border-blue-600">
+            <a href={`${platformUrl}/auth/register?redirectTo=/editor`} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-white text-blue-600 px-8 py-4 rounded-xl text-lg font-semibold hover:bg-slate-50 transition-colors border-2 border-blue-600">
               {t('home.cta.createEditor')}
             </a>
           </div>

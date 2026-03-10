@@ -37,7 +37,7 @@ const buyerPlans = [
     period: '',
     description: 'Pour les entreprises de 1 à 250 salariés avec un parc SaaS actif.',
     features: [
-      'Jusqu'à 150 consultations de fiches / an',
+      "Jusqu'à 150 consultations de fiches / an",
       'Benchmark entreprises similaires',
       'Battle cards comparatives',
       'Accès aux médianes de marché',

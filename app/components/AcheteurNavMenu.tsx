@@ -136,7 +136,7 @@ export function AcheteurNavMenu({ linkStyle = 'link', onNavigate, isOpen = true,
         <a
           href={`${platformUrl}/auth/register?redirectTo=/buyer`}
           target="_blank"
-          rel="noopener noreferrer"
+          rel="nofollow noopener noreferrer"
           onClick={onNavigate}
           className={itemClassBlue}
         >

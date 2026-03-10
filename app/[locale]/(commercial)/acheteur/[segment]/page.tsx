@@ -31,6 +31,14 @@ export async function generateMetadata({
       siteName: 'Side by SaaS',
       type: 'website',
     },
+    alternates: {
+      canonical: `https://sidebysaas.com/fr/acheteur/${segment}`,
+      languages: {
+        'fr': `https://sidebysaas.com/fr/acheteur/${segment}`,
+        'en': `https://sidebysaas.com/en/acheteur/${segment}`,
+        'x-default': `https://sidebysaas.com/fr/acheteur/${segment}`,
+      },
+    },
   }
 }
 

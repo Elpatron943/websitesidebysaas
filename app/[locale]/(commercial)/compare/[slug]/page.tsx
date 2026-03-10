@@ -27,6 +27,14 @@ export async function generateMetadata({
       siteName: 'Side by SaaS',
       type: 'article',
     },
+    alternates: {
+      canonical: `https://sidebysaas.com/fr/compare/${slug}`,
+      languages: {
+        'fr': `https://sidebysaas.com/fr/compare/${slug}`,
+        'en': `https://sidebysaas.com/en/compare/${slug}`,
+        'x-default': `https://sidebysaas.com/fr/compare/${slug}`,
+      },
+    },
   }
 }
 

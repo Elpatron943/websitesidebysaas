@@ -57,31 +57,52 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
 
   // Pages compare (programmatic SEO)
-  const compareUrls = getComparisons().map((c) => ({
-    url: `${baseUrl}/fr/compare/${c.slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.7,
-  }))
-  entries.push(...compareUrls)
+  for (const c of getComparisons()) {
+    entries.push({
+      url: `${baseUrl}/fr/compare/${c.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    })
+    entries.push({
+      url: `${baseUrl}/en/compare/${c.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    })
+  }
 
   // Pages prix (programmatic SEO)
-  const prixUrls = PRODUCTS.map((p) => ({
-    url: `${baseUrl}/fr/prix/${p.slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.8,
-  }))
-  entries.push(...prixUrls)
+  for (const p of PRODUCTS) {
+    entries.push({
+      url: `${baseUrl}/fr/prix/${p.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    })
+    entries.push({
+      url: `${baseUrl}/en/prix/${p.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    })
+  }
 
   // Pages landing segments (SEO AXE 3)
-  const segmentUrls = SEGMENTS.map((s) => ({
-    url: `${baseUrl}/fr/${s.persona}/${s.slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.8,
-  }))
-  entries.push(...segmentUrls)
+  for (const s of SEGMENTS) {
+    entries.push({
+      url: `${baseUrl}/fr/${s.persona}/${s.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    })
+    entries.push({
+      url: `${baseUrl}/en/${s.persona}/${s.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    })
+  }
 
   return entries
 }

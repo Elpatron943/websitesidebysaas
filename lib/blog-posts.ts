@@ -731,7 +731,7 @@ export const BLOG_POSTS: BlogPostData[] = [
 ]
 
 export function getBlogPostBySlug(slug: string): BlogPostData | null {
-  return ALL_BLOG_POSTS.find((p) => p.slug === slug) ?? null
+  return BLOG_POSTS.find((p) => p.slug === slug) ?? null
 }
 
 // ─── SEO AXE 2 — Nouveaux articles ────────────────────────────────────────

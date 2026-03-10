@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
+import { SEGMENTS } from '@/lib/segments'
 import { NavLogo } from '@/app/components/NavLogo'
 import { getLoginUrl, getSignupUrl } from '@/lib/commercial-auth-links'
 import {
@@ -941,6 +942,38 @@ export default function AcheteurPage() {
               pour souscrire en ligne.
             </p>
           )}
+        </div>
+
+        {/* Explorer par catégorie */}
+        <div className="mt-16">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl font-bold text-slate-900 mb-2">Explorer par catégorie</h2>
+            <p className="text-slate-600">Benchmarks dédiés par type de logiciel avec données réelles anonymisées</p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {SEGMENTS.filter((s) => s.persona === 'acheteur').map((seg) => (
+              <Link
+                key={seg.slug}
+                href={`${prefix}/acheteur/${seg.slug}`}
+                className="bg-white rounded-xl border border-slate-200 p-6 hover:border-primary-300 hover:shadow-md transition-all group flex flex-col"
+              >
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-xs font-semibold uppercase tracking-wide text-primary-600 bg-primary-50 px-2 py-1 rounded-full">
+                    {seg.category || 'Tous'}
+                  </span>
+                  <span className="text-slate-400 group-hover:text-primary-600 transition-colors">→</span>
+                </div>
+                <h3 className="font-bold text-slate-900 mb-2 group-hover:text-primary-700 transition-colors">
+                  {seg.title}
+                </h3>
+                <p className="text-sm text-slate-500 flex-1 mb-4">{seg.subtitle}</p>
+                <div className="flex items-center gap-2">
+                  <span className="text-2xl font-bold text-primary-600">{seg.heroStat.value}</span>
+                  <span className="text-xs text-slate-500">{seg.heroStat.label}</span>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
 
         {/* CTA inscription */}

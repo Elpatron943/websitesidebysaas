@@ -5,6 +5,7 @@ import { SiteHeader } from '@/app/components/SiteHeader'
 import { NavLogo } from '@/app/components/NavLogo'
 import { getSignupUrl } from '@/lib/commercial-auth-links'
 import { useLocale, useTranslations } from '@/app/components/LocaleProvider'
+import { SEGMENTS } from '@/lib/segments'
 
 const PLATFORM_URL = process.env.NEXT_PUBLIC_PLATFORM_URL || 'https://app.sidebysaas.com'
 
@@ -76,6 +77,38 @@ export default function EditeurPage() {
             <div className="w-14 h-14 bg-amber-100 rounded-xl flex items-center justify-center mb-6"><span className="text-2xl">📊</span></div>
             <h3 className="text-xl font-bold text-slate-900 mb-3">{t('editeur.insight')}</h3>
             <p className="text-slate-600 text-sm leading-relaxed">{t('editeur.insightDesc')}</p>
+          </div>
+        </div>
+
+        {/* Explorer par catégorie */}
+        <div className="mb-16">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl font-bold text-slate-900 mb-2">Explorer par segment</h2>
+            <p className="text-slate-600">Données de marché segmentées pour comprendre votre positionnement</p>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-5">
+            {SEGMENTS.filter((s) => s.persona === 'editeur').map((seg) => (
+              <Link
+                key={seg.slug}
+                href={`${prefix}/editeur/${seg.slug}`}
+                className="bg-slate-50 rounded-xl border border-slate-200 p-6 hover:border-amber-300 hover:shadow-md transition-all group flex flex-col"
+              >
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-xs font-semibold uppercase tracking-wide text-amber-600 bg-amber-50 px-2 py-1 rounded-full">
+                    {seg.category || 'Tous segments'}
+                  </span>
+                  <span className="text-slate-400 group-hover:text-amber-600 transition-colors">→</span>
+                </div>
+                <h3 className="font-bold text-slate-900 mb-2 group-hover:text-amber-700 transition-colors">
+                  {seg.title}
+                </h3>
+                <p className="text-sm text-slate-500 flex-1 mb-4">{seg.subtitle}</p>
+                <div className="flex items-center gap-2">
+                  <span className="text-2xl font-bold text-amber-600">{seg.heroStat.value}</span>
+                  <span className="text-xs text-slate-500">{seg.heroStat.label}</span>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
 

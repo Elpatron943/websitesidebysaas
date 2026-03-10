@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { getBlogPosts } from '@/lib/blog-posts'
 import { getComparisons, PRODUCTS } from '@/lib/saas-products'
+import { SEGMENTS } from '@/lib/segments'
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL
   ?? (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://sidebysaas.com')
@@ -72,6 +73,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }))
   entries.push(...prixUrls)
+
+  // Pages landing segments (SEO AXE 3)
+  const segmentUrls = SEGMENTS.map((s) => ({
+    url: `${baseUrl}/fr/${s.persona}/${s.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.8,
+  }))
+  entries.push(...segmentUrls)
 
   return entries
 }

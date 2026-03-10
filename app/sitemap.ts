@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next'
 import { getBlogPosts } from '@/lib/blog-posts'
+import { getComparisons, PRODUCTS } from '@/lib/saas-products'
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL
   ?? (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://sidebysaas.com')
@@ -53,6 +54,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       })
     }
   }
+
+  // Pages compare (programmatic SEO)
+  const compareUrls = getComparisons().map((c) => ({
+    url: `${baseUrl}/fr/compare/${c.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }))
+  entries.push(...compareUrls)
+
+  // Pages prix (programmatic SEO)
+  const prixUrls = PRODUCTS.map((p) => ({
+    url: `${baseUrl}/fr/prix/${p.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.8,
+  }))
+  entries.push(...prixUrls)
 
   return entries
 }

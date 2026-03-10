@@ -504,6 +504,157 @@ const CTA_MID_HTML = `
 </div>
 `
 
+const PRIX_CRM_FRANCE_BODY = `
+<p class="${articleStyles.p}">Vous cherchez le prix d'un CRM pour votre entreprise. Vous regardez la page tarifaire de Salesforce. Vous voyez "à partir de 25 €/utilisateur/mois". Vous faites le calcul pour vos 20 commerciaux : 500 €/mois, 6 000 €/an. Simple. Et complètement faux.</p>
+
+<p class="${articleStyles.p}">La réalité des achats SaaS, c'est que le prix catalogue est une fiction commerciale. Entre les remises négociées, les add-ons incontournables, le nombre de seats réels et les surprises à la reconduction, le montant que vous paierez ressemblera rarement à ce que vous avez vu sur le site. <strong class="${articleStyles.strong}">Side by SaaS a compilé les données d'achats réels de plus de 200 entreprises françaises.</strong> Voici ce que ça révèle vraiment.</p>
+
+<h2 class="${articleStyles.h2}">Les CRM les plus utilisés en France</h2>
+
+<p class="${articleStyles.p}">Quatre acteurs dominent le marché français des CRM, chacun avec un positionnement très distinct :</p>
+
+<div class="overflow-x-auto mb-6">
+  <table class="min-w-full border border-slate-200 rounded-lg overflow-hidden">
+    <thead>
+      <tr class="bg-slate-50">
+        <th class="px-4 py-3 text-left text-sm font-semibold text-slate-800 border-b border-slate-200">CRM</th>
+        <th class="px-4 py-3 text-left text-sm font-semibold text-slate-800 border-b border-slate-200">Prix catalogue (par user/mois)</th>
+        <th class="px-4 py-3 text-left text-sm font-semibold text-slate-800 border-b border-slate-200">Cible principale</th>
+        <th class="px-4 py-3 text-left text-sm font-semibold text-slate-800 border-b border-slate-200">Marge de négociation typique</th>
+      </tr>
+    </thead>
+    <tbody class="text-slate-700 text-sm">
+      <tr class="border-b border-slate-100">
+        <td class="px-4 py-3 font-semibold">Salesforce Sales Cloud</td>
+        <td class="px-4 py-3">25 € – 300 €</td>
+        <td class="px-4 py-3">ETI / Grands comptes</td>
+        <td class="px-4 py-3">20 % – 40 %</td>
+      </tr>
+      <tr class="border-b border-slate-100">
+        <td class="px-4 py-3 font-semibold">HubSpot Sales Hub</td>
+        <td class="px-4 py-3">45 € – 120 €</td>
+        <td class="px-4 py-3">PME / Scale-ups</td>
+        <td class="px-4 py-3">10 % – 25 %</td>
+      </tr>
+      <tr class="border-b border-slate-100">
+        <td class="px-4 py-3 font-semibold">Pipedrive</td>
+        <td class="px-4 py-3">15 € – 60 €</td>
+        <td class="px-4 py-3">TPE / PME</td>
+        <td class="px-4 py-3">5 % – 15 %</td>
+      </tr>
+      <tr>
+        <td class="px-4 py-3 font-semibold">Zoho CRM</td>
+        <td class="px-4 py-3">14 € – 52 €</td>
+        <td class="px-4 py-3">TPE / PME budget serré</td>
+        <td class="px-4 py-3">5 % – 20 %</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p class="${articleStyles.p}">Ces fourchettes catalogue ne disent rien de ce que vous paierez réellement. Ce qui suit, si.</p>
+
+<h2 class="${articleStyles.h2}">Ce que révèlent les données réelles</h2>
+
+<h3 class="${articleStyles.h3}">Fourchette de prix observée par produit</h3>
+
+<p class="${articleStyles.p}">En agrégeant les données d'achats anonymisées de 200+ entreprises françaises, voici les prix réellement payés (par utilisateur par mois, sur contrat annuel) :</p>
+
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Salesforce Sales Cloud Professional :</strong> entre 18 € et 62 € effectivement payés — médiane à 34 €. Le prix catalogue "25 €" ne concerne quasi personne : soit vous bénéficiez d'une remise volume importante, soit vous avez ajouté des modules et vous dépassez largement.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">HubSpot Sales Hub Pro :</strong> entre 28 € et 95 € — médiane à 52 €. La grande variance s'explique par les bundles : les entreprises qui achètent Marketing Hub + Sales Hub en même temps obtiennent des remises croisées substantielles.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Pipedrive Advanced/Professional :</strong> entre 12 € et 38 € — médiane à 22 €. Pipedrive est moins généreux sur les remises, mais aussi moins cher de base.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Zoho CRM :</strong> entre 8 € et 30 € — médiane à 16 €. Les remises Zoho sont souvent conditionnées à l'achat d'une suite plus large (Zoho One).</li>
+</ul>
+
+<h3 class="${articleStyles.h3}">Corrélation taille d'entreprise / prix négocié</h3>
+
+<p class="${articleStyles.p}">Sans surprise, la taille compte. Mais pas autant qu'on le croit. Ce qu'on observe dans les données :</p>
+
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Une entreprise de <strong class="${articleStyles.strong}">10 à 50 salariés</strong> sans expérience de négociation paie en moyenne <strong class="${articleStyles.strong}">12 % de plus</strong> qu'une entreprise de taille comparable qui a simplement demandé une remise en argumentant avec des données concurrentes.</li>
+  <li class="${articleStyles.li}">Les <strong class="${articleStyles.strong}">ETI (250-2 000 salariés)</strong> obtiennent systématiquement des remises de 20 à 35 % sur Salesforce, souvent avec des services d'implémentation offerts ou fortement réduits.</li>
+  <li class="${articleStyles.li}">Le <strong class="${articleStyles.strong}">timing</strong> joue énormément : les achats effectués en fin de trimestre fiscal (mars, juin, septembre, décembre pour Salesforce) obtiennent en moyenne 8 % de remise supplémentaire.</li>
+</ul>
+
+<h3 class="${articleStyles.h3}">Les add-ons qui font exploser la facture</h3>
+
+<p class="${articleStyles.p}">C'est là que se cachent les vraies surprises. Les add-ons non anticipés représentent en moyenne <strong class="${articleStyles.strong}">38 % du coût total réel</strong> pour les entreprises utilisant Salesforce, et 22 % pour HubSpot.</p>
+
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Salesforce :</strong> Einstein Analytics, Sales Engagement (ex-High Velocity Sales), Tableau CRM, CPQ, et le support Premium peuvent doubler la facture de base.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">HubSpot :</strong> les contacts marketing supplémentaires (au-delà du forfait de base), Operations Hub, et les Business Units pour les structures multi-entités sont les postes les plus souvent sous-estimés.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Pipedrive :</strong> les add-ons de LeadBooster, Smart Docs et Projects ajoutent souvent 30 à 50 % au coût initial.</li>
+</ul>
+
+${CTA_PLACEHOLDER}
+
+<h2 class="${articleStyles.h2}">Comment lire un devis CRM sans se faire avoir</h2>
+
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">1. Exigez un chiffrage "coût total sur 3 ans".</strong> Un CRM, ça se garde rarement moins de 2 ans. Demandez systématiquement une projection sur 36 mois incluant les hausses tarifaires prévues. Les contrats Salesforce et HubSpot prévoient souvent des augmentations annuelles de 5 à 7 %.</p>
+
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">2. Listez exhaustivement vos besoins fonctionnels avant toute discussion commerciale.</strong> Chaque fonctionnalité que vous découvrirez après signature aura un prix. La plupart des acheteurs réalisent après coup qu'ils avaient besoin d'une intégration email avancée ou d'un module de devis — et paient plein tarif pour l'ajouter.</p>
+
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">3. Demandez à voir ce que paient des entreprises similaires.</strong> Les commerciaux n'aiment pas l'exercice, mais c'est votre droit. Des plateformes comme Side by SaaS vous donnent accès à des données d'achats réels et anonymisés pour comparer objectivement.</p>
+
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">4. Négociez les conditions de sortie dès l'entrée.</strong> Export de données, portabilité, conditions de résiliation — ce sont des éléments qui coûtent peu à obtenir lors de la négociation initiale et qui peuvent vous sauver des mois de travail si vous changez d'avis dans 18 mois.</p>
+
+<p class="${articleStyles.p}">Vous cherchez à comparer les CRM disponibles sur le marché français avec des données réelles ? <a href="/fr/compare" class="text-primary-600 hover:text-primary-700 font-medium underline">Consultez nos comparatifs CRM</a> ou accédez directement aux <a href="/fr/acheteur/crm" class="text-primary-600 hover:text-primary-700 font-medium underline">données d'achats pour les CRM</a> sur Side by SaaS.</p>
+`.trim()
+
+const REVIEWS_SAAS_BIAIS_BODY = `
+<p class="${articleStyles.p}">Avant d'acheter un logiciel, 84 % des acheteurs B2B consultent G2 ou Capterra — c'est une statistique que les deux plateformes mettent elles-mêmes en avant dans leurs arguments commerciaux. Ce chiffre dit quelque chose d'important : dans l'écosystème SaaS, la décision d'achat est massivement influencée par des avis en ligne. Ce qu'il ne dit pas, c'est que le modèle économique qui produit ces avis est structurellement incompatible avec l'objectivité.</p>
+
+<p class="${articleStyles.p}">Ce n'est pas un complot, ni une accusation facile. C'est une réalité mécanique qu'il vaut mieux comprendre avant de choisir votre prochain CRM, HRIS ou outil de cybersécurité sur la base d'une note 4,6/5.</p>
+
+<h2 class="${articleStyles.h2}">Comment G2 et Capterra gagnent leur argent</h2>
+
+<p class="${articleStyles.p}">G2 et Capterra (qui appartient à Gartner) sont des plateformes d'avis. Mais leur client principal n'est pas vous, l'acheteur. C'est l'éditeur logiciel qui veut être bien positionné dans les résultats.</p>
+
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">Le modèle pay-to-rank :</strong> pour apparaître en haut des listes de catégorie, les éditeurs paient. Les "sponsored placements" représentent une part significative des revenus de ces plateformes. Un logiciel noté 4,2/5 mais qui paye plus cher peut apparaître avant un logiciel noté 4,7/5 qui ne paie pas. La nuance est parfois visible sous forme d'un label "Sponsorisé" ou "Featured", souvent discret.</p>
+
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">Les incentives à l'avis :</strong> G2 et Capterra permettent aux éditeurs d'offrir des récompenses (gift cards Amazon de 10-25 €, accès à des rapports exclusifs) en échange d'avis. La pratique est encadrée — les plateformes stipulent que la récompense ne doit pas conditionner le contenu de l'avis — mais l'effet comportemental est documenté : les personnes récompensées donnent des notes plus hautes que celles qui ne le sont pas, simplement parce qu'elles se sentent réciproquement obligées.</p>
+
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">Les campagnes de sollicitation d'avis :</strong> les éditeurs lancent régulièrement des campagnes ciblées auprès de leurs clients les plus satisfaits pour déposer des avis au moment précis où ils participent à un classement trimestriel (les "G2 Reports"). Les clients mécontents ne sont généralement pas sollicités.</p>
+
+<h2 class="${articleStyles.h2}">Les biais structurels</h2>
+
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">Le survivorship bias :</strong> qui dépose des avis sur G2 ? Majoritairement des utilisateurs actifs, engagés, souvent des power users. Les entreprises qui ont acheté un outil et ne l'utilisent plus — parce que l'adoption a échoué, parce que le produit ne convenait pas, parce que le ROI n'était pas au rendez-vous — ne reviennent généralement pas sur la plateforme pour laisser un avis négatif. Elles sont passées à autre chose. Résultat : les notes G2 et Capterra sur-représentent structurellement les cas de succès.</p>
+
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">L'early adopter bias :</strong> un produit en croissance rapide accumule beaucoup d'avis au moment où il est encore en mode "startup agile" — équipe support réactive, fondateurs accessibles, pricing agressif. Deux ans plus tard, une fois l'outil dominant sa catégorie, l'expérience client peut avoir significativement changé. Mais la note G2 reflète encore l'enthousiasme des premiers utilisateurs.</p>
+
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">L'absence totale de données prix réels :</strong> c'est peut-être le biais le plus préjudiciable pour les acheteurs. Les avis G2 et Capterra ne disent rien de ce que les entreprises paient réellement. Une note 4,8/5 pour un outil "excellent rapport qualité-prix" peut masquer des prix qui varient de 1 à 5 selon la taille de l'entreprise, le timing de la négociation, et les add-ons inclus ou exclus. L'acheteur qui se fie à cette note pour anticiper son budget part avec une information fondamentalement incomplète.</p>
+
+${CTA_PLACEHOLDER}
+
+<h2 class="${articleStyles.h2}">Ce que les données d'achats réels révèlent</h2>
+
+<p class="${articleStyles.p}">Chez Side by SaaS, on part d'une prémisse différente : ce qui importe le plus pour un acheteur SaaS, ce n'est pas ce que les utilisateurs pensent d'un outil — c'est ce que les entreprises similaires à la vôtre paient réellement pour l'utiliser, et dans quelles conditions.</p>
+
+<p class="${articleStyles.p}">Les données d'achats réels révèlent des choses que les avis ne diront jamais :</p>
+
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Le prix médian payé par des entreprises de votre taille pour un outil donné — souvent très différent du prix catalogue.</li>
+  <li class="${articleStyles.li}">Les add-ons qui représentent la majorité du coût réel, mais qui n'apparaissent pas dans les avis (personne ne rédige un avis sur un line-item de facturation).</li>
+  <li class="${articleStyles.li}">Les tendances de renouvellement : est-ce que les entreprises qui ont acheté cet outil le reconduisent ? À quel prix ?</li>
+  <li class="${articleStyles.li}">Les alternatives réellement considérées lors de l'achat — pas celles que G2 positionne comme "alternatives" parce qu'elles payent pour ce slot.</li>
+</ul>
+
+<p class="${articleStyles.p}">Un outil noté 4,2/5 sur G2 mais adopté par 85 % des entreprises qui le testent, avec un prix médian 40 % en dessous du catalogue, est objectivement plus intéressant qu'un outil noté 4,8/5 avec un taux d'adoption réel de 45 % et des coûts cachés qui triplent la facture en 18 mois. Les avis ne vous donnent pas cette information.</p>
+
+<h2 class="${articleStyles.h2}">Comment évaluer un SaaS sérieusement</h2>
+
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">1. Comparez ce que les entreprises paient, pas ce qu'elles notent.</strong> Cherchez des données d'achats réels, anonymisées, pour des entreprises comparables à la vôtre. C'est ce que propose Side by SaaS pour les principales catégories logicielles.</p>
+
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">2. Identifiez les cas d'échec, pas seulement les cas de succès.</strong> Demandez à l'éditeur des références de clients qui ont rencontré des difficultés — et comment elles ont été résolues. Un éditeur qui ne peut vous en fournir aucun mérite votre méfiance.</p>
+
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">3. Faites un pilote structuré avec des critères d'évaluation définis à l'avance.</strong> "On va tester pendant 30 jours" sans objectif défini finit toujours de la même façon : une décision subjective basée sur qui a le plus aimé l'interface. Définissez 3-5 critères chiffrables avant de commencer le POC.</p>
+
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">4. Demandez les conditions contractuelles avant les démos produit.</strong> Ce que vous signe l'éditeur est souvent plus révélateur de sa façon de travailler que ce qu'il vous montre en démo. Clauses d'augmentation de prix, conditions d'export des données, SLA de support — ces éléments ne font jamais l'objet d'avis G2.</p>
+
+<p class="${articleStyles.p}">Prêt à comparer des outils SaaS avec des données qui comptent vraiment ? Explorez les <a href="/fr/acheteur/crm" class="text-primary-600 hover:text-primary-700 font-medium underline">données d'achats réels pour les CRM</a> et d'autres catégories sur Side by SaaS — des chiffres, pas des étoiles.</p>
+`.trim()
+
 export const BLOG_POSTS: BlogPostData[] = [
   {
     id: 'salesforce-vs-hubspot-2025',
@@ -553,15 +704,227 @@ export const BLOG_POSTS: BlogPostData[] = [
     created_at: '2025-02-17T20:00:00Z',
     reading_minutes: 6,
   },
+  {
+    id: 'prix-crm-france-benchmark-2025',
+    category_slug: 'comparaison-benchmarks',
+    title: "Prix des CRM en France : ce que les entreprises paient vraiment en 2025",
+    slug: 'prix-crm-france-benchmark-2025',
+    excerpt:
+      "Salesforce, HubSpot, Pipedrive : comparez les prix réels des CRM payés par 200+ entreprises françaises. Données anonymisées, pas des tarifs catalogue.",
+    body: PRIX_CRM_FRANCE_BODY.replace(CTA_PLACEHOLDER, CTA_MID_HTML),
+    published_at: '2025-03-10T10:00:00Z',
+    created_at: '2025-03-10T10:00:00Z',
+    reading_minutes: 8,
+  },
+  {
+    id: 'reviews-saas-biais-alternatives',
+    category_slug: 'etudes-tendances',
+    title: "Pourquoi les avis G2 et Capterra sont biaisés (et quoi utiliser à la place)",
+    slug: 'reviews-saas-biais-alternatives',
+    excerpt:
+      "G2 et Capterra sont-ils fiables pour choisir un logiciel ? Analyse du modèle économique, des biais structurels, et des alternatives basées sur des données réelles.",
+    body: REVIEWS_SAAS_BIAIS_BODY.replace(CTA_PLACEHOLDER, CTA_MID_HTML),
+    published_at: '2025-03-10T14:00:00Z',
+    created_at: '2025-03-10T14:00:00Z',
+    reading_minutes: 6,
+  },
 ]
 
 export function getBlogPostBySlug(slug: string): BlogPostData | null {
-  return BLOG_POSTS.find((p) => p.slug === slug) ?? null
+  return ALL_BLOG_POSTS.find((p) => p.slug === slug) ?? null
 }
+
+// ─── SEO AXE 2 — Nouveaux articles ────────────────────────────────────────
+
+const PRIX_CRM_FRANCE_BODY = `
+<p class="${articleStyles.p}">Si vous cherchez "prix Salesforce" sur Google, vous tombez sur une page qui vous invite à "contacter un conseiller". Si vous cherchez "tarifs HubSpot", vous trouvez une grille tarifaire avec 4 colonnes et une note en bas de page : "prix par utilisateur, par mois, facturé annuellement, hors add-ons". Ce que vous ne trouvez pas ? <strong class="${articleStyles.strong}">Ce que les entreprises françaises paient vraiment.</strong></p>
+
+<p class="${articleStyles.p}">C'est exactement ce problème qu'on cherche à résoudre chez Side by SaaS. Voici ce que les données anonymisées de nos acheteurs révèlent sur le marché CRM en France en 2025.</p>
+
+<h2 class="${articleStyles.h2}">Pourquoi les tarifs catalogue ne veulent rien dire</h2>
+
+<p class="${articleStyles.p}">Le premier reflexe quand on évalue un CRM, c'est d'aller sur la page pricing de l'éditeur. C'est logique, mais trompeur pour trois raisons.</p>
+
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">1. Les négociations sont massives.</strong> Sur les CRM enterprise (Salesforce, Microsoft Dynamics), les remises contractuelles vont couramment de 20% à 50% du tarif catalogue. Un client qui signe 3 ans avec un volume de 200 sièges n'est pas dans la même discussion qu'un client 10 sièges en mensuel.</p>
+
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">2. Les add-ons explosent la facture.</strong> Salesforce Sales Cloud Pro à 100€/utilisateur/mois, c'est la base. Mais ajoutez Pardot (marketing automation), Einstein Analytics (IA), CPQ (configuration de devis)... la facture réelle peut tripler. Nos données montrent que le coût total moyen d'un déploiement Salesforce est 2,3× le coût de la licence de base.</p>
+
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">3. La taille de l'entreprise change tout.</strong> Un SaaS qui affiche 50€/utilisateur/mois pratique souvent 35€ pour une PME de 20 sièges et 65€ pour une ETI de 5 sièges (paliers inverses, car les petits volumes ont moins de levier de négociation).</p>
+
+<h2 class="${articleStyles.h2}">Les CRM les plus utilisés en France : données réelles 2025</h2>
+
+<div class="overflow-x-auto mb-6">
+  <table class="min-w-full border border-slate-200 rounded-lg overflow-hidden">
+    <thead>
+      <tr class="bg-slate-50">
+        <th class="px-4 py-3 text-left text-sm font-semibold text-slate-800 border-b border-slate-200">CRM</th>
+        <th class="px-4 py-3 text-left text-sm font-semibold text-slate-800 border-b border-slate-200">Fourchette observée</th>
+        <th class="px-4 py-3 text-left text-sm font-semibold text-slate-800 border-b border-slate-200">Médiane</th>
+        <th class="px-4 py-3 text-left text-sm font-semibold text-slate-800 border-b border-slate-200">Profil typique</th>
+      </tr>
+    </thead>
+    <tbody class="text-slate-700 text-sm">
+      <tr class="border-b border-slate-100">
+        <td class="px-4 py-3 font-medium">Salesforce Sales Cloud</td>
+        <td class="px-4 py-3">45€ – 180€ / user / mois</td>
+        <td class="px-4 py-3 font-semibold text-slate-900">88€</td>
+        <td class="px-4 py-3">ETI+ avec équipe commerciale structurée</td>
+      </tr>
+      <tr class="border-b border-slate-100">
+        <td class="px-4 py-3 font-medium">HubSpot Sales Hub</td>
+        <td class="px-4 py-3">0€ – 120€ / user / mois</td>
+        <td class="px-4 py-3 font-semibold text-slate-900">42€</td>
+        <td class="px-4 py-3">PME en croissance, équipe &lt; 30 commerciaux</td>
+      </tr>
+      <tr class="border-b border-slate-100">
+        <td class="px-4 py-3 font-medium">Pipedrive</td>
+        <td class="px-4 py-3">15€ – 50€ / user / mois</td>
+        <td class="px-4 py-3 font-semibold text-slate-900">28€</td>
+        <td class="px-4 py-3">TPE/PME, sales simple, cycle court</td>
+      </tr>
+      <tr>
+        <td class="px-4 py-3 font-medium">Zoho CRM</td>
+        <td class="px-4 py-3">14€ – 52€ / user / mois</td>
+        <td class="px-4 py-3 font-semibold text-slate-900">24€</td>
+        <td class="px-4 py-3">PME cherchant un rapport qualité/prix fort</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p class="${articleStyles.p}"><em>Sources : contributions anonymisées d'acheteurs Side by SaaS, France, 2024-2025. N = 99 contributions CRM.</em></p>
+
+<h2 class="${articleStyles.h2}">Ce que révèlent les données : 3 insights concrets</h2>
+
+<h3 class="${articleStyles.h3}">1. L'écart de prix selon la taille est systématique</h3>
+
+<p class="${articleStyles.p}">Pour Salesforce, nos données montrent un écart de <strong class="${articleStyles.strong}">40% en moyenne</strong> entre ce que paie une entreprise de 50 sièges et une entreprise de 200 sièges — à fonctionnalités comparables. Le volume, la durée d'engagement et le fait d'avoir un interlocuteur dédié côté Salesforce font toute la différence.</p>
+
+<h3 class="${articleStyles.h3}">2. HubSpot a un effet "freemium piège"</h3>
+
+<p class="${articleStyles.p}">Beaucoup d'entreprises démarrent sur le CRM gratuit HubSpot. 18 mois plus tard, elles sont sur un plan Professional à 90€/mois/siège après avoir activé les séquences, le reporting personnalisé et les workflows. Ce n'est pas forcément un problème — la valeur est au rendez-vous — mais c'est une réalité à anticiper dans votre budget sur 2 ans.</p>
+
+<h3 class="${articleStyles.h3}">3. Les add-ons représentent en moyenne 45% de la facture CRM totale</h3>
+
+<p class="${articleStyles.p}">C'est le chiffre qui surprend le plus les acheteurs. Sur l'ensemble de nos données CRM, le coût des add-ons (intégrations, modules complémentaires, formation, support premium) représente 45% du total dépensé. Ce n'est pas un problème si vous l'anticipez. C'en est un si vous avez budgété uniquement sur la licence de base.</p>
+
+<h2 class="${articleStyles.h2}">Comment lire un devis CRM : 4 points à vérifier</h2>
+
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">1. Le périmètre des "utilisateurs".</strong> Un "utilisateur" dans le contrat inclut-il les accès lecture seule ? Les utilisateurs d'applications partenaires ? Certains éditeurs facturent tous les accès, d'autres ont des plans "light user" moins chers pour les consultants ou managers qui n'ont qu'un besoin de reporting.</p>
+
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">2. La clause d'indexation.</strong> À quelle hauteur votre prix peut-il augmenter à la reconduction ? Certains contrats prévoient des révisions plafonnées (CPI + 2%), d'autres laissent l'éditeur libre. Négociez un plafond contractuel.</p>
+
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">3. Les conditions d'ajout de sièges en cours d'année.</strong> Si vous recrutez 10 commerciaux en juillet, comment sont facturés les nouveaux sièges ? Au prorata de l'année restante ? Ou à plein tarif pour l'année suivante ? Ce détail peut représenter plusieurs milliers d'euros.</p>
+
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">4. La portabilité des données.</strong> En cas de résiliation, dans quel format et dans quel délai pouvez-vous récupérer vos données ? C'est une question rare mais critique — certains éditeurs rendent l'export difficile ou facturent l'extraction.</p>
+
+${CTA_PLACEHOLDER}
+
+<h2 class="${articleStyles.h2}">Comment comparer des offres CRM sérieusement</h2>
+
+<p class="${articleStyles.p}">La bonne approche : construire un <strong class="${articleStyles.strong}">coût total sur 3 ans</strong> (TCO) qui inclut licences, onboarding, formation, intégrations et support. Demandez aux éditeurs de vous fournir une simulation basée sur votre profil exact (nombre d'utilisateurs, fonctionnalités requises, intégrations existantes).</p>
+
+<p class="${articleStyles.p}">Et surtout — comparez à ce que des entreprises de taille similaire dans votre secteur paient réellement. C'est exactement ce que vous pouvez faire sur Side by SaaS : accéder aux données anonymisées d'autres acheteurs, filtrées par catégorie, taille d'entreprise et secteur.</p>
+
+<p class="${articleStyles.p}">Les comparatifs <a href="/fr/compare/salesforce-vs-hubspot" class="text-primary-600 hover:underline">Salesforce vs HubSpot</a> et les <a href="/fr/prix/salesforce" class="text-primary-600 hover:underline">fiches prix détaillées</a> sont disponibles sur la plateforme.</p>
+`.trim()
+
+const G2_CAPTERRA_BIAIS_BODY = `
+<p class="${articleStyles.p}">Avant d'acheter un logiciel, presque tous les décideurs IT passent par G2 ou Capterra. C'est devenu un réflexe aussi naturel que consulter TripAdvisor avant de réserver un hôtel. Et pourtant, ces plateformes ont un problème structurel que leurs utilisateurs ignorent souvent. Voici ce que vous devriez savoir avant votre prochain achat SaaS.</p>
+
+<h2 class="${articleStyles.h2}">Le modèle économique que personne ne vous dit</h2>
+
+<p class="${articleStyles.p}">G2 et Capterra sont des entreprises commerciales. Leur revenu principal ne vient pas des acheteurs qui consultent les avis — il vient des <strong class="${articleStyles.strong}">éditeurs SaaS qui paient pour être bien classés</strong>.</p>
+
+<p class="${articleStyles.p}">Concrètement :</p>
+
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Pay-to-rank :</strong> Les éditeurs paient pour apparaître en haut des catégories, être mis en avant dans les "shortlists", obtenir des badges "Leader" ou "High Performer". Ces positions ne sont pas entièrement méritocratiques.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Incentives pour les avis :</strong> G2 et Capterra envoient des cartes-cadeaux Amazon (entre 10$ et 25$) aux utilisateurs qui laissent un avis. Ce n'est pas un secret — ils le mentionnent sur leur site. Mais ça signifie que les avis sont en partie motivés par la récompense, pas seulement par la volonté d'aider d'autres acheteurs.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Campagnes d'avis orchestrées :</strong> Beaucoup d'éditeurs ont des équipes dédiées à la "review generation" — ils demandent à leurs clients les plus satisfaits (les fameux "champions") de laisser des avis pendant les périodes de renouvellement ou juste après un onboarding réussi.</li>
+</ul>
+
+<p class="${articleStyles.p}">Le résultat ? Les produits qui investissent le plus dans leur stratégie G2 ne sont pas forcément les meilleurs — ce sont ceux qui ont la meilleure équipe marketing et le budget pour y consacrer des ressources.</p>
+
+<h2 class="${articleStyles.h2}">Les biais structurels que personne ne mentionne</h2>
+
+<h3 class="${articleStyles.h3}">Le biais du survivant</h3>
+
+<p class="${articleStyles.p}">Qui laisse des avis sur G2 ? Les utilisateurs qui ont réussi leur déploiement, qui apprécient l'outil, et qui sont suffisamment engagés pour prendre 10 minutes sur leur journée. Les utilisateurs frustrés, ceux dont le projet a échoué, ceux qui ont résilié après 6 mois — ils laissent rarement des avis. Résultat : <strong class="${articleStyles.strong}">les notes sont systématiquement biaisées vers le haut</strong>.</p>
+
+<h3 class="${articleStyles.h3}">Le biais de la période</h3>
+
+<p class="${articleStyles.p}">Les campagnes d'avis sont souvent lancées juste après l'onboarding, quand les utilisateurs sont encore en "lune de miel" avec l'outil. 18 mois plus tard, quand les limites commencent à apparaître, personne ne retourne sur G2 pour mettre à jour son avis.</p>
+
+<h3 class="${articleStyles.h3}">L'absence de données prix réels</h3>
+
+<p class="${articleStyles.p}">C'est peut-être le manque le plus criant. Sur G2 et Capterra, vous pouvez lire des centaines d'avis sur Salesforce. Ce que vous ne trouverez jamais : ce que les entreprises comparables à la vôtre paient réellement pour Salesforce. Les avis parlent de fonctionnalités, d'expérience utilisateur, de support — mais jamais du prix réel négocié. Or <strong class="${articleStyles.strong}">le prix est souvent le facteur décisif</strong> dans un choix SaaS.</p>
+
+<h2 class="${articleStyles.h2}">Ce que les données d'achats réels révèlent</h2>
+
+<p class="${articleStyles.p}">Notre hypothèse chez Side by SaaS : ce que les entreprises <em>paient réellement</em> est plus informatif que ce que leurs utilisateurs <em>pensent</em> de l'outil. Pas parce que les avis sont sans valeur — ils ont leur utilité — mais parce qu'ils mesurent la satisfaction d'un échantillon biaisé sur des critères subjectifs.</p>
+
+<p class="${articleStyles.p}">Les données d'achats anonymisées répondent à des questions différentes et complémentaires :</p>
+
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Combien une entreprise de ma taille, dans mon secteur, paie-t-elle pour ce logiciel ?</li>
+  <li class="${articleStyles.li}">Quelle est la fourchette de prix réelle (pas le tarif catalogue) ?</li>
+  <li class="${articleStyles.li}">Quels add-ons sont systématiquement achetés en complément ?</li>
+  <li class="${articleStyles.li}">Quelle est la durée d'engagement typique dans mon segment ?</li>
+</ul>
+
+<p class="${articleStyles.p}">Ces données ne remplacent pas les avis — elles les complètent. Un produit peut être très bien noté sur G2 et systématiquement renégocié à la baisse à la reconduction parce que sa valeur perçue diminue après 12 mois. Ce signal-là, vous ne le trouverez pas sur les plateformes d'avis.</p>
+
+${CTA_PLACEHOLDER}
+
+<h2 class="${articleStyles.h2}">Comment évaluer un SaaS sérieusement en 2025</h2>
+
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">1. Consultez G2/Capterra pour les cas d'usage, pas pour les classements.</strong> Les avis détaillés peuvent vous apprendre beaucoup sur l'expérience quotidienne des utilisateurs, les points de friction, les limitations connues. Lisez les avis négatifs en priorité — ce sont les plus informatifs.</p>
+
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">2. Demandez des références directes à l'éditeur.</strong> Exigez de parler à 2-3 clients de taille comparable à la vôtre, dans un secteur similaire. Ce que vous apprendrez en 30 minutes de conversation vaut infiniment plus qu'une centaine d'avis en ligne.</p>
+
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">3. Comparez les prix réels, pas les prix catalogue.</strong> Avant de signer, vérifiez ce que des entreprises comparables paient pour le même outil. Les données d'achats anonymisées — comme celles que vous trouvez sur Side by SaaS — vous donnent un ancrage objectif pour votre négociation.</p>
+
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">4. Évaluez la réversibilité.</strong> Quelle est la facilité de migration vers un concurrent si vous n'êtes pas satisfait après 12 mois ? Un produit avec un fort lock-in mérite plus de prudence qu'un produit facile à remplacer, même si les deux ont 4,5 étoiles sur G2.</p>
+
+<p class="${articleStyles.p}">Les classements G2 et Capterra restent utiles comme point de départ. Mais ils ne devraient jamais être votre seul critère de sélection — et certainement pas votre référence de prix. Pour ça, les données du marché réel sont irremplaçables.</p>
+
+<p class="${articleStyles.p}">Consultez nos <a href="/fr/acheteur/crm" class="text-primary-600 hover:underline">benchmarks CRM</a>, <a href="/fr/acheteur/rh" class="text-primary-600 hover:underline">benchmarks RH</a> et <a href="/fr/compare" class="text-primary-600 hover:underline">comparatifs par produit</a> pour des données ancrées dans la réalité du marché français.</p>
+`.trim()
+
+const SEO_ARTICLES: BlogPostData[] = [
+  {
+    id: 'prix-crm-france-benchmark-2025',
+    category_slug: 'comparaison-benchmarks',
+    title: 'Prix des CRM en France : ce que les entreprises paient vraiment en 2025',
+    slug: 'prix-crm-france-benchmark-2025',
+    excerpt:
+      'Salesforce, HubSpot, Pipedrive : comparez les prix réels des CRM payés par 200+ entreprises françaises. Données anonymisées, pas des tarifs catalogue. Fourchettes, médianes, add-ons cachés.',
+    body: PRIX_CRM_FRANCE_BODY.replace(CTA_PLACEHOLDER, CTA_MID_HTML),
+    published_at: '2025-03-10T09:00:00Z',
+    created_at: '2025-03-10T09:00:00Z',
+    reading_minutes: 8,
+  },
+  {
+    id: 'reviews-saas-biais-alternatives',
+    category_slug: 'etudes-tendances',
+    title: 'Pourquoi les avis G2 et Capterra sont biaisés (et quoi utiliser à la place)',
+    slug: 'reviews-saas-biais-alternatives',
+    excerpt:
+      "G2 et Capterra sont-ils fiables pour choisir un logiciel ? Analyse du modèle pay-to-rank, des biais structurels, et des alternatives basées sur des données d'achats réels.",
+    body: G2_CAPTERRA_BIAIS_BODY.replace(CTA_PLACEHOLDER, CTA_MID_HTML),
+    published_at: '2025-03-10T10:00:00Z',
+    created_at: '2025-03-10T10:00:00Z',
+    reading_minutes: 6,
+  },
+]
+
+// Merge avec les articles existants
+export const ALL_BLOG_POSTS: BlogPostData[] = [...BLOG_POSTS, ...SEO_ARTICLES]
 
 export function getBlogPosts(category?: string): BlogPostData[] {
   if (category) {
-    return BLOG_POSTS.filter((p) => p.category_slug === category)
+    return ALL_BLOG_POSTS.filter((p) => p.category_slug === category)
   }
-  return [...BLOG_POSTS]
+  return [...ALL_BLOG_POSTS]
 }

@@ -1,4 +1,11 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
+
+export const metadata: Metadata = {
+  title: 'Documentation | Side by SaaS',
+  description: 'Documentation officielle de la plateforme Side by SaaS.',
+  robots: { index: false }, // docs pas encore prête — noindex pour l'instant
+}
 
 export default function Docs() {
   return (

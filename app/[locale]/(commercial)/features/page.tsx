@@ -1,4 +1,17 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
+
+export const metadata: Metadata = {
+  title: 'Fonctionnalités | Side by SaaS',
+  description: 'Découvrez les fonctionnalités de Side by SaaS : données d\'achats réels, benchmark par taille d\'entreprise, battle cards, portefeuille SaaS et calculateur ROI.',
+  openGraph: {
+    title: 'Fonctionnalités | Side by SaaS',
+    description: 'Données d\'achats réels, benchmark, battle cards et plus. La plateforme de comparaison SaaS pour acheteurs IT.',
+    url: 'https://sidebysaas.com/fr/features',
+    siteName: 'Side by SaaS',
+    type: 'website',
+  },
+}
 
 const features = [
   {
@@ -74,7 +87,7 @@ export default function Features() {
               Accéder à la plateforme
             </Link>
             <Link
-              href="/pricing"
+              href="/fr/pricing"
               className="text-primary-600 font-semibold hover:underline"
             >
               Voir les tarifs →

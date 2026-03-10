@@ -6,7 +6,7 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL
 
 const locales = ['fr', 'en'] as const
 
-const staticPaths = ['', '/contact', '/editeur', '/acheteur', '/blog', '/mentions', '/cgu'] as const
+const staticPaths = ['', '/features', '/pricing', '/about', '/contact', '/editeur', '/acheteur', '/blog', '/mentions', '/cgu'] as const
 
 const acheteurSecteurs = ['education', 'technologie', 'industrie', 'commerce-retail', 'secteur-public', 'services-professionnels', 'immobilier'] as const
 const acheteurDirections = ['achats', 'finance', 'marketing', 'direction', 'rh', 'it', 'juridique'] as const

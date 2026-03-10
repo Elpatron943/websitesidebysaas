@@ -1,4 +1,17 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
+
+export const metadata: Metadata = {
+  title: 'À propos | Side by SaaS',
+  description: 'Side by SaaS est la seule plateforme de benchmark SaaS construite sur des données d\'achats réels. Découvrez notre mission et nos valeurs.',
+  openGraph: {
+    title: 'À propos | Side by SaaS',
+    description: 'Notre mission : que chaque décideur IT sache combien ses pairs paient pour le même logiciel.',
+    url: 'https://sidebysaas.com/fr/about',
+    siteName: 'Side by SaaS',
+    type: 'website',
+  },
+}
 
 const values = [
   {

@@ -1,4 +1,17 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
+
+export const metadata: Metadata = {
+  title: 'Tarifs | Side by SaaS',
+  description: 'Tarifs Side by SaaS pour acheteurs IT et éditeurs SaaS. Gratuit pour démarrer, plans PME et Enterprise sur devis.',
+  openGraph: {
+    title: 'Tarifs | Side by SaaS',
+    description: 'Des tarifs clairs et transparents pour les acheteurs IT et éditeurs SaaS.',
+    url: 'https://sidebysaas.com/fr/pricing',
+    siteName: 'Side by SaaS',
+    type: 'website',
+  },
+}
 
 const buyerPlans = [
   {

@@ -4,7 +4,9 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export async function generateStaticParams() {
-  return getComparisons().map((c) => ({ slug: c.slug }))
+  return ['fr', 'en'].flatMap((locale) =>
+    getComparisons().map((c) => ({ locale, slug: c.slug }))
+  )
 }
 
 export async function generateMetadata({

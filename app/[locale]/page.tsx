@@ -7,6 +7,32 @@ import { useLocale, useTranslations } from '@/app/components/LocaleProvider'
 
 const PLATFORM_URL = process.env.NEXT_PUBLIC_PLATFORM_URL || 'https://app.sidebysaas.com'
 
+const testimonials = [
+  {
+    quote: "J'ai économisé 40% sur notre CRM en négociation grâce aux données de Side by SaaS. En 2 jours j'avais tous les arguments.",
+    name: "Marc T.",
+    title: "DSI, ETI industrielle 800 salariés",
+    avatar: "MT",
+  },
+  {
+    quote: "3 semaines de benchmark habituellement. Avec Side by SaaS, j'ai eu une vue marché complète en 2 jours. Incroyable.",
+    name: "Julie R.",
+    title: "IT Manager, Scale-up fintech",
+    avatar: "JR",
+  },
+  {
+    quote: "La seule source où je fais vraiment confiance aux prix. Pas du marketing, de vraies données d'achat.",
+    name: "Karim B.",
+    title: "Responsable Achats IT, Groupe retail",
+    avatar: "KB",
+  },
+]
+
+const communityPreviews = [
+  { text: "Quelqu'un a comparé HubSpot vs Salesforce sur des contrats > 50 users récemment ?", replies: 12, ago: "2h" },
+  { text: "Benchmark sécurité endpoint 2025 — je partage mes résultats après 6 mois", replies: 8, ago: "5h" },
+]
+
 export default function Home() {
   const t = useTranslations()
   const locale = useLocale()
@@ -14,91 +40,139 @@ export default function Home() {
   const platformUrl = PLATFORM_URL
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen" style={{ backgroundColor: '#FFFBF5', color: '#1C1917' }}>
       <SiteHeader />
 
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+      {/* HERO */}
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-28">
         <div className="text-center">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-6 leading-tight">
-            {t('home.problem.title')}
-          </h2>
-          <p className="text-lg md:text-xl text-slate-600 mb-6 leading-relaxed">
-            <span dangerouslySetInnerHTML={{ __html: t('home.problem.buyers').replace(t('home.problem.buyersBold'), `<strong class="text-slate-800">${t('home.problem.buyersBold')}</strong>`) }} />
+          <p className="text-sm font-semibold tracking-widest uppercase mb-4" style={{ color: '#16A34A' }}>
+            Plateforme de benchmark SaaS
           </p>
-          <p className="text-lg md:text-xl text-slate-600 leading-relaxed">
-            <span dangerouslySetInnerHTML={{ __html: t('home.problem.editors').replace(t('home.problem.editorsBold'), `<strong class="text-slate-800">${t('home.problem.editorsBold')}</strong>`) }} />
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6" style={{ fontFamily: 'var(--font-sans)', color: '#1C1917' }}>
+            Arrêtez de choisir vos SaaS<br className="hidden sm:block" /> à l&apos;aveugle.
+          </h1>
+          <p className="text-lg md:text-xl mb-3 max-w-2xl mx-auto leading-relaxed" style={{ color: '#44403C' }}>
+            Des acheteurs comme vous partagent leurs vraies décisions d&apos;achat —<br className="hidden md:block" /> prix négociés, remises obtenues, retours d&apos;expérience honnêtes.
           </p>
-          <p className="text-lg md:text-xl text-blue-700 font-medium mt-8">
-            {t('home.problem.solution')}
-          </p>
-          <p className="mt-6 px-6 py-4 rounded-xl bg-slate-100 border border-slate-200 text-base md:text-lg text-slate-800 font-medium leading-relaxed">
-            {t('home.problem.independence')}
-          </p>
-        </div>
-      </section>
 
-      <section className="bg-slate-50 py-16 md:py-24">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">{t('home.who.title')}</h2>
-            <p className="text-slate-600 max-w-2xl mx-auto">
-              {t('home.who.subtitle')}
+          {/* Social proof */}
+          <div className="flex items-center justify-center gap-3 mb-10 mt-6">
+            <div className="flex -space-x-2">
+              {['MT','JR','KB','AB','SL'].map((initials) => (
+                <div key={initials} className="w-9 h-9 rounded-full border-2 flex items-center justify-center text-xs font-bold text-white" style={{ borderColor: '#FFFBF5', backgroundColor: '#16A34A' }}>
+                  {initials}
+                </div>
+              ))}
+            </div>
+            <p className="text-sm font-medium" style={{ color: '#57534E' }}>
+              <strong style={{ color: '#1C1917' }}>2 847+</strong> acheteurs IT cette semaine
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 lg:gap-10">
-            <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-md transition-shadow flex flex-col">
-              <div className="p-8 lg:p-10 flex-1">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center shrink-0 text-2xl">🛒</div>
-                  <h3 className="text-xl md:text-2xl font-bold text-slate-900">{t('home.who.buyers')}</h3>
-                </div>
-                <div className="space-y-6">
-                  <div>
-                    <h4 className="text-sm font-semibold text-slate-500 uppercase tracking-wide mb-2">{t('home.who.whyYou')}</h4>
-                    <p className="text-slate-700 leading-relaxed">{t('home.who.buyersWhy')}</p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a
+              href={`${platformUrl}/auth/register?redirectTo=/buyer`}
+              target="_blank"
+              rel="nofollow noopener noreferrer"
+              className="w-full sm:w-auto px-8 py-4 rounded-xl text-base font-bold text-white transition-all shadow-lg hover:shadow-xl"
+              style={{ backgroundColor: '#16A34A' }}
+              onMouseOver={e => (e.currentTarget.style.backgroundColor = '#15803D')}
+              onMouseOut={e => (e.currentTarget.style.backgroundColor = '#16A34A')}
+            >
+              Voir les benchmarks gratuits →
+            </a>
+            <Link
+              href={`${prefix}/pricing`}
+              className="w-full sm:w-auto px-8 py-4 rounded-xl text-base font-semibold border-2 transition-all"
+              style={{ borderColor: '#1C1917', color: '#1C1917', backgroundColor: 'transparent' }}
+            >
+              Voir les tarifs
+            </Link>
+          </div>
+          <p className="text-sm mt-4" style={{ color: '#78716C' }}>Gratuit pour commencer · Sans carte bancaire</p>
+        </div>
+      </section>
+
+      {/* TÉMOIGNAGES */}
+      <section style={{ backgroundColor: '#F5F0E8' }} className="py-16 md:py-24">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold mb-3" style={{ color: '#1C1917' }}>
+              Ils ont mieux choisi grâce à Side by SaaS
+            </h2>
+            <p style={{ color: '#57534E' }}>Acheteurs IT, DSI, responsables IT — leurs retours en direct.</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {testimonials.map((t) => (
+              <div key={t.name} className="rounded-2xl p-6 shadow-sm border" style={{ backgroundColor: '#FFFBF5', borderColor: '#EDE5D8' }}>
+                <p className="text-base leading-relaxed mb-5 italic" style={{ fontFamily: 'var(--font-serif)', color: '#292524' }}>
+                  &quot;{t.quote}&quot;
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold text-white" style={{ backgroundColor: '#16A34A' }}>
+                    {t.avatar}
                   </div>
                   <div>
-                    <h4 className="text-sm font-semibold text-slate-500 uppercase tracking-wide mb-3">{t('home.who.whatYouFind')}</h4>
-                    <ul className="space-y-2.5 text-slate-700">
-                      <li className="flex items-start gap-2"><span className="text-blue-600 mt-0.5">✓</span><span>{t('home.who.buyersFind1')}</span></li>
-                      <li className="flex items-start gap-2"><span className="text-blue-600 mt-0.5">✓</span><span>{t('home.who.buyersFind2')}</span></li>
-                      <li className="flex items-start gap-2"><span className="text-blue-600 mt-0.5">✓</span><span>{t('home.who.buyersFind3')}</span></li>
-                      <li className="flex items-start gap-2"><span className="text-blue-600 mt-0.5">✓</span><span>{t('home.who.buyersFind4')}</span></li>
-                    </ul>
+                    <p className="font-semibold text-sm" style={{ color: '#1C1917' }}>{t.name}</p>
+                    <p className="text-xs" style={{ color: '#78716C' }}>{t.title}</p>
                   </div>
                 </div>
               </div>
-              <div className="px-8 lg:px-10 pb-8 lg:pb-10">
-                <Link href={`${prefix}/acheteur`} className="block w-full py-3.5 px-6 rounded-xl text-center font-semibold bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow-lg">
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* BUYER / EDITOR CARDS */}
+      <section className="py-16 md:py-24" style={{ backgroundColor: '#FFFBF5' }}>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4" style={{ color: '#1C1917' }}>{t('home.who.title')}</h2>
+            <p className="max-w-2xl mx-auto" style={{ color: '#57534E' }}>{t('home.who.subtitle')}</p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="rounded-2xl border shadow-sm overflow-hidden hover:shadow-md transition-shadow flex flex-col" style={{ backgroundColor: '#FFFBF5', borderColor: '#D6D3D1' }}>
+              <div className="p-8 flex-1">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-14 h-14 rounded-xl flex items-center justify-center text-2xl" style={{ backgroundColor: '#DCFCE7' }}>🛒</div>
+                  <h3 className="text-xl font-bold" style={{ color: '#1C1917' }}>{t('home.who.buyers')}</h3>
+                </div>
+                <p className="mb-4 leading-relaxed" style={{ color: '#57534E' }}>{t('home.who.buyersWhy')}</p>
+                <ul className="space-y-2">
+                  {[t('home.who.buyersFind1'), t('home.who.buyersFind2'), t('home.who.buyersFind3'), t('home.who.buyersFind4')].map((item, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm" style={{ color: '#44403C' }}>
+                      <span style={{ color: '#16A34A' }} className="mt-0.5 font-bold">✓</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="px-8 pb-8">
+                <Link href={`${prefix}/acheteur`} className="block w-full py-3.5 px-6 rounded-xl text-center font-semibold text-white transition-all" style={{ backgroundColor: '#16A34A' }}>
                   {t('home.who.discoverBuyer')}
                 </Link>
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-md transition-shadow flex flex-col">
-              <div className="p-8 lg:p-10 flex-1">
+            <div className="rounded-2xl border shadow-sm overflow-hidden hover:shadow-md transition-shadow flex flex-col" style={{ backgroundColor: '#FFFBF5', borderColor: '#D6D3D1' }}>
+              <div className="p-8 flex-1">
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-14 h-14 bg-amber-100 rounded-xl flex items-center justify-center shrink-0 text-2xl">📦</div>
-                  <h3 className="text-xl md:text-2xl font-bold text-slate-900">{t('home.who.editors')}</h3>
+                  <div className="w-14 h-14 rounded-xl flex items-center justify-center text-2xl" style={{ backgroundColor: '#FEF9C3' }}>📦</div>
+                  <h3 className="text-xl font-bold" style={{ color: '#1C1917' }}>{t('home.who.editors')}</h3>
                 </div>
-                <div className="space-y-6">
-                  <div>
-                    <h4 className="text-sm font-semibold text-slate-500 uppercase tracking-wide mb-2">{t('home.who.whyYou')}</h4>
-                    <p className="text-slate-700 leading-relaxed">{t('home.who.editorsWhy')}</p>
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-semibold text-slate-500 uppercase tracking-wide mb-3">{t('home.who.whatYouFind')}</h4>
-                    <ul className="space-y-2.5 text-slate-700">
-                      <li className="flex items-start gap-2"><span className="text-amber-600 mt-0.5">✓</span><span>{t('home.who.editorsFind1')}</span></li>
-                      <li className="flex items-start gap-2"><span className="text-amber-600 mt-0.5">✓</span><span>{t('home.who.editorsFind2')}</span></li>
-                      <li className="flex items-start gap-2"><span className="text-amber-600 mt-0.5">✓</span><span>{t('home.who.editorsFind3')}</span></li>
-                    </ul>
-                  </div>
-                </div>
+                <p className="mb-4 leading-relaxed" style={{ color: '#57534E' }}>{t('home.who.editorsWhy')}</p>
+                <ul className="space-y-2">
+                  {[t('home.who.editorsFind1'), t('home.who.editorsFind2'), t('home.who.editorsFind3')].map((item, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm" style={{ color: '#44403C' }}>
+                      <span className="mt-0.5 font-bold" style={{ color: '#CA8A04' }}>✓</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <div className="px-8 lg:px-10 pb-8 lg:pb-10">
-                <Link href={`${prefix}/editeur`} className="block w-full py-3.5 px-6 rounded-xl text-center font-semibold bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50 transition-colors">
+              <div className="px-8 pb-8">
+                <Link href={`${prefix}/editeur`} className="block w-full py-3.5 px-6 rounded-xl text-center font-semibold border-2 transition-all" style={{ borderColor: '#1C1917', color: '#1C1917' }}>
                   {t('home.who.discoverEditor')}
                 </Link>
               </div>
@@ -107,30 +181,86 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-        <div className="text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">{t('home.cta.title')}</h2>
-          <p className="text-slate-600 mb-8">{t('home.cta.subtitle')}</p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href={`${platformUrl}/auth/register?redirectTo=/buyer`} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-blue-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg">
-              {t('home.cta.createBuyer')}
-            </a>
-            <a href={`${platformUrl}/auth/register?redirectTo=/editor`} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-white text-blue-600 px-8 py-4 rounded-xl text-lg font-semibold hover:bg-slate-50 transition-colors border-2 border-blue-600">
-              {t('home.cta.createEditor')}
+      {/* COMMUNAUTÉ */}
+      <section style={{ backgroundColor: '#F5F0E8' }} className="py-16 md:py-20">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-bold mb-3" style={{ color: '#1C1917' }}>
+              🗣️ Communauté active
+            </h2>
+            <p style={{ color: '#57534E' }}>Des discussions en cours entre professionnels IT</p>
+          </div>
+          <div className="space-y-3 mb-8">
+            {communityPreviews.map((item, i) => (
+              <div key={i} className="rounded-xl border p-4 flex items-start gap-3" style={{ backgroundColor: '#FFFBF5', borderColor: '#EDE5D8' }}>
+                <span className="text-xl">💬</span>
+                <div className="flex-1">
+                  <p className="text-sm font-medium mb-1" style={{ color: '#1C1917' }}>&quot;{item.text}&quot;</p>
+                  <p className="text-xs" style={{ color: '#78716C' }}>{item.replies} réponses · il y a {item.ago}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="text-center">
+            <a href={`${platformUrl}/forum`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-white transition-all" style={{ backgroundColor: '#16A34A' }}>
+              Rejoindre la communauté →
             </a>
           </div>
-          <p className="text-sm text-slate-500 mt-6">{t('home.cta.free')}</p>
         </div>
       </section>
 
-      <footer className="bg-slate-900 text-white border-t border-slate-800">
+      {/* COMMENT ÇA MARCHE */}
+      <section className="py-16 md:py-20" style={{ backgroundColor: '#FFFBF5' }}>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold mb-12" style={{ color: '#1C1917' }}>Comment ça marche — Simple.</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { n: '①', title: 'Recherchez', desc: 'Un SaaS, une catégorie, une comparaison spécifique.' },
+              { n: '②', title: 'Comparez', desc: 'Sur des données vérifiées — prix réels, remises négociées, conditions contractuelles.' },
+              { n: '③', title: 'Décidez', desc: 'En confiance, avec les retours de pairs qui ont fait le même achat.' },
+            ].map((step) => (
+              <div key={step.n} className="flex flex-col items-center">
+                <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-2xl font-bold mb-4 text-white" style={{ backgroundColor: '#16A34A' }}>
+                  {step.n}
+                </div>
+                <h3 className="text-lg font-bold mb-2" style={{ color: '#1C1917' }}>{step.title}</h3>
+                <p className="text-sm leading-relaxed" style={{ color: '#57534E' }}>{step.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA FINAL */}
+      <section style={{ backgroundColor: '#F5F0E8' }} className="py-16 md:py-20">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4" style={{ color: '#1C1917' }}>{t('home.cta.title')}</h2>
+          <p className="mb-8" style={{ color: '#57534E' }}>{t('home.cta.subtitle')}</p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href={`${platformUrl}/auth/register?redirectTo=/buyer`} target="_blank" rel="nofollow noopener noreferrer"
+              className="w-full sm:w-auto px-8 py-4 rounded-xl text-lg font-bold text-white shadow-lg"
+              style={{ backgroundColor: '#16A34A' }}>
+              {t('home.cta.createBuyer')}
+            </a>
+            <a href={`${platformUrl}/auth/register?redirectTo=/editor`} target="_blank" rel="nofollow noopener noreferrer"
+              className="w-full sm:w-auto px-8 py-4 rounded-xl text-lg font-semibold border-2"
+              style={{ borderColor: '#1C1917', color: '#1C1917' }}>
+              {t('home.cta.createEditor')}
+            </a>
+          </div>
+          <p className="text-sm mt-6" style={{ color: '#78716C' }}>{t('home.cta.free')}</p>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer style={{ backgroundColor: '#1C1917', color: '#E7E5E4' }} className="border-t">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="flex items-center space-x-3 mb-4 md:mb-0">
               <NavLogo height={80} className="[filter:brightness(0)_invert(1)]" />
-              <span className="text-slate-400">{t('footer.copyright')} {new Date().getFullYear()}</span>
+              <span style={{ color: '#A8A29E' }}>{t('footer.copyright')} {new Date().getFullYear()}</span>
             </div>
-            <div className="flex flex-wrap items-center justify-center md:justify-end gap-x-6 gap-y-1 text-sm text-slate-400">
+            <div className="flex flex-wrap items-center justify-center md:justify-end gap-x-6 gap-y-1 text-sm" style={{ color: '#A8A29E' }}>
               <Link href={`${prefix}/docs`} className="hover:text-white transition-colors">{t('common.documentation')}</Link>
               <Link href={`${prefix}/about`} className="hover:text-white transition-colors">{t('common.about')}</Link>
               <Link href={`${prefix}/contact`} className="hover:text-white transition-colors">{t('common.contact')}</Link>

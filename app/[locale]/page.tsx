@@ -88,27 +88,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href={`${platformUrl}/auth/register?redirectTo=/buyer`}
-              target="_blank"
-              rel="nofollow noopener noreferrer"
-              className="w-full sm:w-auto px-8 py-4 rounded-xl text-base font-bold text-white transition-all shadow-lg hover:shadow-xl"
-              style={{ backgroundColor: '#16A34A' }}
-              onMouseOver={e => (e.currentTarget.style.backgroundColor = '#15803D')}
-              onMouseOut={e => (e.currentTarget.style.backgroundColor = '#16A34A')}
-            >
-              Voir les benchmarks gratuits →
-            </a>
-            <Link
-              href={`${prefix}/pricing`}
-              className="w-full sm:w-auto px-8 py-4 rounded-xl text-base font-semibold border-2 transition-all"
-              style={{ borderColor: '#1C1917', color: '#1C1917', backgroundColor: 'transparent' }}
-            >
-              Voir les tarifs
-            </Link>
-          </div>
-          <p className="text-sm mt-4" style={{ color: '#78716C' }}>Gratuit pour commencer · Sans carte bancaire</p>
+
         </div>
       </section>
 

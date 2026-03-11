@@ -124,12 +124,13 @@ function BlogPageContent() {
                   setCurrentPage(1)
                   router.push(`${pathname}?category=${encodeURIComponent(cat.slug)}`)
                 }}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-1.5 ${
                   selectedCategory === cat.slug
                     ? 'bg-primary-600 text-white'
                     : 'bg-white text-slate-700 border border-slate-200 hover:border-primary-300 hover:bg-primary-50'
                 }`}
               >
+                <span>{cat.emoji}</span>
                 {cat.name}
               </button>
             ))}

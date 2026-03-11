@@ -66,29 +66,31 @@ const features = [
 
 export default function Features() {
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen" style={{ backgroundColor: '#FFFBF5' }}>
       {/* Hero */}
-      <section className="bg-white border-b border-slate-100">
+      <section className="border-b" style={{ backgroundColor: '#F5F0E8', borderColor: '#EDE5D8' }}>
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
-          <span className="inline-block bg-primary-50 text-primary-700 text-sm font-semibold px-3 py-1 rounded-full mb-4">
+          <p className="text-sm font-semibold tracking-widest uppercase mb-4" style={{ color: '#16A34A' }}>
             Fonctionnalités
-          </span>
-          <h1 className="text-4xl font-bold text-slate-900 mb-4">
+          </p>
+          <h1 className="text-4xl font-extrabold leading-tight mb-4" style={{ color: '#1C1917' }}>
             Ce que Side by SaaS vous permet de faire
           </h1>
-          <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+          <p className="text-xl max-w-2xl mx-auto leading-relaxed" style={{ color: '#44403C' }}>
             Une plateforme construite pour les acheteurs IT qui veulent des faits, pas du marketing.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/fr/acheteur"
-              className="bg-primary-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-primary-700 transition-colors"
+              className="w-full sm:w-auto px-8 py-4 rounded-xl text-base font-bold text-white transition-all shadow-lg hover:shadow-xl"
+              style={{ backgroundColor: '#16A34A' }}
             >
               Accéder à la plateforme
             </Link>
             <Link
               href="/fr/pricing"
-              className="text-primary-600 font-semibold hover:underline"
+              className="font-semibold hover:underline"
+              style={{ color: '#16A34A' }}
             >
               Voir les tarifs →
             </Link>
@@ -100,27 +102,32 @@ export default function Features() {
       <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {features.map((f) => (
-            <div key={f.title} className="bg-white rounded-xl shadow-sm border border-slate-100 p-6 hover:shadow-md transition-shadow">
+            <div
+              key={f.title}
+              className="rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow"
+              style={{ backgroundColor: '#FFFFFF', border: '1px solid #EDE5D8' }}
+            >
               <div className="text-3xl mb-3">{f.icon}</div>
-              <h3 className="text-lg font-bold text-slate-900 mb-2">{f.title}</h3>
-              <p className="text-slate-600 text-sm leading-relaxed">{f.description}</p>
+              <h3 className="text-lg font-bold mb-2" style={{ color: '#1C1917' }}>{f.title}</h3>
+              <p className="text-sm leading-relaxed" style={{ color: '#57534E' }}>{f.description}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* CTA */}
-      <section className="bg-primary-600 py-16">
+      <section className="py-16" style={{ backgroundColor: '#16A34A' }}>
         <div className="max-w-3xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">
+          <h2 className="text-3xl font-extrabold text-white mb-4">
             Prêt à voir ce que vous payez vraiment ?
           </h2>
-          <p className="text-primary-100 mb-8 text-lg">
+          <p className="mb-8 text-lg" style={{ color: '#dcfce7' }}>
             Rejoignez les acheteurs professionnels qui font leurs décisions SaaS sur des données réelles.
           </p>
           <Link
             href="/fr/acheteur"
-            className="inline-block bg-white text-primary-700 font-bold px-8 py-4 rounded-xl hover:bg-primary-50 transition-colors"
+            className="inline-block font-bold px-8 py-4 rounded-xl transition-colors"
+            style={{ backgroundColor: '#FFFBF5', color: '#16A34A' }}
           >
             Commencer gratuitement
           </Link>

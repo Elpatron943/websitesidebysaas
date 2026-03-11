@@ -42,38 +42,41 @@ const values = [
 
 export default function About() {
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen" style={{ backgroundColor: '#FFFBF5' }}>
       {/* Hero */}
-      <section className="bg-white border-b border-slate-100">
+      <section className="border-b" style={{ backgroundColor: '#F5F0E8', borderColor: '#EDE5D8' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <span className="inline-block bg-primary-50 text-primary-700 text-sm font-semibold px-3 py-1 rounded-full mb-4">
+          <p className="text-sm font-semibold tracking-widest uppercase mb-4" style={{ color: '#16A34A' }}>
             À propos
-          </span>
-          <h1 className="text-4xl font-bold text-slate-900 mb-6">
+          </p>
+          <h1 className="text-4xl font-extrabold leading-tight mb-6" style={{ color: '#1C1917' }}>
             Real buyer data.<br className="hidden sm:block" /> Real SaaS battles.
           </h1>
-          <p className="text-xl text-slate-600 max-w-2xl leading-relaxed">
+          <p className="text-xl max-w-2xl leading-relaxed" style={{ color: '#44403C' }}>
             Side by SaaS est la seule plateforme de benchmark SaaS construite exclusivement 
-            sur des données d'achats réels, partagées anonymement par des acheteurs professionnels.
+            sur des données d&apos;achats réels, partagées anonymement par des acheteurs professionnels.
           </p>
         </div>
       </section>
 
       {/* Mission */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="bg-white rounded-xl shadow-sm border border-slate-100 p-8 space-y-6">
-          <h2 className="text-2xl font-bold text-slate-900">Notre mission</h2>
-          <p className="text-slate-600 leading-relaxed">
+        <div
+          className="rounded-xl shadow-sm p-8 space-y-6"
+          style={{ backgroundColor: '#FFFFFF', border: '1px solid #EDE5D8' }}
+        >
+          <h2 className="text-2xl font-bold" style={{ color: '#1C1917' }}>Notre mission</h2>
+          <p className="leading-relaxed" style={{ color: '#44403C' }}>
             Les acheteurs IT passent des heures à comparer des logiciels sur des sites de review 
             bourrés de contenus sponsorisés, avec des grilles tarifaires volontairement opaques. 
-            Les éditeurs contrôlent l'information. Les acheteurs négocient à l'aveugle.
+            Les éditeurs contrôlent l&apos;information. Les acheteurs négocient à l&apos;aveugle.
           </p>
-          <p className="text-slate-600 leading-relaxed">
+          <p className="leading-relaxed" style={{ color: '#44403C' }}>
             Side by SaaS renverse ce déséquilibre. En agrégeant les prix réellement payés par 
-            des centaines d'entreprises, nous donnons aux acheteurs le contexte dont ils ont besoin 
+            des centaines d&apos;entreprises, nous donnons aux acheteurs le contexte dont ils ont besoin 
             pour négocier, comparer et décider.
           </p>
-          <p className="text-slate-700 font-semibold">
+          <p className="font-semibold" style={{ color: '#1C1917' }}>
             Notre objectif : que chaque décideur IT sache exactement combien ses pairs paient 
             pour le même logiciel — avant de signer.
           </p>
@@ -82,35 +85,41 @@ export default function About() {
 
       {/* Values */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-        <h2 className="text-2xl font-bold text-slate-900 mb-8">Nos principes</h2>
+        <h2 className="text-2xl font-bold mb-8" style={{ color: '#1C1917' }}>Nos principes</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {values.map((v) => (
-            <div key={v.title} className="bg-white rounded-xl border border-slate-100 shadow-sm p-6">
+            <div
+              key={v.title}
+              className="rounded-xl shadow-sm p-6"
+              style={{ backgroundColor: '#FFFFFF', border: '1px solid #EDE5D8' }}
+            >
               <div className="text-3xl mb-3">{v.icon}</div>
-              <h3 className="text-lg font-bold text-slate-900 mb-2">{v.title}</h3>
-              <p className="text-slate-600 text-sm leading-relaxed">{v.description}</p>
+              <h3 className="text-lg font-bold mb-2" style={{ color: '#1C1917' }}>{v.title}</h3>
+              <p className="text-sm leading-relaxed" style={{ color: '#57534E' }}>{v.description}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* CTA */}
-      <section className="border-t border-slate-200 bg-white py-12">
+      <section className="border-t py-12" style={{ borderColor: '#EDE5D8', backgroundColor: '#F5F0E8' }}>
         <div className="max-w-3xl mx-auto px-4 text-center">
-          <h2 className="text-2xl font-bold text-slate-900 mb-4">Rejoignez la communauté</h2>
-          <p className="text-slate-600 mb-8">
+          <h2 className="text-2xl font-bold mb-4" style={{ color: '#1C1917' }}>Rejoignez la communauté</h2>
+          <p className="mb-8" style={{ color: '#57534E' }}>
             Des questions, des suggestions, ou vous voulez simplement en savoir plus ?
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/fr/acheteur"
-              className="bg-primary-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-primary-700 transition-colors"
+              className="font-bold px-6 py-3 rounded-xl text-white transition-colors"
+              style={{ backgroundColor: '#16A34A' }}
             >
               Accéder à la plateforme
             </Link>
             <Link
               href="/fr/contact"
-              className="text-primary-600 font-semibold hover:underline"
+              className="font-semibold hover:underline"
+              style={{ color: '#16A34A' }}
             >
               Nous contacter →
             </Link>

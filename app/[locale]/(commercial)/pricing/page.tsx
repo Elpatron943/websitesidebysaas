@@ -83,74 +83,79 @@ const editorPlan = {
 
 export default function Pricing() {
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen" style={{ backgroundColor: '#FFFBF5' }}>
       {/* Hero */}
-      <section className="bg-white border-b border-slate-100">
+      <section className="border-b" style={{ backgroundColor: '#F5F0E8', borderColor: '#EDE5D8' }}>
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
-          <span className="inline-block bg-primary-50 text-primary-700 text-sm font-semibold px-3 py-1 rounded-full mb-4">
+          <p className="text-sm font-semibold tracking-widest uppercase mb-4" style={{ color: '#16A34A' }}>
             Tarifs
-          </span>
-          <h1 className="text-4xl font-bold text-slate-900 mb-4">
+          </p>
+          <h1 className="text-4xl font-extrabold leading-tight mb-4" style={{ color: '#1C1917' }}>
             Transparent sur les prix. Par principe.
           </h1>
-          <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-            Une plateforme de benchmark SaaS qui pratique ce qu'elle prêche : des tarifs clairs, sans surprise.
+          <p className="text-xl max-w-2xl mx-auto leading-relaxed" style={{ color: '#44403C' }}>
+            Une plateforme de benchmark SaaS qui pratique ce qu&apos;elle prêche : des tarifs clairs, sans surprise.
           </p>
         </div>
       </section>
 
       {/* Acheteurs */}
       <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h2 className="text-2xl font-bold text-slate-900 mb-2">Pour les acheteurs</h2>
-        <p className="text-slate-600 mb-8">Accédez aux données réelles du marché SaaS selon la taille de votre entreprise.</p>
+        <h2 className="text-2xl font-bold mb-2" style={{ color: '#1C1917' }}>Pour les acheteurs</h2>
+        <p className="mb-8" style={{ color: '#57534E' }}>Accédez aux données réelles du marché SaaS selon la taille de votre entreprise.</p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {buyerPlans.map((plan) => (
             <div
               key={plan.name}
-              className={`rounded-xl border p-6 flex flex-col ${
+              className="rounded-xl p-6 flex flex-col shadow-sm"
+              style={
                 plan.highlight
-                  ? 'bg-primary-600 border-primary-600 shadow-xl text-white'
-                  : 'bg-white border-slate-200 shadow-sm'
-              }`}
+                  ? { backgroundColor: '#16A34A', border: '1px solid #16A34A' }
+                  : { backgroundColor: '#FFFFFF', border: '1px solid #EDE5D8' }
+              }
             >
               <div className="flex items-center gap-2 mb-1">
-                <h3 className={`text-lg font-bold ${plan.highlight ? 'text-white' : 'text-slate-900'}`}>
+                <h3 className="text-lg font-bold" style={{ color: plan.highlight ? '#FFFFFF' : '#1C1917' }}>
                   {plan.name}
                 </h3>
                 {plan.badge && (
-                  <span className="bg-white text-primary-700 text-xs font-bold px-2 py-0.5 rounded-full">
+                  <span
+                    className="text-xs font-bold px-2 py-0.5 rounded-full"
+                    style={{ backgroundColor: '#FFFBF5', color: '#16A34A' }}
+                  >
                     {plan.badge}
                   </span>
                 )}
               </div>
               <div className="mb-1">
-                <span className={`text-3xl font-extrabold ${plan.highlight ? 'text-white' : 'text-slate-900'}`}>
+                <span className="text-3xl font-extrabold" style={{ color: plan.highlight ? '#FFFFFF' : '#1C1917' }}>
                   {plan.price}
                 </span>
                 {plan.period && (
-                  <span className={`text-sm ml-1 ${plan.highlight ? 'text-primary-100' : 'text-slate-500'}`}>
+                  <span className="text-sm ml-1" style={{ color: plan.highlight ? '#dcfce7' : '#57534E' }}>
                     {plan.period}
                   </span>
                 )}
               </div>
-              <p className={`text-sm mb-6 ${plan.highlight ? 'text-primary-100' : 'text-slate-500'}`}>
+              <p className="text-sm mb-6" style={{ color: plan.highlight ? '#dcfce7' : '#57534E' }}>
                 {plan.description}
               </p>
               <ul className="space-y-2 flex-1 mb-6">
                 {plan.features.map((f) => (
                   <li key={f} className="flex items-start gap-2 text-sm">
-                    <span className={plan.highlight ? 'text-primary-200' : 'text-primary-500'}>✓</span>
-                    <span className={plan.highlight ? 'text-white' : 'text-slate-700'}>{f}</span>
+                    <span style={{ color: plan.highlight ? '#bbf7d0' : '#16A34A' }}>✓</span>
+                    <span style={{ color: plan.highlight ? '#FFFFFF' : '#44403C' }}>{f}</span>
                   </li>
                 ))}
               </ul>
               <Link
                 href={plan.ctaHref}
-                className={`block text-center font-semibold py-3 rounded-xl transition-colors ${
+                className="block text-center font-semibold py-3 rounded-xl transition-colors"
+                style={
                   plan.highlight
-                    ? 'bg-white text-primary-700 hover:bg-primary-50'
-                    : 'bg-primary-600 text-white hover:bg-primary-700'
-                }`}
+                    ? { backgroundColor: '#FFFBF5', color: '#16A34A' }
+                    : { backgroundColor: '#16A34A', color: '#FFFFFF' }
+                }
               >
                 {plan.cta}
               </Link>
@@ -161,23 +166,27 @@ export default function Pricing() {
 
       {/* Éditeurs */}
       <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-        <h2 className="text-2xl font-bold text-slate-900 mb-2">Pour les éditeurs SaaS</h2>
-        <p className="text-slate-600 mb-8">Comprenez votre positionnement prix sur le marché réel.</p>
-        <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-8 max-w-2xl">
-          <h3 className="text-xl font-bold text-slate-900 mb-1">{editorPlan.name}</h3>
-          <p className="text-3xl font-extrabold text-slate-900 mb-1">{editorPlan.price}</p>
-          <p className="text-slate-500 text-sm mb-6">{editorPlan.description}</p>
+        <h2 className="text-2xl font-bold mb-2" style={{ color: '#1C1917' }}>Pour les éditeurs SaaS</h2>
+        <p className="mb-8" style={{ color: '#57534E' }}>Comprenez votre positionnement prix sur le marché réel.</p>
+        <div
+          className="rounded-xl shadow-sm p-8 max-w-2xl"
+          style={{ backgroundColor: '#FFFFFF', border: '1px solid #EDE5D8' }}
+        >
+          <h3 className="text-xl font-bold mb-1" style={{ color: '#1C1917' }}>{editorPlan.name}</h3>
+          <p className="text-3xl font-extrabold mb-1" style={{ color: '#1C1917' }}>{editorPlan.price}</p>
+          <p className="text-sm mb-6" style={{ color: '#57534E' }}>{editorPlan.description}</p>
           <ul className="space-y-2 mb-8">
             {editorPlan.features.map((f) => (
               <li key={f} className="flex items-start gap-2 text-sm">
-                <span className="text-primary-500">✓</span>
-                <span className="text-slate-700">{f}</span>
+                <span style={{ color: '#16A34A' }}>✓</span>
+                <span style={{ color: '#44403C' }}>{f}</span>
               </li>
             ))}
           </ul>
           <Link
             href={editorPlan.ctaHref}
-            className="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-xl hover:bg-primary-700 transition-colors"
+            className="inline-block font-semibold px-6 py-3 rounded-xl transition-colors text-white"
+            style={{ backgroundColor: '#16A34A' }}
           >
             {editorPlan.cta}
           </Link>
@@ -185,11 +194,11 @@ export default function Pricing() {
       </section>
 
       {/* FAQ bottom note */}
-      <section className="border-t border-slate-200 bg-white py-12">
+      <section className="border-t py-12" style={{ borderColor: '#EDE5D8', backgroundColor: '#F5F0E8' }}>
         <div className="max-w-3xl mx-auto px-4 text-center">
-          <p className="text-slate-600">
+          <p style={{ color: '#57534E' }}>
             Des questions sur les tarifs ?{' '}
-            <Link href="/fr/contact" className="text-primary-600 font-semibold hover:underline">
+            <Link href="/fr/contact" className="font-semibold hover:underline" style={{ color: '#16A34A' }}>
               Contactez-nous
             </Link>{' '}
             — nous répondons sous 24h.

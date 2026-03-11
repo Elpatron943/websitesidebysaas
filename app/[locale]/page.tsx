@@ -92,6 +92,55 @@ export default function Home() {
         </div>
       </section>
 
+      {/* LE PROBLÈME */}
+      <section className="py-16 md:py-20" style={{ backgroundColor: '#FFFBF5' }}>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <p className="text-sm font-semibold tracking-widest uppercase mb-3" style={{ color: '#DC2626' }}>Le problème</p>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4" style={{ color: '#1C1917' }}>
+              Choisir un SaaS, c&apos;est encore trop souvent une prise de risque.
+            </h2>
+            <p className="text-base max-w-2xl mx-auto leading-relaxed" style={{ color: '#57534E' }}>
+              Les acheteurs IT naviguent à l&apos;aveugle : démos trop lisses, G2 biaisé, tarifs opaques, et aucun moyen de savoir ce que les autres ont vraiment négocié.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                icon: '🎭',
+                title: 'Des démos, pas des vérités',
+                desc: 'Les éditeurs montrent leur meilleur jour. Vous ne voyez jamais les bugs, les frictions d\'onboarding, ni ce qui fait regretter le choix 6 mois plus tard.',
+              },
+              {
+                icon: '💸',
+                title: 'Des prix introuvables',
+                desc: 'Les grilles tarifaires sont volontairement floues. Sans savoir ce que les autres ont payé, vous négociez dans le vide — et vous payez trop cher.',
+              },
+              {
+                icon: '🔇',
+                title: 'Des retours d\'expérience introuvables',
+                desc: 'Les avis publics sont filtrés, incentivés ou vieux. Les vraies décisions d\'achat — ce qui a fait pencher la balance — restent dans les têtes.',
+              },
+            ].map((item) => (
+              <div key={item.title} className="rounded-2xl border p-6" style={{ backgroundColor: '#FEF2F2', borderColor: '#FECACA' }}>
+                <div className="text-3xl mb-4">{item.icon}</div>
+                <h3 className="text-base font-bold mb-2" style={{ color: '#1C1917' }}>{item.title}</h3>
+                <p className="text-sm leading-relaxed" style={{ color: '#57534E' }}>{item.desc}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-10 rounded-2xl border p-6 flex items-start gap-4" style={{ backgroundColor: '#F0FDF4', borderColor: '#BBF7D0' }}>
+            <span className="text-2xl mt-0.5">✅</span>
+            <div>
+              <p className="font-bold mb-1" style={{ color: '#15803D' }}>Side by SaaS résout ça.</p>
+              <p className="text-sm leading-relaxed" style={{ color: '#166534' }}>
+                Des acheteurs IT partagent anonymement leurs vraies décisions — prix négociés, remises obtenues, raisons du choix final. Taille et secteur visibles pour que vous trouviez des pairs comparables.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* TÉMOIGNAGES */}
       <section style={{ backgroundColor: '#F5F0E8' }} className="py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

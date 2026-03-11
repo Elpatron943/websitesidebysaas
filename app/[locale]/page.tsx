@@ -29,8 +29,26 @@ const testimonials = [
 ]
 
 const communityPreviews = [
-  { text: "Quelqu'un a comparé HubSpot vs Salesforce sur des contrats > 50 users récemment ?", replies: 12, ago: "2h", size: "200-500 salariés", sector: "Finance" },
-  { text: "Benchmark sécurité endpoint 2025 — je partage mes résultats après 6 mois", replies: 8, ago: "5h", size: "50-200 salariés", sector: "Industrie" },
+  {
+    pseudo: "MarcT.",
+    text: "Quelqu'un a comparé HubSpot vs Salesforce sur des contrats > 50 users récemment ?",
+    size: "200-500 salariés", sector: "Finance", ago: "2h",
+    replies: [
+      { pseudo: "JulieR.", size: "100-200 salariés", sector: "Tech", text: "Oui, on a fait ça en janvier. HubSpot était 30% moins cher à périmètre égal.", ago: "1h45" },
+      { pseudo: "AntoineD.", size: "500+ salariés", sector: "Retail", text: "Salesforce a beaucoup plus de flexibilité sur les intégrations, mais le coût d'implémentation est bien plus élevé.", ago: "1h20" },
+      { pseudo: "SofiaL.", size: "50-100 salariés", sector: "Finance", text: "On a choisi HubSpot finalement. Le support et l'onboarding étaient vraiment meilleurs.", ago: "40min" },
+    ],
+  },
+  {
+    pseudo: "KarimB.",
+    text: "Benchmark sécurité endpoint 2025 — je partage mes résultats après 6 mois",
+    size: "50-200 salariés", sector: "Industrie", ago: "5h",
+    replies: [
+      { pseudo: "ClaireM.", size: "200-500 salariés", sector: "Santé", text: "Très intéressant, tu as testé CrowdStrike vs SentinelOne ?", ago: "4h30" },
+      { pseudo: "NicolasP.", size: "100-200 salariés", sector: "Industrie", text: "On a les mêmes résultats sur SentinelOne. Excellent sur la détection, complexe à déployer.", ago: "3h" },
+      { pseudo: "EmmaF.", size: "10-50 salariés", sector: "Tech", text: "Merci pour le partage. Tu peux détailler la méthode de scoring ?", ago: "2h" },
+    ],
+  },
 ]
 
 export default function Home() {
@@ -193,17 +211,40 @@ export default function Home() {
               <span>🔒</span> Messages anonymes · taille et secteur visibles
             </p>
           </div>
-          <div className="space-y-3 mb-8">
+          <div className="space-y-4 mb-8">
             {communityPreviews.map((item, i) => (
-              <div key={i} className="rounded-xl border p-4 flex items-start gap-3" style={{ backgroundColor: '#FFFBF5', borderColor: '#EDE5D8' }}>
-                <span className="text-xl">💬</span>
-                <div className="flex-1">
-                  <p className="text-sm font-medium mb-2" style={{ color: '#1C1917' }}>&quot;{item.text}&quot;</p>
-                  <div className="flex items-center gap-2 flex-wrap">
+              <div key={i} className="rounded-xl border overflow-hidden" style={{ borderColor: '#EDE5D8' }}>
+                {/* Post principal */}
+                <div className="p-4" style={{ backgroundColor: '#FFFBF5' }}>
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold text-white" style={{ backgroundColor: '#16A34A' }}>
+                      {item.pseudo.slice(0, 2).toUpperCase()}
+                    </div>
+                    <span className="text-xs font-semibold" style={{ color: '#1C1917' }}>{item.pseudo}</span>
                     <span className="text-xs px-2 py-0.5 rounded-full font-medium" style={{ backgroundColor: '#DCFCE7', color: '#15803D' }}>{item.size}</span>
                     <span className="text-xs px-2 py-0.5 rounded-full font-medium" style={{ backgroundColor: '#EDE5D8', color: '#78716C' }}>{item.sector}</span>
-                    <span className="text-xs" style={{ color: '#78716C' }}>{item.replies} réponses · il y a {item.ago}</span>
+                    <span className="text-xs ml-auto" style={{ color: '#78716C' }}>il y a {item.ago}</span>
                   </div>
+                  <p className="text-sm font-medium" style={{ color: '#1C1917' }}>{item.text}</p>
+                </div>
+                {/* Réponses */}
+                <div style={{ backgroundColor: '#F5F0E8', borderTop: '1px solid #EDE5D8' }}>
+                  {item.replies.map((reply, j) => (
+                    <div key={j} className="px-4 py-3 flex items-start gap-2" style={{ borderTop: j > 0 ? '1px solid #EDE5D8' : undefined }}>
+                      <div className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-white flex-shrink-0 mt-0.5" style={{ backgroundColor: '#78716C' }}>
+                        {reply.pseudo.slice(0, 2).toUpperCase()}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-1.5 mb-0.5 flex-wrap">
+                          <span className="text-xs font-semibold" style={{ color: '#1C1917' }}>{reply.pseudo}</span>
+                          <span className="text-xs px-1.5 py-0.5 rounded-full" style={{ backgroundColor: '#DCFCE7', color: '#15803D' }}>{reply.size}</span>
+                          <span className="text-xs px-1.5 py-0.5 rounded-full" style={{ backgroundColor: '#EDE5D8', color: '#78716C' }}>{reply.sector}</span>
+                          <span className="text-xs ml-auto" style={{ color: '#A8A29E' }}>il y a {reply.ago}</span>
+                        </div>
+                        <p className="text-xs leading-relaxed" style={{ color: '#44403C' }}>{reply.text}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             ))}

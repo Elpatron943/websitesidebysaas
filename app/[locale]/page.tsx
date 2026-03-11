@@ -29,8 +29,8 @@ const testimonials = [
 ]
 
 const communityPreviews = [
-  { text: "Quelqu'un a comparé HubSpot vs Salesforce sur des contrats > 50 users récemment ?", replies: 12, ago: "2h" },
-  { text: "Benchmark sécurité endpoint 2025 — je partage mes résultats après 6 mois", replies: 8, ago: "5h" },
+  { text: "Quelqu'un a comparé HubSpot vs Salesforce sur des contrats > 50 users récemment ?", replies: 12, ago: "2h", size: "200-500 salariés", sector: "Finance" },
+  { text: "Benchmark sécurité endpoint 2025 — je partage mes résultats après 6 mois", replies: 8, ago: "5h", size: "50-200 salariés", sector: "Industrie" },
 ]
 
 export default function Home() {
@@ -189,14 +189,21 @@ export default function Home() {
               🗣️ Communauté active
             </h2>
             <p style={{ color: '#57534E' }}>Des discussions en cours entre professionnels IT</p>
+            <p className="text-xs mt-2 inline-flex items-center gap-1.5 px-3 py-1 rounded-full" style={{ backgroundColor: '#EDE5D8', color: '#78716C' }}>
+              <span>🔒</span> Messages anonymes · taille et secteur visibles
+            </p>
           </div>
           <div className="space-y-3 mb-8">
             {communityPreviews.map((item, i) => (
               <div key={i} className="rounded-xl border p-4 flex items-start gap-3" style={{ backgroundColor: '#FFFBF5', borderColor: '#EDE5D8' }}>
                 <span className="text-xl">💬</span>
                 <div className="flex-1">
-                  <p className="text-sm font-medium mb-1" style={{ color: '#1C1917' }}>&quot;{item.text}&quot;</p>
-                  <p className="text-xs" style={{ color: '#78716C' }}>{item.replies} réponses · il y a {item.ago}</p>
+                  <p className="text-sm font-medium mb-2" style={{ color: '#1C1917' }}>&quot;{item.text}&quot;</p>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="text-xs px-2 py-0.5 rounded-full font-medium" style={{ backgroundColor: '#DCFCE7', color: '#15803D' }}>{item.size}</span>
+                    <span className="text-xs px-2 py-0.5 rounded-full font-medium" style={{ backgroundColor: '#EDE5D8', color: '#78716C' }}>{item.sector}</span>
+                    <span className="text-xs" style={{ color: '#78716C' }}>{item.replies} réponses · il y a {item.ago}</span>
+                  </div>
                 </div>
               </div>
             ))}

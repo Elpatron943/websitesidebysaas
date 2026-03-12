@@ -20,7 +20,7 @@ export async function generateMetadata({
       type: 'website',
     },
     alternates: {
-      canonical: `${baseUrl}/${locale}`,
+      canonical: `${baseUrl}/fr`,
       languages: {
         'fr': `${baseUrl}/fr`,
         'en': `${baseUrl}/en`,

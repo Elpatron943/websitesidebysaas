@@ -6,7 +6,7 @@ import { SEGMENTS } from '@/lib/segments'
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL
   ?? (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://sidebysaas.com')
 
-const locales = ['fr', 'en'] as const
+const locales = ['fr'] as const
 
 const staticPaths = ['', '/features', '/pricing', '/about', '/contact', '/editeur', '/acheteur', '/blog', '/mentions', '/cgu'] as const
 
@@ -64,8 +64,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.9,
     })
-    entries.push({
-      url: `${baseUrl}/en/compare/${c.slug}`,
+    
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.7,
@@ -80,8 +79,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.9,
     })
-    entries.push({
-      url: `${baseUrl}/en/prix/${p.slug}`,
+    
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.7,
@@ -96,8 +94,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.9,
     })
-    entries.push({
-      url: `${baseUrl}/en/${s.persona}/${s.slug}`,
+    
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.7,

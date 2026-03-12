@@ -8,11 +8,7 @@ import { NavLogo } from '@/app/components/NavLogo'
 import { AcheteurNavMenu } from '@/app/components/AcheteurNavMenu'
 import { useLocale, useTranslations } from '@/app/components/LocaleProvider'
 
-const BLOG_CATEGORY_KEYS: { slug: string; key: string }[] = [
-  { slug: 'comparaison-benchmarks', key: 'header.categoryComparison' },
-  { slug: 'prix-negociation', key: 'header.categoryPricing' },
-  { slug: 'etudes-tendances', key: 'header.categoryStudies' },
-]
+import { BLOG_CATEGORIES } from '@/lib/blog-categories'
 
 const PLATFORM_URL = process.env.NEXT_PUBLIC_PLATFORM_URL || 'https://app.sidebysaas.com'
 
@@ -232,8 +228,10 @@ export function SiteHeader() {
               {openMenu === 'blog' && (
                 <div className={dropdownPanelClass}>
                   <Link href={`${prefix}/blog`} className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors">{t('header.allCategories')}</Link>
-                  {BLOG_CATEGORY_KEYS.map((cat) => (
-                    <Link key={cat.slug} href={`${prefix}/blog?category=${encodeURIComponent(cat.slug)}`} className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors">{t(cat.key)}</Link>
+                  {BLOG_CATEGORIES.map((cat) => (
+                    <Link key={cat.slug} href={`${prefix}/blog?category=${encodeURIComponent(cat.slug)}`} className="flex items-center gap-2 px-4 py-2.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors">
+                      <span>{cat.emoji}</span>{cat.name}
+                    </Link>
                   ))}
                 </div>
               )}
@@ -384,8 +382,10 @@ export function SiteHeader() {
                 {mobileAccordion === 'blog' && (
                   <div className="pb-2 pl-1 space-y-0.5">
                     <Link href={`${prefix}/blog`} className="block py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>{t('header.allCategories')}</Link>
-                    {BLOG_CATEGORY_KEYS.map((cat) => (
-                      <Link key={cat.slug} href={`${prefix}/blog?category=${encodeURIComponent(cat.slug)}`} className="block py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>{t(cat.key)}</Link>
+                    {BLOG_CATEGORIES.map((cat) => (
+                      <Link key={cat.slug} href={`${prefix}/blog?category=${encodeURIComponent(cat.slug)}`} className="flex items-center gap-2 py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>
+                        <span>{cat.emoji}</span>{cat.name}
+                      </Link>
                     ))}
                   </div>
                 )}

@@ -10,13 +10,13 @@ export default {
   home: {
     freeUntilApril: 'Toutes les fonctionnalités de l\'app sont gratuites jusqu\'à fin avril.',
     problem: {
-      title: 'À quel problème Side by SaaS répond',
-      buyers: "Les acheteurs de logiciels SaaS manquent de visibilité sur les prix réels et sur ce que paient les autres entreprises. Ils négocient sans référence et risquent de surpayer.",
-      buyersBold: 'manquent de visibilité sur les prix réels',
-      editors: "Les éditeurs, eux, sont comparés partout sans maîtriser leur présence. Ils ne savent pas comment ils sont perçus ni qui sont leurs vrais concurrents côté acheteur.",
-      editorsBold: 'comparés partout sans maîtriser leur présence',
-      solution: 'Side by SaaS rapproche les deux : données de prix et comparaisons pour les acheteurs, visibilité et insights pour les éditeurs.',
-      independence: 'Side by SaaS ne se rémunère jamais auprès des éditeurs pour fournir les données les plus transparentes et équilibrées.',
+      title: 'Une plateforme pour les acheteurs, sans parti pris des éditeurs',
+      buyers: "Les acheteurs de logiciels SaaS manquent de visibilité sur les prix réels et sur ce que paient les autres entreprises. Notre plateforme est pensée pour eux en premier : décisions d'achat appuyées sur des données, pas sur des messages commerciaux orientés par les vendeurs.",
+      buyersBold: 'pensée pour eux en premier',
+      editors: "Les éditeurs y sont présents pour être comparés équitablement — nous ne sommes pas rémunérés par eux pour favoriser une solution dans les classements ou les données affichées aux acheteurs.",
+      editorsBold: 'comparés équitablement',
+      solution: 'Side by SaaS rapproche ces deux usages : données de prix et comparaisons pour les acheteurs, visibilité mesurable pour les éditeurs, dans un cadre neutre.',
+      independence: 'Aucune rémunération des éditeurs pour orienter les résultats ou les contenus : transparence et équilibre au service des acheteurs.',
     },
     who: {
       title: "À qui s'adresse la plateforme ?",

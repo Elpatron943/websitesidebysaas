@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Articles du blog Side by SaaS (donn├®es statiques).
  */
 
@@ -494,6 +494,175 @@ ${CTA_PLACEHOLDER}
 <p class="${articleStyles.p}">Apr├¿s tout, derri├¿re chaque logiciel, il y a des gens qui travaillent pour d'autres gens.</p>
 `.trim()
 
+const NOTION_CONFLUENCE_BODY = `
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">Notion</strong> et <strong class="${articleStyles.strong}">Confluence</strong> s'affichent souvent comme alternatives pour documenter, structurer la connaissance et collaborer. Pourtant leurs philosophies diffèrent : l'un mise sur la flexibilité type « page blanche », l'autre sur la hiérarchie et l'intégration Atlassian.</p>
+
+<h2 class="${articleStyles.h2}">Notion : polyvalence et bases de données</h2>
+<p class="${articleStyles.p}">Notion excelle lorsqu'on veut mélanger wiki, tâches, bases de données relationnelles et vues Kanban dans un même espace. Les équipes produit et marketing apprécient la liberté de mise en forme. En contrepartie, la gouvernance (qui modifie quoi, modèles de page) demande une discipline interne.</p>
+
+<h2 class="${articleStyles.h2}">Confluence : structuration et écosystème Jira</h2>
+<p class="${articleStyles.p}">Confluence brille dans les organisations déjà sur Jira Service Management ou Jira Software : liens directs vers tickets, workflows, permissions fines. Moins « ludique » que Notion, il est souvent préféré par l'IT et les directions qui veulent des arborescences stables et traçables.</p>
+
+${CTA_PLACEHOLDER}
+
+<h2 class="${articleStyles.h2}">Comment trancher ?</h2>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Choisissez <strong class="${articleStyles.strong}">Notion</strong> si vous privilégiez agilité, bases de données et design unifié hors stack Atlassian.</li>
+  <li class="${articleStyles.li}">Choisissez <strong class="${articleStyles.strong}">Confluence</strong> si Jira est déjà au centre de votre delivery et que la conformité documentaire prime.</li>
+</ul>
+<p class="${articleStyles.p}">Comparez les prix au périmètre réel (invités, stockage, SSO) : les grilles publiques ne suffisent pas à refléter votre cas.</p>
+`.trim()
+
+const SLACK_TEAMS_BODY = `
+<p class="${articleStyles.p}">Le choix entre <strong class="${articleStyles.strong}">Slack</strong> et <strong class="${articleStyles.strong}">Microsoft Teams</strong> structure souvent la communication quotidienne. L'un est né du monde startup ouvert ; l'autre s'appuie sur Microsoft 365 et la visioconférence.</p>
+
+<h2 class="${articleStyles.h2}">Slack : canaux, intégrations, culture async</h2>
+<p class="${articleStyles.p}">Slack reste une référence pour les intégrations SaaS (CI/CD, CRM, alertes) et les workflows par canaux. Son écosystème d'applications est très riche. La facturation au siège ou à l'utilisateur actif mérite une analyse fine selon votre croissance.</p>
+
+<h2 class="${articleStyles.h2}">Teams : calendrier, fichiers et gouvernance</h2>
+<p class="${articleStyles.p}">Teams s'intègre nativement à Outlook, SharePoint et OneDrive. Pour les entreprises déjà sur Microsoft 365, le coût marginal est souvent faible et la gouvernance (conformité, rétention) plus simple à aligner avec l'IT.</p>
+
+${CTA_PLACEHOLDER}
+
+<h2 class="${articleStyles.h2}">Points de vigilance</h2>
+<p class="${articleStyles.p}">Évaluez l'usage réel de la visio, des appels externes et du partage de fichiers — c'est souvent là que les écarts de satisfaction apparaissent. Pensez aussi à la double pile Slack + Teams : coûteuse et fatigante pour les équipes.</p>
+`.trim()
+
+const JIRA_LINEAR_BODY = `
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">Jira</strong> domine les équipes tech depuis des années ; <strong class="${articleStyles.strong}">Linear</strong> séduit par la vitesse d'interface et une UX minimaliste. Le bon outil dépend de votre maturité agile et de la taille de l'organisation.</p>
+
+<h2 class="${articleStyles.h2}">Jira : personnalisation et workflows complexes</h2>
+<p class="${articleStyles.p}">Jira permet de modéliser presque tout : Scrum, Kanban, SAFe, tickets support. La contrepartie est la complexité d'administration et le temps d'onboarding. Idéal quand plusieurs produits ou BU partagent une instance unique.</p>
+
+<h2 class="${articleStyles.h2}">Linear : rapidité et focus produit</h2>
+<p class="${articleStyles.p}">Linear cible les équipes produit/engineering qui veulent aller vite, avec cycles courts et peu de surcharge. Moins adapté aux besoins ITSM lourds ou aux processus très réglementés sans intégrations additionnelles.</p>
+
+${CTA_PLACEHOLDER}
+
+<h2 class="${articleStyles.h2}">Migration ou coexistence</h2>
+<p class="${articleStyles.p}">Passer de Jira à Linear (ou l'inverse) a un coût humain : historique, automatisations, intégrations CI. Anticipez un POC sur un seul squad avant de généraliser.</p>
+`.trim()
+
+const GRILLE_TARIFAIRE_BODY = `
+<p class="${articleStyles.p}">Une grille tarifaire SaaS affiche rarement le prix que votre entreprise paiera réellement. Entre paliers de sièges, modules optionnels et engagements annuels vs mensuels, voici comment lire clairement une offre.</p>
+
+<h2 class="${articleStyles.h2}">Sièges nommés vs actifs vs visiteurs</h2>
+<p class="${articleStyles.p}">Un <strong class="${articleStyles.strong}">siège nommé</strong> est attribué à une personne ; un <strong class="${articleStyles.strong}">siège actif</strong> peut tourner entre utilisateurs selon des règles d'usage. Les invités externes sont souvent facturés différemment : vérifiez le plafond inclus dans votre plan.</p>
+
+<h2 class="${articleStyles.h2}">Modules et « seats » cachés</h2>
+<p class="${articleStyles.p}">L'IA, l'analytics avancé ou l'API peuvent être sur des SKUs séparés. Demandez une proposition commerciale détaillée ligne par ligne, alignée sur votre effectif prévu à 12 et 24 mois.</p>
+
+${CTA_PLACEHOLDER}
+
+<h2 class="${articleStyles.h2}">Engagement et indexation</h2>
+<p class="${articleStyles.p}">L'engagement annuel ou pluriannuel abaisse le prix mensuel affiché, mais fige votre budget. Croisez toujours avec une hypothèse d'augmentation à la reconduction et une clause d'indexation plafonnée.</p>
+`.trim()
+
+const RENOUVELLEMENT_CHECKLIST_BODY = `
+<p class="${articleStyles.p}">Trois mois avant la date d'échéance, la plupart des équipes découvrent les leviers de négociation trop tard. Voici une <strong class="${articleStyles.strong}">checklist acheteur</strong> pour les renouvellements SaaS.</p>
+
+<h2 class="${articleStyles.h2}">Avant la négociation</h2>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Mesurer l'<strong class="${articleStyles.strong}">adoption réelle</strong> (MAU, licences utilisées vs payées).</li>
+  <li class="${articleStyles.li}">Recenser les <strong class="${articleStyles.strong}">incidents critiques</strong> ou SLA non tenus sur la période écoulée.</li>
+  <li class="${articleStyles.li}">Identifier une <strong class="${articleStyles.strong}">alternative crédible</strong> même si vous ne migrez pas : levier de discussion.</li>
+</ul>
+
+<h2 class="${articleStyles.h2}">Pendant l'échange</h2>
+<p class="${articleStyles.p}">Demandez une reconduction avec plafonnement de hausse, des options de sortie claires et, si besoin, une phase de transition pour exporter les données.</p>
+
+${CTA_PLACEHOLDER}
+
+<h2 class="${articleStyles.h2}">Après signature</h2>
+<p class="${articleStyles.p}">Documentez les contacts support prioritaires, les jalons de facturation et la date du prochain point de revue — idéalement 9 mois avant la fin du nouveau terme.</p>
+`.trim()
+
+const TCO_SAAS_BODY = `
+<p class="${articleStyles.p}">Le <strong class="${articleStyles.strong}">TCO (Total Cost of Ownership)</strong> d'un SaaS dépasse largement la ligne « abonnement » du devis. Sans vision complète, les business cases surestiment le retour sur investissement.</p>
+
+<h2 class="${articleStyles.h2}">Coûts directs</h2>
+<p class="${articleStyles.p}">Licences, modules, stockage supplémentaire, connecteurs premium et formation certifiante doivent être agrégés sur la durée du contrat (36 mois minimum pour les projets structurants).</p>
+
+<h2 class="${articleStyles.h2}">Coûts indirects</h2>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Temps interne : admin, intégration, support niveau 1.</li>
+  <li class="${articleStyles.li}">Migration depuis l'outil précédent ou double run temporaire.</li>
+  <li class="${articleStyles.li}">Risque réglementaire si l'outil ne répond plus aux exigences sectorielles.</li>
+</ul>
+
+${CTA_PLACEHOLDER}
+
+<h2 class="${articleStyles.h2}">Une grille de décision simple</h2>
+<p class="${articleStyles.p}">Attribuez un coût en jour/homme à chaque poste : vous obtienez une fourchette réaliste pour arbitrer entre deux solutions au prix catalogue proche.</p>
+`.trim()
+
+const IA_GENERATIVE_SAAS_BODY = `
+<p class="${articleStyles.p}">En 2025, l'<strong class="${articleStyles.strong}">IA générative</strong> est intégrée à la CRM, au support, à la bureautique et aux outils dev. L'enjeu pour les acheteurs n'est plus « si » mais « comment » contractualiser l'usage et les données.</p>
+
+<h2 class="${articleStyles.h2}">Données et prompts</h2>
+<p class="${articleStyles.p}">Vérifiez si vos données servent à entraîner des modèles tiers, où sont hébergées les inférences et si vous pouvez désactiver certaines fonctionnalités IA par périmètre (RH, santé, finance).</p>
+
+<h2 class="${articleStyles.h2}">Coûts variables</h2>
+<p class="${articleStyles.p}">Les crédits IA ou requêtes supplémentaires peuvent faire exploser la facture. Négociez des forfaits ou des plafonds avec alertes budgétaires.</p>
+
+${CTA_PLACEHOLDER}
+
+<h2 class="${articleStyles.h2}">Adoption responsable</h2>
+<p class="${articleStyles.p}">Formez les équipes aux bonnes pratiques (pas de données personnelles sensibles dans les prompts non contrôlés) et tracez les cas d'usage validés par la DSI ou le RSSI.</p>
+`.trim()
+
+const SHADOW_IT_BODY = `
+<p class="${articleStyles.p}">Le <strong class="${articleStyles.strong}">Shadow IT</strong> — achat ou usage de SaaS sans validation centrale — expose à la duplication des outils, aux fuites de données et aux audits compliqués. Les DSI modernes préfèrent canaliser plutôt que tout interdire.</p>
+
+<h2 class="${articleStyles.h2}">Pourquoi ça prolifère</h2>
+<p class="${articleStyles.p}">Les équipes métiers veulent aller vite ; les processus d'achat internes sont parfois perçus comme lents. Les essais gratuits et les cartes corporate facilitent aussi les souscriptions en autonomie.</p>
+
+<h2 class="${articleStyles.h2}">Leviers concrets</h2>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Inventaire régulier via SSO, facturation centralisée ou outils de découverte SaaS.</li>
+  <li class="${articleStyles.li}">Catalogue approuvé avec délais de mise à disposition courts pour les cas courants.</li>
+  <li class="${articleStyles.li}">Sensibilisation aux clauses RGPD et sous-traitants hors UE.</li>
+</ul>
+
+${CTA_PLACEHOLDER}
+
+<h2 class="${articleStyles.h2}">Culture et confiance</h2>
+<p class="${articleStyles.p}">Quand l'IT co-construit avec les métiers plutôt qu'impose, le Shadow IT diminue naturellement — sans sacrifier la sécurité.</p>
+`.trim()
+
+const FINOPS_OPTIMISATION_BODY = `
+<p class="${articleStyles.p}">Le <strong class="${articleStyles.strong}">FinOps</strong> applique une discipline financière aux dépenses cloud et SaaS : visibilité, allocation par équipe et arbitrage continu entre innovation et maîtrise budgétaire.</p>
+
+<h2 class="${articleStyles.h2}">Les trois phases</h2>
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">Informer</strong> : tableaux de bord unifiés licences + infra. <strong class="${articleStyles.strong}">Optimiser</strong> : droitsizing, réservations, remplacement d'outils redondants. <strong class="${articleStyles.strong}">Opérer</strong> : intégrer le FinOps aux revues trimestrielles business.</p>
+
+<h2 class="${articleStyles.h2}">Indicateurs utiles</h2>
+<p class="${articleStyles.p}">Coût par employé, par application critique, taux de licences inutilisées et délai moyen de provisioning : autant de leviers pour présenter des arbitrages factuels à la direction financière.</p>
+
+${CTA_PLACEHOLDER}
+
+<h2 class="${articleStyles.h2}">Limites</h2>
+<p class="${articleStyles.p}">Le FinOps ne remplace pas une vision produit : il évite le gaspillage, mais ne choisit pas à votre place l'outil le plus adapté métier.</p>
+`.trim()
+
+const ZOOM_MEET_TEAMS_BODY = `
+<p class="${articleStyles.p}">La visioconférence structure le télétravail et le relationnel client. <strong class="${articleStyles.strong}">Zoom</strong>, <strong class="${articleStyles.strong}">Google Meet</strong> et <strong class="${articleStyles.strong}">Microsoft Teams</strong> couvrent ce besoin avec des positionnements différents.</p>
+
+<h2 class="${articleStyles.h2}">Zoom</h2>
+<p class="${articleStyles.p}">Réputé pour la qualité vidéo et la simplicité des réunions externes. Les offres Pro/Business ajoutent enregistrement cloud, salles et webinars selon les plans — utile si la visio est votre cœur de métier.</p>
+
+<h2 class="${articleStyles.h2}">Google Meet</h2>
+<p class="${articleStyles.p}">Inclus dans Google Workspace, Meet brille pour les équipes déjà dans Gmail/Calendar. Moins de fonctionnalités « salle » avancées que Zoom pour les très grands événements hybrides.</p>
+
+<h2 class="${articleStyles.h2}">Microsoft Teams</h2>
+<p class="${articleStyles.p}">Hub unique pour chat, fichiers SharePoint et visio. Indispensable si vous êtes sur Microsoft 365 ; parfois perçu comme plus lourd pour les réunions ponctuelles avec des partenaires externes.</p>
+
+${CTA_PLACEHOLDER}
+
+<h2 class="${articleStyles.h2}">Synthèse</h2>
+<p class="${articleStyles.p}">Évitez la multiplication des outils de visio payés en parallèle : c'est un poste de double facturation fréquent après fusions ou acquisitions.</p>
+`.trim()
+
 const CTA_MID_HTML = `
 <div class="my-10 rounded-xl bg-primary-50 border border-primary-100 p-6 text-center">
   <p class="text-slate-800 font-semibold mb-2">Pr├¬t ├á comparer vos outils SaaS avec des donn├®es r├®elles ?</p>
@@ -878,7 +1047,6 @@ export const BLOG_POSTS: BlogPostData[] = [
     created_at: '2025-03-10T14:00:00Z',
     reading_minutes: 6,
   },
-
   {
     id: 'notion-vs-confluence-wiki-documentation-entreprise-2025',
     category_slug: 'comparaison-benchmarks',
@@ -893,7 +1061,7 @@ export const BLOG_POSTS: BlogPostData[] = [
   },
   {
     id: 'prix-slack-entreprises-benchmark-2025',
-    category_slug: 'pricing-analyse',
+    category_slug: 'prix-negociation',
     title: 'Ce que les entreprises paient vraiment pour Slack en 2025 — benchmark prix reels',
     slug: 'prix-slack-entreprises-benchmark-2025',
     excerpt:
@@ -902,6 +1070,114 @@ export const BLOG_POSTS: BlogPostData[] = [
     published_at: '2026-03-12T10:00:00Z',
     created_at: '2026-03-12T10:00:00Z',
     reading_minutes: 7,
+  },
+  {
+    id: 'slack-vs-teams-2026',
+    category_slug: 'comparaison-benchmarks',
+    title: 'Slack vs Microsoft Teams : messagerie d’entreprise et collaboration',
+    slug: 'slack-vs-microsoft-teams-messagerie-collaboration',
+    excerpt:
+      'Intégrations, visioconférence et gouvernance : comment arbitrer entre Slack et Teams selon votre stack et votre culture d’équipe.',
+    body: SLACK_TEAMS_BODY.replace(CTA_PLACEHOLDER, CTA_MID_HTML),
+    published_at: '2026-03-03T09:00:00Z',
+    created_at: '2026-03-03T09:00:00Z',
+    reading_minutes: 5,
+  },
+  {
+    id: 'jira-vs-linear-2026',
+    category_slug: 'comparaison-benchmarks',
+    title: 'Jira vs Linear : pilotage produit et développement logiciel',
+    slug: 'jira-vs-linear-pilotage-produit-developpement',
+    excerpt:
+      'Workflows complexes et gouvernance Jira face à la rapidité de Linear. Quand migrer, coexister ou rester sur un seul outil.',
+    body: JIRA_LINEAR_BODY.replace(CTA_PLACEHOLDER, CTA_MID_HTML),
+    published_at: '2026-03-05T09:00:00Z',
+    created_at: '2026-03-05T09:00:00Z',
+    reading_minutes: 5,
+  },
+  {
+    id: 'zoom-meet-teams-2026',
+    category_slug: 'comparaison-benchmarks',
+    title: 'Zoom, Google Meet ou Microsoft Teams : quelle visioconférence en entreprise ?',
+    slug: 'zoom-google-meet-microsoft-teams-visioconference-entreprise',
+    excerpt:
+      'Qualité vidéo, intégration suite bureautique et coûts : comparer Zoom, Meet et Teams pour réduire la double facturation.',
+    body: ZOOM_MEET_TEAMS_BODY.replace(CTA_PLACEHOLDER, CTA_MID_HTML),
+    published_at: '2026-03-07T09:00:00Z',
+    created_at: '2026-03-07T09:00:00Z',
+    reading_minutes: 5,
+  },
+  {
+    id: 'lire-grille-tarifaire-saas-2026',
+    category_slug: 'prix-negociation',
+    title: 'Comment lire une grille tarifaire SaaS (sans se faire piéger)',
+    slug: 'comment-lire-grille-tarifaire-saas',
+    excerpt:
+      'Sièges nommés ou actifs, modules cachés, engagement annuel : décrypter les offres pour préparer votre benchmark et votre négociation.',
+    body: GRILLE_TARIFAIRE_BODY.replace(CTA_PLACEHOLDER, CTA_MID_HTML),
+    published_at: '2026-03-10T09:00:00Z',
+    created_at: '2026-03-10T09:00:00Z',
+    reading_minutes: 5,
+  },
+  {
+    id: 'renouvellement-contrat-checklist-2026',
+    category_slug: 'prix-negociation',
+    title: 'Renouvellement de contrat SaaS : checklist acheteur',
+    slug: 'renouvellement-contrat-saas-checklist-acheteur',
+    excerpt:
+      'Adoption réelle, SLA, alternatives crédibles et clauses de sortie : la checklist à utiliser avant de resigner votre abonnement.',
+    body: RENOUVELLEMENT_CHECKLIST_BODY.replace(CTA_PLACEHOLDER, CTA_MID_HTML),
+    published_at: '2026-03-12T09:00:00Z',
+    created_at: '2026-03-12T09:00:00Z',
+    reading_minutes: 5,
+  },
+  {
+    id: 'tco-saas-complet-2026',
+    category_slug: 'prix-negociation',
+    title: 'TCO SaaS : ce qu’il faut inclure au-delà du prix de la licence',
+    slug: 'tco-saas-cout-total-possession-licence',
+    excerpt:
+      'Coûts directs et indirects, migration, formation : comment calculer un total coût de possession utile pour vos arbitrages d’achat.',
+    body: TCO_SAAS_BODY.replace(CTA_PLACEHOLDER, CTA_MID_HTML),
+    published_at: '2026-03-14T09:00:00Z',
+    created_at: '2026-03-14T09:00:00Z',
+    reading_minutes: 5,
+  },
+  {
+    id: 'ia-generative-outils-saas-2026',
+    category_slug: 'etudes-tendances',
+    title: 'IA générative dans les outils SaaS : ce que les acheteurs doivent négocier',
+    slug: 'ia-generative-outils-saas-negociation-acheteurs',
+    excerpt:
+      'Données, prompts, coûts variables et adoption : les clauses à clarifier avant d’activer massivement l’IA dans votre stack.',
+    body: IA_GENERATIVE_SAAS_BODY.replace(CTA_PLACEHOLDER, CTA_MID_HTML),
+    published_at: '2026-03-18T09:00:00Z',
+    created_at: '2026-03-18T09:00:00Z',
+    reading_minutes: 5,
+  },
+  {
+    id: 'shadow-it-reprendre-main-2026',
+    category_slug: 'etudes-tendances',
+    title: 'Shadow IT : comment les DSI reprennent la main sans brider les métiers',
+    slug: 'shadow-it-dsi-catalogue-gouvernance',
+    excerpt:
+      'Inventaires, SSO, catalogue d’applications et culture : réduire les risques sans tuer l’agilité des équipes.',
+    body: SHADOW_IT_BODY.replace(CTA_PLACEHOLDER, CTA_MID_HTML),
+    published_at: '2026-03-20T09:00:00Z',
+    created_at: '2026-03-20T09:00:00Z',
+    reading_minutes: 5,
+  },
+  {
+    id: 'finops-optimisation-saas-2026',
+    category_slug: 'etudes-tendances',
+    title: 'FinOps et optimisation : maîtriser les dépenses SaaS et cloud',
+    slug: 'finops-optimisation-depenses-saas-cloud',
+    excerpt:
+      'Informer, optimiser, opérer : les principes FinOps pour aligner innovation, transparence et maîtrise budgétaire.',
+    body: FINOPS_OPTIMISATION_BODY.replace(CTA_PLACEHOLDER, CTA_MID_HTML),
+    published_at: '2026-03-22T09:00:00Z',
+    created_at: '2026-03-22T09:00:00Z',
+    reading_minutes: 5,
   },
 ]
 

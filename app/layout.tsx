@@ -15,7 +15,8 @@ const lora = Lora({
 });
 export const metadata: Metadata = {
   title: "Side by SaaS | Benchmark et comparaison SaaS",
-  description: "Plateforme de benchmark SaaS basée sur des données d'achats réels. Comparez, négociez et pilotez vos logiciels.",
+  description:
+    "Plateforme de benchmark SaaS pour les acheteurs, basée sur des données d'achats réelles. Sans parti pris des éditeurs. Comparez, négociez et pilotez vos logiciels.",
   icons: {
     icon: [
       { url: "/logo/favicon-32.png", type: "image/png", sizes: "32x32" },

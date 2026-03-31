@@ -10,13 +10,13 @@ export default {
   home: {
     freeUntilApril: 'All app features are free until the end of April.',
     problem: {
-      title: 'What problem does Side by SaaS solve',
-      buyers: 'SaaS software buyers lack visibility on real prices and what other companies pay. They negotiate without reference and risk overpaying.',
-      buyersBold: 'lack visibility on real prices',
-      editors: 'Publishers, on the other hand, are compared everywhere without controlling their presence. They don\'t know how they are perceived or who their real competitors are from the buyer\'s perspective.',
-      editorsBold: 'compared everywhere without controlling their presence',
-      solution: 'Side by SaaS brings the two together: pricing data and comparisons for buyers, visibility and insights for publishers.',
-      independence: 'Side by SaaS is never paid by publishers to provide the most transparent and balanced data.',
+      title: 'A platform built for buyers, with no bias toward publishers',
+      buyers: 'SaaS software buyers lack visibility on real prices and what other companies pay. Our platform is built for them first: purchase decisions backed by data, not by vendor-driven marketing.',
+      buyersBold: 'built for them first',
+      editors: 'Publishers are represented to be compared fairly — we are not paid by them to favor one solution in rankings or in the data shown to buyers.',
+      editorsBold: 'compared fairly',
+      solution: 'Side by SaaS brings both sides together: pricing data and comparisons for buyers, measurable visibility for publishers, in a neutral framework.',
+      independence: 'No publisher payments to steer results or content: transparency and balance for buyers.',
     },
     who: {
       title: 'Who is the platform for?',

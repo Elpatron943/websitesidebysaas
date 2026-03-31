@@ -44,6 +44,13 @@ export default {
       createEditor: 'Créer mon espace éditeur',
       free: 'Gratuit pour démarrer • Sans engagement',
     },
+    landing: {
+      heroBadge: 'Plateforme de benchmark SaaS — dédiée aux acheteurs IT',
+      commitmentLabel: 'Notre engagement',
+      independenceTitle: 'Au service des acheteurs, sans rémunération des éditeurs',
+      independenceBody:
+        'Side by SaaS est pensée pour les acheteurs IT et la transparence des achats logiciels. Nous ne nous rémunérons pas auprès des éditeurs pour classer, mettre en avant ou favoriser une solution : pas de « pay-to-play », pas d’orientation des comparatifs au profit des vendeurs — pour limiter les biais et vous donner des repères réellement utiles pour négocier et décider.',
+    },
   },
   header: {
     useSaaS: "J'utilise des SaaS",

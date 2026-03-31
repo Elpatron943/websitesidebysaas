@@ -44,6 +44,13 @@ export default {
       createEditor: 'Create my publisher space',
       free: 'Free to start • No commitment',
     },
+    landing: {
+      heroBadge: 'SaaS benchmarking platform — built for IT buyers',
+      commitmentLabel: 'Our commitment',
+      independenceTitle: 'For buyers — we are not paid by vendors to steer results',
+      independenceBody:
+        'Side by SaaS is designed for IT buyers and transparent software purchasing. We do not take money from vendors to rank, feature, or favor any solution: no pay-to-play, no comparisons steered for sellers — so we reduce bias and give you benchmarks you can actually use to negotiate and decide.',
+    },
   },
   header: {
     useSaaS: 'I use SaaS',

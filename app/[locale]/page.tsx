@@ -65,7 +65,7 @@ export default function Home() {
       <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-28">
         <div className="text-center">
           <p className="text-sm font-semibold tracking-widest uppercase mb-4" style={{ color: '#16A34A' }}>
-            Plateforme de benchmark SaaS
+            {t('home.landing.heroBadge')}
           </p>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6" style={{ fontFamily: 'var(--font-sans)', color: '#1C1917' }}>
             Arrêtez de choisir vos SaaS<br className="hidden sm:block" /> à l&apos;aveugle.
@@ -87,8 +87,24 @@ export default function Home() {
               <strong style={{ color: '#1C1917' }}>2 847+</strong> acheteurs IT cette semaine
             </p>
           </div>
+        </div>
+      </section>
 
-
+      {/* ENGAGEMENT : ACHETEURS / INDÉPENDANCE ÉDITEURS */}
+      <section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 md:pb-16 -mt-4">
+        <div
+          className="rounded-2xl border p-6 md:p-8 shadow-sm"
+          style={{ backgroundColor: '#ECFDF5', borderColor: '#86EFAC' }}
+        >
+          <p className="text-xs font-semibold tracking-widest uppercase mb-3" style={{ color: '#15803D' }}>
+            {t('home.landing.commitmentLabel')}
+          </p>
+          <h2 className="text-lg md:text-xl font-bold mb-4 leading-snug" style={{ color: '#14532D' }}>
+            {t('home.landing.independenceTitle')}
+          </h2>
+          <p className="text-sm md:text-base leading-relaxed" style={{ color: '#166534' }}>
+            {t('home.landing.independenceBody')}
+          </p>
         </div>
       </section>
 
@@ -101,7 +117,7 @@ export default function Home() {
               Choisir un SaaS, c&apos;est encore trop souvent une prise de risque.
             </h2>
             <p className="text-base max-w-2xl mx-auto leading-relaxed" style={{ color: '#57534E' }}>
-              Les acheteurs IT naviguent à l&apos;aveugle : démos trop lisses, G2 biaisé, tarifs opaques, et aucun moyen de savoir ce que les autres ont vraiment négocié.
+              Les acheteurs IT naviguent à l&apos;aveugle : démos trop lisses, comparatifs influencés par les éditeurs, tarifs opaques, et aucun moyen de savoir ce que les autres ont vraiment négocié.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-6">

@@ -64,11 +64,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.9,
     })
-    
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    })
   }
 
   // Pages prix (programmatic SEO)
@@ -79,11 +74,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.9,
     })
-    
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    })
   }
 
   // Pages landing segments (SEO AXE 3)
@@ -93,11 +83,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.9,
-    })
-    
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
     })
   }
 

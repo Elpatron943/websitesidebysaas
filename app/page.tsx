@@ -37,7 +37,7 @@ export default function HomePage() {
         <h2 className="text-3xl font-semibold text-center text-indigo-200 mb-8">Pourquoi Side by SaaS</h2>
         <ul className="space-y-4">
           <li>Pas de biais marketing, prix réels, contexte acheteur réel.</li>
-          <li>Comparaison avec G2/Capterra: obtenez des insights précis.</li>
+          <li>Au-delà des annuaires d&apos;avis classiques : des insights basés sur les achats réels.</li>
         </ul>
       </section>
 

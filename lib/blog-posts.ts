@@ -494,25 +494,6 @@ ${CTA_PLACEHOLDER}
 <p class="${articleStyles.p}">Apr├¿s tout, derri├¿re chaque logiciel, il y a des gens qui travaillent pour d'autres gens.</p>
 `.trim()
 
-const NOTION_CONFLUENCE_BODY = `
-<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">Notion</strong> et <strong class="${articleStyles.strong}">Confluence</strong> s'affichent souvent comme alternatives pour documenter, structurer la connaissance et collaborer. Pourtant leurs philosophies diffèrent : l'un mise sur la flexibilité type « page blanche », l'autre sur la hiérarchie et l'intégration Atlassian.</p>
-
-<h2 class="${articleStyles.h2}">Notion : polyvalence et bases de données</h2>
-<p class="${articleStyles.p}">Notion excelle lorsqu'on veut mélanger wiki, tâches, bases de données relationnelles et vues Kanban dans un même espace. Les équipes produit et marketing apprécient la liberté de mise en forme. En contrepartie, la gouvernance (qui modifie quoi, modèles de page) demande une discipline interne.</p>
-
-<h2 class="${articleStyles.h2}">Confluence : structuration et écosystème Jira</h2>
-<p class="${articleStyles.p}">Confluence brille dans les organisations déjà sur Jira Service Management ou Jira Software : liens directs vers tickets, workflows, permissions fines. Moins « ludique » que Notion, il est souvent préféré par l'IT et les directions qui veulent des arborescences stables et traçables.</p>
-
-${CTA_PLACEHOLDER}
-
-<h2 class="${articleStyles.h2}">Comment trancher ?</h2>
-<ul class="${articleStyles.ul}">
-  <li class="${articleStyles.li}">Choisissez <strong class="${articleStyles.strong}">Notion</strong> si vous privilégiez agilité, bases de données et design unifié hors stack Atlassian.</li>
-  <li class="${articleStyles.li}">Choisissez <strong class="${articleStyles.strong}">Confluence</strong> si Jira est déjà au centre de votre delivery et que la conformité documentaire prime.</li>
-</ul>
-<p class="${articleStyles.p}">Comparez les prix au périmètre réel (invités, stockage, SSO) : les grilles publiques ne suffisent pas à refléter votre cas.</p>
-`.trim()
-
 const SLACK_TEAMS_BODY = `
 <p class="${articleStyles.p}">Le choix entre <strong class="${articleStyles.strong}">Slack</strong> et <strong class="${articleStyles.strong}">Microsoft Teams</strong> structure souvent la communication quotidienne. L'un est né du monde startup ouvert ; l'autre s'appuie sur Microsoft 365 et la visioconférence.</p>
 

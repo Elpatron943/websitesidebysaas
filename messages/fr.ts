@@ -53,41 +53,57 @@ export default {
       journeyVisual: {
         title: 'Parcours d’achat logiciel : avant / après',
         subtitle:
-          'À gauche, les étapes typiques d’un achat complexe se répètent et se recoupent. À droite, le même type de projet avec Side by SaaS : moins d’étapes, un seul fil direct.',
-        beforeTitle: 'Parcours « classique » (souvent non linéaire)',
+          'À gauche : 15 micro-étapes sur six phases (parcours souvent non linéaire). À droite : les mêmes six phases, mais une seule étape condensée par phase — Side by SaaS enlève le superflu.',
+        beforeTitle: 'Parcours d’achat B2B classique (non linéaire)',
         afterTitle: 'Avec Side by SaaS (parcours raccourci)',
         beforeCaption:
-          'Quinze micro-étapes (détection du besoin jusqu’au consensus), mais allers-retours constants entre elles — le parcours réel ressemble à un enchevêtrement, pas à une ligne droite.',
+          'Les acheteurs revisittent souvent plusieurs « jobs » en parallèle : recherche autonome, désalignements, RFP, démos, validations… d’où l’enchevêtrement. Schéma pédagogique inspiré des cadres d’achat B2B largement décrits dans la littérature professionnelle.',
         afterCaption:
-          'Six étapes seulement, dans l’ordre : le même type de projet reste lisible, sans multiplier les boucles inutiles.',
-        disclaimer: 'Schéma pédagogique original — toute ressemblance avec un modèle tiers est fortuite.',
-        stepsLabel: 'étapes intermédiaires numérotées',
+          'À gauche : 15 micro-étapes (souvent revisitées). À droite : 6 étapes seulement — une par phase d’achat — car Side by SaaS supprime ou fusionne ce qui est redondant (veille inutile, RFP à vide, cycles commerciaux hors sujet, boucles avant signature).',
+        disclaimer:
+          'Illustration originale — les libellés de phases suivent une structure d’achat B2B courante dans la pratique ; elle ne reproduit pas un support graphique édité par un tiers.',
+        stepsLabel: 'micro-étapes numérotées (réparties sur 6 phases d’achat)',
         classicStepCount: '15',
-        sbsShortLabel: '6 étapes seulement — parcours linéaire et court',
-        stepsClassic: {
-          s1: 'Détection du problème ou de l’opportunité',
-          s2: 'Priorisation interne & désignation d’un sponsor',
-          s3: 'Veille marché & recherche informelle (pairs, web)',
-          s4: 'Exploration large des approches & solutions',
-          s5: 'Ateliers métiers & délimitation du périmètre fonctionnel',
-          s6: 'Rédaction des exigences détaillées & critères d’évaluation',
-          s7: 'Scoring, pondération & arbitrages entre parties prenantes',
-          s8: 'Long list, RFI / sourcing & premiers échanges fournisseurs',
-          s9: 'Démos, POC & cycles commerciaux répétés',
-          s10: 'Short list, offres & négociation commerciale',
-          s11: 'Validation technique, intégration & performances',
-          s12: 'Validation sécurité, conformité & gestion des risques',
-          s13: 'Validation juridique, SLA & conditions contractuelles',
-          s14: 'Références clients, due diligence & alignement achats',
-          s15: 'Consensus final, validation budget, signature & lancement',
+        classicJobsNote: 'Les 6 phases « acheteur » (cadre public fréquent)',
+        classicJobs: {
+          j1: '1. Identification du problème',
+          j2: '2. Exploration des solutions',
+          j3: '3. Construction des exigences',
+          j4: '4. Sélection des fournisseurs',
+          j5: '5. Validation',
+          j6: '6. Consensus & décision d’achat',
         },
-        stepsSbs: {
-          s1: 'Cadrage, sponsor & benchmark auprès de pairs',
-          s2: 'Critères pondérés & short list qualifiée',
-          s3: 'Échanges uniquement avec les éditeurs retenus',
-          s4: 'Contrôles tech & sécu ciblés sur le périmètre réel',
-          s5: 'Alignement interne, achats & conditions',
-          s6: 'Décision & contractualisation',
+        sbsShortLabel: '6 étapes condensées (au lieu de 15 à gauche) — une étape par phase',
+        stepsClassic: {
+          s1: 'Détection du problème ou de l’opportunité métier',
+          s2: 'Recherche en ligne, rapports & veille indépendante (hors pitch commercial direct)',
+          s3: 'Friction : désalignement interne sur la définition ou la priorité du problème',
+          s4: 'Exploration élargie des approches, tendances et fournisseurs possibles',
+          s5: 'Discussions avec pairs, consultants, réseaux pro & contenus (livres blancs, webinaires, veille éditeur)',
+          s6: 'Friction : volume d’information élevé, périmètre de solution encore incertain',
+          s7: 'Ateliers métiers & formalisation des exigences, critères et périmètre fonctionnel',
+          s8: 'RFI / RFP, comparaison des réponses & arbitrages entre métiers, IT et achats',
+          s9: 'Short list, visites sites fournisseurs, démos en direct, POC & négociation',
+          s10: 'Comparaison d’offres, business case & cycles commerciaux répétés',
+          s11: 'Friction : données incomplètes pour le business case, règles d’achat, budgets ou freins juridiques',
+          s12: 'Validation technique, intégration, performances & conformité',
+          s13: 'Sécurité, références clients, due diligence & validation risques',
+          s14: 'Alignement du groupe d’achat, reprise juridique, SLA & conditions contractuelles',
+          s15: 'Décision d’achat, validation budget & signature — ou retour en arrière sur une phase antérieure',
+        },
+        stepsSbsCondensed: {
+          j1:
+            'Détection du besoin et veille indépendante, avec moins d’aller-retour sur la définition ou la priorité du problème grâce à des repères pairs pris tôt.',
+          j2:
+            'Exploration fondée sur des acheteurs comparables (même secteur, même taille) : fonctionnalités réelles, prix, avis anonymisés — à la place d’une grande partie de la veille dispersée et de la surcharge d’information.',
+          j3:
+            'Exigences et RFI / RFP calibrées sur l’expérience de pairs — moins d’ateliers et d’itérations « à vide » avant le bon niveau de détail.',
+          j4:
+            'Short list courte, démos et négociation nourries par des données d’achat réelles — on évite les longues listes, les cycles commerciaux hors périmètre et les business case qui tournent faute de données.',
+          j5:
+            'Validations technique, intégration, sécurité, références et due diligence ciblées sur votre cas — pas de contrôles génériques redondants.',
+          j6:
+            'Alignement groupe d’achat, achats, juridique, budget et signature sur une trajectoire plus directe — sans les boucles prolongées du parcours classique.',
         },
       },
       compare: {

@@ -50,6 +50,96 @@ export default {
       independenceTitle: 'For buyers — we are not paid by vendors to steer results',
       independenceBody:
         'Side by SaaS is designed for IT buyers and transparent software purchasing. We do not take money from vendors to rank, feature, or favor any solution: no pay-to-play, no comparisons steered for sellers — so we reduce bias and give you benchmarks you can actually use to negotiate and decide.',
+      journeyVisual: {
+        title: 'Software buying journey: before / after',
+        subtitle:
+          'On the left, typical complex-buying steps loop and overlap. On the right, the same kind of project with Side by SaaS: fewer steps, one straight path.',
+        beforeTitle: '“Classic” journey (often non-linear)',
+        afterTitle: 'With Side by SaaS (shortened path)',
+        beforeCaption:
+          'Fifteen micro-steps (from problem detection to consensus), but constant back-and-forth between them — the real path looks tangled, not linear.',
+        afterCaption:
+          'Only six steps, in order: the same project stays readable without endless loops.',
+        disclaimer: 'Original educational diagram — any similarity to third-party models is coincidental.',
+        stepsLabel: 'numbered intermediate steps',
+        classicStepCount: '15',
+        sbsShortLabel: 'Only six steps — a linear, short path',
+        stepsClassic: {
+          s1: 'Problem or opportunity detection',
+          s2: 'Internal prioritization & executive sponsor',
+          s3: 'Market scan & informal research (peers, web)',
+          s4: 'Broad exploration of approaches & solutions',
+          s5: 'Workshops & functional scope definition',
+          s6: 'Detailed requirements & evaluation criteria',
+          s7: 'Scoring, weighting & stakeholder trade-offs',
+          s8: 'Long list, RFI / sourcing & first vendor touchpoints',
+          s9: 'Demos, POCs & repeated sales cycles',
+          s10: 'Short list, proposals & commercial negotiation',
+          s11: 'Technical validation, integration & performance',
+          s12: 'Security, compliance & risk validation',
+          s13: 'Legal review, SLAs & contractual terms',
+          s14: 'Customer references, due diligence & procurement alignment',
+          s15: 'Final consensus, budget approval, signature & go-live',
+        },
+        stepsSbs: {
+          s1: 'Scope, sponsor & peer benchmarking',
+          s2: 'Weighted criteria & qualified shortlist',
+          s3: 'Meetings only with shortlisted vendors',
+          s4: 'Targeted technical & security checks on real scope',
+          s5: 'Internal alignment, procurement & terms',
+          s6: 'Decision & contracting',
+        },
+      },
+      compare: {
+        title: 'Classic sourcing vs Side by SaaS',
+        subtitle:
+          'Same software buying project: compare what teams often face (sales-led process, few benchmarks) with a buyer-centric approach grounded in real purchase data.',
+        colClassic: 'Typical “classic” search',
+        colSbs: 'With Side by SaaS',
+        rowCommercial: {
+          label: 'Sales calls & demos',
+          classic:
+            'Demos and sales meetings before you even know who truly meets your requirements — a lot of time lost\nRepeated cycles with vendors sometimes outside your functional scope\nA pitch you’re expected to trust, with little you can verify for your sector',
+          sbs:
+            'After scoping expected capabilities upfront, you only meet vendors you preselected yourself — you control the shortlist\nNo wasted time with vendors that don’t fit your needs: prior selection filters out poor matches before any sales conversation\nYou don’t rely only on what the rep shows (or leaves out): you cross-check each feature with peer feedback from people who use the product — strengths, gaps, and real usage beyond the sales pitch',
+        },
+        rowReferences: {
+          label: 'References & sector fit',
+          classic:
+            'Hand-picked references from the vendor\nRarely a truly comparable company (size, industry, constraints)\nHard to tell if the story matches your situation',
+          sbs: 'Anonymized buying decisions with size and sector\nComparable peers as close as possible to your context\nLess storytelling, more real profiles',
+        },
+        rowSelection: {
+          label: 'Selection & functional fit',
+          classic:
+            'Discovery often starts with Google: top results are usually vendors with the strongest marketing (SEO, ads, content) — not necessarily the best product fit for you\nLong discovery cycles vendor by vendor to learn who truly meets your requirements\nHard to compare features objectively before you are pulled into a sales motion\nRisk of skipping proper scoping or redoing it for every internal tender',
+          sbs: 'You can shortlist upstream the vendors that match the capabilities your organization expects\nClear needs mapped to comparisons and battle cards — before heavy sales cycles\nA shortlist built on real functional scope, not only the sales pitch',
+        },
+        rowPricing: {
+          label: 'Price benchmarks',
+          classic:
+            'Opaque public pricing or “contact sales” by default\nNo reliable sense of what organizations like yours pay\nRisk of overpaying vs the market without knowing it',
+          sbs: 'Ranges and medians from real purchases\nOrders of magnitude for profiles close to yours\nYou negotiate with a market view, not gut feel',
+        },
+        rowNegotiation: {
+          label: 'Negotiation',
+          classic:
+            'Negotiating “in a vacuum”: no hard proof\nYou can’t cite what others got on discounts or terms\nThe rep keeps the upper hand on arguments',
+          sbs: 'Leverage grounded in what comparable buyers negotiated\nFactual angles (discounts, clauses) for the conversation\nYou take control of the contractual dialogue',
+        },
+        rowTime: {
+          label: 'Time & cycles',
+          classic:
+            'Weeks of repetitive sales cycles, vendor after vendor\nSame playbook (demo, offer, follow-up) with no big picture\nA consolidated view often comes late',
+          sbs: 'Faster market view and comparisons\nData already structured by the buyer community\nFewer laps before clarity',
+        },
+        rowIndependence: {
+          label: 'Independence',
+          classic:
+            'Information is filtered by the vendor and its channels\nPartners and sponsored reviews shape perception\nYou can’t control source bias',
+          sbs: 'Built for buyers — no vendor pay-to-play to rank or push a product\nWe are not paid by vendors to favor a solution in your comparisons\nLess biased views, focused on your decision',
+        },
+      },
     },
   },
   header: {

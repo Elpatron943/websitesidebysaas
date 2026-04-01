@@ -1,5 +1,6 @@
 'use client'
 
+import { useId } from 'react'
 import Link from 'next/link'
 import { SiteHeader } from '@/app/components/SiteHeader'
 import { NavLogo } from '@/app/components/NavLogo'
@@ -50,6 +51,296 @@ const communityPreviews = [
     ],
   },
 ]
+
+function CompareCheckList({ lines, variant }: { lines: string[]; variant: 'bad' | 'good' }) {
+  const isBad = variant === 'bad'
+  return (
+    <div
+      className={`space-y-3 rounded-xl border-2 p-4 md:p-5 ${isBad ? 'border-red-300 bg-red-50/90' : 'border-green-300 bg-emerald-50/90'}`}
+    >
+      {lines.map((line, i) => (
+        <div key={i} className="flex gap-3 items-start">
+          <span
+            className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded shadow-sm ${
+              isBad
+                ? 'border-2 border-red-500 bg-white'
+                : 'border-2 border-green-600 bg-green-600 text-white ring-2 ring-green-200'
+            }`}
+            aria-hidden
+          >
+            {!isBad && (
+              <svg className="h-3 w-3" viewBox="0 0 12 12" fill="none" aria-hidden>
+                <path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            )}
+          </span>
+          <p className={`text-sm leading-relaxed flex-1 ${isBad ? 'text-stone-600' : 'text-stone-800'}`}>{line}</p>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+const CLASSIC_STEPS = 15
+const SBS_STEPS = 6
+
+/** Positions : couronne extérieure (1–10) + couronne intérieure (11–15) pour maximiser les croisements. */
+function buildClassicNodes(): { n: number; x: number; y: number }[] {
+  const cx = 262
+  const cy = 208
+  const outer = 10
+  const rOuter = 156
+  const inner = 5
+  const rInner = 80
+  const out: { n: number; x: number; y: number }[] = []
+  for (let i = 0; i < outer; i++) {
+    const angle = (i / outer) * 2 * Math.PI - Math.PI / 2
+    out.push({
+      n: i + 1,
+      x: Math.round((cx + rOuter * Math.cos(angle)) * 10) / 10,
+      y: Math.round((cy + rOuter * Math.sin(angle)) * 10) / 10,
+    })
+  }
+  for (let i = 0; i < inner; i++) {
+    const angle = (i / inner) * 2 * Math.PI - Math.PI / 2 + 0.55
+    out.push({
+      n: outer + i + 1,
+      x: Math.round((cx + rInner * Math.cos(angle)) * 10) / 10,
+      y: Math.round((cy + rInner * Math.sin(angle)) * 10) / 10,
+    })
+  }
+  return out
+}
+
+/** Nombreuses arêtes uniques pour figurer les allers-retours entre micro-étapes. */
+function buildClassicPairs(n: number): [number, number][] {
+  const set = new Set<string>()
+  const add = (a: number, b: number) => {
+    if (a === b) return
+    const lo = Math.min(a, b)
+    const hi = Math.max(a, b)
+    set.add(`${lo}-${hi}`)
+  }
+  for (let i = 1; i <= n; i++) {
+    add(i, i === n ? 1 : i + 1)
+  }
+  for (let i = 1; i <= n; i++) {
+    for (let d = 2; d <= 11; d++) {
+      add(i, ((i + d - 1) % n) + 1)
+    }
+  }
+  return Array.from(set).map((k) => {
+    const [a, b] = k.split('-').map(Number)
+    return [a, b] as [number, number]
+  })
+}
+
+/**
+ * Parcours type achat B2B complexe : nombreuses étapes intermédiaires numérotées, graphe dense.
+ * Version SBS : moins d’étapes, linéaire — sans citer de modèle tiers.
+ */
+function JourneyBeforeAfter({ t }: { t: (key: string) => string }) {
+  const uid = useId().replace(/:/g, '')
+
+  const classicNodes = buildClassicNodes()
+  const spaghettiPairs = buildClassicPairs(CLASSIC_STEPS)
+  const nodeMap = Object.fromEntries(classicNodes.map((o) => [o.n, o])) as Record<
+    number,
+    (typeof classicNodes)[number]
+  >
+
+  function curveBetween(
+    a: (typeof classicNodes)[number],
+    b: (typeof classicNodes)[number],
+    idx: number
+  ) {
+    const x1 = a.x,
+      y1 = a.y,
+      x2 = b.x,
+      y2 = b.y
+    const mx = (x1 + x2) / 2
+    const my = (y1 + y2) / 2
+    const dx = x2 - x1
+    const dy = y2 - y1
+    const len = Math.sqrt(dx * dx + dy * dy) || 1
+    const bulge = 20 + (idx % 9) * 4
+    const nx = (-dy / len) * bulge
+    const ny = (dx / len) * bulge
+    const flip = idx % 2 === 0 ? 1 : -1
+    const cx = mx + nx * flip
+    const cy = my + ny * flip
+    return `M ${x1} ${y1} Q ${cx} ${cy} ${x2} ${y2}`
+  }
+
+  const sbsXs = [38, 112, 186, 260, 334, 408]
+  const sbsY = 64
+  const gradId = `jv-sbs-grad-${uid}`
+  const markerId = `jv-sbs-arr-${uid}`
+
+  return (
+    <section className="py-14 md:py-16" style={{ backgroundColor: '#F5F0E8' }} aria-labelledby="journey-visual-title">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-8 md:mb-10">
+          <h2 id="journey-visual-title" className="text-2xl md:text-3xl font-bold mb-2" style={{ color: '#1C1917' }}>
+            {t('home.landing.journeyVisual.title')}
+          </h2>
+          <p className="text-sm md:text-base max-w-2xl mx-auto leading-relaxed" style={{ color: '#57534E' }}>
+            {t('home.landing.journeyVisual.subtitle')}
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-stretch">
+          <div
+            className="rounded-2xl border-2 p-4 md:p-5 flex flex-col"
+            style={{ borderColor: '#FECACA', backgroundColor: '#FEF2F2' }}
+          >
+            <p className="text-center font-bold text-red-900 mb-1 text-sm md:text-base">{t('home.landing.journeyVisual.beforeTitle')}</p>
+            <p className="text-center text-xs mb-3 text-red-800/80">
+              {t('home.landing.journeyVisual.classicStepCount')} {t('home.landing.journeyVisual.stepsLabel')}
+            </p>
+            <div className="flex-1 min-h-0">
+              <svg
+                viewBox="0 0 524 416"
+                className="w-full h-auto max-h-[min(420px,60vh)]"
+                role="img"
+                aria-label={t('home.landing.journeyVisual.beforeTitle')}
+              >
+                <title>{t('home.landing.journeyVisual.beforeTitle')}</title>
+                {spaghettiPairs.map(([from, to], idx) => {
+                  const a = nodeMap[from]
+                  const b = nodeMap[to]
+                  if (!a || !b) return null
+                  return (
+                    <path
+                      key={`${from}-${to}-${idx}`}
+                      d={curveBetween(a, b, idx)}
+                      fill="none"
+                      stroke="#DC2626"
+                      strokeWidth={1 + (idx % 5) * 0.12}
+                      strokeOpacity={0.18 + (idx % 6) * 0.045}
+                      strokeLinecap="round"
+                    />
+                  )
+                })}
+                {classicNodes.map((node) => (
+                  <g key={node.n}>
+                    <circle cx={node.x} cy={node.y} r={17} fill="#FFF7F7" stroke="#B91C1C" strokeWidth={2.2} />
+                    <text
+                      x={node.x}
+                      y={node.y + (node.n >= 10 ? 5 : 6)}
+                      textAnchor="middle"
+                      fill="#7F1D1D"
+                      fontSize={node.n >= 10 ? 11 : 13}
+                      fontWeight={700}
+                      fontFamily="system-ui, sans-serif"
+                    >
+                      {node.n}
+                    </text>
+                  </g>
+                ))}
+              </svg>
+              <ol
+                className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1.5 text-left text-[10px] sm:text-[11px] leading-snug border-t border-red-200/80 pt-3"
+                style={{ color: '#57534E' }}
+              >
+                {Array.from({ length: CLASSIC_STEPS }, (_, j) => j + 1).map((i) => (
+                  <li key={i} className="flex gap-2">
+                    <span className="font-bold text-red-800 shrink-0 tabular-nums w-6">{i}.</span>
+                    <span>{t(`home.landing.journeyVisual.stepsClassic.s${i}`)}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+            <p className="text-xs md:text-sm mt-4 text-center leading-relaxed border-t border-red-200/60 pt-3" style={{ color: '#57534E' }}>
+              {t('home.landing.journeyVisual.beforeCaption')}
+            </p>
+          </div>
+
+          <div
+            className="rounded-2xl border-2 p-4 md:p-5 flex flex-col"
+            style={{ borderColor: '#86EFAC', backgroundColor: '#ECFDF5' }}
+          >
+            <p className="text-center font-bold text-green-900 mb-1 text-sm md:text-base">{t('home.landing.journeyVisual.afterTitle')}</p>
+            <p className="text-center text-xs mb-3 text-green-800/90 font-medium">{t('home.landing.journeyVisual.sbsShortLabel')}</p>
+            <div className="flex-1 min-h-0">
+              <svg
+                viewBox="0 0 446 118"
+                className="w-full h-auto max-h-[min(220px,38vh)]"
+                role="img"
+                aria-label={t('home.landing.journeyVisual.afterTitle')}
+              >
+                <title>{t('home.landing.journeyVisual.afterTitle')}</title>
+                <defs>
+                  <linearGradient id={gradId} x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#4ADE80" />
+                    <stop offset="100%" stopColor="#16A34A" />
+                  </linearGradient>
+                  <marker id={markerId} markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                    <path d="M0,0 L8,4 L0,8 Z" fill="#15803D" />
+                  </marker>
+                </defs>
+                <line
+                  x1={sbsXs[0] + 18}
+                  y1={sbsY}
+                  x2={sbsXs[SBS_STEPS - 1] - 18}
+                  y2={sbsY}
+                  stroke={`url(#${gradId})`}
+                  strokeWidth={5}
+                  strokeLinecap="round"
+                  opacity={0.45}
+                />
+                {Array.from({ length: SBS_STEPS - 1 }, (_, i) => (
+                  <line
+                    key={i}
+                    x1={sbsXs[i] + 18}
+                    y1={sbsY}
+                    x2={sbsXs[i + 1] - 18}
+                    y2={sbsY}
+                    stroke="#15803D"
+                    strokeWidth={2}
+                    strokeOpacity={0.85}
+                    markerEnd={`url(#${markerId})`}
+                  />
+                ))}
+                {sbsXs.map((x, i) => (
+                  <g key={i}>
+                    <circle cx={x} cy={sbsY} r={20} fill="#FFFFFF" stroke="#15803D" strokeWidth={3} />
+                    <text
+                      x={x}
+                      y={sbsY + 7}
+                      textAnchor="middle"
+                      fill="#14532D"
+                      fontSize={15}
+                      fontWeight={700}
+                      fontFamily="system-ui, sans-serif"
+                    >
+                      {i + 1}
+                    </text>
+                  </g>
+                ))}
+              </svg>
+              <ol className="mt-4 space-y-1.5 text-left text-[11px] sm:text-xs leading-snug border-t border-green-200/80 pt-3" style={{ color: '#44403C' }}>
+                {Array.from({ length: SBS_STEPS }, (_, j) => j + 1).map((i) => (
+                  <li key={i} className="flex gap-2">
+                    <span className="font-bold text-green-800 shrink-0 tabular-nums w-6">{i}.</span>
+                    <span>{t(`home.landing.journeyVisual.stepsSbs.s${i}`)}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+            <p className="text-xs md:text-sm mt-4 text-center leading-relaxed border-t border-green-200/60 pt-3" style={{ color: '#44403C' }}>
+              {t('home.landing.journeyVisual.afterCaption')}
+            </p>
+          </div>
+        </div>
+
+        <p className="text-center text-xs mt-6 max-w-2xl mx-auto" style={{ color: '#A8A29E' }}>
+          {t('home.landing.journeyVisual.disclaimer')}
+        </p>
+      </div>
+    </section>
+  )
+}
 
 export default function Home() {
   const t = useTranslations()
@@ -153,6 +444,59 @@ export default function Home() {
                 Des acheteurs IT partagent anonymement leurs vraies décisions — prix négociés, remises obtenues, raisons du choix final. Taille et secteur visibles pour que vous trouviez des pairs comparables.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <JourneyBeforeAfter t={t} />
+
+      {/* TABLEAU COMPARATIF : CLASSIQUE VS SIDE BY SAAS */}
+      <section className="py-16 md:py-20" style={{ backgroundColor: '#FFFBF5' }}>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-bold mb-3" style={{ color: '#1C1917' }}>
+              {t('home.landing.compare.title')}
+            </h2>
+            <p className="text-base max-w-3xl mx-auto leading-relaxed" style={{ color: '#57534E' }}>
+              {t('home.landing.compare.subtitle')}
+            </p>
+          </div>
+          {/* En-têtes colonnes (cases rouges vs vertes) */}
+          <div className="grid md:grid-cols-2 gap-4 mb-6 max-w-4xl mx-auto">
+            <div className="flex items-center justify-center gap-2 rounded-xl border-2 border-red-300 bg-red-50 px-4 py-3">
+              <span className="flex h-5 w-5 shrink-0 rounded border-2 border-red-500 bg-white shadow-sm" aria-hidden />
+              <span className="text-sm font-bold text-red-800 text-center">{t('home.landing.compare.colClassic')}</span>
+            </div>
+            <div className="flex items-center justify-center gap-2 rounded-xl border-2 border-green-400 bg-emerald-50 px-4 py-3">
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded border-2 border-green-600 bg-green-600 text-white shadow-sm ring-2 ring-green-200" aria-hidden>
+                <svg className="h-3 w-3" viewBox="0 0 12 12" fill="none" aria-hidden>
+                  <path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
+              <span className="text-sm font-bold text-green-900 text-center">{t('home.landing.compare.colSbs')}</span>
+            </div>
+          </div>
+
+          <div className="space-y-8">
+            {(['rowSelection', 'rowCommercial', 'rowReferences', 'rowPricing', 'rowNegotiation', 'rowTime', 'rowIndependence'] as const).map((rowKey) => {
+              const classicLines = t(`home.landing.compare.${rowKey}.classic`).split('\n').map((s) => s.trim()).filter(Boolean)
+              const sbsLines = t(`home.landing.compare.${rowKey}.sbs`).split('\n').map((s) => s.trim()).filter(Boolean)
+              return (
+                <div
+                  key={rowKey}
+                  className="rounded-2xl border-2 p-5 md:p-6 shadow-sm"
+                  style={{ borderColor: '#E7E5E4', backgroundColor: '#FAFAF9' }}
+                >
+                  <h3 className="text-base md:text-lg font-bold mb-4 text-center md:text-left" style={{ color: '#1C1917' }}>
+                    {t(`home.landing.compare.${rowKey}.label`)}
+                  </h3>
+                  <div className="grid md:grid-cols-2 gap-4 md:gap-6">
+                    <CompareCheckList lines={classicLines} variant="bad" />
+                    <CompareCheckList lines={sbsLines} variant="good" />
+                  </div>
+                </div>
+              )
+            })}
           </div>
         </div>
       </section>

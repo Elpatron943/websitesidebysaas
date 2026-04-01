@@ -50,6 +50,96 @@ export default {
       independenceTitle: 'Au service des acheteurs, sans rémunération des éditeurs',
       independenceBody:
         'Side by SaaS est pensée pour les acheteurs IT et la transparence des achats logiciels. Nous ne nous rémunérons pas auprès des éditeurs pour classer, mettre en avant ou favoriser une solution : pas de « pay-to-play », pas d’orientation des comparatifs au profit des vendeurs — pour limiter les biais et vous donner des repères réellement utiles pour négocier et décider.',
+      journeyVisual: {
+        title: 'Parcours d’achat logiciel : avant / après',
+        subtitle:
+          'À gauche, les étapes typiques d’un achat complexe se répètent et se recoupent. À droite, le même type de projet avec Side by SaaS : moins d’étapes, un seul fil direct.',
+        beforeTitle: 'Parcours « classique » (souvent non linéaire)',
+        afterTitle: 'Avec Side by SaaS (parcours raccourci)',
+        beforeCaption:
+          'Quinze micro-étapes (détection du besoin jusqu’au consensus), mais allers-retours constants entre elles — le parcours réel ressemble à un enchevêtrement, pas à une ligne droite.',
+        afterCaption:
+          'Six étapes seulement, dans l’ordre : le même type de projet reste lisible, sans multiplier les boucles inutiles.',
+        disclaimer: 'Schéma pédagogique original — toute ressemblance avec un modèle tiers est fortuite.',
+        stepsLabel: 'étapes intermédiaires numérotées',
+        classicStepCount: '15',
+        sbsShortLabel: '6 étapes seulement — parcours linéaire et court',
+        stepsClassic: {
+          s1: 'Détection du problème ou de l’opportunité',
+          s2: 'Priorisation interne & désignation d’un sponsor',
+          s3: 'Veille marché & recherche informelle (pairs, web)',
+          s4: 'Exploration large des approches & solutions',
+          s5: 'Ateliers métiers & délimitation du périmètre fonctionnel',
+          s6: 'Rédaction des exigences détaillées & critères d’évaluation',
+          s7: 'Scoring, pondération & arbitrages entre parties prenantes',
+          s8: 'Long list, RFI / sourcing & premiers échanges fournisseurs',
+          s9: 'Démos, POC & cycles commerciaux répétés',
+          s10: 'Short list, offres & négociation commerciale',
+          s11: 'Validation technique, intégration & performances',
+          s12: 'Validation sécurité, conformité & gestion des risques',
+          s13: 'Validation juridique, SLA & conditions contractuelles',
+          s14: 'Références clients, due diligence & alignement achats',
+          s15: 'Consensus final, validation budget, signature & lancement',
+        },
+        stepsSbs: {
+          s1: 'Cadrage, sponsor & benchmark auprès de pairs',
+          s2: 'Critères pondérés & short list qualifiée',
+          s3: 'Échanges uniquement avec les éditeurs retenus',
+          s4: 'Contrôles tech & sécu ciblés sur le périmètre réel',
+          s5: 'Alignement interne, achats & conditions',
+          s6: 'Décision & contractualisation',
+        },
+      },
+      compare: {
+        title: 'Benchmark classique ou Side by SaaS ?',
+        subtitle:
+          'Même projet d’achat logiciel : comparer ce que vivent souvent les équipes (dépendance au commercial, peu de repères) avec ce que permet une approche centrée acheteurs et données réelles.',
+        colClassic: 'Souvent, en recherche « classique »',
+        colSbs: 'Avec Side by SaaS',
+        rowCommercial: {
+          label: 'Commercial & démos',
+          classic:
+            'Démos et RDV avec des commerciaux avant d’avoir clarifié qui couvre vraiment vos exigences — beaucoup de temps perdu\nCycles répétés avec des éditeurs parfois hors de votre périmètre fonctionnel\nDiscours à prendre au sérieux, peu de faits vérifiables sur votre secteur',
+          sbs:
+            'Après avoir cadré les fonctionnalités attendues en amont, vous ne rencontrez que les éditeurs que vous avez vous-même présélectionnés — vous maîtrisez la short list\nVous ne perdez pas de temps avec des éditeurs qui ne répondent pas à vos besoins : la sélection préalable écarte les mauvais candidats avant tout échange commercial\nVous ne vous fiez pas uniquement à ce que le commercial montre (ni à ce qu’il omet) : vous confrontez chaque fonctionnalité aux avis de pairs qui utilisent le produit — forces, limites et usages réels, au-delà du seul discours vendeur',
+        },
+        rowReferences: {
+          label: 'Références & secteur',
+          classic:
+            'Références « sur mesure » sélectionnées par l’éditeur\nRarement une entreprise vraiment comparable (taille, métier, contraintes)\nDifficile de savoir si le cas ressemble au vôtre',
+          sbs: 'Décisions d’achat anonymisées avec taille et secteur\nCiblage de pairs comparables au plus près de votre contexte\nMoins de blabla, plus de profils réels',
+        },
+        rowSelection: {
+          label: 'Sélection & besoins métier',
+          classic:
+            'La découverte passe souvent par Google : en tête de résultats, ce sont surtout les acteurs au meilleur marketing (SEO, publicité, contenu) — pas forcément le produit le plus adapté à votre besoin\nLongues phases de découverte éditeur par éditeur pour savoir qui couvre vraiment vos exigences\nDifficile de comparer objectivement les fonctionnalités avant d’être « pris » dans le cycle commercial\nRisque de court-circuiter le cadrage ou de le refaire à chaque appel d’offres interne',
+          sbs: 'Vous pouvez présélectionner en amont les éditeurs alignés sur les fonctionnalités attendues par votre organisation\nCadrage clair des besoins croisé avec des comparatifs et Battle Cards — avant d’engager des cycles lourds\nUne short list fondée sur le périmètre fonctionnel réel, pas seulement sur le discours commercial',
+        },
+        rowPricing: {
+          label: 'Repères prix',
+          classic:
+            'Grille publique floue ou systématiquement « sur devis »\nAucune idée fiable de ce que paient des structures comme la vôtre\nRisque de payer au-dessus du marché sans le savoir',
+          sbs: 'Fourchettes et médianes issues d’achats réels\nOrdres de grandeur pour des profils proches du vôtre\nVous négociez avec une vision du marché, pas au feeling',
+        },
+        rowNegotiation: {
+          label: 'Négociation',
+          classic:
+            'Négociation « dans le vide » : pas de preuve concrète\nImpossible d’invoquer ce que d’autres ont obtenu en remise ou en conditions\nLe commercial garde le dessus sur les arguments',
+          sbs: 'Leviers alignés sur ce que des acheteurs comparables ont négocié\nArguments factuels (remises, clauses) pour votre discussion\nVous reprenez la main sur le dialogue contractuel',
+        },
+        rowTime: {
+          label: 'Temps & cycles',
+          classic:
+            'Semaines de cycles commerciaux répétés, un éditeur après l’autre\nMême schéma (démo, offre, relance) sans vue d’ensemble\nVision consolidée souvent tardive',
+          sbs: 'Vue marché et comparatifs accélérés\nDonnées déjà structurées par la communauté acheteurs\nMoins de tours de piste pour une vision claire',
+        },
+        rowIndependence: {
+          label: 'Indépendance',
+          classic:
+            'L’information est filtrée par l’éditeur et ses canaux\nPartenaires et avis sponsorisés orientent la perception\nVous ne maîtrisez pas les biais de la source',
+          sbs: 'Modèle pensé pour les acheteurs, pas « pay-to-play » éditeur\nPas de rémunération des éditeurs pour classer ou pousser une solution\nComparatifs moins biaisés, au service de votre décision',
+        },
+      },
     },
   },
   header: {

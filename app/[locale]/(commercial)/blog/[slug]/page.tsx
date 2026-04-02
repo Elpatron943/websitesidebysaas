@@ -10,6 +10,7 @@ const CATEGORY_KEYS: Record<string, string> = {
   'comparaison-benchmarks': 'header.categoryComparison',
   'prix-negociation': 'header.categoryPricing',
   'etudes-tendances': 'header.categoryStudies',
+  reglementation: 'header.categoryRegulation',
 }
 
 type Props = { params: Promise<{ locale: string; slug: string }> }

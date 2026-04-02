@@ -9,6 +9,7 @@ const CATEGORY_KEYS: Record<string, string> = {
   'comparaison-benchmarks': 'header.categoryComparison',
   'prix-negociation': 'header.categoryPricing',
   'etudes-tendances': 'header.categoryStudies',
+  reglementation: 'header.categoryRegulation',
 }
 
 const VALID_CATEGORY_SLUGS = new Set(BLOG_CATEGORIES.map((c) => c.slug))

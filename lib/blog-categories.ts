@@ -68,6 +68,14 @@ export const BLOG_CATEGORIES = [
     urlPrefix: '/discover',
     sortOrder: 8,
   },
+  {
+    slug: 'reglementation',
+    name: 'Réglementation',
+    emoji: '⚖️',
+    description: 'NIS2, RGPD, facturation électronique et obligations réglementaires.',
+    urlPrefix: '/reglementation',
+    sortOrder: 9,
+  },
 ] as const
 
 export type BlogCategorySlug = (typeof BLOG_CATEGORIES)[number]['slug']

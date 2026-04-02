@@ -174,6 +174,7 @@ export default {
     categoryComparison: 'Comparaison & benchmarks',
     categoryPricing: 'Prix & négociation',
     categoryStudies: 'Études & tendances',
+    categoryRegulation: 'Réglementation',
   },
   footer: {
     copyright: '©',

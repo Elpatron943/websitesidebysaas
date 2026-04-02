@@ -25,6 +25,84 @@ const articleStyles = {
   strong: 'font-semibold text-slate-800',
 }
 
+const REG_NIS2_BODY = `
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">NIS2</strong> (directive UE 2022/2555) renforce les obligations de cybersécurité pour un nombre beaucoup plus large d’organisations qu’avant. L’enjeu, côté acheteur IT, n’est pas uniquement “être conforme” : c’est d’anticiper les exigences de gouvernance, de gestion des risques et de notification, et d’en tenir compte dans le choix de vos fournisseurs (SaaS, infogérance, cloud, MSSP).</p>
+
+<h2 class="${articleStyles.h2}">Ce que NIS2 change concrètement</h2>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Périmètre élargi :</strong> plus d’entités “essentielles” et “importantes”, selon secteur et taille.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Responsabilité du management :</strong> obligations de supervision et de mesures adéquates.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Gestion des incidents :</strong> délais de notification et exigences de traçabilité.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Chaîne d’approvisionnement :</strong> focus explicite sur les risques fournisseurs.</li>
+</ul>
+
+<h2 class="${articleStyles.h2}">Checklist acheteur IT (avant de signer)</h2>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Demander le <strong class="${articleStyles.strong}">cadre de sécurité</strong> du fournisseur (politiques, audits, certifications, PRA/PCA).</li>
+  <li class="${articleStyles.li}">Vérifier les <strong class="${articleStyles.strong}">SLA d’incident</strong> : délais de détection, d’alerte client, et de remédiation.</li>
+  <li class="${articleStyles.li}">Exiger une <strong class="${articleStyles.strong}">clause de notification</strong> compatible avec vos obligations (et vos délais internes).</li>
+  <li class="${articleStyles.li}">Évaluer la <strong class="${articleStyles.strong}">sous-traitance</strong> (hébergeurs, sub-processors) et les points de défaillance.</li>
+</ul>
+
+${CTA_PLACEHOLDER}
+`
+
+const REG_VIGILANCE_BODY = `
+<p class="${articleStyles.p}">Le <strong class="${articleStyles.strong}">devoir de vigilance</strong> (et, plus largement, les obligations de vigilance dans la chaîne de valeur) oblige les entreprises concernées à identifier, prévenir et atténuer les risques liés aux droits humains, à la santé/sécurité et à l’environnement. Pour un achat SaaS, cela se traduit par des questions très opérationnelles : sous-traitance, localisation des données, sécurité, conformité sociale, et capacité du fournisseur à documenter ses pratiques.</p>
+
+<h2 class="${articleStyles.h2}">Pourquoi c’est un sujet “achat SaaS”</h2>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Sous-traitance :</strong> le SaaS s’appuie souvent sur plusieurs prestataires (cloud, support, data, analytics).</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Localisation :</strong> pays d’hébergement et transferts potentiels.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Traçabilité :</strong> capacité à fournir des preuves (politiques, audits, engagements).</li>
+</ul>
+
+<h2 class="${articleStyles.h2}">Ce qu’il faut demander au fournisseur</h2>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Liste des <strong class="${articleStyles.strong}">sous-traitants</strong> et mécanisme de notification des changements.</li>
+  <li class="${articleStyles.li}">Engagements <strong class="${articleStyles.strong}">RSE</strong> et documentation (codes de conduite, audits, certifications).</li>
+  <li class="${articleStyles.li}">Mesures de <strong class="${articleStyles.strong}">sécurité</strong> et processus de gestion d’incident.</li>
+</ul>
+
+${CTA_PLACEHOLDER}
+`
+
+const REG_FACTURATION_ELECTRONIQUE_BODY = `
+<p class="${articleStyles.p}">La <strong class="${articleStyles.strong}">facturation électronique</strong> (e-invoicing / e-reporting) devient un chantier structurant : elle impose des choix d’outils, d’intégrations (ERP, compta, achats) et de gouvernance de données. Côté acheteur, l’objectif est de réduire le risque projet : compatibilité, coûts d’intégration, et conformité dans la durée.</p>
+
+<h2 class="${articleStyles.h2}">Les points qui font dérailler un projet</h2>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Intégrations :</strong> ERP/compta, référentiels, workflows d’approbation.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Données :</strong> qualité des champs, mapping, identifiants, TVA.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Coûts cachés :</strong> paramétrage, connecteurs, accompagnement, support.</li>
+</ul>
+
+<h2 class="${articleStyles.h2}">Questions à poser avant de choisir une solution</h2>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Quelle couverture fonctionnelle <strong class="${articleStyles.strong}">P2P</strong> (purchase-to-pay) et quels connecteurs natifs ?</li>
+  <li class="${articleStyles.li}">Quel modèle de coût : <strong class="${articleStyles.strong}">par facture</strong>, par entité, par utilisateur ?</li>
+  <li class="${articleStyles.li}">Quelle roadmap et quelles garanties de <strong class="${articleStyles.strong}">mise à jour réglementaire</strong> ?</li>
+</ul>
+
+${CTA_PLACEHOLDER}
+`
+
+const REG_RGPD_BODY = `
+<p class="${articleStyles.p}">Le <strong class="${articleStyles.strong}">RGPD</strong> est devenu un passage obligé… mais dans la pratique, beaucoup d’achats SaaS se bloquent sur des points évitables : DPA incomplet, sous-traitants flous, transferts hors UE, ou clauses sécurité trop vagues. Une bonne approche acheteur consiste à standardiser les questions et à exiger des preuves plutôt que des promesses.</p>
+
+<h2 class="${articleStyles.h2}">Les 6 points qui reviennent dans (presque) tous les achats SaaS</h2>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Rôles :</strong> responsable de traitement / sous-traitant, et périmètre des traitements.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">DPA :</strong> clauses, annexes, sous-traitants, audits.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Localisation :</strong> hébergement et transferts (et leurs garanties).</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Sécurité :</strong> mesures techniques, chiffrement, IAM, journaux.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Droits :</strong> portabilité, suppression, restitution des données.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Incident :</strong> délais, contenu des notifications, coopération.</li>
+</ul>
+
+${CTA_PLACEHOLDER}
+`
+
 const SALESFORCE_HUBSPOT_BODY = `
 <p class="${articleStyles.p}">Si vous ├¬tes en train de comparer <strong class="${articleStyles.strong}">Salesforce</strong> et <strong class="${articleStyles.strong}">HubSpot</strong>, c'est probablement parce que vous en avez assez de jongler entre des tablettes Excel, des bo├«tes mail surcharg├®es et des rappels qui se perdent dans la nature. <strong class="${articleStyles.strong}">Bonne nouvelle</strong> : vous ├¬tes au bon endroit. <strong class="${articleStyles.strong}">Mauvaise nouvelle</strong> : il n'existe pas de r├®ponse universelle ├á cette question. Mais apr├¿s avoir accompagn├® des dizaines d'entreprises dans le choix de leur CRM, on peut vous dire que le bon outil d├®pend ├®norm├®ment de votre situation actuelle ÔÇö et surtout de celle que vous visez dans 2 ou 3 ans.</p>
 
@@ -956,6 +1034,66 @@ ${CTA_PLACEHOLDER}
 `
 
 export const BLOG_POSTS: BlogPostData[] = [
+  {
+    id: 'rgpd-checklist-achat-saas-2026',
+    category_slug: 'reglementation',
+    title: 'RGPD et achat SaaS : la checklist acheteur (DPA, sous-traitants, transferts)',
+    slug: 'rgpd-achat-saas-checklist-dpa-sous-traitants-transferts',
+    excerpt:
+      'Les points RGPD qui bloquent (ou sécurisent) un achat SaaS : DPA, sous-traitants, localisation, sécurité, droits et gestion d’incident.',
+    body: REG_RGPD_BODY.replace(CTA_PLACEHOLDER, CTA_MID_HTML),
+    published_at: '2026-04-02T09:00:00Z',
+    created_at: '2026-04-02T09:00:00Z',
+    reading_minutes: 6,
+  },
+  {
+    id: 'facturation-electronique-questions-choix-solution-2026',
+    category_slug: 'reglementation',
+    title: 'Facturation électronique : comment choisir votre solution (ERP, coûts, conformité)',
+    slug: 'facturation-electronique-choisir-solution-erp-couts-conformite',
+    excerpt:
+      'Checklist de sélection pour un projet de facturation électronique : intégrations, coûts cachés, gouvernance des données et garanties de mise à jour.',
+    body: REG_FACTURATION_ELECTRONIQUE_BODY.replace(CTA_PLACEHOLDER, CTA_MID_HTML),
+    published_at: '2026-04-02T09:30:00Z',
+    created_at: '2026-04-02T09:30:00Z',
+    reading_minutes: 6,
+  },
+  {
+    id: 'devoir-de-vigilance-achat-saas-2026',
+    category_slug: 'reglementation',
+    title: 'Devoir de vigilance : intégrer la chaîne de sous-traitance dans vos achats SaaS',
+    slug: 'devoir-de-vigilance-achats-saas-chaine-sous-traitance',
+    excerpt:
+      'Pourquoi la vigilance (RSE, sous-traitants, localisation, preuves) devient une question d’achat SaaS, et quoi demander aux fournisseurs.',
+    body: REG_VIGILANCE_BODY.replace(CTA_PLACEHOLDER, CTA_MID_HTML),
+    published_at: '2026-04-02T10:00:00Z',
+    created_at: '2026-04-02T10:00:00Z',
+    reading_minutes: 6,
+  },
+  {
+    id: 'obligation-de-vigilance-achats-it-2026',
+    category_slug: 'reglementation',
+    title: 'Obligation de vigilance : ce que les acheteurs IT doivent formaliser (process & preuves)',
+    slug: 'obligation-de-vigilance-acheteurs-it-process-preuves',
+    excerpt:
+      'Traduire la vigilance en pratiques d’achat : questionnaires, exigences contractuelles, gouvernance et preuves à collecter.',
+    body: REG_VIGILANCE_BODY.replace(CTA_PLACEHOLDER, CTA_MID_HTML),
+    published_at: '2026-04-02T10:30:00Z',
+    created_at: '2026-04-02T10:30:00Z',
+    reading_minutes: 6,
+  },
+  {
+    id: 'nis2-checklist-fournisseurs-saas-2026',
+    category_slug: 'reglementation',
+    title: 'NIS2 : la checklist acheteur pour évaluer vos fournisseurs SaaS',
+    slug: 'nis2-checklist-acheteur-evaluer-fournisseurs-saas',
+    excerpt:
+      'Ce que NIS2 implique côté acheteur : sécurité, incidents, gouvernance et gestion des risques fournisseurs avant signature.',
+    body: REG_NIS2_BODY.replace(CTA_PLACEHOLDER, CTA_MID_HTML),
+    published_at: '2026-04-02T11:00:00Z',
+    created_at: '2026-04-02T11:00:00Z',
+    reading_minutes: 7,
+  },
   {
     id: 'salesforce-vs-hubspot-2025',
     category_slug: 'comparaison-benchmarks',

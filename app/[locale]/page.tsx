@@ -284,9 +284,7 @@ function JourneyBeforeAfter({ t }: { t: (key: string) => string }) {
                 ))}
               </div>
             </div>
-            <p className="text-xs md:text-sm mt-4 text-center leading-relaxed border-t border-red-200/60 pt-3" style={{ color: '#57534E' }}>
-              {t('home.landing.journeyVisual.beforeCaption')}
-            </p>
+            {/* Caption removed by request */}
           </div>
 
           <div
@@ -376,9 +374,7 @@ function JourneyBeforeAfter({ t }: { t: (key: string) => string }) {
                 ))}
               </div>
             </div>
-            <p className="text-xs md:text-sm mt-4 text-center leading-relaxed border-t border-green-200/60 pt-3" style={{ color: '#44403C' }}>
-              {t('home.landing.journeyVisual.afterCaption')}
-            </p>
+            {/* Caption removed by request */}
           </div>
         </div>
 

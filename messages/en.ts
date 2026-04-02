@@ -255,6 +255,13 @@ export default {
     subtitle: 'Articles and news for SaaS buyers and publishers.',
     all: 'All',
     allCategories: 'All categories',
+    categories: {
+      comparatifs: 'Comparisons',
+      'guides-achat': 'Buying guides',
+      benchmarks: 'Benchmarks & studies',
+      'templates-outils': 'Templates & tools',
+      reglementation: 'Regulation',
+    },
     noPosts: 'No posts published yet.',
     noPostsCategory: 'No posts in this category yet.',
     comeBack: 'Come back soon to discover our content.',
@@ -265,6 +272,10 @@ export default {
     articleNotFound: 'Article not found',
     ctaTitle: 'Ready to compare your SaaS tools with real data?',
     ctaSubtitle: 'Join Side by SaaS and access prices paid by other buyers.',
+    comparatifsCtaSubtitle:
+      'By signing up, you’ll access prices paid by peers (same industry, same size), features observed from real users, and user reviews.',
+    templatesCtaSubtitle:
+      'Want to level up with software to: {object}.',
     createBuyerAccount: 'Create my buyer account',
     discoverBuyer: 'Discover buyer space',
     regCtaTitle: 'Find compliant solutions',

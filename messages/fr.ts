@@ -255,6 +255,13 @@ export default {
     subtitle: 'Articles et actualités pour les acheteurs et éditeurs SaaS.',
     all: 'Toutes',
     allCategories: 'Toutes les catégories',
+    categories: {
+      comparatifs: 'Comparatifs',
+      'guides-achat': "Guides d'achat",
+      benchmarks: 'Benchmarks & études',
+      'templates-outils': 'Templates & outils',
+      reglementation: 'Réglementation',
+    },
     noPosts: 'Aucun article publié pour le moment.',
     noPostsCategory: 'Aucun article dans cette catégorie pour le moment.',
     comeBack: 'Revenez bientôt pour découvrir nos contenus.',
@@ -265,6 +272,10 @@ export default {
     articleNotFound: 'Article introuvable',
     ctaTitle: 'Prêt à comparer vos outils SaaS avec des données réelles ?',
     ctaSubtitle: "Rejoignez Side by SaaS et accédez aux prix pratiqués par d'autres acheteurs.",
+    comparatifsCtaSubtitle:
+      "En vous inscrivant, vous accédez aux prix payés par vos pairs (même secteur, même taille), aux fonctionnalités observées chez des utilisateurs réels et aux avis utilisateurs.",
+    templatesCtaSubtitle:
+      'Vous voulez passer à l’étape supérieure avec un logiciel pour : {object}.',
     createBuyerAccount: 'Créer mon compte acheteur',
     discoverBuyer: "Découvrir l'espace acheteur",
     regCtaTitle: 'Trouver des solutions conformes',

@@ -19,6 +19,7 @@ interface BlogPost {
   published_at: string
   created_at: string
   reading_minutes?: number
+  cta_object?: string
 }
 
 const REG_FRAMEWORK_LABELS: Record<string, string> = {
@@ -96,6 +97,7 @@ export default function BlogPostPage() {
     post.body.includes('class="my-10 rounded-xl bg-primary-50 border border-primary-100 p-6 text-center"')
   const frameworkLabel =
     REG_FRAMEWORK_LABELS[post.id] ?? (post.title.split(':')[0] || post.title).trim()
+  const templateObject = post.cta_object ?? (post.title.split(':')[0] || post.title).trim()
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -172,7 +174,11 @@ export default function BlogPostPage() {
                     Prêt à comparer vos outils SaaS avec des données réelles ?
                   </p>
                   <p className="text-slate-600 text-sm mb-4">
-                    Rejoignez Side by SaaS et accédez aux prix pratiqués par d&apos;autres acheteurs.
+                    {post.category_slug === 'templates-outils'
+                      ? `Vous voulez passer à l'étape supérieure avec un logiciel pour : ${templateObject}.`
+                      : post.category_slug === 'comparatifs'
+                        ? "En vous inscrivant, vous accédez aux prix payés par vos pairs (même secteur, même taille), aux fonctionnalités observées chez des utilisateurs réels et aux avis utilisateurs."
+                        : "Rejoignez Side by SaaS et accédez aux prix pratiqués par d&apos;autres acheteurs."}
                   </p>
                   {getSignupUrl('/buyer') ? (
                     <a

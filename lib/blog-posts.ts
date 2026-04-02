@@ -12,6 +12,7 @@ export interface BlogPostData {
   published_at: string
   created_at: string
   reading_minutes?: number
+  cta_object?: string
 }
 
 const CTA_PLACEHOLDER = '{{CTA_MID}}'
@@ -24,6 +25,87 @@ const articleStyles = {
   li: 'leading-relaxed',
   strong: 'font-semibold text-slate-800',
 }
+
+const TEMPLATE_RENTABILITE_PAR_AFFAIRE_BODY = `
+<p class="${articleStyles.p}">La <strong class="${articleStyles.strong}">rentabilité par affaire</strong> (par projet / dossier / mission) consiste à mesurer, de façon comparable, ce que vous <strong class="${articleStyles.strong}">gagnez réellement</strong> une fois les coûts directs et le temps interne pris en compte. C’est une brique simple mais très utile pour arbitrer : quels types d’affaires se répètent, lesquelles dérivent, et où se trouvent les leviers d’amélioration.</p>
+
+<h2 class="${articleStyles.h2}">Ce que vous mesurez (et pourquoi)</h2>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Marge brute (€)</strong> : CA – coûts directs – coûts internes (temps consommé × coût/jour).</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Marge brute (%)</strong> : marge brute / CA (utile pour comparer des tailles d’affaires différentes).</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Dérive de charge</strong> : (jours consommés – jours vendus) pour détecter les projets “qui mangent la marge”.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Valeur attendue (pipeline)</strong> : marge × probabilité de gagner (pour prioriser vos opportunités).</li>
+</ul>
+
+<h2 class="${articleStyles.h2}">Le modèle Excel à télécharger</h2>
+<p class="${articleStyles.p}">Vous pouvez télécharger un modèle prêt à l’emploi (avec formules et champs de saisie) :</p>
+<p class="${articleStyles.p}">
+  <a class="underline font-semibold" href="/api/templates/rentabilite-par-affaire">Télécharger le modèle Excel “Rentabilité par affaire” (.xlsx)</a>
+</p>
+
+<h2 class="${articleStyles.h2}">Champs à renseigner (conseils pratiques)</h2>
+<h3 class="${articleStyles.h3}">CA et coûts</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Montant (CA) – HT</strong> : le montant facturé (ou prévu).</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Coûts directs – HT</strong> : sous-traitance, achats, frais variables rattachables à l’affaire.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Coût interne (€/jour)</strong> : un coût complet moyen (chargé) — l’objectif est la cohérence plus que la précision parfaite.</li>
+</ul>
+
+<h3 class="${articleStyles.h3}">Temps vendu vs temps consommé</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Temps vendu (jours)</strong> : ce que vous avez vendu / contractualisé.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Temps consommé (jours)</strong> : ce qui a réellement été fait (delivery, run, avant-vente si vous l’imputez).</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Astuce</strong> : définissez une règle simple sur ce qui est imputé (sinon les comparaisons ne valent rien).</li>
+</ul>
+
+<h2 class="${articleStyles.h2}">Interpréter les résultats (3 cas fréquents)</h2>
+<h3 class="${articleStyles.h3}">1) Marge € bonne, marge % faible</h3>
+<p class="${articleStyles.p}">Souvent un problème de <strong class="${articleStyles.strong}">pricing</strong> ou de <strong class="${articleStyles.strong}">coûts directs</strong>. Vérifiez les achats/sous-traitants et les remises.</p>
+<h3 class="${articleStyles.h3}">2) Marge % bonne, mais dérive de jours</h3>
+<p class="${articleStyles.p}">Le projet “s’en sort” mais consume trop de bande passante. Regardez le cadrage, les changements de périmètre, et la qualité des entrées.</p>
+<h3 class="${articleStyles.h3}">3) Valeur attendue (pipeline) faible</h3>
+<p class="${articleStyles.p}">Ça peut indiquer une opportunité peu prioritaire : soit la marge potentielle est faible, soit la probabilité de gagner est basse (ou les deux).</p>
+
+<h2 class="${articleStyles.h2}">FAQ</h2>
+<h3 class="${articleStyles.h3}">Dois-je utiliser le CA “facturé” ou “recalculé (jours × TJM)” ?</h3>
+<p class="${articleStyles.p}">Idéalement, utilisez <strong class="${articleStyles.strong}">le CA facturé</strong>. La version “jours × TJM” est utile si vous vendez au temps et voulez une vue homogène quand le CA n’est pas finalisé.</p>
+<h3 class="${articleStyles.h3}">Comment estimer le coût interne/jour ?</h3>
+<p class="${articleStyles.p}">Un ordre de grandeur cohérent suffit : l’important est de comparer des affaires avec la <strong class="${articleStyles.strong}">même méthode</strong>. Vous pouvez partir d’un coût chargé annuel moyen et le ramener en €/jour.</p>
+`
+
+const TEMPLATE_DEVIS_TJM_BODY = `
+<p class="${articleStyles.p}">Un <strong class="${articleStyles.strong}">devis au TJM</strong> (taux journalier moyen) est simple en apparence, mais la plupart des erreurs viennent des “petits” paramètres : remise, frais, TVA, acompte, et surtout la façon de présenter le calcul au client.</p>
+
+<h2 class="${articleStyles.h2}">Le modèle Excel à télécharger</h2>
+<p class="${articleStyles.p}">Voici un modèle prêt à l’emploi, avec formules (HT, TVA, TTC, acompte) :</p>
+<p class="${articleStyles.p}">
+  <a class="underline font-semibold" href="/api/templates/devis-tjm">Télécharger le modèle Excel “Devis TJM” (.xlsx)</a>
+</p>
+
+<h2 class="${articleStyles.h2}">Champs à renseigner</h2>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Durée (jours)</strong> : jours vendus (ce qui est inclus au devis).</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">TJM (€/jour) – HT</strong> : votre taux journalier HT.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Remise (%)</strong> : si vous appliquez une remise (0–100).</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Frais (HT)</strong> : refacturation (déplacements, achats…).</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">TVA (%)</strong> : selon votre régime et le contexte (0–100).</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Acompte (%)</strong> : pour calculer un acompte TTC (0–100).</li>
+</ul>
+
+<h2 class="${articleStyles.h2}">Résultats calculés automatiquement</h2>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Total prestations (HT) après remise</strong> : jours × TJM × (1 – remise).</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Total (HT)</strong> : prestations + frais.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">TVA (€)</strong> puis <strong class="${articleStyles.strong}">Total (TTC)</strong>.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Acompte (€)</strong> : Total TTC × acompte.</li>
+</ul>
+
+<h2 class="${articleStyles.h2}">FAQ</h2>
+<h3 class="${articleStyles.h3}">Dois-je mettre la remise sur le TJM ou sur le total ?</h3>
+<p class="${articleStyles.p}">Les deux reviennent au même mathématiquement, mais appliquer la remise sur le <strong class="${articleStyles.strong}">total</strong> rend souvent la lecture plus claire. Le modèle applique la remise sur le total prestations.</p>
+<h3 class="${articleStyles.h3}">Comment éviter la dérive “jours” ?</h3>
+<p class="${articleStyles.p}">Décrivez clairement le périmètre, les livrables, et les exclusions. Ajoutez un mécanisme simple de changement (validation + chiffrage) si le périmètre évolue.</p>
+`
 
 const REG_NIS2_BODY = `
 <p class="${articleStyles.p}"><strong class="${articleStyles.strong}">NIS2</strong> (directive UE 2022/2555) renforce les exigences de cybersécurité et de <strong class="${articleStyles.strong}">gestion des risques</strong> pour un périmètre plus large d’organisations en Europe. L’idée directrice : améliorer la prévention, la réaction en cas d’incident, et la résilience des activités critiques.</p>
@@ -893,6 +975,675 @@ ${CTA_PLACEHOLDER}
 <p class="${articleStyles.p}">Évitez la multiplication des outils de visio payés en parallèle : c'est un poste de double facturation fréquent après fusions ou acquisitions.</p>
 `.trim()
 
+const GRC_CONFORMITE_REGLEMENTAIRE_BODY = `
+<p class="${articleStyles.p}">Les logiciels de <strong class="${articleStyles.strong}">conformité réglementaire</strong> (souvent rattachés au GRC) aident à structurer vos obligations, vos preuves et vos workflows (politiques, référentiels, contrôles, audits). Le bon choix dépend surtout de votre périmètre (RGPD, ISO 27001, NIS2, eIDAS, exigences sectorielles) et de votre niveau de maturité (PME vs groupe multi-entités).</p>
+
+<h2 class="${articleStyles.h2}">Ce qu’un “bon” outil doit couvrir</h2>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Référentiels & cartographies :</strong> normes, obligations, exigences internes et mapping.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Contrôles & preuves :</strong> collecte, validation, traçabilité, conservation.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Workflows :</strong> assignation, échéances, relances, escalades, validation.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Reporting :</strong> tableaux de bord, états d’avancement, export audit.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Intégrations :</strong> IAM/SSO, ticketing, CMDB, DMS, outils sécurité.</li>
+</ul>
+
+<h2 class="${articleStyles.h2}">Comparaison (exemples) : OneTrust vs TrustArc vs DataGrail</h2>
+<p class="${articleStyles.p}">Ces solutions sont souvent citées dans les périmètres privacy/compliance. L’objectif ici n’est pas de “désigner un gagnant”, mais de donner une grille pour comparer des offres comparables.</p>
+
+<div class="overflow-x-auto mb-6">
+  <table class="min-w-full border border-slate-200 rounded-lg overflow-hidden">
+    <thead>
+      <tr class="bg-slate-50">
+        <th class="px-4 py-3 text-left text-sm font-semibold text-slate-800 border-b border-slate-200">Critère</th>
+        <th class="px-4 py-3 text-left text-sm font-semibold text-slate-800 border-b border-slate-200">À vérifier</th>
+      </tr>
+    </thead>
+    <tbody class="text-slate-700 text-sm">
+      <tr class="border-b border-slate-100">
+        <td class="px-4 py-3 font-semibold">Périmètre</td>
+        <td class="px-4 py-3">Privacy uniquement (RGPD) vs GRC plus large (politiques, risques, audits).</td>
+      </tr>
+      <tr class="border-b border-slate-100">
+        <td class="px-4 py-3 font-semibold">Automatisation</td>
+        <td class="px-4 py-3">Collecte de preuves, questionnaires, connecteurs, relances.</td>
+      </tr>
+      <tr class="border-b border-slate-100">
+        <td class="px-4 py-3 font-semibold">Multi-entités</td>
+        <td class="px-4 py-3">Gestion groupe (filiales, pays) et droits granulaires.</td>
+      </tr>
+      <tr>
+        <td class="px-4 py-3 font-semibold">Audit</td>
+        <td class="px-4 py-3">Exports, journaux, piste d’audit, preuve d’immutabilité si nécessaire.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h2 class="${articleStyles.h2}">Questions à poser en démo</h2>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Pouvez-vous montrer un <strong class="${articleStyles.strong}">workflow complet</strong> (création → collecte de preuves → validation → export audit) ?</li>
+  <li class="${articleStyles.li}">Quel est le <strong class="${articleStyles.strong}">modèle de données</strong> (référentiel, contrôles, preuves) et peut-on l’adapter sans projet lourd ?</li>
+  <li class="${articleStyles.li}">Quelles intégrations existent <strong class="${articleStyles.strong}">nativement</strong> (SSO, Jira/ServiceNow, Google/Microsoft, SIEM) ?</li>
+  <li class="${articleStyles.li}">Comment gérez-vous le <strong class="${articleStyles.strong}">multi-pays</strong> (langues, obligations, rôles, reporting) ?</li>
+</ul>
+
+<h2 class="${articleStyles.h2}">Verdict (sans parti pris)</h2>
+<p class="${articleStyles.p}">Choisissez d’abord votre <strong class="${articleStyles.strong}">périmètre</strong> (privacy vs GRC étendu), puis votre <strong class="${articleStyles.strong}">modèle de déploiement</strong> (PME vs groupe). À fonctionnalités proches, les vrais critères de choix deviennent souvent : intégrations, expérience de collecte de preuves, et capacité multi-entités.</p>
+`.trim()
+
+const GRC_CONTROLES_INTERNES_BODY = `
+<p class="${articleStyles.p}">Les logiciels de <strong class="${articleStyles.strong}">contrôles internes</strong> aident à piloter les tests, la documentation, les plans d’action et l’évidence de contrôle (SOX, contrôle interne, audit). Ils sont souvent utilisés par la finance, l’audit interne, la conformité et parfois l’IT.</p>
+
+<h2 class="${articleStyles.h2}">Les critères qui font la différence</h2>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Gestion des tests :</strong> plan de test, échantillonnage, revue, versioning.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Evidence :</strong> collecte, stockage, permissions, rétention.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Remédiation :</strong> actions, responsables, échéances, escalades.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Traçabilité :</strong> piste d’audit et export (commissaires aux comptes).</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Adoption :</strong> UX pour contributeurs non spécialistes.</li>
+</ul>
+
+<h2 class="${articleStyles.h2}">Comparaison (exemples) : AuditBoard vs Workiva vs Diligent</h2>
+<p class="${articleStyles.p}">Trois acteurs fréquemment rencontrés dans l’audit/contrôle interne. Comparez surtout le niveau de formalisation attendu, les intégrations et le modèle de gouvernance.</p>
+
+<div class="overflow-x-auto mb-6">
+  <table class="min-w-full border border-slate-200 rounded-lg overflow-hidden">
+    <thead>
+      <tr class="bg-slate-50">
+        <th class="px-4 py-3 text-left text-sm font-semibold text-slate-800 border-b border-slate-200">Cas d’usage</th>
+        <th class="px-4 py-3 text-left text-sm font-semibold text-slate-800 border-b border-slate-200">Points de comparaison</th>
+      </tr>
+    </thead>
+    <tbody class="text-slate-700 text-sm">
+      <tr class="border-b border-slate-100">
+        <td class="px-4 py-3 font-semibold">Contrôle interne / SOX</td>
+        <td class="px-4 py-3">Modèle “contrôles → tests → evidence”, réutilisation, mapping risques/contrôles.</td>
+      </tr>
+      <tr class="border-b border-slate-100">
+        <td class="px-4 py-3 font-semibold">Audit interne</td>
+        <td class="px-4 py-3">Plan d’audit, programmes de travail, constats, recommandations, suivi.</td>
+      </tr>
+      <tr>
+        <td class="px-4 py-3 font-semibold">Reporting</td>
+        <td class="px-4 py-3">Dashboards, exports, partage (comité d’audit, CAC), permissions.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h2 class="${articleStyles.h2}">Questions à poser avant d’acheter</h2>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Votre équipe est-elle prête pour une approche “très structurée” (rigueur) ou faut-il une UX “contributeur-friendly” (adoption) ?</li>
+  <li class="${articleStyles.li}">Quels exports sont indispensables pour vos audits (format, granularité, historique) ?</li>
+  <li class="${articleStyles.li}">Quelles intégrations évitent le travail manuel (Drive/SharePoint, Jira/ServiceNow, ERP) ?</li>
+</ul>
+
+<h2 class="${articleStyles.h2}">Verdict (sans parti pris)</h2>
+<p class="${articleStyles.p}">Le meilleur choix est celui qui <strong class="${articleStyles.strong}">colle à votre méthode</strong> : volume de contrôles, fréquence de tests, exigences d’audit, et capacité à faire contribuer les métiers sans friction.</p>
+`.trim()
+
+const GRC_GESTION_RISQUES_BODY = `
+<p class="${articleStyles.p}">Les logiciels de <strong class="${articleStyles.strong}">gestion des risques</strong> (ERM/GRC) servent à centraliser vos risques, vos plans de traitement et vos indicateurs. Ils sont utiles quand l’organisation doit suivre des risques transverses (cyber, opérationnels, fournisseurs, réglementaires) avec un pilotage cohérent.</p>
+
+<h2 class="${articleStyles.h2}">Ce qu’il faut comparer (au-delà du marketing)</h2>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Modélisation :</strong> risques, contrôles, incidents, actions, KRIs/KPIs.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Méthodologie :</strong> scoring (impact/probabilité), appétence, matrices, scénarios.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Workflows :</strong> owners, validations, revues, comités.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Reporting :</strong> comex, comités risques, audits, exports.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Intégrations :</strong> sécurité, ticketing, CMDB, sources de données.</li>
+</ul>
+
+<h2 class="${articleStyles.h2}">Comparaison (exemples) : MetricStream vs Riskonnect vs Resolver</h2>
+<p class="${articleStyles.p}">Trois solutions souvent vues dans des contextes de gestion des risques. Comparez-les surtout sur la flexibilité du modèle, le déploiement multi-entités et la capacité de reporting.</p>
+
+<h2 class="${articleStyles.h2}">Grille de décision rapide</h2>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Si vous êtes multi-entités / multi-pays :</strong> priorité au RBAC, aux vues consolidées, et aux workflows.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Si vous voulez automatiser :</strong> priorité aux connecteurs, à l’API, et à la qualité de la donnée.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Si vous devez convaincre :</strong> priorité au reporting (comité, audit) et aux exports.</li>
+</ul>
+
+<h2 class="${articleStyles.h2}">Verdict (sans parti pris)</h2>
+<p class="${articleStyles.p}">Un outil de risques est “bon” s’il permet de <strong class="${articleStyles.strong}">tenir une discipline</strong> (revues, owners, plans d’action) et de produire un reporting cohérent. Le risque n’est pas le choix de l’outil, mais l’absence de gouvernance et d’adoption.</p>
+`.trim()
+
+const GRC_RISQUES_TIERS_TPRM_BODY = `
+<p class="${articleStyles.p}">Les outils de <strong class="${articleStyles.strong}">TPRM</strong> (Third-Party Risk Management) servent à gérer le risque lié aux fournisseurs : onboarding, questionnaires, preuves, scoring, remédiation, et suivi continu. Ils sont particulièrement utiles quand vous avez beaucoup de prestataires, des exigences sécurité/compliance élevées, ou des audits fréquents.</p>
+
+<h2 class="${articleStyles.h2}">Les critères essentiels en TPRM</h2>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Questionnaires :</strong> bibliothèque, versions, logique conditionnelle, portails fournisseurs.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Preuves :</strong> upload, validité, expiration, automatisation des relances.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Scoring :</strong> risques, criticité, pondération, exceptions, justification.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Remédiation :</strong> plans d’actions, clauses, deadlines, escalades.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Intégrations :</strong> IAM, CMDB, SIEM, ticketing, achats (procurement), GRC.</li>
+</ul>
+
+<h2 class="${articleStyles.h2}">Comparaison (exemples) : OneTrust TPRM vs ProcessUnity vs ServiceNow VRM</h2>
+<p class="${articleStyles.p}">Ces solutions sont souvent mentionnées sur le sujet. L’arbitrage dépend beaucoup de votre écosystème : GRC existant, ITSM, achats, et volume de fournisseurs.</p>
+
+<h2 class="${articleStyles.h2}">Pièges fréquents</h2>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Acheter un outil puissant mais ne pas standardiser <strong class="${articleStyles.strong}">la criticité</strong> (tout devient “haut risque”).</li>
+  <li class="${articleStyles.li}">Se noyer dans des questionnaires trop longs (faible taux de réponse, données inutilisables).</li>
+  <li class="${articleStyles.li}">Ne pas prévoir la gestion des <strong class="${articleStyles.strong}">exceptions</strong> et des plans de remédiation.</li>
+</ul>
+
+<h2 class="${articleStyles.h2}">Verdict (sans parti pris)</h2>
+<p class="${articleStyles.p}">Le bon outil TPRM est celui qui vous aide à <strong class="${articleStyles.strong}">tenir le process</strong> : prioriser, obtenir des preuves exploitables, et fermer les actions. Sans gouvernance (criticité, exigences minimales, SLA), aucun outil ne “magiquement” réduira le risque.</p>
+`.trim()
+
+const COMP_CONFORMITE_ONETRUST_VS_TRUSTARC_BODY = `
+<p class="${articleStyles.p}">Avec la multiplication des réglementations (RGPD, CCPA/CPRA, AI Act, exigences sectorielles…), les organisations cherchent des plateformes capables de gérer <strong class="${articleStyles.strong}">la conformité des données</strong>, les <strong class="${articleStyles.strong}">risques privacy</strong>, les <strong class="${articleStyles.strong}">demandes utilisateurs (DSAR)</strong> et le <strong class="${articleStyles.strong}">consentement/cookies</strong>. Deux acteurs reviennent très souvent : <strong class="${articleStyles.strong}">OneTrust</strong> et <strong class="${articleStyles.strong}">TrustArc</strong>.</p>
+<p class="${articleStyles.p}">Ils sont parfois rangés dans “GRC data privacy”, mais leur <strong class="${articleStyles.strong}">positionnement</strong> n’est pas le même. Le bon comparatif consiste à trancher : cherchez-vous une <strong class="${articleStyles.strong}">plateforme GRC élargie</strong> avec un gros module privacy, ou un <strong class="${articleStyles.strong}">spécialiste privacy</strong> plus guidé ?</p>
+
+<h2 class="${articleStyles.h2}">1) Positionnement réel : plateforme GRC vs plateforme privacy spécialisée</h2>
+<h3 class="${articleStyles.h3}">OneTrust : plateforme GRC étendue (avec un module privacy fort)</h3>
+<p class="${articleStyles.p}">OneTrust est souvent envisagé comme une suite large couvrant <strong class="${articleStyles.strong}">data privacy</strong> mais aussi, selon les modules, d’autres domaines de <strong class="${articleStyles.strong}">gouvernance / risques / conformité</strong> (et parfois des sujets connexes comme le risque tiers ou l’ESG). La logique est de <strong class="${articleStyles.strong}">centraliser</strong> plusieurs programmes dans une plateforme commune.</p>
+
+<h3 class="${articleStyles.h3}">TrustArc : spécialiste “privacy end-to-end”</h3>
+<p class="${articleStyles.p}">TrustArc est généralement présenté comme une plateforme dédiée à la <strong class="${articleStyles.strong}">privacy</strong> : structurer un programme RGPD/CCPA, gérer DSAR, mener des évaluations (PIA/DPIA selon périmètre), et préparer des audits/certifications privacy. La logique est de <strong class="${articleStyles.strong}">renforcer l’exécution</strong> d’un programme privacy robuste et “audit-ready”.</p>
+
+<h2 class="${articleStyles.h2}">2) Différence fondamentale (à retenir)</h2>
+<div class="overflow-x-auto mb-6">
+  <table class="min-w-full border border-slate-200 rounded-lg overflow-hidden">
+    <thead>
+      <tr class="bg-slate-50">
+        <th class="px-4 py-3 text-left text-sm font-semibold text-slate-800 border-b border-slate-200">OneTrust</th>
+        <th class="px-4 py-3 text-left text-sm font-semibold text-slate-800 border-b border-slate-200">TrustArc</th>
+      </tr>
+    </thead>
+    <tbody class="text-slate-700 text-sm">
+      <tr class="border-b border-slate-100">
+        <td class="px-4 py-3">Plateforme <strong>GRC + privacy</strong></td>
+        <td class="px-4 py-3">Plateforme <strong>privacy</strong> “pure”</td>
+      </tr>
+      <tr class="border-b border-slate-100">
+        <td class="px-4 py-3">Couverture <strong>large</strong> (selon modules)</td>
+        <td class="px-4 py-3">Spécialisation <strong>profonde</strong> sur la privacy</td>
+      </tr>
+      <tr>
+        <td class="px-4 py-3">Plus <strong>configurable</strong> mais souvent plus <strong>complexe</strong></td>
+        <td class="px-4 py-3">Plus <strong>ciblé</strong> et souvent plus <strong>guidé</strong></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">En une phrase :</strong> OneTrust = plateforme globale (GRC étendue avec privacy) ; TrustArc = spécialiste métier privacy.</p>
+
+<h2 class="${articleStyles.h2}">3) Fonctionnalités comparées (privacy)</h2>
+<h3 class="${articleStyles.h3}">OneTrust (approche “plateforme”)</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Data mapping & discovery</strong> (inventaire, cartographie, sources)</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Consentement</strong> (cookies / apps selon modules)</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">DSAR</strong> (workflows, collecte, délais, preuves)</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">PIA/DPIA</strong> (évaluations, approbations, traçabilité)</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Extensions GRC</strong> (selon modules : risques, conformité, tiers…)</li>
+</ul>
+
+<h3 class="${articleStyles.h3}">TrustArc (approche “spécialiste privacy”)</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Inventaire / data mapping</strong> orienté privacy</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Privacy risk assessments</strong> et workflows privacy</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">DSAR</strong> (exécution et traçabilité)</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Consent management</strong> (selon périmètre)</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Audit / préparation à la certification</strong> et “readiness” privacy</li>
+</ul>
+<p class="${articleStyles.p}">Le bon réflexe : listez vos <strong class="${articleStyles.strong}">4 cas d’usage</strong> (ex : DSAR, cookies, DPIA, data mapping) et exigez une démo “sur votre process”, pas une démo générique.</p>
+
+<h2 class="${articleStyles.h2}">4) Couverture “GRC” : jusqu’où voulez-vous aller ?</h2>
+<h3 class="${articleStyles.h3}">OneTrust : GRC étendu (selon modules)</h3>
+<p class="${articleStyles.p}">Si vous voulez centraliser plusieurs sujets (privacy + gouvernance/risques/conformité, voire ESG/tiers selon stratégie), une plateforme orientée “suite” peut faciliter l’alignement et la consolidation.</p>
+<h3 class="${articleStyles.h3}">TrustArc : GRC limité à la privacy</h3>
+<p class="${articleStyles.p}">Si votre priorité est la <strong class="${articleStyles.strong}">privacy</strong> et uniquement la privacy, un outil spécialiste évite souvent de sur-investir dans un périmètre GRC trop large.</p>
+
+<h2 class="${articleStyles.h2}">5) Expérience utilisateur & implémentation</h2>
+<h3 class="${articleStyles.h3}">TrustArc : avantage “simplicité” (souvent)</h3>
+<p class="${articleStyles.p}">Dans de nombreux retours d’expérience, les plateformes spécialisées sont perçues comme plus <strong class="${articleStyles.strong}">guidées</strong> et plus rapides à mettre en œuvre pour un programme privacy.</p>
+<h3 class="${articleStyles.h3}">OneTrust : avantage “puissance” (souvent)</h3>
+<p class="${articleStyles.p}">Une suite large est généralement plus <strong class="${articleStyles.strong}">configurable</strong> et intégrable, mais demande plus d’effort de cadrage (modèle, rôles, RBAC, gouvernance, intégrations) pour délivrer de la valeur.</p>
+
+<h2 class="${articleStyles.h2}">6) Data & automatisation</h2>
+<h3 class="${articleStyles.h3}">OneTrust</h3>
+<p class="${articleStyles.p}">Pertinent si vous avez un SI vaste et hétérogène et que vous cherchez une orchestration plus large (connecteurs, automatisations, multi-outils), au prix d’une mise en place plus structurée.</p>
+<h3 class="${articleStyles.h3}">TrustArc</h3>
+<p class="${articleStyles.p}">Souvent plus focalisé sur l’automatisation des <strong class="${articleStyles.strong}">workflows privacy</strong> et l’exécution quotidienne du programme, avec une profondeur “privacy” plutôt qu’une largeur GRC.</p>
+
+<h2 class="${articleStyles.h2}">7) Pricing : ce qu’on peut dire de façon fiable</h2>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Sur devis</strong> : les deux solutions sont généralement vendues au cas par cas (modules, volume, périmètre, entités).</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Structure</strong> : le coût dépend souvent du nombre de modules, des workflows activés, et des intégrations.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">À demander</strong> : détail des modules inclus, conditions de renouvellement, et coût total sur 3 ans (licences + services).</li>
+</ul>
+
+<h2 class="${articleStyles.h2}">8) Cas d’usage : lequel choisir ?</h2>
+<h3 class="${articleStyles.h3}">Choisir OneTrust si…</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Vous voulez une <strong class="${articleStyles.strong}">plateforme</strong> pour plusieurs domaines (privacy + autres programmes GRC/ESG/tiers selon stratégie).</li>
+  <li class="${articleStyles.li}">Votre organisation est <strong class="${articleStyles.strong}">complexe</strong> (multi-entités, multi-pays) et vous acceptez un projet de déploiement cadré.</li>
+  <li class="${articleStyles.li}">Vous cherchez une forte <strong class="${articleStyles.strong}">configurabilité</strong> et un écosystème d’intégrations.</li>
+</ul>
+
+<h3 class="${articleStyles.h3}">Choisir TrustArc si…</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Votre focus est la <strong class="${articleStyles.strong}">privacy</strong> (DPO / équipe privacy) et vous voulez exécuter efficacement le programme.</li>
+  <li class="${articleStyles.li}">Vous cherchez un déploiement plus <strong class="${articleStyles.strong}">rapide</strong> et des workflows plus guidés.</li>
+  <li class="${articleStyles.li}">Vous voulez structurer un programme RGPD/CCPA solide sans étendre au GRC global.</li>
+</ul>
+
+<h2 class="${articleStyles.h2}">9) Avantages et limites (lecture rapide)</h2>
+<h3 class="${articleStyles.h3}">OneTrust</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">✅</strong> Couverture large via une suite (privacy + extensions selon modules)</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">✅</strong> Configurabilité et potentiel d’intégration</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">❌</strong> Complexité projet plus élevée (cadrage, gouvernance, déploiement)</li>
+</ul>
+<h3 class="${articleStyles.h3}">TrustArc</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">✅</strong> Spécialiste privacy “end-to-end”</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">✅</strong> Souvent plus guidé et plus simple à mettre en place</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">❌</strong> Moins adapté si votre objectif est un GRC global multi-domaines</li>
+</ul>
+
+<h2 class="${articleStyles.h2}">10) Verdict</h2>
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">OneTrust vs TrustArc = plateforme vs spécialiste.</strong> Le choix dépend surtout de votre maturité et de votre ambition de périmètre :</p>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Centraliser plusieurs programmes</strong> (conformité large) → OneTrust</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Exécuter efficacement la privacy</strong> (DPO / programme privacy) → TrustArc</li>
+</ul>
+<p class="${articleStyles.p}">Dans certains grands groupes, les deux peuvent être <strong class="${articleStyles.strong}">complémentaires</strong> si les fonctions “reporting/plateforme” et “programme privacy” ne sont pas portées par les mêmes équipes ni les mêmes objectifs.</p>
+`.trim()
+
+const COMP_CONTROLES_AUDITBOARD_VS_WORKIVA_BODY = `
+<p class="${articleStyles.p}">Dans les grandes entreprises, le <strong class="${articleStyles.strong}">contrôle interne</strong> et l’<strong class="${articleStyles.strong}">audit interne</strong> reposent de plus en plus sur des plateformes spécialisées pour <strong class="${articleStyles.strong}">structurer les contrôles</strong> (SOX, ICS), <strong class="${articleStyles.strong}">gérer les missions d’audit</strong>, <strong class="${articleStyles.strong}">suivre les plans d’actions</strong> et fiabiliser la <strong class="${articleStyles.strong}">documentation</strong>.</p>
+<p class="${articleStyles.p}">Deux noms reviennent souvent : <strong class="${articleStyles.strong}">AuditBoard</strong> et <strong class="${articleStyles.strong}">Workiva</strong>. Mais ils ne résolvent pas exactement le même problème. Le point clé pour comparer : <strong class="${articleStyles.strong}">où se situe votre “douleur” dans le cycle du contrôle interne</strong> (exécuter vs documenter/rapporter).</p>
+
+<h2 class="${articleStyles.h2}">1) Positionnement réel : contrôle interne “opérationnel” vs reporting connecté</h2>
+<h3 class="${articleStyles.h3}">AuditBoard : logiciel spécialisé “faire le contrôle interne”</h3>
+<p class="${articleStyles.p}">AuditBoard est généralement choisi comme un outil <strong class="${articleStyles.strong}">métier</strong> pour les équipes <strong class="${articleStyles.strong}">audit interne / contrôle interne</strong>. Il est conçu pour couvrir le flux de bout en bout : <strong class="${articleStyles.strong}">planification → tests → constats (findings) → remédiation</strong>, avec un suivi opérationnel des campagnes et des preuves.</p>
+
+<h3 class="${articleStyles.h3}">Workiva : plateforme orientée documentation + reporting (finance & conformité)</h3>
+<p class="${articleStyles.p}">Workiva s’inscrit plus souvent dans une logique de <strong class="${articleStyles.strong}">reporting connecté</strong> : documentation des contrôles (notamment SOX), collaboration transverse et <strong class="${articleStyles.strong}">production de reporting</strong> (finance, compliance, ESG selon les périmètres). Le contrôle interne y est intégré dans une démarche plus large de <strong class="${articleStyles.strong}">traçabilité et publication</strong>.</p>
+
+<h2 class="${articleStyles.h2}">2) Différence fondamentale (à retenir)</h2>
+<div class="overflow-x-auto mb-6">
+  <table class="min-w-full border border-slate-200 rounded-lg overflow-hidden">
+    <thead>
+      <tr class="bg-slate-50">
+        <th class="px-4 py-3 text-left text-sm font-semibold text-slate-800 border-b border-slate-200">AuditBoard</th>
+        <th class="px-4 py-3 text-left text-sm font-semibold text-slate-800 border-b border-slate-200">Workiva</th>
+      </tr>
+    </thead>
+    <tbody class="text-slate-700 text-sm">
+      <tr class="border-b border-slate-100">
+        <td class="px-4 py-3">Outil de <strong>gestion</strong> du contrôle interne</td>
+        <td class="px-4 py-3">Outil de <strong>documentation</strong> et <strong>reporting</strong> du contrôle interne</td>
+      </tr>
+      <tr class="border-b border-slate-100">
+        <td class="px-4 py-3">Centré <strong>audit interne</strong> / contrôle interne</td>
+        <td class="px-4 py-3">Centré <strong>finance</strong> & reporting (transversal)</td>
+      </tr>
+      <tr>
+        <td class="px-4 py-3"><strong>Opérationnel</strong> (exécution, campagnes, remédiation)</td>
+        <td class="px-4 py-3"><strong>Transversal</strong> (collaboration, traçabilité, publication)</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">En une phrase :</strong> AuditBoard sert surtout à <strong class="${articleStyles.strong}">faire</strong> le contrôle interne ; Workiva sert surtout à <strong class="${articleStyles.strong}">documenter et publier</strong> le contrôle interne (souvent avec un fort volet data & reporting).</p>
+
+<h2 class="${articleStyles.h2}">3) Fonctionnalités “contrôle interne” comparées</h2>
+<h3 class="${articleStyles.h3}">AuditBoard (orientation exécution)</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">RCM / matrices de contrôle</strong> : structuration des contrôles, owners, fréquence, preuves attendues.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Tests de contrôles</strong> : planification, échantillonnage, exécution, revue, traçabilité.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Audit interne</strong> : planification, fieldwork, constats, recommandations.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Anomalies & plans d’actions</strong> : suivi, échéances, escalades, reporting d’avancement.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Risque & remédiation</strong> : registres, vues de pilotage (selon modules / périmètre).</li>
+</ul>
+<p class="${articleStyles.p}">En pratique : c’est très orienté <strong class="${articleStyles.strong}">pilotage opérationnel</strong> du dispositif (campagnes, tests, preuves, remédiation).</p>
+
+<h3 class="${articleStyles.h3}">Workiva (orientation documentation & traçabilité)</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Documentation SOX</strong> et référentiels : structuration, mise à jour, revue.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Data linking</strong> : connexion des données financières / sources, réduction des copier-coller.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Versioning & audit trail</strong> : historique de modifications, traçabilité de la contribution.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Collaboration en temps réel</strong> : contribution multi-départements, cycles de revue/validation.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Production de reporting</strong> : préparation et publication de livrables réglementaires / financiers selon le périmètre.</li>
+</ul>
+<p class="${articleStyles.p}">En pratique : c’est très orienté <strong class="${articleStyles.strong}">traçabilité, consolidation et publication</strong>, avec un angle “donnée” souvent déterminant.</p>
+
+<h2 class="${articleStyles.h2}">4) Couverture du cycle du contrôle interne</h2>
+<h3 class="${articleStyles.h3}">AuditBoard : couverture plus “end-to-end” (audit interne / contrôle interne)</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Design des contrôles</li>
+  <li class="${articleStyles.li}">Exécution des tests</li>
+  <li class="${articleStyles.li}">Collecte et revue des preuves</li>
+  <li class="${articleStyles.li}">Constats, reporting d’audit</li>
+  <li class="${articleStyles.li}">Remédiation (plans d’actions) et suivi</li>
+</ul>
+
+<h3 class="${articleStyles.h3}">Workiva : couverture souvent partielle côté “exécution terrain” (focus documentation/reporting)</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Documentation des contrôles</li>
+  <li class="${articleStyles.li}">Consolidation des données et gestion des versions</li>
+  <li class="${articleStyles.li}">Production de reporting</li>
+</ul>
+<p class="${articleStyles.p}">Le point d’attention si votre enjeu est l’exécution : la plateforme est généralement moins orientée “campagnes d’audit” et “tests terrain” que les outils spécialisés contrôle interne/audit.</p>
+
+<h2 class="${articleStyles.h2}">5) Données & collaboration : avantage Workiva si votre sujet est “data + reporting”</h2>
+<h3 class="${articleStyles.h3}">Workiva</h3>
+<p class="${articleStyles.p}">Workiva est souvent mis en avant quand la priorité est de <strong class="${articleStyles.strong}">connecter des données</strong> (sources multiples), de maintenir des rapports à jour et de faciliter une <strong class="${articleStyles.strong}">collaboration transverse</strong> (finance, ESG, compliance).</p>
+
+<h3 class="${articleStyles.h3}">AuditBoard</h3>
+<p class="${articleStyles.p}">AuditBoard est généralement plus “silo” autour de l’usage <strong class="${articleStyles.strong}">audit interne / contrôle interne</strong> : collaboration solide sur les campagnes et la remédiation, mais moins orientée “reporting multi-données” à grande échelle.</p>
+
+<h2 class="${articleStyles.h2}">6) Cas d’usage typiques</h2>
+<h3 class="${articleStyles.h3}">Choisir AuditBoard si…</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Vous avez une équipe <strong class="${articleStyles.strong}">audit interne</strong> structurée et un besoin de <strong class="${articleStyles.strong}">campagnes</strong> (tests, preuves, constats).</li>
+  <li class="${articleStyles.li}">Vous voulez <strong class="${articleStyles.strong}">industrialiser</strong> l’exécution des tests (cadence, qualité, traçabilité).</li>
+  <li class="${articleStyles.li}">Votre enjeu principal est le <strong class="${articleStyles.strong}">pilotage opérationnel</strong> du dispositif (remédiation, avancement, escalades).</li>
+</ul>
+
+<h3 class="${articleStyles.h3}">Choisir Workiva si…</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Votre enjeu principal est le <strong class="${articleStyles.strong}">reporting réglementaire/financier</strong> et sa mise à jour “connectée” à la donnée.</li>
+  <li class="${articleStyles.li}">Vous devez <strong class="${articleStyles.strong}">connecter plusieurs sources</strong> et réduire les manipulations manuelles.</li>
+  <li class="${articleStyles.li}">Vous travaillez sur un périmètre transverse (finance + compliance + ESG) avec une forte exigence de <strong class="${articleStyles.strong}">collaboration</strong> et d’audit trail.</li>
+</ul>
+
+<h2 class="${articleStyles.h2}">7) Avantages et limites (lecture rapide)</h2>
+<h3 class="${articleStyles.h3}">AuditBoard</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">✅</strong> Spécialisé contrôle interne / audit interne</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">✅</strong> Couverture plus complète “planifier → tester → constater → remédier”</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">✅</strong> Adapté aux organisations avec un dispositif d’audit interne mature</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">❌</strong> Moins centré sur le reporting multi-données et la publication transverse</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">❌</strong> Peut moins bien répondre si le “centre de gravité” est finance/reporting</li>
+</ul>
+
+<h3 class="${articleStyles.h3}">Workiva</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">✅</strong> Très fort sur le reporting, la traçabilité et le data linking</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">✅</strong> Collaboration transverse multi-départements</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">❌</strong> Moins orienté “exécution terrain” des tests et campagnes d’audit</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">❌</strong> Peut sembler plus complexe si votre besoin est strictement audit interne</li>
+</ul>
+
+<h2 class="${articleStyles.h2}">8) Verdict (SEO)</h2>
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">AuditBoard vs Workiva : ce n’est pas le même usage.</strong></p>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">AuditBoard</strong> = outil de <strong class="${articleStyles.strong}">pilotage</strong> du contrôle interne (et de l’audit interne)</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Workiva</strong> = outil de <strong class="${articleStyles.strong}">reporting</strong> et <strong class="${articleStyles.strong}">documentation</strong> du contrôle interne (dans une logique “connected reporting”)</li>
+</ul>
+<p class="${articleStyles.p}">Ils peuvent être <strong class="${articleStyles.strong}">complémentaires</strong> dans certaines grandes organisations. Si vous devez trancher, posez la question ainsi : votre problème principal est-il d’<strong class="${articleStyles.strong}">exécuter</strong> le contrôle interne (tests, preuves, remédiation) ou de le <strong class="${articleStyles.strong}">documenter/publier</strong> proprement (data, traçabilité, reporting) ?</p>
+`.trim()
+
+const COMP_RISQUES_RISKONNECT_VS_METRICSTREAM_BODY = `
+<p class="${articleStyles.p}">En 2026, les entreprises doivent piloter des risques multiples (opérationnels, IT/cyber, conformité, audit interne, résilience) sans multiplier les silos. <strong class="${articleStyles.strong}">Riskonnect</strong> et <strong class="${articleStyles.strong}">MetricStream</strong> font partie des plateformes majeures du marché <strong class="${articleStyles.strong}">GRC / IRM</strong>. Le bon comparatif ne se fait pas sur “la liste de features”, mais sur <strong class="${articleStyles.strong}">le modèle, l’architecture et le mode de déploiement</strong> qui vont tenir dans la durée.</p>
+
+<h2 class="${articleStyles.h2}">1) Positionnement réel</h2>
+<h3 class="${articleStyles.h3}">Riskonnect : plateforme GRC unifiée, orientée pilotage opérationnel</h3>
+<p class="${articleStyles.p}">Riskonnect est souvent adopté pour <strong class="${articleStyles.strong}">centraliser</strong> la donnée de risque et exploiter un pilotage “au quotidien” : incidents, actions, conformité, audits, risque tiers (selon périmètre). Le centre de gravité est fréquemment la <strong class="${articleStyles.strong}">visibilité</strong> et l’<strong class="${articleStyles.strong}">exécution</strong> (qui fait quoi, quand, avec quel statut).</p>
+
+<h3 class="${articleStyles.h3}">MetricStream : plateforme GRC “enterprise scale”, structurante et multi-domaines</h3>
+<p class="${articleStyles.p}">MetricStream est généralement positionné comme une suite GRC large, pensée pour des organisations <strong class="${articleStyles.strong}">multi-entités</strong> et <strong class="${articleStyles.strong}">multi-réglementées</strong>, avec une logique de “connected GRC” : modules interconnectés, gestion multi-frameworks, et capacité à couvrir des domaines étendus (ex : risque IT/cyber, continuité/résilience, politiques, etc. selon modules).</p>
+
+<h2 class="${articleStyles.h2}">2) Différence fondamentale (à retenir)</h2>
+<div class="overflow-x-auto mb-6">
+  <table class="min-w-full border border-slate-200 rounded-lg overflow-hidden">
+    <thead>
+      <tr class="bg-slate-50">
+        <th class="px-4 py-3 text-left text-sm font-semibold text-slate-800 border-b border-slate-200">Riskonnect</th>
+        <th class="px-4 py-3 text-left text-sm font-semibold text-slate-800 border-b border-slate-200">MetricStream</th>
+      </tr>
+    </thead>
+    <tbody class="text-slate-700 text-sm">
+      <tr class="border-b border-slate-100">
+        <td class="px-4 py-3">Plateforme GRC <strong>intégrée</strong> et <strong>unifiée</strong></td>
+        <td class="px-4 py-3">Plateforme GRC <strong>enterprise scale</strong>, “connected”</td>
+      </tr>
+      <tr class="border-b border-slate-100">
+        <td class="px-4 py-3">Approche : <strong>centralisation opérationnelle</strong></td>
+        <td class="px-4 py-3">Approche : <strong>couverture maximale</strong> + multi-frameworks</td>
+      </tr>
+      <tr>
+        <td class="px-4 py-3">Focus : <strong>visibilité</strong> & <strong>exécution</strong></td>
+        <td class="px-4 py-3">Focus : <strong>intégration</strong> & structuration GRC globale</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">En une phrase :</strong> Riskonnect = pilotage unifié des risques ; MetricStream = suite GRC structurante pour environnements complexes.</p>
+
+<h2 class="${articleStyles.h2}">3) Fonctionnalités : ce qui est “comparable” (et ce qui ne l’est pas)</h2>
+<p class="${articleStyles.p}">Les deux plateformes couvrent les fondamentaux GRC, mais pas toujours avec la même profondeur selon votre périmètre et les modules activés.</p>
+<div class="overflow-x-auto mb-6">
+  <table class="min-w-full border border-slate-200 rounded-lg overflow-hidden">
+    <thead>
+      <tr class="bg-slate-50">
+        <th class="px-4 py-3 text-left text-sm font-semibold text-slate-800 border-b border-slate-200">Domaine</th>
+        <th class="px-4 py-3 text-left text-sm font-semibold text-slate-800 border-b border-slate-200">Ce qu’il faut vérifier en démo</th>
+      </tr>
+    </thead>
+    <tbody class="text-slate-700 text-sm">
+      <tr class="border-b border-slate-100">
+        <td class="px-4 py-3 font-semibold">ERM (registre de risques)</td>
+        <td class="px-4 py-3">Modèle (risque/contrôle/action/incidents), scoring (P×I), appétence, KRIs, consolidation multi-entités.</td>
+      </tr>
+      <tr class="border-b border-slate-100">
+        <td class="px-4 py-3 font-semibold">Incidents & événements</td>
+        <td class="px-4 py-3">Création d’incident, classification, liens vers risques/contrôles, SLA, et fermeture avec preuve.</td>
+      </tr>
+      <tr class="border-b border-slate-100">
+        <td class="px-4 py-3 font-semibold">Compliance / obligations</td>
+        <td class="px-4 py-3">Gestion multi-frameworks, mapping exigences→contrôles, evidence, fréquence, attestations et audit trail.</td>
+      </tr>
+      <tr class="border-b border-slate-100">
+        <td class="px-4 py-3 font-semibold">Audit interne</td>
+        <td class="px-4 py-3">Planification, fieldwork, findings, recommandations, plans d’actions et reporting comité.</td>
+      </tr>
+      <tr>
+        <td class="px-4 py-3 font-semibold">Tiers / TPRM (si besoin)</td>
+        <td class="px-4 py-3">Onboarding, questionnaires, preuves, scoring, remédiation et intégrations (procurement / ITSM).</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h2 class="${articleStyles.h2}">4) Architecture & data : un point souvent décisif</h2>
+<h3 class="${articleStyles.h3}">Riskonnect : “source unique” et vues opérationnelles</h3>
+<p class="${articleStyles.p}">Demandez comment la plateforme garantit un modèle de données cohérent (liens risques↔contrôles↔actions), et comment elle évite la saisie manuelle via des <strong class="${articleStyles.strong}">intégrations</strong> (API, IAM/SSO, ticketing/ITSM, DMS…).</p>
+
+<h3 class="${articleStyles.h3}">MetricStream : “connected GRC” et multi-frameworks</h3>
+<p class="${articleStyles.p}">Demandez comment la suite gère le <strong class="${articleStyles.strong}">multi-entités</strong> (groupe/filiales), le <strong class="${articleStyles.strong}">RBAC</strong>, les workflows, et surtout le mapping exigences↔contrôles dans un environnement <strong class="${articleStyles.strong}">multi-réglementations</strong>.</p>
+
+<h2 class="${articleStyles.h2}">5) Couverture fonctionnelle : largeur vs exécution</h2>
+<p class="${articleStyles.p}">Si votre programme est surtout “ERM + incidents + conformité transverse”, une plateforme unifiée orientée exécution peut être plus rapide à rendre utile. Si vous avez un périmètre GRC très large (IT risk/cyber, politiques, continuité/résilience, ESG… selon modules) et une gouvernance groupe, une suite “enterprise scale” peut mieux correspondre — mais demande un cadrage plus lourd.</p>
+
+<h2 class="${articleStyles.h2}">6) Expérience utilisateur : attention au scope</h2>
+<p class="${articleStyles.p}">L’UX dépend fortement du déploiement : nombre de modules, niveau de configuration, et surtout nombre d’équipes contributrices (métiers, IT, compliance, audit). Le bon test n’est pas une démo “slides” : imposez un <strong class="${articleStyles.strong}">cas réel</strong> de bout en bout.</p>
+
+<h2 class="${articleStyles.h2}">7) Cas d’usage : lequel choisir ?</h2>
+<h3 class="${articleStyles.h3}">Choisir Riskonnect si…</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Votre priorité est de <strong class="${articleStyles.strong}">centraliser rapidement</strong> les risques et d’améliorer la visibilité opérationnelle.</li>
+  <li class="${articleStyles.li}">Vous voulez un pilotage quotidien (incidents, actions, conformité) sans déploiement trop “mammouth”.</li>
+  <li class="${articleStyles.li}">Vous avez un besoin fort de <strong class="${articleStyles.strong}">tableaux de bord</strong> et de suivi d’exécution.</li>
+</ul>
+
+<h3 class="${articleStyles.h3}">Choisir MetricStream si…</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Vous êtes une organisation <strong class="${articleStyles.strong}">multi-pays / multi-entités</strong> avec plusieurs réglementations simultanées.</li>
+  <li class="${articleStyles.li}">Vous cherchez une plateforme <strong class="${articleStyles.strong}">très extensible</strong> et structurante (suite multi-domaines).</li>
+  <li class="${articleStyles.li}">Votre enjeu est de standardiser des frameworks/contrôles à l’échelle groupe.</li>
+</ul>
+
+<h2 class="${articleStyles.h2}">8) Avantages et limites (lecture rapide)</h2>
+<h3 class="${articleStyles.h3}">Riskonnect</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">✅</strong> Modèle unifié et visibilité opérationnelle</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">✅</strong> Bon candidat pour centraliser et exécuter (actions/incidents)</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">❌</strong> Peut être moins adapté si vous cherchez un GRC “très étendu” multi-domaines</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">❌</strong> La profondeur dépend du scope modules et du déploiement</li>
+</ul>
+
+<h3 class="${articleStyles.h3}">MetricStream</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">✅</strong> Couverture GRC large (selon modules) et logique “enterprise scale”</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">✅</strong> Plus adapté aux environnements complexes multi-frameworks</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">❌</strong> Complexité et effort d’implémentation souvent plus élevés</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">❌</strong> Risque de “plateforme vide” si les workflows ne sont pas cadrés</li>
+</ul>
+
+<h2 class="${articleStyles.h2}">9) Test démo recommandé (à imposer)</h2>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Créer un risque réel → définir owner + scoring → associer un contrôle → créer une action avec échéance → produire un reporting comité.</li>
+  <li class="${articleStyles.li}">Créer un incident → le relier à un risque → clôturer avec preuve → vérifier l’audit trail.</li>
+  <li class="${articleStyles.li}">Montrer un mapping framework→contrôles→preuves sur un cas multi-entités (droits différents).</li>
+</ul>
+
+<h2 class="${articleStyles.h2}">10) Verdict (SEO)</h2>
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">Riskonnect vs MetricStream = opérationnel vs enterprise scale.</strong></p>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Riskonnect</strong> : simplifier et centraliser pour piloter l’exécution</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">MetricStream</strong> : structurer et étendre pour des environnements GRC complexes</li>
+</ul>
+<p class="${articleStyles.p}">Le choix dépend surtout de votre maturité et de votre périmètre : un programme intermédiaire qui veut gagner vite en visibilité n’achètera pas les mêmes compromis qu’un groupe global multi-réglementé qui veut standardiser à grande échelle.</p>
+`.trim()
+
+const COMP_TPRM_SERVICENOW_VRM_VS_PROCESSUNITY_BODY = `
+<p class="${articleStyles.p}">Le <strong class="${articleStyles.strong}">Third-Party Risk Management (TPRM)</strong> sert à gérer les risques liés aux fournisseurs/partenaires/prestataires sur tout le cycle de vie : onboarding, due diligence, évaluations, monitoring continu et remédiation. Deux solutions reviennent souvent : <strong class="${articleStyles.strong}">ServiceNow TPRM</strong> (ex-VRM selon les contextes) et <strong class="${articleStyles.strong}">ProcessUnity</strong>.</p>
+<p class="${articleStyles.p}">Le point clé : cherchez-vous un TPRM <strong class="${articleStyles.strong}">intégré</strong> dans un écosystème IT/GRC (ServiceNow), ou une plateforme <strong class="${articleStyles.strong}">spécialiste</strong> dont le TPRM est le cœur produit (ProcessUnity) ?</p>
+
+<h2 class="${articleStyles.h2}">1) Positionnement réel</h2>
+<h3 class="${articleStyles.h3}">ServiceNow TPRM : module TPRM intégré à une plateforme IT / GRC</h3>
+<p class="${articleStyles.p}">Le module TPRM de ServiceNow est pensé pour s’insérer dans une plateforme plus large. Il vise à <strong class="${articleStyles.strong}">unifier</strong> le risque tiers avec des workflows internes et, selon votre stack, avec des briques comme <strong class="${articleStyles.strong}">ITSM</strong>, GRC et d’autres processus opérationnels.</p>
+
+<h3 class="${articleStyles.h3}">ProcessUnity : plateforme spécialisée TPRM</h3>
+<p class="${articleStyles.p}">ProcessUnity se positionne comme une solution dédiée au <strong class="${articleStyles.strong}">risque tiers</strong> : évaluations fournisseurs, questionnaires, collecte documentaire, suivi du risque et remédiation, avec un focus sur la profondeur du workflow TPRM.</p>
+
+<h2 class="${articleStyles.h2}">2) Différence fondamentale (à retenir)</h2>
+<div class="overflow-x-auto mb-6">
+  <table class="min-w-full border border-slate-200 rounded-lg overflow-hidden">
+    <thead>
+      <tr class="bg-slate-50">
+        <th class="px-4 py-3 text-left text-sm font-semibold text-slate-800 border-b border-slate-200">ServiceNow TPRM</th>
+        <th class="px-4 py-3 text-left text-sm font-semibold text-slate-800 border-b border-slate-200">ProcessUnity</th>
+      </tr>
+    </thead>
+    <tbody class="text-slate-700 text-sm">
+      <tr class="border-b border-slate-100">
+        <td class="px-4 py-3">Module intégré à une <strong>plateforme</strong> large</td>
+        <td class="px-4 py-3">Solution <strong>spécialisée</strong> TPRM</td>
+      </tr>
+      <tr class="border-b border-slate-100">
+        <td class="px-4 py-3">Force : <strong>intégrations</strong> IT / GRC</td>
+        <td class="px-4 py-3">Force : <strong>profondeur</strong> du workflow TPRM</td>
+      </tr>
+      <tr>
+        <td class="px-4 py-3">Logique : TPRM dans un <strong>écosystème</strong></td>
+        <td class="px-4 py-3">Logique : TPRM comme <strong>cœur produit</strong></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">En une phrase :</strong> ServiceNow = TPRM intégré à un SI/workflow global ; ProcessUnity = “command center” du TPRM.</p>
+
+<h2 class="${articleStyles.h2}">3) Fonctionnalités comparées (ce qui est vraiment “TPRM”)</h2>
+<div class="overflow-x-auto mb-6">
+  <table class="min-w-full border border-slate-200 rounded-lg overflow-hidden">
+    <thead>
+      <tr class="bg-slate-50">
+        <th class="px-4 py-3 text-left text-sm font-semibold text-slate-800 border-b border-slate-200">Brique TPRM</th>
+        <th class="px-4 py-3 text-left text-sm font-semibold text-slate-800 border-b border-slate-200">Ce que vous devez vérifier en démo</th>
+      </tr>
+    </thead>
+    <tbody class="text-slate-700 text-sm">
+      <tr class="border-b border-slate-100">
+        <td class="px-4 py-3 font-semibold">Onboarding fournisseur</td>
+        <td class="px-4 py-3">Création du tiers, criticité, scope, owners, et déclenchement d’évaluations selon règles.</td>
+      </tr>
+      <tr class="border-b border-slate-100">
+        <td class="px-4 py-3 font-semibold">Questionnaires</td>
+        <td class="px-4 py-3">Bibliothèque, versions, logique conditionnelle, réutilisation, et expérience côté fournisseur.</td>
+      </tr>
+      <tr class="border-b border-slate-100">
+        <td class="px-4 py-3 font-semibold">Preuves & documents</td>
+        <td class="px-4 py-3">Expiration, relances, validation, stockage “audit-ready”, et droits d’accès (RBAC).</td>
+      </tr>
+      <tr class="border-b border-slate-100">
+        <td class="px-4 py-3 font-semibold">Scoring & décisions</td>
+        <td class="px-4 py-3">Pondérations, exceptions, justification, comité, et traçabilité de la décision d’acceptation.</td>
+      </tr>
+      <tr class="border-b border-slate-100">
+        <td class="px-4 py-3 font-semibold">Monitoring continu</td>
+        <td class="px-4 py-3">Revues périodiques, signaux, re-certifications, et gestion du “drift” dans le temps.</td>
+      </tr>
+      <tr>
+        <td class="px-4 py-3 font-semibold">Remédiation</td>
+        <td class="px-4 py-3">Plans d’actions, SLA, escalades, preuves de fermeture, et reporting.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h2 class="${articleStyles.h2}">4) Workflow TPRM : ce que ça change au quotidien</h2>
+<h3 class="${articleStyles.h3}">ServiceNow : valeur maximale si vous “vivez” déjà dans ServiceNow</h3>
+<p class="${articleStyles.p}">L’intérêt est d’ancrer le TPRM dans des workflows transverses (IT, sécurité, opérations). Exemple à demander : un incident sécurité lié à un fournisseur qui déclenche automatiquement un <strong class="${articleStyles.strong}">réexamen</strong> du tiers, une mise à jour de criticité et des actions.</p>
+
+<h3 class="${articleStyles.h3}">ProcessUnity : valeur maximale si votre priorité est le process TPRM</h3>
+<p class="${articleStyles.p}">L’intérêt est la profondeur de paramétrage “TPRM pur” : questionnaires, workflows, règles, relances, campagnes, preuves et suivi — avec une orientation forte vers l’équipe risk/compliance.</p>
+
+<h2 class="${articleStyles.h2}">5) Data & intégrations : l’arbitrage “plateforme”</h2>
+<h3 class="${articleStyles.h3}">ServiceNow (avantage intégration)</h3>
+<p class="${articleStyles.p}">Si votre organisation est déjà structurée autour de ServiceNow, l’intégration native peut réduire les doubles saisies et faciliter une vue unifiée des workflows. Le point à vérifier : les <strong class="${articleStyles.strong}">objets</strong> réellement synchronisés (tiers, contrats, incidents, CMDB, tickets) et la gouvernance des identités/accès.</p>
+
+<h3 class="${articleStyles.h3}">ProcessUnity (avantage “TPRM command center”)</h3>
+<p class="${articleStyles.p}">Si votre enjeu est de mettre le TPRM au centre, une plateforme dédiée peut être plus directe. Le point à vérifier : les intégrations avec achats/procurement, IAM/SSO, DMS, ITSM, et outils sécurité selon votre SI.</p>
+
+<h2 class="${articleStyles.h2}">6) Cas d’usage : lequel choisir ?</h2>
+<h3 class="${articleStyles.h3}">Choisir ServiceNow TPRM si…</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Vous utilisez déjà ServiceNow et voulez intégrer le TPRM à des workflows IT/GRC.</li>
+  <li class="${articleStyles.li}">Vous cherchez une vue unifiée incidents ↔ fournisseurs ↔ actions.</li>
+  <li class="${articleStyles.li}">Votre organisation est “IT-driven” et veut réduire les silos via la plateforme.</li>
+</ul>
+
+<h3 class="${articleStyles.h3}">Choisir ProcessUnity si…</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Votre besoin principal est le <strong class="${articleStyles.strong}">TPRM</strong> (process, campagnes, questionnaires, preuves, scoring).</li>
+  <li class="${articleStyles.li}">Vous voulez une solution spécialisée pour structurer ou améliorer un programme mature.</li>
+  <li class="${articleStyles.li}">Vous avez besoin d’une forte flexibilité sur les workflows TPRM.</li>
+</ul>
+
+<h2 class="${articleStyles.h2}">7) Avantages et limites (lecture rapide)</h2>
+<h3 class="${articleStyles.h3}">ServiceNow TPRM</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">✅</strong> Intégration forte (si vous êtes déjà dans l’écosystème ServiceNow)</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">✅</strong> Vision unifiée des workflows IT/GRC + TPRM</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">❌</strong> Complexité et dépendance à l’écosystème</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">❌</strong> La valeur dépend beaucoup du niveau d’intégration réellement déployé</li>
+</ul>
+
+<h3 class="${articleStyles.h3}">ProcessUnity</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">✅</strong> Spécialisation TPRM (workflow “métier”)</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">✅</strong> Flexibilité / personnalisation du programme TPRM</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">❌</strong> Moins “plateforme transverse” si votre objectif est de tout unifier dans un même outil</li>
+</ul>
+
+<h2 class="${articleStyles.h2}">8) Verdict (SEO)</h2>
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">ServiceNow TPRM vs ProcessUnity = plateforme vs spécialiste.</strong></p>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">ServiceNow</strong> : logique intégration SI globale (TPRM dans un écosystème)</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">ProcessUnity</strong> : logique excellence TPRM (TPRM comme cœur produit)</li>
+</ul>
+<p class="${articleStyles.p}">Si vous devez trancher, la meilleure question n’est pas “lequel est meilleur”, mais : <strong class="${articleStyles.strong}">où doit vivre le TPRM</strong> dans votre organisation — dans la plateforme transverse (IT/GRC) ou dans un outil dédié piloté par l’équipe risk/compliance ?</p>
+`.trim()
+
 const CTA_MID_HTML = `
 <div class="my-10 rounded-xl bg-primary-50 border border-primary-100 p-6 text-center">
   <p class="text-slate-800 font-semibold mb-2">Pr├¬t ├á comparer vos outils SaaS avec des donn├®es r├®elles ?</p>
@@ -1206,6 +1957,128 @@ ${CTA_PLACEHOLDER}
 
 export const BLOG_POSTS: BlogPostData[] = [
   {
+    id: 'template-devis-tjm-2026',
+    category_slug: 'templates-outils',
+    title: 'Devis au TJM : modèle Excel (HT, TVA, TTC, acompte)',
+    slug: 'devis-tjm-modele-excel-ht-tva-ttc-acompte',
+    excerpt:
+      'Modèle Excel téléchargeable pour calculer un devis au TJM : total prestations HT après remise, frais, TVA, TTC et acompte.',
+    body: TEMPLATE_DEVIS_TJM_BODY,
+    published_at: '2026-04-02T14:30:00Z',
+    created_at: '2026-04-02T14:30:00Z',
+    reading_minutes: 5,
+    cta_object: 'calculer et gérer vos devis au TJM (jours, TJM, remise, TVA, acompte)',
+  },
+  {
+    id: 'template-rentabilite-par-affaire-2026',
+    category_slug: 'templates-outils',
+    title: 'Rentabilité par affaire : modèle Excel (marge, dérive, valeur attendue)',
+    slug: 'rentabilite-par-affaire-modele-excel-marge-derives-valeur-attendue',
+    excerpt:
+      'Modèle Excel téléchargeable pour calculer marge brute, marge %, dérive de jours et valeur attendue par affaire (projet / mission).',
+    body: TEMPLATE_RENTABILITE_PAR_AFFAIRE_BODY,
+    published_at: '2026-04-02T14:15:00Z',
+    created_at: '2026-04-02T14:15:00Z',
+    reading_minutes: 6,
+    cta_object: 'piloter la rentabilité par affaire (marge, dérive de charge, valeur attendue)',
+  },
+  {
+    id: 'comparatif-conformite-onetrust-vs-trustarc-2026',
+    category_slug: 'comparatifs',
+    title: 'OneTrust vs TrustArc : quel outil de conformité (privacy / RGPD) choisir ?',
+    slug: 'onetrust-vs-trustarc-conformite-privacy-rgpd',
+    excerpt:
+      'Périmètre, workflows, intégrations et déploiement multi-entités : les points à vérifier pour comparer OneTrust et TrustArc.',
+    body: COMP_CONFORMITE_ONETRUST_VS_TRUSTARC_BODY,
+    published_at: '2026-04-02T13:00:00Z',
+    created_at: '2026-04-02T13:00:00Z',
+    reading_minutes: 7,
+  },
+  {
+    id: 'comparatif-controles-internes-auditboard-vs-workiva-2026',
+    category_slug: 'comparatifs',
+    title: 'AuditBoard vs Workiva : quel outil de contrôles internes choisir ?',
+    slug: 'auditboard-vs-workiva-controles-internes',
+    excerpt:
+      'Evidence, testing, remédiation et adoption : une grille simple pour comparer AuditBoard et Workiva.',
+    body: COMP_CONTROLES_AUDITBOARD_VS_WORKIVA_BODY,
+    published_at: '2026-04-02T13:15:00Z',
+    created_at: '2026-04-02T13:15:00Z',
+    reading_minutes: 6,
+  },
+  {
+    id: 'comparatif-gestion-risques-riskonnect-vs-metricstream-2026',
+    category_slug: 'comparatifs',
+    title: 'Riskonnect vs MetricStream : quel logiciel de gestion des risques (ERM/GRC) choisir ?',
+    slug: 'riskonnect-vs-metricstream-gestion-des-risques-erm-grc',
+    excerpt:
+      'Modèle, scoring, reporting et intégrations : les questions indispensables pour comparer Riskonnect et MetricStream.',
+    body: COMP_RISQUES_RISKONNECT_VS_METRICSTREAM_BODY,
+    published_at: '2026-04-02T13:30:00Z',
+    created_at: '2026-04-02T13:30:00Z',
+    reading_minutes: 6,
+  },
+  {
+    id: 'comparatif-tprm-servicenow-vrm-vs-processunity-2026',
+    category_slug: 'comparatifs',
+    title: 'ServiceNow VRM vs ProcessUnity : quel outil TPRM (risques tiers) choisir ?',
+    slug: 'servicenow-vrm-vs-processunity-tprm-risques-tiers',
+    excerpt:
+      'Portail fournisseur, preuves, intégrations et remédiation : une comparaison pragmatique entre ServiceNow VRM et ProcessUnity.',
+    body: COMP_TPRM_SERVICENOW_VRM_VS_PROCESSUNITY_BODY,
+    published_at: '2026-04-02T13:45:00Z',
+    created_at: '2026-04-02T13:45:00Z',
+    reading_minutes: 6,
+  },
+  {
+    id: 'comparatif-grc-conformite-reglementaire-2026',
+    category_slug: 'guides-achat',
+    title: 'Conformité réglementaire (GRC) : les bonnes questions à poser avant de choisir un outil',
+    slug: 'logiciels-conformite-reglementaire-grc-comparatif',
+    excerpt:
+      'Référentiels, contrôles, preuves, workflows et reporting : la checklist de questions pour cadrer votre besoin et évaluer une solution.',
+    body: GRC_CONFORMITE_REGLEMENTAIRE_BODY,
+    published_at: '2026-04-02T12:00:00Z',
+    created_at: '2026-04-02T12:00:00Z',
+    reading_minutes: 8,
+  },
+  {
+    id: 'comparatif-grc-controles-internes-2026',
+    category_slug: 'guides-achat',
+    title: 'Contrôles internes : la checklist de questions (audit, evidence, remédiation, adoption)',
+    slug: 'logiciels-controles-internes-comparatif-criteres',
+    excerpt:
+      'Tests, evidence, plans d’action, piste d’audit et adoption : les questions qui font gagner du temps avant d’acheter.',
+    body: GRC_CONTROLES_INTERNES_BODY,
+    published_at: '2026-04-02T12:15:00Z',
+    created_at: '2026-04-02T12:15:00Z',
+    reading_minutes: 8,
+  },
+  {
+    id: 'comparatif-grc-gestion-des-risques-2026',
+    category_slug: 'guides-achat',
+    title: 'Gestion des risques (ERM/GRC) : les bonnes questions à poser (modèle, scoring, reporting)',
+    slug: 'logiciels-gestion-des-risques-erm-grc-comparatif',
+    excerpt:
+      'Modélisation, scoring, workflows, reporting et intégrations : une liste de questions pour cadrer une démo et comparer des offres.',
+    body: GRC_GESTION_RISQUES_BODY,
+    published_at: '2026-04-02T12:30:00Z',
+    created_at: '2026-04-02T12:30:00Z',
+    reading_minutes: 7,
+  },
+  {
+    id: 'comparatif-tprm-risques-tiers-2026',
+    category_slug: 'guides-achat',
+    title: 'Risques tiers (TPRM) : les bonnes questions à poser (questionnaires, preuves, scoring)',
+    slug: 'risques-tiers-tprm-comparer-logiciels',
+    excerpt:
+      'Questionnaires fournisseurs, collecte de preuves, scoring, remédiation et intégrations : la checklist de questions pour évaluer un outil TPRM.',
+    body: GRC_RISQUES_TIERS_TPRM_BODY,
+    published_at: '2026-04-02T12:45:00Z',
+    created_at: '2026-04-02T12:45:00Z',
+    reading_minutes: 7,
+  },
+  {
     id: 'rgpd-checklist-achat-saas-2026',
     category_slug: 'reglementation',
     title: 'RGPD : comprendre les obligations clés (rôles, contrats, transferts, sécurité)',
@@ -1267,7 +2140,7 @@ export const BLOG_POSTS: BlogPostData[] = [
   },
   {
     id: 'salesforce-vs-hubspot-2025',
-    category_slug: 'comparaison-benchmarks',
+    category_slug: 'comparatifs',
     title: 'Salesforce vs HubSpot : Quel CRM choisir en 2025 ?',
     slug: 'salesforce-vs-hubspot-quel-crm-choisir-en-2025',
     excerpt:
@@ -1279,7 +2152,7 @@ export const BLOG_POSTS: BlogPostData[] = [
   },
   {
     id: 'docusign-vs-yousign-2025',
-    category_slug: 'comparaison-benchmarks',
+    category_slug: 'comparatifs',
     title: 'DocuSign vs Yousign : Quel outil de signature ├®lectronique choisir en 2025 ?',
     slug: 'docusign-vs-yousign-quel-outil-signature-electronique-choisir-2025',
     excerpt:
@@ -1291,7 +2164,7 @@ export const BLOG_POSTS: BlogPostData[] = [
   },
   {
     id: 'microsoft365-vs-google-workspace-2025',
-    category_slug: 'comparaison-benchmarks',
+    category_slug: 'comparatifs',
     title: 'Microsoft 365 vs Google Workspace : Lequel choisir pour votre entreprise en 2025 ?',
     slug: 'microsoft-365-vs-google-workspace-lequel-choisir-2025',
     excerpt:
@@ -1303,7 +2176,7 @@ export const BLOG_POSTS: BlogPostData[] = [
   },
   {
     id: 'art-negociation-saas-humain-2025',
-    category_slug: 'etudes-tendances',
+    category_slug: 'benchmarks',
     title: "L'Art de la N├®gociation SaaS : Et si on remettait l'humain au c┼ôur du contrat ?",
     slug: 'art-negociation-saas-remettre-humain-coeur-contrat',
     excerpt:
@@ -1315,7 +2188,7 @@ export const BLOG_POSTS: BlogPostData[] = [
   },
   {
     id: 'prix-crm-france-benchmark-2025',
-    category_slug: 'comparaison-benchmarks',
+    category_slug: 'comparatifs',
     title: "Prix des CRM en France : ce que les entreprises paient vraiment en 2025",
     slug: 'prix-crm-france-benchmark-2025',
     excerpt:
@@ -1327,7 +2200,7 @@ export const BLOG_POSTS: BlogPostData[] = [
   },
   {
     id: 'reviews-saas-biais-alternatives',
-    category_slug: 'etudes-tendances',
+    category_slug: 'benchmarks',
     title: "Pourquoi les avis G2 et Capterra sont biais├®s (et quoi utiliser ├á la place)",
     slug: 'reviews-saas-biais-alternatives',
     excerpt:
@@ -1339,7 +2212,7 @@ export const BLOG_POSTS: BlogPostData[] = [
   },
   {
     id: 'notion-vs-confluence-wiki-documentation-entreprise-2025',
-    category_slug: 'comparaison-benchmarks',
+    category_slug: 'comparatifs',
     title: 'Notion vs Confluence : Quel outil de documentation choisir en 2025 ?',
     slug: 'notion-vs-confluence-wiki-documentation-entreprise-2025',
     excerpt:
@@ -1351,7 +2224,7 @@ export const BLOG_POSTS: BlogPostData[] = [
   },
   {
     id: 'prix-slack-entreprises-benchmark-2025',
-    category_slug: 'prix-negociation',
+    category_slug: 'guides-achat',
     title: 'Ce que les entreprises paient vraiment pour Slack en 2025 — benchmark prix reels',
     slug: 'prix-slack-entreprises-benchmark-2025',
     excerpt:
@@ -1363,7 +2236,7 @@ export const BLOG_POSTS: BlogPostData[] = [
   },
   {
     id: 'slack-vs-teams-2026',
-    category_slug: 'comparaison-benchmarks',
+    category_slug: 'comparatifs',
     title: 'Slack vs Microsoft Teams : messagerie d’entreprise et collaboration',
     slug: 'slack-vs-microsoft-teams-messagerie-collaboration',
     excerpt:
@@ -1375,7 +2248,7 @@ export const BLOG_POSTS: BlogPostData[] = [
   },
   {
     id: 'jira-vs-linear-2026',
-    category_slug: 'comparaison-benchmarks',
+    category_slug: 'comparatifs',
     title: 'Jira vs Linear : pilotage produit et développement logiciel',
     slug: 'jira-vs-linear-pilotage-produit-developpement',
     excerpt:
@@ -1387,7 +2260,7 @@ export const BLOG_POSTS: BlogPostData[] = [
   },
   {
     id: 'zoom-meet-teams-2026',
-    category_slug: 'comparaison-benchmarks',
+    category_slug: 'comparatifs',
     title: 'Zoom, Google Meet ou Microsoft Teams : quelle visioconférence en entreprise ?',
     slug: 'zoom-google-meet-microsoft-teams-visioconference-entreprise',
     excerpt:
@@ -1399,7 +2272,7 @@ export const BLOG_POSTS: BlogPostData[] = [
   },
   {
     id: 'lire-grille-tarifaire-saas-2026',
-    category_slug: 'prix-negociation',
+    category_slug: 'guides-achat',
     title: 'Comment lire une grille tarifaire SaaS (sans se faire piéger)',
     slug: 'comment-lire-grille-tarifaire-saas',
     excerpt:
@@ -1411,7 +2284,7 @@ export const BLOG_POSTS: BlogPostData[] = [
   },
   {
     id: 'renouvellement-contrat-checklist-2026',
-    category_slug: 'prix-negociation',
+    category_slug: 'guides-achat',
     title: 'Renouvellement de contrat SaaS : checklist acheteur',
     slug: 'renouvellement-contrat-saas-checklist-acheteur',
     excerpt:
@@ -1423,7 +2296,7 @@ export const BLOG_POSTS: BlogPostData[] = [
   },
   {
     id: 'tco-saas-complet-2026',
-    category_slug: 'prix-negociation',
+    category_slug: 'guides-achat',
     title: 'TCO SaaS : ce qu’il faut inclure au-delà du prix de la licence',
     slug: 'tco-saas-cout-total-possession-licence',
     excerpt:
@@ -1435,7 +2308,7 @@ export const BLOG_POSTS: BlogPostData[] = [
   },
   {
     id: 'ia-generative-outils-saas-2026',
-    category_slug: 'etudes-tendances',
+    category_slug: 'benchmarks',
     title: 'IA générative dans les outils SaaS : ce que les acheteurs doivent négocier',
     slug: 'ia-generative-outils-saas-negociation-acheteurs',
     excerpt:
@@ -1447,7 +2320,7 @@ export const BLOG_POSTS: BlogPostData[] = [
   },
   {
     id: 'shadow-it-reprendre-main-2026',
-    category_slug: 'etudes-tendances',
+    category_slug: 'benchmarks',
     title: 'Shadow IT : comment les DSI reprennent la main sans brider les métiers',
     slug: 'shadow-it-dsi-catalogue-gouvernance',
     excerpt:
@@ -1459,7 +2332,7 @@ export const BLOG_POSTS: BlogPostData[] = [
   },
   {
     id: 'finops-optimisation-saas-2026',
-    category_slug: 'etudes-tendances',
+    category_slug: 'benchmarks',
     title: 'FinOps et optimisation : maîtriser les dépenses SaaS et cloud',
     slug: 'finops-optimisation-depenses-saas-cloud',
     excerpt:

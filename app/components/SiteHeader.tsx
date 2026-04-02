@@ -230,7 +230,7 @@ export function SiteHeader() {
                   <Link href={`${prefix}/blog`} className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors">{t('header.allCategories')}</Link>
                   {BLOG_CATEGORIES.map((cat) => (
                     <Link key={cat.slug} href={`${prefix}/blog?category=${encodeURIComponent(cat.slug)}`} className="flex items-center gap-2 px-4 py-2.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors">
-                      <span>{cat.emoji}</span>{cat.name}
+                      <span>{cat.emoji}</span>{t(`blog.categories.${cat.slug}`)}
                     </Link>
                   ))}
                 </div>
@@ -384,7 +384,7 @@ export function SiteHeader() {
                     <Link href={`${prefix}/blog`} className="block py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>{t('header.allCategories')}</Link>
                     {BLOG_CATEGORIES.map((cat) => (
                       <Link key={cat.slug} href={`${prefix}/blog?category=${encodeURIComponent(cat.slug)}`} className="flex items-center gap-2 py-2.5 px-4 text-sm text-slate-700 hover:bg-slate-50 rounded-lg" onClick={closeMobileMenu}>
-                        <span>{cat.emoji}</span>{cat.name}
+                        <span>{cat.emoji}</span>{t(`blog.categories.${cat.slug}`)}
                       </Link>
                     ))}
                   </div>

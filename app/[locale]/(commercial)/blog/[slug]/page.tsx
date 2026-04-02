@@ -9,10 +9,11 @@ import { fixMojibake } from '@/lib/fix-mojibake'
 import { getMessages, t, isValidLocale, type Locale } from '@/lib/i18n'
 
 const CATEGORY_KEYS: Record<string, string> = {
-  'comparaison-benchmarks': 'header.categoryComparison',
-  'prix-negociation': 'header.categoryPricing',
-  'etudes-tendances': 'header.categoryStudies',
-  reglementation: 'header.categoryRegulation',
+  comparatifs: 'blog.categories.comparatifs',
+  'guides-achat': 'blog.categories.guides-achat',
+  benchmarks: 'blog.categories.benchmarks',
+  'templates-outils': 'blog.categories.templates-outils',
+  reglementation: 'blog.categories.reglementation',
 }
 
 type Props = { params: Promise<{ locale: string; slug: string }> }
@@ -72,6 +73,7 @@ export default async function BlogPostPage({ params }: Props) {
     post.body.includes('class="my-10 rounded-xl bg-primary-50 border border-primary-100 p-6 text-center"')
   const frameworkLabel =
     REG_FRAMEWORK_LABELS[post.id] ?? (post.title.split(':')[0] || post.title).trim()
+  const templateObject = post.cta_object ?? (post.title.split(':')[0] || post.title).trim()
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -136,7 +138,13 @@ export default async function BlogPostPage({ params }: Props) {
               <div className="mt-10 pt-8 border-t border-slate-200">
                 <div className="rounded-xl bg-primary-50 border border-primary-100 p-6 text-center">
                   <p className="text-slate-800 font-semibold mb-2">{t(m, 'blog.ctaTitle')}</p>
-                  <p className="text-slate-600 text-sm mb-4">{t(m, 'blog.ctaSubtitle')}</p>
+                  <p className="text-slate-600 text-sm mb-4">
+                    {post.category_slug === 'templates-outils'
+                      ? t(m, 'blog.templatesCtaSubtitle').replace('{object}', templateObject)
+                      : post.category_slug === 'comparatifs'
+                        ? t(m, 'blog.comparatifsCtaSubtitle')
+                        : t(m, 'blog.ctaSubtitle')}
+                  </p>
                   {signupUrl ? (
                     <a
                       href={signupUrl}

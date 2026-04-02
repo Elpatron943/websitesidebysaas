@@ -7,10 +7,11 @@ import { fixMojibake } from '@/lib/fix-mojibake'
 import { getMessages, t, isValidLocale, type Locale } from '@/lib/i18n'
 
 const CATEGORY_KEYS: Record<string, string> = {
-  'comparaison-benchmarks': 'header.categoryComparison',
-  'prix-negociation': 'header.categoryPricing',
-  'etudes-tendances': 'header.categoryStudies',
-  reglementation: 'header.categoryRegulation',
+  comparatifs: 'blog.categories.comparatifs',
+  'guides-achat': 'blog.categories.guides-achat',
+  benchmarks: 'blog.categories.benchmarks',
+  'templates-outils': 'blog.categories.templates-outils',
+  reglementation: 'blog.categories.reglementation',
 }
 
 const VALID_CATEGORY_SLUGS = new Set(BLOG_CATEGORIES.map((c) => c.slug))

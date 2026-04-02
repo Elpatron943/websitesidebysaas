@@ -53,13 +53,13 @@ export default {
       journeyVisual: {
         title: 'Parcours d’achat logiciel : avant / après',
         subtitle:
-          'À gauche : 15 micro-étapes sur six phases (parcours souvent non linéaire). À droite : les mêmes six phases, mais une seule étape condensée par phase — Side by SaaS enlève le superflu.',
+          'À gauche : 15 micro-étapes sur six phases (parcours souvent non linéaire). À droite : les mêmes six phases, mais moins d’étapes numérotées — Side by SaaS supprime le superflu.',
         beforeTitle: 'Parcours d’achat B2B classique (non linéaire)',
         afterTitle: 'Avec Side by SaaS (parcours raccourci)',
         beforeCaption:
           'Les acheteurs revisittent souvent plusieurs « jobs » en parallèle : recherche autonome, désalignements, RFP, démos, validations… d’où l’enchevêtrement. Schéma pédagogique inspiré des cadres d’achat B2B largement décrits dans la littérature professionnelle.',
         afterCaption:
-          'À gauche : 15 micro-étapes (souvent revisitées). À droite : 6 étapes seulement — une par phase d’achat — car Side by SaaS supprime ou fusionne ce qui est redondant (veille inutile, RFP à vide, cycles commerciaux hors sujet, boucles avant signature).',
+          'À gauche : 15 micro-étapes (souvent revisitées). À droite : 8 étapes numérotées — car Side by SaaS supprime ou fusionne ce qui est redondant (veille inutile, RFP à vide, cycles commerciaux hors sujet, boucles avant signature).',
         disclaimer:
           'Illustration originale — les libellés de phases suivent une structure d’achat B2B courante dans la pratique ; elle ne reproduit pas un support graphique édité par un tiers.',
         stepsLabel: 'micro-étapes numérotées (réparties sur 6 phases d’achat)',
@@ -73,7 +73,7 @@ export default {
           j5: '5. Validation',
           j6: '6. Consensus & décision d’achat',
         },
-        sbsShortLabel: '6 étapes condensées (au lieu de 15 à gauche) — une étape par phase',
+        sbsShortLabel: '8 étapes (au lieu de 15 à gauche) — parcours allégé',
         stepsClassic: {
           s1: 'Détection du problème ou de l’opportunité métier',
           s2: 'Recherche en ligne, rapports & veille indépendante (hors pitch commercial direct)',
@@ -91,19 +91,16 @@ export default {
           s14: 'Alignement du groupe d’achat, reprise juridique, SLA & conditions contractuelles',
           s15: 'Décision d’achat, validation budget & signature — ou retour en arrière sur une phase antérieure',
         },
-        stepsSbsCondensed: {
-          j1:
-            'Détection du besoin et veille indépendante, avec moins d’aller-retour sur la définition ou la priorité du problème grâce à des repères pairs pris tôt.',
-          j2:
-            'Exploration fondée sur des acheteurs comparables (même secteur, même taille) : fonctionnalités réelles, prix, avis anonymisés — à la place d’une grande partie de la veille dispersée et de la surcharge d’information.',
-          j3:
-            'Exigences et RFI / RFP calibrées sur l’expérience de pairs — moins d’ateliers et d’itérations « à vide » avant le bon niveau de détail.',
-          j4:
-            'Short list courte, démos et négociation nourries par des données d’achat réelles — on évite les longues listes, les cycles commerciaux hors périmètre et les business case qui tournent faute de données.',
-          j5:
-            'Validations technique, intégration, sécurité, références et due diligence ciblées sur votre cas — pas de contrôles génériques redondants.',
-          j6:
-            'Alignement groupe d’achat, achats, juridique, budget et signature sur une trajectoire plus directe — sans les boucles prolongées du parcours classique.',
+        stepsSbsReduced: {
+          s1: 'Détection du problème ou de l’opportunité métier',
+          s2:
+            'Données réelles d’acheteurs comparables (même secteur, même taille) : fonctionnalités réellement disponibles, prix négociés, avis anonymisés',
+          s3: 'Exploration ciblée des solutions à partir des données pairs (moins de veille dispersée)',
+          s4: 'Exigences, critères pondérés et périmètre clarifiés (moins d’itérations « à vide »)',
+          s5: 'Short list qualifiée',
+          s6: 'Démos / POC ciblés et négociation appuyée sur des données d’achat',
+          s7: 'Validation ciblée (tech, intégration, sécurité, conformité) sur votre cas',
+          s8: 'Alignement interne, achats, juridique, budget, décision & contractualisation',
         },
       },
       compare: {

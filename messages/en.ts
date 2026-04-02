@@ -53,13 +53,13 @@ export default {
       journeyVisual: {
         title: 'Software buying journey: before / after',
         subtitle:
-          'On the left: 15 micro-steps across six phases (often non-linear). On the right: the same six phases, but one condensed step per phase — Side by SaaS removes the noise.',
+          'On the left: 15 micro-steps across six phases (often non-linear). On the right: the same six phases, but fewer numbered steps — Side by SaaS removes the noise.',
         beforeTitle: 'Classic B2B buying journey (non-linear)',
         afterTitle: 'With Side by SaaS (shortened path)',
         beforeCaption:
           'Buyers often revisit several jobs in parallel: autonomous research, misalignment, RFPs, demos, validations… hence the tangle. Educational diagram aligned with widely used B2B buying frameworks in professional literature.',
         afterCaption:
-          'Left: 15 micro-steps (often revisited). Right: only six steps — one per buying phase — because Side by SaaS drops or merges what is redundant (pointless research, empty RFP cycles, off-scope sales loops, delays before signature).',
+          'Left: 15 micro-steps (often revisited). Right: 8 numbered steps — because Side by SaaS drops or merges what is redundant (pointless research, empty RFP cycles, off-scope sales loops, delays before signature).',
         disclaimer:
           'Original illustration — phase labels follow a common B2B buying structure; it does not reproduce a third-party graphic asset.',
         stepsLabel: 'numbered micro-steps (across 6 buying phases)',
@@ -73,7 +73,7 @@ export default {
           j5: '5. Validation',
           j6: '6. Consensus & purchase decision',
         },
-        sbsShortLabel: 'Six condensed steps (vs. 15 on the left) — one step per phase',
+        sbsShortLabel: '8 steps (vs. 15 on the left) — streamlined path',
         stepsClassic: {
           s1: 'Business problem or opportunity detection',
           s2: 'Online research, analyst reports & independent scanning (outside direct sales pitches)',
@@ -91,19 +91,16 @@ export default {
           s14: 'Buying-group alignment, legal review, SLAs & contractual terms',
           s15: 'Purchase decision, budget approval & signature — or loop back to an earlier phase',
         },
-        stepsSbsCondensed: {
-          j1:
-            'Problem detection and independent research, with fewer repeated debates on definition or priority thanks to peer benchmarks early on.',
-          j2:
-            'Exploration grounded in comparable buyers (same sector, size): real features, pricing, anonymized feedback — replacing much of the scattered scan and information overload.',
-          j3:
-            'Requirements and RFI/RFP calibrated on peer experience — fewer workshops and empty iterations before the right level of detail.',
-          j4:
-            'Tight shortlist, demos, and negotiation backed by real purchase data — avoiding long lists, off-scope sales cycles, and business cases spinning without data.',
-          j5:
-            'Technical, integration, security, references, and due diligence focused on your case — no redundant generic checks.',
-          j6:
-            'Buying-group, procurement, legal, budget, and signature on a straighter path — without the long loops of the classic journey.',
+        stepsSbsReduced: {
+          s1: 'Business problem or opportunity detection',
+          s2:
+            'Real buyer data from comparable companies (same sector, same size): actual features, negotiated pricing, anonymized feedback',
+          s3: 'Targeted solution exploration using peer data (less scattered research)',
+          s4: 'Clear scope, weighted criteria, and requirements (fewer empty iterations)',
+          s5: 'Qualified shortlist',
+          s6: 'Focused demos / POCs and negotiation backed by purchase data',
+          s7: 'Targeted validation (tech, integration, security, compliance) for your case',
+          s8: 'Internal alignment, procurement, legal, budget, decision & contracting',
         },
       },
       compare: {

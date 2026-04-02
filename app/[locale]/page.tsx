@@ -82,7 +82,7 @@ function CompareCheckList({ lines, variant }: { lines: string[]; variant: 'bad' 
 }
 
 const CLASSIC_STEPS = 15
-const SBS_STEPS = 6
+const SBS_STEPS = 8
 
 /** Mêmes titres de phases que le parcours classique (`classicJobs`). */
 const SBS_PHASE_KEYS = ['j1', 'j2', 'j3', 'j4', 'j5', 'j6'] as const
@@ -95,6 +95,16 @@ const CLASSIC_JOB_BLOCKS = [
   { jobKey: 'j4' as const, from: 9, to: 11 },
   { jobKey: 'j5' as const, from: 12, to: 13 },
   { jobKey: 'j6' as const, from: 14, to: 15 },
+] as const
+
+/** Version Side by SaaS : moins d’étapes numérotées (8) mais calées sur les 6 phases. */
+const SBS_JOB_BLOCKS = [
+  { jobKey: 'j1' as const, from: 1, to: 2 },
+  { jobKey: 'j2' as const, from: 3, to: 3 },
+  { jobKey: 'j3' as const, from: 4, to: 4 },
+  { jobKey: 'j4' as const, from: 5, to: 6 },
+  { jobKey: 'j5' as const, from: 7, to: 7 },
+  { jobKey: 'j6' as const, from: 8, to: 8 },
 ] as const
 
 /** Positions : couronne extérieure (1–10) + couronne intérieure (11–15) pour maximiser les croisements. */
@@ -185,7 +195,7 @@ function JourneyBeforeAfter({ t }: { t: (key: string) => string }) {
     return `M ${x1} ${y1} Q ${cx} ${cy} ${x2} ${y2}`
   }
 
-  const sbsXs = [36, 112, 188, 264, 340, 416]
+  const sbsXs = [44, 136, 228, 320, 412, 504, 596, 688]
   const sbsY = 64
   const gradId = `jv-sbs-grad-${uid}`
   const markerId = `jv-sbs-arr-${uid}`
@@ -287,7 +297,7 @@ function JourneyBeforeAfter({ t }: { t: (key: string) => string }) {
             <p className="text-center text-xs mb-3 text-green-800/90 font-medium">{t('home.landing.journeyVisual.sbsShortLabel')}</p>
             <div className="flex-1 min-h-0 overflow-x-auto">
               <svg
-                viewBox="0 0 452 118"
+                viewBox="0 0 732 118"
                 className="min-w-[320px] w-full h-auto max-h-[min(220px,38vh)]"
                 role="img"
                 aria-label={t('home.landing.journeyVisual.afterTitle')}
@@ -346,12 +356,22 @@ function JourneyBeforeAfter({ t }: { t: (key: string) => string }) {
                 className="mt-4 space-y-2.5 text-left text-[10px] sm:text-[11px] leading-snug border-t border-green-200/80 pt-3"
                 style={{ color: '#44403C' }}
               >
-                {SBS_PHASE_KEYS.map((jobKey) => (
-                  <div key={jobKey}>
+                {SBS_JOB_BLOCKS.map((block) => (
+                  <div key={block.jobKey}>
                     <p className="font-bold text-green-900 text-[10px] sm:text-[11px] leading-tight mb-1">
-                      {t(`home.landing.journeyVisual.classicJobs.${jobKey}`)}
+                      {t(`home.landing.journeyVisual.classicJobs.${block.jobKey}`)}
                     </p>
-                    <p className="pl-0.5 leading-relaxed">{t(`home.landing.journeyVisual.stepsSbsCondensed.${jobKey}`)}</p>
+                    <ol
+                      start={block.from}
+                      className="list-decimal pl-4 space-y-1 marker:text-green-800 marker:font-semibold"
+                      style={{ color: '#44403C' }}
+                    >
+                      {Array.from({ length: block.to - block.from + 1 }, (_, k) => block.from + k).map((i) => (
+                        <li key={i} className="pl-1">
+                          {t(`home.landing.journeyVisual.stepsSbsReduced.s${i}`)}
+                        </li>
+                      ))}
+                    </ol>
                   </div>
                 ))}
               </div>

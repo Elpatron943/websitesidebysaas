@@ -8,13 +8,17 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }): Promise<Metadata> {
   const { locale } = await params
+  const isEn = locale === 'en'
+  const ogDescription = isEn
+    ? 'Real buyer data. Real SaaS battles. Benchmarks and comparisons for anyone buying SaaS software — and for publishers.'
+    : 'Real buyer data. Real SaaS battles. Benchmark et comparaison SaaS pour tous ceux qui achètent des logiciels SaaS et pour les éditeurs.'
 
   return {
     title: 'Side by SaaS | Benchmark SaaS sur données réelles',
     description: 'Comparez les logiciels SaaS avec de vraies données d\'achats anonymisées. La seule plateforme B2B qui vous dit ce que les entreprises paient vraiment.',
     openGraph: {
       title: 'Side by SaaS | Benchmark SaaS sur données réelles',
-      description: 'Real buyer data. Real SaaS battles. Benchmark et comparaison SaaS pour acheteurs IT et éditeurs.',
+      description: ogDescription,
       url: `${baseUrl}/${locale}`,
       siteName: 'Side by SaaS',
       type: 'website',

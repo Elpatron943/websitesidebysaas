@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: 'Découvrez les fonctionnalités de Side by SaaS : données d\'achats réels, benchmark par taille d\'entreprise, battle cards, portefeuille SaaS et calculateur ROI.',
   openGraph: {
     title: 'Fonctionnalités | Side by SaaS',
-    description: 'Données d\'achats réels, benchmark, battle cards et plus. La plateforme de comparaison SaaS pour acheteurs IT.',
+    description: 'Données d\'achats réels, benchmark, battle cards et plus. La plateforme de comparaison SaaS pour tous ceux qui achètent des logiciels SaaS.',
     url: 'https://sidebysaas.com/fr/features',
     siteName: 'Side by SaaS',
     type: 'website',
@@ -77,7 +77,7 @@ export default function Features() {
             Ce que Side by SaaS vous permet de faire
           </h1>
           <p className="text-xl max-w-2xl mx-auto leading-relaxed" style={{ color: '#44403C' }}>
-            Une plateforme construite pour les acheteurs IT qui veulent des faits, pas du marketing.
+            Une plateforme construite pour celles et ceux qui achètent des logiciels SaaS et veulent des faits, pas du marketing.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link

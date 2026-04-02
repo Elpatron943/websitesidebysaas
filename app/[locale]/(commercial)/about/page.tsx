@@ -67,7 +67,7 @@ export default function About() {
         >
           <h2 className="text-2xl font-bold" style={{ color: '#1C1917' }}>Notre mission</h2>
           <p className="leading-relaxed" style={{ color: '#44403C' }}>
-            Les acheteurs IT passent des heures à comparer des logiciels sur des sites de review 
+            Les acheteurs de logiciels SaaS passent des heures à comparer des logiciels sur des sites de review 
             bourrés de contenus sponsorisés, avec des grilles tarifaires volontairement opaques. 
             Les éditeurs contrôlent l&apos;information. Les acheteurs négocient à l&apos;aveugle.
           </p>

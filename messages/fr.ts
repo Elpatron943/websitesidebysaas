@@ -45,11 +45,27 @@ export default {
       free: 'Gratuit pour démarrer • Sans engagement',
     },
     landing: {
-      heroBadge: 'Plateforme de benchmark SaaS — dédiée aux acheteurs IT',
+      heroBadge: 'Plateforme de benchmark SaaS — pour tous ceux qui achètent des logiciels SaaS',
       commitmentLabel: 'Notre engagement',
       independenceTitle: 'Au service des acheteurs, sans rémunération des éditeurs',
       independenceBody:
-        'Side by SaaS est pensée pour les acheteurs IT et la transparence des achats logiciels. Nous ne nous rémunérons pas auprès des éditeurs pour classer, mettre en avant ou favoriser une solution : pas de « pay-to-play », pas d’orientation des comparatifs au profit des vendeurs — pour limiter les biais et vous donner des repères réellement utiles pour négocier et décider.',
+        'Side by SaaS est pensée pour celles et ceux qui achètent des logiciels SaaS (tous métiers) et pour la transparence des achats logiciels. Nous ne nous rémunérons pas auprès des éditeurs pour classer, mettre en avant ou favoriser une solution : pas de « pay-to-play », pas d’orientation des comparatifs au profit des vendeurs — pour limiter les biais et vous donner des repères réellement utiles pour négocier et décider.',
+      socialProofCount: '2 847+',
+      socialProofSuffix: 'acheteurs de logiciels SaaS cette semaine',
+      problemBuyersBlind:
+        'Celles et ceux qui achètent des logiciels SaaS naviguent souvent à l’aveugle : démos trop lisses, comparatifs influencés par les éditeurs, tarifs opaques, et aucun moyen de savoir ce que les autres ont vraiment négocié.',
+      sbsFixesSharing:
+        'Des acheteurs de logiciels SaaS partagent anonymement leurs vraies décisions — prix négociés, remises obtenues, raisons du choix final. Taille et secteur visibles pour que vous trouviez des pairs comparables.',
+      testimonialsRoles:
+        'Acheteurs de logiciels SaaS, directions métiers, achats, finance, IT — leurs retours en direct.',
+      communityProfessionals:
+        'Des discussions entre professionnels qui achètent ou déploient des logiciels SaaS',
+      ctaBuyerPrimary: 'Découvrir l’espace acheteur',
+      ctaBuyerLink: 'Voir l’espace acheteur →',
+      ctaBuyerAfterCompare: 'Accéder aux repères prix, battle cards et calculateur',
+      ctaBuyerAfterHowItWorks: 'Ouvrir l’espace acheteur',
+      ctaAfterJourneyBanner:
+        'Passez à l’espace acheteur pour comparer et négocier avec des données réelles.',
       journeyVisual: {
         title: 'Parcours d’achat logiciel : avant / après',
         subtitle:

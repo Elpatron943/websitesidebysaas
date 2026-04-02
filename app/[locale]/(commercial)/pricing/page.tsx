@@ -3,10 +3,10 @@ import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Tarifs | Side by SaaS',
-  description: 'Tarifs Side by SaaS pour acheteurs IT et éditeurs SaaS. Gratuit pour démarrer, plans PME et Enterprise sur devis.',
+  description: 'Tarifs Side by SaaS pour acheteurs de logiciels SaaS et éditeurs. Gratuit pour démarrer, plans PME et Enterprise sur devis.',
   openGraph: {
     title: 'Tarifs | Side by SaaS',
-    description: 'Des tarifs clairs et transparents pour les acheteurs IT et éditeurs SaaS.',
+    description: 'Des tarifs clairs et transparents pour les acheteurs de logiciels SaaS et les éditeurs.',
     url: 'https://sidebysaas.com/fr/pricing',
     siteName: 'Side by SaaS',
     type: 'website',

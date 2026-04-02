@@ -46,7 +46,7 @@ export default function HomePage() {
         <h2 className="text-3xl font-semibold text-center mb-8">Pour qui ?</h2>
         <div className="grid grid-cols-2 gap-8">
           <div>
-            <h3 className="text-xl font-bold mb-2">Acheteurs IT</h3>
+            <h3 className="text-xl font-bold mb-2">Acheteurs de logiciels SaaS</h3>
             <p>Découvrez les options SaaS les plus efficaces.</p>
           </div>
           <div>

@@ -18,13 +18,13 @@ const testimonials = [
   {
     quote: "3 semaines de benchmark habituellement. Avec Side by SaaS, j'ai eu une vue marché complète en 2 jours. Incroyable.",
     name: "Julie R.",
-    title: "IT Manager, Scale-up fintech",
+    title: "Directrice des opérations, Scale-up fintech",
     avatar: "JR",
   },
   {
     quote: "La seule source où je fais vraiment confiance aux prix. Pas du marketing, de vraies données d'achat.",
     name: "Karim B.",
-    title: "Responsable Achats IT, Groupe retail",
+    title: "Responsable achats, Groupe retail",
     avatar: "KB",
   },
 ]
@@ -419,8 +419,25 @@ export default function Home() {
               ))}
             </div>
             <p className="text-sm font-medium" style={{ color: '#57534E' }}>
-              <strong style={{ color: '#1C1917' }}>2 847+</strong> acheteurs IT cette semaine
+              <strong style={{ color: '#1C1917' }}>{t('home.landing.socialProofCount')}</strong>{' '}
+              {t('home.landing.socialProofSuffix')}
             </p>
+          </div>
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <Link
+              href={`${prefix}/acheteur`}
+              className="inline-flex items-center justify-center w-full sm:w-auto min-w-[240px] px-8 py-4 rounded-xl text-base font-bold text-white shadow-lg hover:opacity-95 transition-opacity"
+              style={{ backgroundColor: '#16A34A' }}
+            >
+              {t('home.landing.ctaBuyerPrimary')}
+            </Link>
+            <Link
+              href={`${prefix}/acheteur`}
+              className="text-sm font-semibold hover:underline"
+              style={{ color: '#15803D' }}
+            >
+              {t('home.landing.ctaBuyerLink')}
+            </Link>
           </div>
         </div>
       </section>
@@ -440,6 +457,15 @@ export default function Home() {
           <p className="text-sm md:text-base leading-relaxed" style={{ color: '#166534' }}>
             {t('home.landing.independenceBody')}
           </p>
+          <div className="mt-6 pt-6 border-t" style={{ borderColor: '#86EFAC' }}>
+            <Link
+              href={`${prefix}/acheteur`}
+              className="inline-flex items-center gap-2 text-sm font-semibold hover:underline"
+              style={{ color: '#14532D' }}
+            >
+              {t('home.landing.ctaBuyerLink')}
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -452,7 +478,7 @@ export default function Home() {
               Choisir un SaaS, c&apos;est encore trop souvent une prise de risque.
             </h2>
             <p className="text-base max-w-2xl mx-auto leading-relaxed" style={{ color: '#57534E' }}>
-              Les acheteurs IT naviguent à l&apos;aveugle : démos trop lisses, comparatifs influencés par les éditeurs, tarifs opaques, et aucun moyen de savoir ce que les autres ont vraiment négocié.
+              {t('home.landing.problemBuyersBlind')}
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
@@ -485,14 +511,41 @@ export default function Home() {
             <div>
               <p className="font-bold mb-1" style={{ color: '#15803D' }}>Side by SaaS résout ça.</p>
               <p className="text-sm leading-relaxed" style={{ color: '#166534' }}>
-                Des acheteurs IT partagent anonymement leurs vraies décisions — prix négociés, remises obtenues, raisons du choix final. Taille et secteur visibles pour que vous trouviez des pairs comparables.
+                {t('home.landing.sbsFixesSharing')}
               </p>
             </div>
+          </div>
+          <div className="mt-10 text-center">
+            <Link
+              href={`${prefix}/acheteur`}
+              className="inline-flex items-center justify-center px-6 py-3 rounded-xl text-sm font-bold text-white shadow-md hover:opacity-95 transition-opacity"
+              style={{ backgroundColor: '#16A34A' }}
+            >
+              {t('home.landing.ctaBuyerPrimary')}
+            </Link>
           </div>
         </div>
       </section>
 
       <JourneyBeforeAfter t={t} />
+
+      <section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 md:pb-16">
+        <div
+          className="rounded-2xl border p-5 md:p-6 text-center"
+          style={{ backgroundColor: '#F0FDF4', borderColor: '#BBF7D0' }}
+        >
+          <p className="text-sm font-medium mb-4" style={{ color: '#166534' }}>
+            {t('home.landing.ctaAfterJourneyBanner')}
+          </p>
+          <Link
+            href={`${prefix}/acheteur`}
+            className="inline-flex items-center justify-center px-6 py-3 rounded-xl text-sm font-bold text-white hover:opacity-95 transition-opacity"
+            style={{ backgroundColor: '#16A34A' }}
+          >
+            {t('home.landing.ctaBuyerPrimary')}
+          </Link>
+        </div>
+      </section>
 
       {/* TABLEAU COMPARATIF : CLASSIQUE VS SIDE BY SAAS */}
       <section className="py-16 md:py-20" style={{ backgroundColor: '#FFFBF5' }}>
@@ -542,6 +595,20 @@ export default function Home() {
               )
             })}
           </div>
+          <div className="mt-12 text-center">
+            <Link
+              href={`${prefix}/acheteur`}
+              className="inline-flex items-center justify-center px-8 py-4 rounded-xl text-base font-bold text-white shadow-lg hover:opacity-95 transition-opacity"
+              style={{ backgroundColor: '#16A34A' }}
+            >
+              {t('home.landing.ctaBuyerAfterCompare')}
+            </Link>
+            <p className="mt-3">
+              <Link href={`${prefix}/acheteur`} className="text-sm font-semibold hover:underline" style={{ color: '#15803D' }}>
+                {t('home.landing.ctaBuyerLink')}
+              </Link>
+            </p>
+          </div>
         </div>
       </section>
 
@@ -552,25 +619,34 @@ export default function Home() {
             <h2 className="text-2xl md:text-3xl font-bold mb-3" style={{ color: '#1C1917' }}>
               Ils ont mieux choisi grâce à Side by SaaS
             </h2>
-            <p style={{ color: '#57534E' }}>Acheteurs IT, DSI, responsables IT — leurs retours en direct.</p>
+            <p style={{ color: '#57534E' }}>{t('home.landing.testimonialsRoles')}</p>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
-            {testimonials.map((t) => (
-              <div key={t.name} className="rounded-2xl p-6 shadow-sm border" style={{ backgroundColor: '#FFFBF5', borderColor: '#EDE5D8' }}>
+            {testimonials.map((row) => (
+              <div key={row.name} className="rounded-2xl p-6 shadow-sm border" style={{ backgroundColor: '#FFFBF5', borderColor: '#EDE5D8' }}>
                 <p className="text-base leading-relaxed mb-5 italic" style={{ fontFamily: 'var(--font-serif)', color: '#292524' }}>
-                  &quot;{t.quote}&quot;
+                  &quot;{row.quote}&quot;
                 </p>
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold text-white" style={{ backgroundColor: '#16A34A' }}>
-                    {t.avatar}
+                    {row.avatar}
                   </div>
                   <div>
-                    <p className="font-semibold text-sm" style={{ color: '#1C1917' }}>{t.name}</p>
-                    <p className="text-xs" style={{ color: '#78716C' }}>{t.title}</p>
+                    <p className="font-semibold text-sm" style={{ color: '#1C1917' }}>{row.name}</p>
+                    <p className="text-xs" style={{ color: '#78716C' }}>{row.title}</p>
                   </div>
                 </div>
               </div>
             ))}
+          </div>
+          <div className="mt-10 text-center">
+            <Link
+              href={`${prefix}/acheteur`}
+              className="inline-flex items-center justify-center px-8 py-3 rounded-xl text-sm font-bold text-white hover:opacity-95 transition-opacity"
+              style={{ backgroundColor: '#16A34A' }}
+            >
+              {t('home.landing.ctaBuyerPrimary')}
+            </Link>
           </div>
         </div>
       </section>
@@ -639,7 +715,7 @@ export default function Home() {
             <h2 className="text-2xl md:text-3xl font-bold mb-3" style={{ color: '#1C1917' }}>
               🗣️ Communauté active
             </h2>
-            <p style={{ color: '#57534E' }}>Des discussions en cours entre professionnels IT</p>
+            <p style={{ color: '#57534E' }}>{t('home.landing.communityProfessionals')}</p>
             <p className="text-xs mt-2 inline-flex items-center gap-1.5 px-3 py-1 rounded-full" style={{ backgroundColor: '#EDE5D8', color: '#78716C' }}>
               <span>🔒</span> Messages anonymes · taille et secteur visibles
             </p>
@@ -708,6 +784,15 @@ export default function Home() {
                 <p className="text-sm leading-relaxed" style={{ color: '#57534E' }}>{step.desc}</p>
               </div>
             ))}
+          </div>
+          <div className="mt-12 flex justify-center">
+            <Link
+              href={`${prefix}/acheteur`}
+              className="inline-flex items-center justify-center w-full sm:w-auto min-w-[260px] px-8 py-4 rounded-xl text-base font-bold text-white shadow-lg hover:opacity-95 transition-opacity"
+              style={{ backgroundColor: '#16A34A' }}
+            >
+              {t('home.landing.ctaBuyerAfterHowItWorks')}
+            </Link>
           </div>
         </div>
       </section>

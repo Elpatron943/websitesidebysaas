@@ -45,11 +45,27 @@ export default {
       free: 'Free to start • No commitment',
     },
     landing: {
-      heroBadge: 'SaaS benchmarking platform — built for IT buyers',
+      heroBadge: 'SaaS benchmarking platform — for anyone who buys SaaS software',
       commitmentLabel: 'Our commitment',
       independenceTitle: 'For buyers — we are not paid by vendors to steer results',
       independenceBody:
-        'Side by SaaS is designed for IT buyers and transparent software purchasing. We do not take money from vendors to rank, feature, or favor any solution: no pay-to-play, no comparisons steered for sellers — so we reduce bias and give you benchmarks you can actually use to negotiate and decide.',
+        'Side by SaaS is built for people who buy SaaS software (every function — not just IT) and for transparent software purchasing. We do not take money from vendors to rank, feature, or favor any solution: no pay-to-play, no comparisons steered for sellers — so we reduce bias and give you benchmarks you can actually use to negotiate and decide.',
+      socialProofCount: '2,847+',
+      socialProofSuffix: 'SaaS software buyers this week',
+      problemBuyersBlind:
+        'People who buy SaaS software often navigate blind: polished demos, vendor-influenced comparisons, opaque pricing, and no reliable way to know what peers actually negotiated.',
+      sbsFixesSharing:
+        'SaaS buyers share their real decisions anonymously — negotiated prices, discounts, and why they chose a vendor. Company size and sector are visible so you can find comparable peers.',
+      testimonialsRoles:
+        'SaaS buyers, business leaders, procurement, finance, IT — real feedback.',
+      communityProfessionals:
+        'Ongoing discussions among professionals who buy or roll out SaaS software',
+      ctaBuyerPrimary: 'Explore the buyer area',
+      ctaBuyerLink: 'Buyer area →',
+      ctaBuyerAfterCompare: 'Open price benchmarks, battle cards & ROI calculator',
+      ctaBuyerAfterHowItWorks: 'Go to the buyer area',
+      ctaAfterJourneyBanner:
+        'Head to the buyer area to compare and negotiate with real purchase data.',
       journeyVisual: {
         title: 'Software buying journey: before / after',
         subtitle:

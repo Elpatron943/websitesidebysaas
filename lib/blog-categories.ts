@@ -1,6 +1,6 @@
 /**
  * Catégories du blog Side by SaaS.
- * 8 catégories SEO orientées acheteurs IT.
+ * Catégories SEO orientées acheteurs de logiciels SaaS.
  */
 
 export const BLOG_CATEGORIES = [

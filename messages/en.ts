@@ -8,7 +8,7 @@ export default {
     loading: 'Loading…',
   },
   home: {
-    freeUntilApril: 'All app features are free until the end of April.',
+    freeUntilJuly: 'All app features are free until the end of July.',
     problem: {
       title: 'A platform built for buyers, with no bias toward publishers',
       buyers: 'SaaS software buyers lack visibility on real prices and what other companies pay. Our platform is built for them first: purchase decisions backed by data, not by vendor-driven marketing.',

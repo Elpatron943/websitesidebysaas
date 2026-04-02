@@ -8,7 +8,7 @@ export default {
     loading: 'Chargement…',
   },
   home: {
-    freeUntilApril: 'Toutes les fonctionnalités de l\'app sont gratuites jusqu\'à fin avril.',
+    freeUntilJuly: 'Toutes les fonctionnalités de l\'app sont gratuites jusqu\'à fin juillet.',
     problem: {
       title: 'Une plateforme pour les acheteurs, sans parti pris des éditeurs',
       buyers: "Les acheteurs de logiciels SaaS manquent de visibilité sur les prix réels et sur ce que paient les autres entreprises. Notre plateforme est pensée pour eux en premier : décisions d'achat appuyées sur des données, pas sur des messages commerciaux orientés par les vendeurs.",

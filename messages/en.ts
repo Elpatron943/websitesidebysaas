@@ -267,5 +267,9 @@ export default {
     ctaSubtitle: 'Join Side by SaaS and access prices paid by other buyers.',
     createBuyerAccount: 'Create my buyer account',
     discoverBuyer: 'Discover buyer space',
+    regCtaTitle: 'Find compliant solutions',
+    regCtaSubtitle:
+      'By signing up, you can identify SaaS solutions that match the regulatory framework you’re looking for: {framework}.',
+    regCtaButton: 'Find SaaS solutions',
   },
 }

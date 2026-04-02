@@ -267,5 +267,9 @@ export default {
     ctaSubtitle: "Rejoignez Side by SaaS et accédez aux prix pratiqués par d'autres acheteurs.",
     createBuyerAccount: 'Créer mon compte acheteur',
     discoverBuyer: "Découvrir l'espace acheteur",
+    regCtaTitle: 'Trouver des solutions conformes',
+    regCtaSubtitle:
+      'En vous inscrivant, vous pourrez identifier des solutions SaaS adaptées au cadre réglementaire que vous recherchez : {framework}.',
+    regCtaButton: 'Trouver des solutions SaaS',
   },
 }

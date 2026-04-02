@@ -192,6 +192,7 @@ export default function AcheteurPage() {
   const [roiUpliftPct, setRoiUpliftPct] = useState(3)
   const [roiBaseRevenueMonth, setRoiBaseRevenueMonth] = useState(100000)
   const [roiAvoidedCostYear, setRoiAvoidedCostYear] = useState(50000)
+  const [roiProbabilityPct, setRoiProbabilityPct] = useState(100)
   const [roiCurrentToolsCostYear, setRoiCurrentToolsCostYear] = useState(15000)
   /** Si > 0, coût annuel = ce forfait (sinon = utilisateurs × coût/mois × 12) */
   const [roiFlatCostYear, setRoiFlatCostYear] = useState(0)
@@ -233,7 +234,7 @@ export default function AcheteurPage() {
     : roiLevier === 'revenus'
       ? Math.max(0, roiBaseRevenueMonth) * 12 * (Math.max(0, roiUpliftPct) / 100)
       : roiLevier === 'evitement'
-        ? Math.max(0, roiAvoidedCostYear)
+        ? Math.max(0, roiAvoidedCostYear) * (Math.max(0, Math.min(100, roiProbabilityPct)) / 100)
         : roiLevier === 'consolidation'
           ? Math.max(0, roiCurrentToolsCostYear)
           : 0
@@ -789,11 +790,26 @@ export default function AcheteurPage() {
                     </>
                   )}
                   {roiLevier === 'evitement' && (
-                    <div className="bg-white rounded-xl border border-slate-200 p-4">
-                      <p className="text-slate-700 font-medium mb-2">Coût évité (€/an)</p>
-                      <input type="number" min={0} value={roiAvoidedCostYear} onChange={(e) => setRoiAvoidedCostYear(Math.max(0, Number(e.target.value) || 0))} className="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary-600 focus:border-transparent" />
-                      <p className="text-xs text-slate-500 mt-1">Exemple : 50 000 €/an</p>
-                    </div>
+                    <>
+                      <div className="bg-white rounded-xl border border-slate-200 p-4">
+                        <p className="text-slate-700 font-medium mb-2">Coût évité (€/an)</p>
+                        <input type="number" min={0} value={roiAvoidedCostYear} onChange={(e) => setRoiAvoidedCostYear(Math.max(0, Number(e.target.value) || 0))} className="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary-600 focus:border-transparent" />
+                        <p className="text-xs text-slate-500 mt-1">Exemple : 50 000 €/an</p>
+                      </div>
+                      <div className="bg-white rounded-xl border border-slate-200 p-4">
+                        <p className="text-slate-700 font-medium mb-2">Probabilité que ça arrive (%)</p>
+                        <input
+                          type="number"
+                          min={0}
+                          max={100}
+                          step={1}
+                          value={roiProbabilityPct}
+                          onChange={(e) => setRoiProbabilityPct(Math.max(0, Math.min(100, Number(e.target.value) || 0)))}
+                          className="w-full max-w-xs px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary-600 focus:border-transparent"
+                        />
+                        <p className="text-xs text-slate-500 mt-1">On calcule un gain “pondéré” : coût évité × probabilité.</p>
+                      </div>
+                    </>
                   )}
                   {roiLevier === 'consolidation' && (
                     <div className="bg-white rounded-xl border border-slate-200 p-4">

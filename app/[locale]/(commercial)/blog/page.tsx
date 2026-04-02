@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { SiteHeader } from '@/app/components/SiteHeader'
 import { BLOG_CATEGORIES, type BlogCategorySlug } from '@/lib/blog-categories'
 import { getBlogPosts } from '@/lib/blog-posts'
+import { fixMojibake } from '@/lib/fix-mojibake'
 import { getMessages, t, isValidLocale, type Locale } from '@/lib/i18n'
 
 const CATEGORY_KEYS: Record<string, string> = {
@@ -103,7 +104,7 @@ export default async function BlogPage({ params, searchParams }: Props) {
                   </span>
                   <h2 className="text-xl font-bold text-slate-900 mt-1 mb-2">{post.title}</h2>
                   {post.excerpt && (
-                    <p className="text-slate-600 text-sm line-clamp-2">{post.excerpt}</p>
+                    <p className="text-slate-600 text-sm line-clamp-2">{fixMojibake(post.excerpt)}</p>
                   )}
                   <time
                     dateTime={post.published_at}

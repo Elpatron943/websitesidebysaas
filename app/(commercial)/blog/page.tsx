@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useSearchParams, useRouter, usePathname } from 'next/navigation'
 import { SiteHeader } from '@/app/components/SiteHeader'
 import { BLOG_CATEGORIES, type BlogCategorySlug } from '@/lib/blog-categories'
+import { fixMojibake } from '@/lib/fix-mojibake'
 
 interface BlogPost {
   id: string
@@ -169,7 +170,7 @@ function BlogPageContent() {
                   </h2>
                   {post.excerpt && (
                     <p className="text-slate-600 text-sm line-clamp-2">
-                      {post.excerpt}
+                      {fixMojibake(post.excerpt)}
                     </p>
                   )}
                   <time

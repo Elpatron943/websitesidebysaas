@@ -26,81 +26,252 @@ const articleStyles = {
 }
 
 const REG_NIS2_BODY = `
-<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">NIS2</strong> (directive UE 2022/2555) renforce les obligations de cybersécurité pour un nombre beaucoup plus large d’organisations qu’avant. L’enjeu, côté acheteur IT, n’est pas uniquement “être conforme” : c’est d’anticiper les exigences de gouvernance, de gestion des risques et de notification, et d’en tenir compte dans le choix de vos fournisseurs (SaaS, infogérance, cloud, MSSP).</p>
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">NIS2</strong> (directive UE 2022/2555) renforce les exigences de cybersécurité et de <strong class="${articleStyles.strong}">gestion des risques</strong> pour un périmètre plus large d’organisations en Europe. L’idée directrice : améliorer la prévention, la réaction en cas d’incident, et la résilience des activités critiques.</p>
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">Note :</strong> cet article est une synthèse pédagogique (pas un avis juridique). Les obligations exactes dépendent de votre pays, de votre secteur et de votre situation.</p>
 
-<h2 class="${articleStyles.h2}">Ce que NIS2 change concrètement</h2>
+<h2 class="${articleStyles.h2}">NIS2 en 30 secondes : ce que ça change</h2>
 <ul class="${articleStyles.ul}">
-  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Périmètre élargi :</strong> plus d’entités “essentielles” et “importantes”, selon secteur et taille.</li>
-  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Responsabilité du management :</strong> obligations de supervision et de mesures adéquates.</li>
-  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Gestion des incidents :</strong> délais de notification et exigences de traçabilité.</li>
-  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Chaîne d’approvisionnement :</strong> focus explicite sur les risques fournisseurs.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Périmètre élargi :</strong> davantage d’entités “essentielles” et “importantes” selon secteur / taille.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Gouvernance :</strong> implication explicite du management, supervision et mesures “appropriées”.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Incidents :</strong> attentes fortes sur détection, notification, traçabilité et coopération.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Supply chain :</strong> la gestion du risque de la chaîne d’approvisionnement devient centrale.</li>
 </ul>
 
-<h2 class="${articleStyles.h2}">Checklist acheteur IT (avant de signer)</h2>
+<h2 class="${articleStyles.h2}">Le piège classique : confondre “certif” et “résilience”</h2>
+<p class="${articleStyles.p}">Une certification (ISO 27001, SOC 2, etc.) peut être un bon signal, mais elle ne garantit pas à elle seule la capacité à gérer un incident majeur. NIS2 pousse à regarder les <strong class="${articleStyles.strong}">mécanismes concrets</strong> : détection, réponse, continuité, communication et gestion de la chaîne d’approvisionnement.</p>
+
+<h2 class="${articleStyles.h2}">Checklist pratique (organisation, équipes, prestataires)</h2>
+<h3 class="${articleStyles.h3}">1) Gouvernance & responsabilités</h3>
 <ul class="${articleStyles.ul}">
-  <li class="${articleStyles.li}">Demander le <strong class="${articleStyles.strong}">cadre de sécurité</strong> du fournisseur (politiques, audits, certifications, PRA/PCA).</li>
-  <li class="${articleStyles.li}">Vérifier les <strong class="${articleStyles.strong}">SLA d’incident</strong> : délais de détection, d’alerte client, et de remédiation.</li>
-  <li class="${articleStyles.li}">Exiger une <strong class="${articleStyles.strong}">clause de notification</strong> compatible avec vos obligations (et vos délais internes).</li>
-  <li class="${articleStyles.li}">Évaluer la <strong class="${articleStyles.strong}">sous-traitance</strong> (hébergeurs, sub-processors) et les points de défaillance.</li>
+  <li class="${articleStyles.li}">Clarifier qui décide, qui opère, qui communique en cas de crise.</li>
+  <li class="${articleStyles.li}">Documenter les processus clés : gestion des risques, vulnérabilités, changements.</li>
+  <li class="${articleStyles.li}">S’assurer que les équipes ont les moyens : budget, outils, formation, astreinte si nécessaire.</li>
 </ul>
 
-${CTA_PLACEHOLDER}
+<h3 class="${articleStyles.h3}">2) Gestion des incidents (détection → réaction → communication)</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Définir des niveaux de gravité et des canaux d’alerte (et des contacts de crise).</li>
+  <li class="${articleStyles.li}">Préparer des procédures (runbooks) : confinement, remédiation, restauration, communication.</li>
+  <li class="${articleStyles.li}">Prévoir des retours d’expérience : analyse post-incident, actions correctives, suivi.</li>
+</ul>
+
+<h3 class="${articleStyles.h3}">3) Continuité d’activité (PRA/PCA)</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Clarifier les objectifs : <strong class="${articleStyles.strong}">RTO/RPO</strong>, priorités de services, dépendances.</li>
+  <li class="${articleStyles.li}">Tester : exercices, restauration, bascule, et communication.</li>
+</ul>
+
+<h3 class="${articleStyles.h3}">4) Chaîne d’approvisionnement (prestataires, sous-traitants)</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Cartographier les prestataires critiques et leurs dépendances.</li>
+  <li class="${articleStyles.li}">Définir des exigences minimales : gestion d’incident, continuité, reporting, coopération.</li>
+</ul>
+
+<h2 class="${articleStyles.h2}">FAQ (SEO)</h2>
+<h3 class="${articleStyles.h3}">NIS2 s’applique-t-elle à mon entreprise ?</h3>
+<p class="${articleStyles.p}">Ça dépend de votre secteur, de votre taille et des règles de transposition dans votre pays. Même hors périmètre direct, NIS2 influence souvent les pratiques via les exigences de clients, partenaires et assureurs.</p>
+<h3 class="${articleStyles.h3}">Que demander à un prestataire “NIS2 ready” ?</h3>
+<p class="${articleStyles.p}">Un discours ne suffit pas : demandez des preuves (audits, politiques) et des engagements opérationnels sur la gestion d’incident et la continuité. Les détails varient selon le type de prestataire (cloud, logiciel, infogérance, télécom…).</p>
+
+<h2 class="${articleStyles.h2}">Pour aller plus loin</h2>
+<p class="${articleStyles.p}">Si vous êtes concerné, appuyez-vous sur vos équipes sécurité/IT/juridique et sur les guides de votre autorité nationale : ils précisent les attentes et les modalités de mise en œuvre.</p>
 `
 
 const REG_VIGILANCE_BODY = `
-<p class="${articleStyles.p}">Le <strong class="${articleStyles.strong}">devoir de vigilance</strong> (et, plus largement, les obligations de vigilance dans la chaîne de valeur) oblige les entreprises concernées à identifier, prévenir et atténuer les risques liés aux droits humains, à la santé/sécurité et à l’environnement. Pour un achat SaaS, cela se traduit par des questions très opérationnelles : sous-traitance, localisation des données, sécurité, conformité sociale, et capacité du fournisseur à documenter ses pratiques.</p>
+<p class="${articleStyles.p}">Le <strong class="${articleStyles.strong}">devoir de vigilance</strong> (et, plus largement, les obligations de vigilance dans la chaîne de valeur) vise à identifier, prévenir et atténuer les risques liés aux <strong class="${articleStyles.strong}">droits humains</strong>, à la <strong class="${articleStyles.strong}">santé/sécurité</strong> et à l’<strong class="${articleStyles.strong}">environnement</strong>. L’enjeu : disposer d’une démarche structurée, documentée, et cohérente avec vos activités et votre chaîne de partenaires.</p>
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">Note :</strong> les règles exactes et le périmètre varient selon les textes applicables et votre situation. Cette page propose une lecture pédagogique.</p>
 
-<h2 class="${articleStyles.h2}">Pourquoi c’est un sujet “achat SaaS”</h2>
+<h2 class="${articleStyles.h2}">Pourquoi c’est un sujet de gouvernance (et pas uniquement “RSE”)</h2>
 <ul class="${articleStyles.ul}">
-  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Sous-traitance :</strong> le SaaS s’appuie souvent sur plusieurs prestataires (cloud, support, data, analytics).</li>
-  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Localisation :</strong> pays d’hébergement et transferts potentiels.</li>
-  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Traçabilité :</strong> capacité à fournir des preuves (politiques, audits, engagements).</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Chaîne de valeur :</strong> vous dépendez de partenaires, sous-traitants et fournisseurs, parfois sur plusieurs pays.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Risque :</strong> un incident (social, environnemental, sécurité) peut impacter opérations, réputation et conformité.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Traçabilité :</strong> la démarche doit être documentée (cartographie, actions, suivi) pour être crédible.</li>
 </ul>
 
-<h2 class="${articleStyles.h2}">Ce qu’il faut demander au fournisseur</h2>
+<h2 class="${articleStyles.h2}">Démarche simple en 4 étapes</h2>
+<h3 class="${articleStyles.h3}">1) Cartographier les risques</h3>
 <ul class="${articleStyles.ul}">
-  <li class="${articleStyles.li}">Liste des <strong class="${articleStyles.strong}">sous-traitants</strong> et mécanisme de notification des changements.</li>
-  <li class="${articleStyles.li}">Engagements <strong class="${articleStyles.strong}">RSE</strong> et documentation (codes de conduite, audits, certifications).</li>
-  <li class="${articleStyles.li}">Mesures de <strong class="${articleStyles.strong}">sécurité</strong> et processus de gestion d’incident.</li>
+  <li class="${articleStyles.li}">Identifier vos activités, zones et partenaires clés.</li>
+  <li class="${articleStyles.li}">Repérer les maillons critiques (dépendance, absence d’alternative, zones à risque).</li>
 </ul>
 
-${CTA_PLACEHOLDER}
+<h3 class="${articleStyles.h3}">2) Définir des exigences et des engagements</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Attentes claires : droits humains, santé/sécurité, environnement (selon le contexte).</li>
+  <li class="${articleStyles.li}">Mécanismes d’alerte/signalement et traitement des incidents.</li>
+</ul>
+
+<h3 class="${articleStyles.h3}">3) Mettre en œuvre des actions de prévention et de remédiation</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Plan d’action priorisé (mesures concrètes, responsables, échéances).</li>
+  <li class="${articleStyles.li}">Mesures de contrôle proportionnées (revues, audits, clauses, suivi).</li>
+</ul>
+
+<h3 class="${articleStyles.h3}">4) Suivre dans le temps</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Définir des indicateurs (avancement, incidents, couverture fournisseurs).</li>
+  <li class="${articleStyles.li}">Revoir régulièrement la cartographie et le plan d’action.</li>
+</ul>
+
+<h2 class="${articleStyles.h2}">FAQ (SEO)</h2>
+<h3 class="${articleStyles.h3}">Quels documents sont utiles ?</h3>
+<p class="${articleStyles.p}">Ça dépend du risque. En général : une cartographie, des engagements (codes/politiques), un plan d’action et des preuves proportionnées (audits, attestations, contrôles) sur les sujets pertinents.</p>
+<h3 class="${articleStyles.h3}">Est-ce que ça concerne aussi une PME ?</h3>
+<p class="${articleStyles.p}">Souvent oui, via vos donneurs d’ordre : ils peuvent <strong class="${articleStyles.strong}">répercuter</strong> des exigences et demander des éléments de preuve, même si vous n’êtes pas directement dans le périmètre des obligations les plus strictes.</p>
+
+<h2 class="${articleStyles.h2}">Pour aller plus loin</h2>
+<p class="${articleStyles.p}">Appuyez-vous sur vos équipes juridique, conformité et achats pour cadrer les exigences applicables à votre secteur et à votre chaîne de valeur.</p>
+`
+
+const REG_OBLIGATION_VIGILANCE_BODY = `
+<p class="${articleStyles.p}">En France, l’<strong class="${articleStyles.strong}">obligation de vigilance</strong> désigne le dispositif de lutte contre le <strong class="${articleStyles.strong}">travail dissimulé</strong> : lorsqu’une entreprise (le <strong class="${articleStyles.strong}">donneur d’ordre</strong>) contracte avec un prestataire, elle doit vérifier que ce prestataire est à jour de ses obligations sociales. C’est typiquement lié aux contrôles <strong class="${articleStyles.strong}">URSSAF</strong> et aux attestations associées.</p>
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">À ne pas confondre</strong> avec le <strong class="${articleStyles.strong}">devoir de vigilance</strong> (droits humains / environnement). Ce sont deux notions différentes.</p>
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">Note :</strong> ceci est une explication pédagogique (pas un avis juridique). Les pièces exactes à demander et la fréquence peuvent dépendre du type de contrat et des seuils applicables.</p>
+
+<h2 class="${articleStyles.h2}">À quoi sert cette obligation ?</h2>
+<p class="${articleStyles.p}">L’objectif est d’éviter qu’un donneur d’ordre bénéficie indirectement d’un prestataire en situation de travail dissimulé. Concrètement, cela impose une <strong class="${articleStyles.strong}">vérification documentée</strong> au moment de la contractualisation et pendant l’exécution du contrat.</p>
+
+<h2 class="${articleStyles.h2}">Qui est concerné ?</h2>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Donneur d’ordre :</strong> l’entreprise qui achète une prestation.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Prestataire / sous-traitant :</strong> l’entreprise qui exécute la prestation.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Chaîne de sous-traitance :</strong> selon les cas, les obligations peuvent s’étendre à des sous-traitants.</li>
+</ul>
+
+<h2 class="${articleStyles.h2}">Les documents typiquement demandés</h2>
+<p class="${articleStyles.p}">Dans la pratique, la pièce la plus connue est l’<strong class="${articleStyles.strong}">attestation de vigilance URSSAF</strong>. Elle permet de vérifier que le prestataire est déclaré et à jour de ses obligations de déclaration/paiement.</p>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Attestation de vigilance :</strong> à obtenir, vérifier, et archiver.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Informations d’identification :</strong> SIREN/SIRET, coordonnées, etc. (pour éviter les homonymies).</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Sous-traitants :</strong> selon le montage, demander la même logique de preuve.</li>
+</ul>
+
+<h2 class="${articleStyles.h2}">Process simple (et robuste en cas de contrôle)</h2>
+<h3 class="${articleStyles.h3}">1) À la signature</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Demander l’attestation URSSAF et vérifier la cohérence (SIREN/SIRET, période, authenticité).</li>
+  <li class="${articleStyles.li}">Archiver les pièces dans un dossier unique lié au contrat.</li>
+</ul>
+
+<h3 class="${articleStyles.h3}">2) Pendant l’exécution</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Mettre un rappel pour demander une nouvelle attestation à la fréquence attendue (souvent tous les 6 mois dans les pratiques, à ajuster selon votre cadre).</li>
+  <li class="${articleStyles.li}">En cas de sous-traitance, exiger que la chaîne respecte le même niveau de preuve.</li>
+</ul>
+
+<h3 class="${articleStyles.h3}">3) En cas de manquement</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Documenter vos relances et décisions (suspension, mise en demeure, remplacement) selon votre gouvernance.</li>
+</ul>
+
+<h2 class="${articleStyles.h2}">FAQ (SEO)</h2>
+<h3 class="${articleStyles.h3}">C’est quoi une attestation de vigilance URSSAF ?</h3>
+<p class="${articleStyles.p}">C’est un document attestant notamment de la situation déclarative d’un prestataire au regard de ses obligations sociales. Elle sert de preuve que le donneur d’ordre a réalisé les vérifications attendues.</p>
+<h3 class="${articleStyles.h3}">Est-ce obligatoire pour tous les contrats ?</h3>
+<p class="${articleStyles.p}">Ça dépend des seuils et du cadre juridique applicable. Dans le doute, beaucoup d’organisations standardisent la demande de pièces pour les prestations significatives et/ou récurrentes.</p>
+
+<h2 class="${articleStyles.h2}">Pour aller plus loin</h2>
+<p class="${articleStyles.p}">Pour sécuriser votre interprétation (seuils, périodicité, cas particuliers), rapprochez-vous de votre équipe juridique/comptabilité, ou des ressources officielles URSSAF.</p>
 `
 
 const REG_FACTURATION_ELECTRONIQUE_BODY = `
-<p class="${articleStyles.p}">La <strong class="${articleStyles.strong}">facturation électronique</strong> (e-invoicing / e-reporting) devient un chantier structurant : elle impose des choix d’outils, d’intégrations (ERP, compta, achats) et de gouvernance de données. Côté acheteur, l’objectif est de réduire le risque projet : compatibilité, coûts d’intégration, et conformité dans la durée.</p>
+<p class="${articleStyles.p}">La <strong class="${articleStyles.strong}">facturation électronique</strong> (e-invoicing / e-reporting) est un chantier structurant : ce n’est pas “juste un format de facture”. C’est un projet qui touche l’<strong class="${articleStyles.strong}">ERP</strong>, la comptabilité, les workflows, les référentiels et la qualité de données. L’objectif, pour toute organisation, est d’assurer une mise en œuvre fiable et durable, sans coût caché.</p>
 
-<h2 class="${articleStyles.h2}">Les points qui font dérailler un projet</h2>
+<h2 class="${articleStyles.h2}">Ce qui fait dérailler un projet (dans la vraie vie)</h2>
 <ul class="${articleStyles.ul}">
-  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Intégrations :</strong> ERP/compta, référentiels, workflows d’approbation.</li>
-  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Données :</strong> qualité des champs, mapping, identifiants, TVA.</li>
-  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Coûts cachés :</strong> paramétrage, connecteurs, accompagnement, support.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Intégrations sous-estimées :</strong> ERP/compta, GED, P2P, validation, reporting.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Référentiels incomplets :</strong> SIRET, adresses, TVA, conditions de paiement, IBAN, centres de coûts.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Mapping fragile :</strong> champs manquants, exceptions (avoirs, multi-entités, multi-devises).</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Coûts cachés :</strong> connecteurs, paramétrage, accompagnement, support, tests et maintenance.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Gouvernance :</strong> personne n’est owner de la donnée, donc “ça marche en démo” mais pas en prod.</li>
 </ul>
 
-<h2 class="${articleStyles.h2}">Questions à poser avant de choisir une solution</h2>
+<h2 class="${articleStyles.h2}">Checklist de sélection (questions qui évitent les mauvaises surprises)</h2>
+<h3 class="${articleStyles.h3}">1) Couverture fonctionnelle</h3>
 <ul class="${articleStyles.ul}">
-  <li class="${articleStyles.li}">Quelle couverture fonctionnelle <strong class="${articleStyles.strong}">P2P</strong> (purchase-to-pay) et quels connecteurs natifs ?</li>
-  <li class="${articleStyles.li}">Quel modèle de coût : <strong class="${articleStyles.strong}">par facture</strong>, par entité, par utilisateur ?</li>
-  <li class="${articleStyles.li}">Quelle roadmap et quelles garanties de <strong class="${articleStyles.strong}">mise à jour réglementaire</strong> ?</li>
+  <li class="${articleStyles.li}">Quels cas gérés nativement : factures, avoirs, acomptes, multi-entités, validation, pièces jointes, relances ?</li>
+  <li class="${articleStyles.li}">Quelle couverture <strong class="${articleStyles.strong}">P2P</strong> (purchase-to-pay) et quelle articulation avec vos workflows d’approbation ?</li>
 </ul>
 
-${CTA_PLACEHOLDER}
+<h3 class="${articleStyles.h3}">2) Intégrations (le vrai coût)</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Connecteurs natifs ERP (versions supportées) et temps moyen d’implémentation “réel”.</li>
+  <li class="${articleStyles.li}">Qui maintient les connecteurs : vous, un intégrateur, ou l’éditeur ? À quel prix ?</li>
+</ul>
+
+<h3 class="${articleStyles.h3}">3) Modèle de prix (et variables cachées)</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Facturation <strong class="${articleStyles.strong}">par facture</strong>, par entité, par utilisateur, par flux ?</li>
+  <li class="${articleStyles.li}">Qu’est-ce qui déclenche un surcoût : API, stockage, archivage, volume, support premium ?</li>
+</ul>
+
+<h3 class="${articleStyles.h3}">4) Conformité & mises à jour</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Quelles garanties de <strong class="${articleStyles.strong}">mise à jour réglementaire</strong> (SLA, calendrier, communication) ?</li>
+  <li class="${articleStyles.li}">Comment sont gérées les évolutions de formats et les changements de règles ?</li>
+</ul>
+
+<h2 class="${articleStyles.h2}">FAQ (SEO)</h2>
+<h3 class="${articleStyles.h3}">Faut-il choisir une solution “dans l’ERP” ou un outil dédié ?</h3>
+<p class="${articleStyles.p}">Ça dépend de votre parc et de votre capacité d’intégration. L’ERP est souvent “propre” sur le référentiel, mais un outil dédié peut accélérer le time-to-compliance et mieux gérer les exceptions multi-systèmes.</p>
+<h3 class="${articleStyles.h3}">Quelle est la plus grosse source de coûts imprévus ?</h3>
+<p class="${articleStyles.p}">Les intégrations et la qualité des données : mapping, tests, gestion des cas particuliers et maintenance des connecteurs.</p>
+
+<h2 class="${articleStyles.h2}">Pour aller plus loin</h2>
+<p class="${articleStyles.p}">Avant de choisir un outil, clarifiez votre périmètre (entités, flux, pays), vos systèmes sources, et la qualité de vos référentiels. C’est ce qui détermine 80 % de la réussite du projet.</p>
 `
 
 const REG_RGPD_BODY = `
-<p class="${articleStyles.p}">Le <strong class="${articleStyles.strong}">RGPD</strong> est devenu un passage obligé… mais dans la pratique, beaucoup d’achats SaaS se bloquent sur des points évitables : DPA incomplet, sous-traitants flous, transferts hors UE, ou clauses sécurité trop vagues. Une bonne approche acheteur consiste à standardiser les questions et à exiger des preuves plutôt que des promesses.</p>
+<p class="${articleStyles.p}">Le <strong class="${articleStyles.strong}">RGPD</strong> encadre le traitement des données personnelles dans l’Union européenne. Dans la pratique, beaucoup de situations se compliquent sur des points évitables : responsabilités mal définies, contrats incomplets, sous-traitance opaque ou transferts hors UE mal cadrés. Une bonne méthode consiste à <strong class="${articleStyles.strong}">structurer les questions</strong> et à s’appuyer sur des éléments vérifiables.</p>
 
-<h2 class="${articleStyles.h2}">Les 6 points qui reviennent dans (presque) tous les achats SaaS</h2>
+<h2 class="${articleStyles.h2}">Checklist RGPD (à adapter à votre contexte)</h2>
+<h3 class="${articleStyles.h3}">1) Rôles & périmètre</h3>
 <ul class="${articleStyles.ul}">
-  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Rôles :</strong> responsable de traitement / sous-traitant, et périmètre des traitements.</li>
-  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">DPA :</strong> clauses, annexes, sous-traitants, audits.</li>
-  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Localisation :</strong> hébergement et transferts (et leurs garanties).</li>
-  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Sécurité :</strong> mesures techniques, chiffrement, IAM, journaux.</li>
-  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Droits :</strong> portabilité, suppression, restitution des données.</li>
-  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Incident :</strong> délais, contenu des notifications, coopération.</li>
+  <li class="${articleStyles.li}">Qui est <strong class="${articleStyles.strong}">responsable de traitement</strong> et qui est <strong class="${articleStyles.strong}">sous-traitant</strong> ?</li>
+  <li class="${articleStyles.li}">Quelles données, quelles finalités, quelles catégories de personnes concernées ?</li>
 </ul>
 
-${CTA_PLACEHOLDER}
+<h3 class="${articleStyles.h3}">2) DPA (le document qui fait gagner ou perdre du temps)</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">DPA signé, annexes complètes, et <strong class="${articleStyles.strong}">liste des sous-traitants</strong> (sub-processors).</li>
+  <li class="${articleStyles.li}">Droit d’audit / preuves : rapports (SOC/ISO), attestations, politique de sécurité.</li>
+</ul>
+
+<h3 class="${articleStyles.h3}">3) Localisation & transferts</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Où sont hébergées les données (at rest) et d’où le support peut-il accéder ?</li>
+  <li class="${articleStyles.li}">Si transferts : quelles <strong class="${articleStyles.strong}">garanties</strong> (clauses contractuelles, mesures techniques, transparence) ?</li>
+</ul>
+
+<h3 class="${articleStyles.h3}">4) Sécurité (exigences minimales)</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">IAM (SSO/MFA), gestion des accès admin, journaux, segmentation.</li>
+  <li class="${articleStyles.li}">Chiffrement, sauvegardes, et procédure de restauration testée.</li>
+</ul>
+
+<h3 class="${articleStyles.h3}">5) Droits & cycle de vie des données</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Suppression, restitution, export (réversibilité) : formats, délais, coûts.</li>
+  <li class="${articleStyles.li}">Durées de conservation et purge automatique.</li>
+</ul>
+
+<h3 class="${articleStyles.h3}">6) Incident & notification</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Délais d’alerte, contenu attendu, et coopération (forensics, points de crise).</li>
+  <li class="${articleStyles.li}">Coordination avec vos délais internes (sécurité + DPO + juridique + com).</li>
+</ul>
+
+<h2 class="${articleStyles.h2}">Le tip qui accélère : un “RGPD pack” standard</h2>
+<p class="${articleStyles.p}">Préparez un pack unique à envoyer à chaque éditeur (questions + pièces demandées). Vous évitez les allers-retours et vous comparez les réponses de façon homogène.</p>
+
+<h2 class="${articleStyles.h2}">FAQ (SEO)</h2>
+<h3 class="${articleStyles.h3}">Qu’est-ce qui bloque le plus souvent une mise en conformité RGPD ?</h3>
+<p class="${articleStyles.p}">Souvent : contrats incomplets, sous-traitants non listés, et transferts hors UE non cadrés (ou difficiles à justifier). Cela dit, les mêmes blocages existent aussi hors achat logiciel : outsourcing, centres d’appels, prestataires, etc.</p>
+<h3 class="${articleStyles.h3}">Faut-il exiger ISO 27001/SOC 2 ?</h3>
+<p class="${articleStyles.p}">Ce n’est pas toujours indispensable, mais c’est un bon accélérateur sur les outils à risque. L’important : obtenir des <strong class="${articleStyles.strong}">preuves</strong> et des engagements contractuels sur incidents + continuité.</p>
+
+<h2 class="${articleStyles.h2}">Pour aller plus loin</h2>
+<p class="${articleStyles.p}">Si vous gérez des traitements à risque, travaillez avec votre DPO/juridique pour adapter cette checklist à vos finalités, vos catégories de données et vos obligations (durées, droits, analyses d’impact, etc.).</p>
 `
 
 const SALESFORCE_HUBSPOT_BODY = `
@@ -1037,14 +1208,14 @@ export const BLOG_POSTS: BlogPostData[] = [
   {
     id: 'rgpd-checklist-achat-saas-2026',
     category_slug: 'reglementation',
-    title: 'RGPD et achat SaaS : la checklist acheteur (DPA, sous-traitants, transferts)',
+    title: 'RGPD : comprendre les obligations clés (rôles, contrats, transferts, sécurité)',
     slug: 'rgpd-achat-saas-checklist-dpa-sous-traitants-transferts',
     excerpt:
-      'Les points RGPD qui bloquent (ou sécurisent) un achat SaaS : DPA, sous-traitants, localisation, sécurité, droits et gestion d’incident.',
-    body: REG_RGPD_BODY.replace(CTA_PLACEHOLDER, CTA_MID_HTML),
+      'Une synthèse claire du RGPD : rôles, contrats, sous-traitance, transferts hors UE, sécurité, droits des personnes et gestion d’incident.',
+    body: REG_RGPD_BODY,
     published_at: '2026-04-02T09:00:00Z',
     created_at: '2026-04-02T09:00:00Z',
-    reading_minutes: 6,
+    reading_minutes: 10,
   },
   {
     id: 'facturation-electronique-questions-choix-solution-2026',
@@ -1053,46 +1224,46 @@ export const BLOG_POSTS: BlogPostData[] = [
     slug: 'facturation-electronique-choisir-solution-erp-couts-conformite',
     excerpt:
       'Checklist de sélection pour un projet de facturation électronique : intégrations, coûts cachés, gouvernance des données et garanties de mise à jour.',
-    body: REG_FACTURATION_ELECTRONIQUE_BODY.replace(CTA_PLACEHOLDER, CTA_MID_HTML),
+    body: REG_FACTURATION_ELECTRONIQUE_BODY,
     published_at: '2026-04-02T09:30:00Z',
     created_at: '2026-04-02T09:30:00Z',
-    reading_minutes: 6,
+    reading_minutes: 10,
   },
   {
     id: 'devoir-de-vigilance-achat-saas-2026',
     category_slug: 'reglementation',
-    title: 'Devoir de vigilance : intégrer la chaîne de sous-traitance dans vos achats SaaS',
+    title: 'Devoir de vigilance : comprendre l’objectif et la démarche (cartographie, actions, suivi)',
     slug: 'devoir-de-vigilance-achats-saas-chaine-sous-traitance',
     excerpt:
-      'Pourquoi la vigilance (RSE, sous-traitants, localisation, preuves) devient une question d’achat SaaS, et quoi demander aux fournisseurs.',
-    body: REG_VIGILANCE_BODY.replace(CTA_PLACEHOLDER, CTA_MID_HTML),
+      'Comprendre le devoir de vigilance : cartographier les risques, définir des attentes, mettre en œuvre un plan d’action et suivre dans le temps.',
+    body: REG_VIGILANCE_BODY,
     published_at: '2026-04-02T10:00:00Z',
     created_at: '2026-04-02T10:00:00Z',
-    reading_minutes: 6,
+    reading_minutes: 10,
   },
   {
     id: 'obligation-de-vigilance-achats-it-2026',
     category_slug: 'reglementation',
-    title: 'Obligation de vigilance : ce que les acheteurs IT doivent formaliser (process & preuves)',
-    slug: 'obligation-de-vigilance-acheteurs-it-process-preuves',
+    title: 'Obligation de vigilance (URSSAF) : comprendre l’attestation et le process donneur d’ordre',
+    slug: 'obligation-de-vigilance-urssaf-attestation-travail-dissimule',
     excerpt:
-      'Traduire la vigilance en pratiques d’achat : questionnaires, exigences contractuelles, gouvernance et preuves à collecter.',
-    body: REG_VIGILANCE_BODY.replace(CTA_PLACEHOLDER, CTA_MID_HTML),
+      'Ce qu’est l’obligation de vigilance liée au travail dissimulé : attestation de vigilance URSSAF, vérifications à faire, archivage et fréquence.',
+    body: REG_OBLIGATION_VIGILANCE_BODY,
     published_at: '2026-04-02T10:30:00Z',
     created_at: '2026-04-02T10:30:00Z',
-    reading_minutes: 6,
+    reading_minutes: 9,
   },
   {
     id: 'nis2-checklist-fournisseurs-saas-2026',
     category_slug: 'reglementation',
-    title: 'NIS2 : la checklist acheteur pour évaluer vos fournisseurs SaaS',
+    title: 'NIS2 : comprendre les exigences clés (gouvernance, incidents, résilience, supply chain)',
     slug: 'nis2-checklist-acheteur-evaluer-fournisseurs-saas',
     excerpt:
-      'Ce que NIS2 implique côté acheteur : sécurité, incidents, gouvernance et gestion des risques fournisseurs avant signature.',
-    body: REG_NIS2_BODY.replace(CTA_PLACEHOLDER, CTA_MID_HTML),
+      'Une explication claire de NIS2 : périmètre, gouvernance, gestion des incidents, continuité et chaîne d’approvisionnement.',
+    body: REG_NIS2_BODY,
     published_at: '2026-04-02T11:00:00Z',
     created_at: '2026-04-02T11:00:00Z',
-    reading_minutes: 7,
+    reading_minutes: 11,
   },
   {
     id: 'salesforce-vs-hubspot-2025',

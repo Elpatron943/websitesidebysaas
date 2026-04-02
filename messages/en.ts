@@ -95,12 +95,12 @@ export default {
           s1: 'Business problem or opportunity detection',
           s2:
             'Real buyer data from comparable companies (same sector, same size): actual features, negotiated pricing, anonymized feedback',
-          s3: 'Targeted solution exploration using peer data (less scattered research)',
-          s4: 'Clear scope, weighted criteria, and requirements (fewer empty iterations)',
-          s5: 'Qualified shortlist',
-          s6: 'Focused demos / POCs and negotiation backed by purchase data',
-          s7: 'Targeted validation (tech, integration, security, compliance) for your case',
-          s8: 'Internal alignment, procurement, legal, budget, decision & contracting',
+          s3: 'Solution exploration powered by peer data (less scattered research)',
+          s4: 'Requirements, criteria, and functional scope clarified (fewer empty iterations)',
+          s5: 'Qualified shortlist (vendors already in-scope)',
+          s6: 'Live demos, POCs & focused negotiation (backed by purchase data)',
+          s7: 'Technical validation, integration, security & compliance — targeted to your case',
+          s8: 'Buying-group alignment, procurement, legal, budget — decision & contracting',
         },
       },
       compare: {

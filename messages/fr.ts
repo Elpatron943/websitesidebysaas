@@ -95,12 +95,12 @@ export default {
           s1: 'Détection du problème ou de l’opportunité métier',
           s2:
             'Données réelles d’acheteurs comparables (même secteur, même taille) : fonctionnalités réellement disponibles, prix négociés, avis anonymisés',
-          s3: 'Exploration ciblée des solutions à partir des données pairs (moins de veille dispersée)',
-          s4: 'Exigences, critères pondérés et périmètre clarifiés (moins d’itérations « à vide »)',
-          s5: 'Short list qualifiée',
-          s6: 'Démos / POC ciblés et négociation appuyée sur des données d’achat',
-          s7: 'Validation ciblée (tech, intégration, sécurité, conformité) sur votre cas',
-          s8: 'Alignement interne, achats, juridique, budget, décision & contractualisation',
+          s3: 'Exploration des solutions à partir des données pairs (moins de veille dispersée)',
+          s4: 'Exigences, critères et périmètre fonctionnel clarifiés (moins d’itérations « à vide »)',
+          s5: 'Short list qualifiée (éditeurs déjà dans le périmètre)',
+          s6: 'Démos en direct, POC & négociation ciblés (appuyés par des données d’achat)',
+          s7: 'Validation technique, intégration, sécurité & conformité — ciblées sur votre cas',
+          s8: 'Alignement du groupe d’achat, achats, juridique, budget — décision & contractualisation',
         },
       },
       compare: {

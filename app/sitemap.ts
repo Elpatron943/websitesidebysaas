@@ -8,10 +8,20 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL
 
 const locales = ['fr'] as const
 
-const staticPaths = ['', '/features', '/pricing', '/about', '/contact', '/editeur', '/acheteur', '/blog', '/mentions', '/cgu'] as const
-
-const acheteurSecteurs = ['education', 'technologie', 'industrie', 'commerce-retail', 'secteur-public', 'services-professionnels', 'immobilier'] as const
-const acheteurDirections = ['achats', 'finance', 'marketing', 'direction', 'rh', 'it', 'juridique'] as const
+const staticPaths = [
+  '',
+  '/about',
+  '/features',
+  '/pricing',
+  '/contact',
+  '/editeur',
+  '/acheteur',
+  '/blog',
+  '/compare',
+  '/docs',
+  '/mentions',
+  '/cgu',
+] as const
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = []
@@ -19,15 +29,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const locale of locales) {
     const prefix = `/${locale}`
 
+    // Pages statiques
     for (const path of staticPaths) {
       entries.push({
-        url: `${baseUrl}${prefix}${path || ''}`,
+        url: `${baseUrl}${prefix}${path}`,
         lastModified: new Date(),
         changeFrequency: path === '/blog' ? 'weekly' : 'monthly',
         priority: path === '' ? 1 : 0.8,
       })
     }
 
+    // Articles de blog
     for (const slug of getBlogPosts().map((p) => p.slug)) {
       entries.push({
         url: `${baseUrl}${prefix}/blog/${slug}`,
@@ -37,26 +49,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       })
     }
 
-    for (const secteur of acheteurSecteurs) {
+    // Pages landing segments (acheteur & editeur)
+    for (const s of SEGMENTS) {
       entries.push({
-        url: `${baseUrl}${prefix}/acheteur/secteurs/${secteur}`,
+        url: `${baseUrl}${prefix}/${s.persona}/${s.slug}`,
         lastModified: new Date(),
         changeFrequency: 'monthly',
-        priority: 0.5,
-      })
-    }
-
-    for (const sous of acheteurDirections) {
-      entries.push({
-        url: `${baseUrl}${prefix}/acheteur/directions/${sous}`,
-        lastModified: new Date(),
-        changeFrequency: 'monthly',
-        priority: 0.5,
+        priority: 0.9,
       })
     }
   }
 
-  // Pages compare (programmatic SEO)
+  // Pages compare produit vs produit (programmatic SEO)
   for (const c of getComparisons()) {
     entries.push({
       url: `${baseUrl}/fr/compare/${c.slug}`,
@@ -66,20 +70,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   }
 
-  // Pages prix (programmatic SEO)
+  // Pages prix par produit (programmatic SEO)
   for (const p of PRODUCTS) {
     entries.push({
       url: `${baseUrl}/fr/prix/${p.slug}`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    })
-  }
-
-  // Pages landing segments (SEO AXE 3)
-  for (const s of SEGMENTS) {
-    entries.push({
-      url: `${baseUrl}/fr/${s.persona}/${s.slug}`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.9,

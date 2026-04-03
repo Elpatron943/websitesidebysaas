@@ -743,31 +743,31 @@ ${CTA_PLACEHOLDER}
 `.trim()
 
 const NEGOCIATION_SAAS_BODY = `
-<p class="${articleStyles.p}">On ne va pas se mentir : dans le monde de l'entreprise, le mot "n├®gociation" ├®voque souvent une image de bras de fer un peu st├®rile. On s'imagine des tableurs Excel crois├®s, des visages ferm├®s sur Zoom et une bataille pour arracher 5 % de remise suppl├®mentaire.</p>
+<p class="${articleStyles.p}">On ne va pas se mentir : dans le monde de l'entreprise, le mot "négociation" évoque souvent une image de bras de fer un peu stérile. On s'imagine des tableurs Excel croisés, des visages fermés sur Zoom et une bataille pour arracher 5 % de remise supplémentaire.</p>
 
-<p class="${articleStyles.p}">Pourtant, apr├¿s 20 ans ├á observer les flux du web et les relations B2B, j'ai acquis une certitude : <strong class="${articleStyles.strong}">un bon contrat SaaS n'est pas une victoire contre un fournisseur, c'est le d├®but d'une alliance r├®ussie</strong>. Que vous soyez un acheteur aguerri ou un responsable m├®tier (Marketing, RH, Sales) qui "porte" le projet, voici comment aborder votre prochaine n├®gociation avec finesse, humanit├® et efficacit├®.</p>
+<p class="${articleStyles.p}">Pourtant, après 20 ans à observer les flux du web et les relations B2B, j'ai acquis une certitude : <strong class="${articleStyles.strong}">un bon contrat SaaS n'est pas une victoire contre un fournisseur, c'est le début d'une alliance réussie</strong>. Que vous soyez un acheteur aguerri ou un responsable métier (Marketing, RH, Sales) qui "porte" le projet, voici comment aborder votre prochaine négociation avec finesse, humanité et efficacité.</p>
 
-<h2 class="${articleStyles.h2}">1. Ne n├®gociez pas un prix, n├®gociez une valeur</h2>
+<h2 class="${articleStyles.h2}">1. Ne négociez pas un prix, négociez une valeur</h2>
 
-<p class="${articleStyles.p}">C'est l'erreur la plus classique. On se focalise sur la ligne du bas (le bottom line). Mais un SaaS n'est pas une commodit├® comme le caf├® ou les ramettes de papier. <strong class="${articleStyles.strong}">C'est un moteur pour votre croissance</strong>.</p>
+<p class="${articleStyles.p}">C'est l'erreur la plus classique. On se focalise sur la ligne du bas (le bottom line). Mais un SaaS n'est pas une commodité comme le café ou les ramettes de papier. <strong class="${articleStyles.strong}">C'est un moteur pour votre croissance</strong>.</p>
 
-<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">Le conseil d'expert :</strong> Avant de parler tarif, parlez d'objectifs. Si le commercial comprend que votre priorit├® est l'adoption rapide par vos ├®quipes plut├┤t que le co├╗t de licence pur, il pourra vous proposer des services d'onboarding offerts plut├┤t qu'une remise qui n'aide personne sur le long terme.</p>
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">Le conseil d'expert :</strong> Avant de parler tarif, parlez d'objectifs. Si le commercial comprend que votre priorité est l'adoption rapide par vos équipes plutôt que le coût de licence pur, il pourra vous proposer des services d'onboarding offerts plutôt qu'une remise qui n'aide personne sur le long terme.</p>
 
-<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">L'astuce humaine :</strong> Soyez transparent sur vos contraintes budg├®taires. "J'adore votre solution, mais mon enveloppe s'arr├¬te ici. Comment peut-on adapter le p├®rim├¿tre pour que ├ºa rentre ?" C'est souvent le d├®but d'une discussion tr├¿s cr├®ative.</p>
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">L'astuce humaine :</strong> Soyez transparent sur vos contraintes budgétaires. "J'adore votre solution, mais mon enveloppe s'arrête ici. Comment peut-on adapter le périmètre pour que ça rentre ?" C'est souvent le début d'une discussion très créative.</p>
 
-<h2 class="${articleStyles.h2}">2. L'alignement interne : votre arme secr├¿te</h2>
+<h2 class="${articleStyles.h2}">2. L'alignement interne : votre arme secrète</h2>
 
-<p class="${articleStyles.p}">Rien ne fragilise plus une n├®gociation que le d├®salignement. Si l'acheteur veut le prix le plus bas et que le responsable m├®tier veut toutes les options "Premium", le vendeur s'engouffre dans la br├¿che.</p>
+<p class="${articleStyles.p}">Rien ne fragilise plus une négociation que le désalignement. Si l'acheteur veut le prix le plus bas et que le responsable métier veut toutes les options "Premium", le vendeur s'engouffre dans la brèche.</p>
 
-<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">Cr├®ez un front uni :</strong> R├®unissez l'IT, le juridique et le m├®tier avant le dernier rendez-vous.</p>
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">Créez un front uni :</strong> Réunissez l'IT, le juridique et le métier avant le dernier rendez-vous.</p>
 
-<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">La priorit├® :</strong> D├®finissez ce qui est "non-n├®gociable" (souvent la s├®curit├® des donn├®es ou la r├®versibilit├®) et ce qui est "agr├®able ├á avoir" (nice to have).</p>
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">La priorité :</strong> Définissez ce qui est "non-négociable" (souvent la sécurité des données ou la réversibilité) et ce qui est "agréable à avoir" (nice to have).</p>
 
-<h2 class="${articleStyles.h2}">3. Regardez au-del├á de la premi├¿re ann├®e</h2>
+<h2 class="${articleStyles.h2}">3. Regardez au-delà de la première année</h2>
 
-<p class="${articleStyles.p}">Le SaaS, c'est l'art du mariage ├á dur├®e d├®termin├®e (souvent renouvelable). Un prix d'appel tr├¿s bas la premi├¿re ann├®e peut cacher une hausse douloureuse ├á la reconduction.</p>
+<p class="${articleStyles.p}">Le SaaS, c'est l'art du mariage à durée déterminée (souvent renouvelable). Un prix d'appel très bas la première année peut cacher une hausse douloureuse à la reconduction.</p>
 
-<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">Le point de vigilance :</strong> Portez une attention particuli├¿re aux clauses d'indexation de prix. Limitez contractuellement l'augmentation annuelle (souvent index├®e sur l'inflation ou un indice type Syntec) pour ├®viter les mauvaises surprises au bout de 12 mois.</p>
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">Le point de vigilance :</strong> Portez une attention particulière aux clauses d'indexation de prix. Limitez contractuellement l'augmentation annuelle (souvent indexée sur l'inflation ou un indice type Syntec) pour éviter les mauvaises surprises au bout de 12 mois.</p>
 
 <h3 class="${articleStyles.h3}">Le petit tableau pour ne rien oublier</h3>
 
@@ -783,18 +783,18 @@ const NEGOCIATION_SAAS_BODY = `
     <tbody class="text-slate-700 text-sm">
       <tr class="border-b border-slate-100">
         <td class="px-4 py-3 font-medium">Le support client</td>
-        <td class="px-4 py-3">Parce qu'un bug un mardi ├á 18h n├®cessite une vraie personne au bout du fil.</td>
-        <td class="px-4 py-3">R├®duction du churn interne.</td>
+        <td class="px-4 py-3">Parce qu'un bug un mardi à 18h nécessite une vraie personne au bout du fil.</td>
+        <td class="px-4 py-3">Réduction du churn interne.</td>
       </tr>
       <tr class="border-b border-slate-100">
         <td class="px-4 py-3 font-medium">La formation</td>
-        <td class="px-4 py-3">Pour ne pas laisser vos collaborateurs seuls face ├á un nouvel outil.</td>
+        <td class="px-4 py-3">Pour ne pas laisser vos collaborateurs seuls face à un nouvel outil.</td>
         <td class="px-4 py-3">Meilleur ROI du logiciel.</td>
       </tr>
       <tr>
         <td class="px-4 py-3 font-medium">La sortie (Exit)</td>
-        <td class="px-4 py-3">Parce qu'une relation saine accepte l'id├®e d'une s├®paration.</td>
-        <td class="px-4 py-3">S├®curit├® juridique et s├®r├®nit├®.</td>
+        <td class="px-4 py-3">Parce qu'une relation saine accepte l'idée d'une séparation.</td>
+        <td class="px-4 py-3">Sécurité juridique et sérénité.</td>
       </tr>
     </tbody>
   </table>
@@ -802,27 +802,27 @@ const NEGOCIATION_SAAS_BODY = `
 
 ${CTA_PLACEHOLDER}
 
-<h2 class="${articleStyles.h2}">4. La clause de "Succ├¿s" plut├┤t que la clause de "Sanction"</h2>
+<h2 class="${articleStyles.h2}">4. La clause de "Succès" plutôt que la clause de "Sanction"</h2>
 
-<p class="${articleStyles.p}">Plut├┤t que de menacer de p├®nalit├®s complexes en cas de probl├¿me, discutez de ce qui d├®finit le succ├¿s de ce partenariat.</p>
+<p class="${articleStyles.p}">Plutôt que de menacer de pénalités complexes en cas de problème, discutez de ce qui définit le succès de ce partenariat.</p>
 
-<p class="${articleStyles.p}">Si vous traitez votre interlocuteur commercial comme un partenaire qui veut, lui aussi, que votre projet r├®ussisse (pour avoir un beau cas client ├á pr├®senter), la dynamique change. <strong class="${articleStyles.strong}">Le respect mutuel est le meilleur levier de n├®gociation</strong>. Un commercial qui vous appr├®cie ira plus facilement chercher une validation exceptionnelle aupr├¿s de sa direction financi├¿re pour vous aider.</p>
+<p class="${articleStyles.p}">Si vous traitez votre interlocuteur commercial comme un partenaire qui veut, lui aussi, que votre projet réussisse (pour avoir un beau cas client à présenter), la dynamique change. <strong class="${articleStyles.strong}">Le respect mutuel est le meilleur levier de négociation</strong>. Un commercial qui vous apprécie ira plus facilement chercher une validation exceptionnelle auprès de sa direction financière pour vous aider.</p>
 
-<h2 class="${articleStyles.h2}">5. Pr├®parez l'avenir (Scalability)</h2>
+<h2 class="${articleStyles.h2}">5. Préparez l'avenir (Scalability)</h2>
 
-<p class="${articleStyles.p}">Votre entreprise va bouger. Vous allez recruter, ou peut-├¬tre pivoter. Un bon contrat SaaS doit ├¬tre ├®lastique.</p>
+<p class="${articleStyles.p}">Votre entreprise va bouger. Vous allez recruter, ou peut-être pivoter. Un bon contrat SaaS doit être élastique.</p>
 
 <ul class="${articleStyles.ul}">
-  <li class="${articleStyles.li}">N├®gociez des paliers de croissance.</li>
-  <li class="${articleStyles.li}">Assurez-vous de pouvoir r├®duire le nombre de licences si un d├®partement change d'organisation.</li>
-  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">La souplesse, c'est la libert├®.</strong></li>
+  <li class="${articleStyles.li}">Négociez des paliers de croissance.</li>
+  <li class="${articleStyles.li}">Assurez-vous de pouvoir réduire le nombre de licences si un département change d'organisation.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">La souplesse, c'est la liberté.</strong></li>
 </ul>
 
-<h2 class="${articleStyles.h2}">En r├®sum├® : Soyez ferme sur le fond, doux sur la forme</h2>
+<h2 class="${articleStyles.h2}">En résumé : Soyez ferme sur le fond, doux sur la forme</h2>
 
-<p class="${articleStyles.p}">La n├®gociation SaaS est un exercice d'├®quilibriste. C'est un m├®lange de rigueur technique et d'intelligence ├®motionnelle. En restant humain, en expliquant vos enjeux et en ├®coutant ceux de votre interlocuteur, vous n'obtiendrez pas seulement un meilleur prix : <strong class="${articleStyles.strong}">vous obtiendrez un partenaire pr├¬t ├á se plier en quatre pour vous</strong>.</p>
+<p class="${articleStyles.p}">La négociation SaaS est un exercice d'équilibriste. C'est un mélange de rigueur technique et d'intelligence émotionnelle. En restant humain, en expliquant vos enjeux et en écoutant ceux de votre interlocuteur, vous n'obtiendrez pas seulement un meilleur prix : <strong class="${articleStyles.strong}">vous obtiendrez un partenaire prêt à se plier en quatre pour vous</strong>.</p>
 
-<p class="${articleStyles.p}">Apr├¿s tout, derri├¿re chaque logiciel, il y a des gens qui travaillent pour d'autres gens.</p>
+<p class="${articleStyles.p}">Après tout, derrière chaque logiciel, il y a des gens qui travaillent pour d'autres gens.</p>
 `.trim()
 
 const SLACK_TEAMS_BODY = `
@@ -841,18 +841,86 @@ ${CTA_PLACEHOLDER}
 `.trim()
 
 const JIRA_LINEAR_BODY = `
-<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">Jira</strong> domine les équipes tech depuis des années ; <strong class="${articleStyles.strong}">Linear</strong> séduit par la vitesse d'interface et une UX minimaliste. Le bon outil dépend de votre maturité agile et de la taille de l'organisation.</p>
+<p class="${articleStyles.p}">Choisir entre <strong class="${articleStyles.strong}">Jira</strong> (Atlassian) et <strong class="${articleStyles.strong}">Linear</strong>, ce n'est pas trancher « lequel est le meilleur outil » : c'est aligner un <strong class="${articleStyles.strong}">outil de pilotage</strong> (backlog, workflow, traçabilité) avec votre <strong class="${articleStyles.strong}">taille</strong>, votre <strong class="${articleStyles.strong}">gouvernance</strong> et vos <strong class="${articleStyles.strong}">besoins hors produit</strong> (support, conformité, programmes multi-équipes). Voici une grille réaliste pour décider — et éviter un projet de migration sous-estimé.</p>
 
-<h2 class="${articleStyles.h2}">Jira : personnalisation et workflows complexes</h2>
-<p class="${articleStyles.p}">Jira permet de modéliser presque tout : Scrum, Kanban, SAFe, tickets support. La contrepartie est la complexité d'administration et le temps d'onboarding. Idéal quand plusieurs produits ou BU partagent une instance unique.</p>
+<h2 class="${articleStyles.h2}">Ce que vous « achetez » en réalité</h2>
+<p class="${articleStyles.p}">Les deux couvrent backlog et suivi d'exécution, mais pas avec la même profondeur :</p>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Jira</strong> est une <strong class="${articleStyles.strong}">plateforme</strong> : workflows configurables, marketplace, ITSM (Jira Service Management), reporting et intégrations « enterprise ». Le coût total inclut souvent <strong class="${articleStyles.strong}">l'administration</strong>, la <strong class="${articleStyles.strong}">formation</strong> et parfois des <strong class="${articleStyles.strong}">apps</strong> payantes.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Linear</strong> est un <strong class="${articleStyles.strong}">produit focalisé</strong> : vitesse d'usage, cycles (projects), vues issues, liens forts avec GitHub/GitLab. Moins de modules, mais une expérience très fluide pour <strong class="${articleStyles.strong}">produit + engineering</strong>.</li>
+</ul>
 
-<h2 class="${articleStyles.h2}">Linear : rapidité et focus produit</h2>
-<p class="${articleStyles.p}">Linear cible les équipes produit/engineering qui veulent aller vite, avec cycles courts et peu de surcharge. Moins adapté aux besoins ITSM lourds ou aux processus très réglementés sans intégrations additionnelles.</p>
+<h2 class="${articleStyles.h2}">Jira : quand c'est le bon choix</h2>
+<p class="${articleStyles.p}">Jira reste pertinent lorsque vous devez <strong class="${articleStyles.strong}">standardiser</strong> plusieurs équipes, pays ou BU sur un même référentiel, ou lorsque le <strong class="${articleStyles.strong}">support interne</strong> (N1/N2/N3) et le <strong class="${articleStyles.strong}">développement</strong> doivent partager des objets et des workflows dans un même écosystème Atlassian (souvent avec Confluence).</p>
+<h3 class="${articleStyles.h3}">Forces</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Modélisation</strong> : états, transitions, champs, écrans, permissions — adaptés aux processus complexes ou réglementés.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Écosystème</strong> : intégrations nombreuses, automatisation (Jira Automation), apps marketplace pour tests, reporting, GRC, etc.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">ITSM / service desk</strong> : si vous visez un portail demandes + SLA + CMDB légère, Jira Service Management est un argument massif.</li>
+</ul>
+<h3 class="${articleStyles.h3}">Limites et risques</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Complexité</strong> : une instance « mal cadrée » devient lente, difficile à lire, et coûteuse à maintenir (dettes de configuration).</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Adoption</strong> : sans règles claires (types d'issues, workflows, responsabilités), les équipes contournent l'outil ou surchargent les champs.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Coût total</strong> : licences + apps + temps d'admin — parfois sous-estimé dans le business case initial.</li>
+</ul>
+
+<h2 class="${articleStyles.h2}">Linear : quand c'est le bon choix</h2>
+<p class="${articleStyles.p}">Linear brille quand la priorité est <strong class="${articleStyles.strong}">clarté produit</strong>, <strong class="${articleStyles.strong}">cadence</strong> (sprints ou cycles continus) et <strong class="${articleStyles.strong}">fluidité</strong> pour les équipes qui vivent dans le code (PR, branches, releases). C'est souvent le bon fit pour des <strong class="${articleStyles.strong}">scale-ups</strong> produit ou des squads autonomes qui refusent la lourdeur administrative.</p>
+<h3 class="${articleStyles.h3}">Forces</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">UX et performance</strong> : navigation rapide, raccourcis, vues qui restent lisibles.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Alignement dev</strong> : intégration poussée avec les outils de développement ; mental model proche du quotidien des ingénieurs.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Discipline</strong> : l'outil « pousse » vers la simplicité — utile pour réduire la bureaucratie inutile.</li>
+</ul>
+<h3 class="${articleStyles.h3}">Limites</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Périmètre</strong> : pas de substitute complet à un ITSM lourd ou à des besoins de conformité très spécifiques sans bâtir autour (process + outillage complémentaire).</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Organisations très fragmentées</strong> : multi-gouvernances fortes peuvent exiger des champs et workflows que Linear ne vise pas à couvrir de la même façon que Jira.</li>
+</ul>
+
+<h2 class="${articleStyles.h2}">Tableau de synthèse (lecture rapide)</h2>
+<div class="overflow-x-auto mb-6">
+  <table class="min-w-full border border-slate-200 rounded-lg overflow-hidden">
+    <thead>
+      <tr class="bg-slate-50">
+        <th class="px-4 py-3 text-left text-sm font-semibold text-slate-800 border-b border-slate-200">Critère</th>
+        <th class="px-4 py-3 text-left text-sm font-semibold text-slate-800 border-b border-slate-200">Jira</th>
+        <th class="px-4 py-3 text-left text-sm font-semibold text-slate-800 border-b border-slate-200">Linear</th>
+      </tr>
+    </thead>
+    <tbody class="text-slate-700 text-sm">
+      <tr class="border-b border-slate-100">
+        <td class="px-4 py-3 font-medium">Public principal</td>
+        <td class="px-4 py-3">IT, produit, support, grandes orgs</td>
+        <td class="px-4 py-3">Produit + engineering</td>
+      </tr>
+      <tr class="border-b border-slate-100">
+        <td class="px-4 py-3 font-medium">Complexité workflow</td>
+        <td class="px-4 py-3">Très élevée (si besoin)</td>
+        <td class="px-4 py-3">Modérée, orientée simplicité</td>
+      </tr>
+      <tr class="border-b border-slate-100">
+        <td class="px-4 py-3 font-medium">ITSM / service desk</td>
+        <td class="px-4 py-3">Très fort (JSM)</td>
+        <td class="px-4 py-3">Hors cœur métier</td>
+      </tr>
+      <tr>
+        <td class="px-4 py-3 font-medium">« Coût caché » typique</td>
+        <td class="px-4 py-3">Admin, apps, dette config</td>
+        <td class="px-4 py-3">Outillage autour si périmètre élargit</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ${CTA_PLACEHOLDER}
 
-<h2 class="${articleStyles.h2}">Migration ou coexistence</h2>
-<p class="${articleStyles.p}">Passer de Jira à Linear (ou l'inverse) a un coût humain : historique, automatisations, intégrations CI. Anticipez un POC sur un seul squad avant de généraliser.</p>
+<h2 class="${articleStyles.h2}">Migrer, coexister ou faire un POC</h2>
+<p class="${articleStyles.p}">Une bascule Jira ↔ Linear n'est jamais « juste un export CSV » : il y a <strong class="${articleStyles.strong}">l'historique</strong>, les <strong class="${articleStyles.strong}">dépendances</strong>, les <strong class="${articleStyles.strong}">automatisations CI/CD</strong>, les <strong class="${articleStyles.strong}">rapports</strong> et les habitudes métier. Bonne pratique : <strong class="${articleStyles.strong}">POC sur un seul squad</strong> avec critères de succès mesurables (temps de triage, lead time, satisfaction). La coexistence temporaire peut être acceptable si les périmètres sont clairement séparés (produit vs support), mais attention à la <strong class="${articleStyles.strong}">double saisie</strong> et aux flux transverses.</p>
+
+<h2 class="${articleStyles.h2}">Verdict pragmatique</h2>
+<p class="${articleStyles.p}">Si votre douleur principale est la <strong class="${articleStyles.strong}">gouvernance multi-équipes</strong>, le <strong class="${articleStyles.strong}">support</strong> ou des <strong class="${articleStyles.strong}">processus lourds</strong>, Jira (souvent avec JSM) reste difficile à battre. Si votre douleur est la <strong class="${articleStyles.strong}">vitesse d'exécution produit</strong> et l'adhésion des développeurs, Linear mérite sérieusement l'évaluation — à condition d'être honnête sur ce que vous <strong class="${articleStyles.strong}">n'allez pas</strong> couvrir avec.</p>
 `.trim()
 
 const GRILLE_TARIFAIRE_BODY = `
@@ -958,21 +1026,100 @@ ${CTA_PLACEHOLDER}
 `.trim()
 
 const ZOOM_MEET_TEAMS_BODY = `
-<p class="${articleStyles.p}">La visioconférence structure le télétravail et le relationnel client. <strong class="${articleStyles.strong}">Zoom</strong>, <strong class="${articleStyles.strong}">Google Meet</strong> et <strong class="${articleStyles.strong}">Microsoft Teams</strong> couvrent ce besoin avec des positionnements différents.</p>
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">Zoom</strong>, <strong class="${articleStyles.strong}">Google Meet</strong> et <strong class="${articleStyles.strong}">Microsoft Teams</strong> répondent au même besoin apparent — parler en visio — mais ne s'intègrent pas au même <strong class="${articleStyles.strong}">écosystème</strong>, n'ont pas les mêmes <strong class="${articleStyles.strong}">modèles de licence</strong> et ne créent pas la même <strong class="${articleStyles.strong}">expérience</strong> pour les participants externes. Pour un acheteur, l'enjeu n'est pas seulement la qualité vidéo : c'est surtout d'éviter la <strong class="${articleStyles.strong}">double facturation</strong> (Zoom + suite déjà payée) et de sécuriser la <strong class="${articleStyles.strong}">gouvernance</strong> (enregistrements, invités, conformité).</p>
 
-<h2 class="${articleStyles.h2}">Zoom</h2>
-<p class="${articleStyles.p}">Réputé pour la qualité vidéo et la simplicité des réunions externes. Les offres Pro/Business ajoutent enregistrement cloud, salles et webinars selon les plans — utile si la visio est votre cœur de métier.</p>
+<h2 class="${articleStyles.h2}">Comment trancher : quatre axes utiles</h2>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Suite déjà en place</strong> : Google Workspace → Meet est souvent le chemin de moindre friction ; Microsoft 365 → Teams est naturel ; Zoom est fréquent quand la visio est « critique » ou historiquement déployée en parallèle.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Usage interne vs clients / partenaires</strong> : la facilité pour un invité sans compte, la qualité sur des réseaux moyens, et la simplicité du lien de réunion comptent autant que les fonctionnalités « salle ».</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Coût réel</strong> : Meet et Teams sont souvent <strong class="${articleStyles.strong}">inclus</strong> dans des abonnements existants ; Zoom peut être un <strong class="${articleStyles.strong}">poste additionnel</strong> (Pro/Business/Webinars, salles) — à comparer sur 24–36 mois, pas sur le prix affiché au premier mois.</li>
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Gouvernance</strong> : rétention des enregistrements, droits invités, politiques DLP/labels, et intégration SSO — surtout en secteur réglementé.</li>
+</ul>
 
-<h2 class="${articleStyles.h2}">Google Meet</h2>
-<p class="${articleStyles.p}">Inclus dans Google Workspace, Meet brille pour les équipes déjà dans Gmail/Calendar. Moins de fonctionnalités « salle » avancées que Zoom pour les très grands événements hybrides.</p>
+<h2 class="${articleStyles.h2}">Zoom : la visio « référence » souvent payée en plus</h2>
+<p class="${articleStyles.p}">Zoom a bâti sa réputation sur la <strong class="${articleStyles.strong}">fiabilité</strong> et la <strong class="${articleStyles.strong}">simplicité</strong> pour les réunions externes (lien, ID, rejoindre depuis navigateur). Les organisations en font un <strong class="${articleStyles.strong}">standard commercial</strong> ou un <strong class="${articleStyles.strong}">outil de formation</strong> (webinaires, salles, interprétation) lorsque la qualité perçue et les fonctionnalités avancées justifient un budget dédié.</p>
+<h3 class="${articleStyles.h3}">Points forts</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Expérience utilisateur homogène pour les invités, y compris hors de votre organisation.</li>
+  <li class="${articleStyles.li}">Offre large : réunions, webinars, Phone (selon pays), salles connectées — utile si vous standardisez plusieurs scénarios.</li>
+  <li class="${articleStyles.li}">Écosystème d'intégrations et d'appareils certifiés pour les salles de réunion.</li>
+</ul>
+<h3 class="${articleStyles.h3}">Points de vigilance</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Chevauchement</strong> avec Meet/Teams déjà payés : le cas classique après une fusion ou un choix historique « Zoom d'abord ».</li>
+  <li class="${articleStyles.li}">Les options (stockage d'enregistrements, webinars, salles) gonflent vite le TCO — cadrer les <strong class="${articleStyles.strong}">cas d'usage</strong> avant d'élargir les plans.</li>
+</ul>
 
-<h2 class="${articleStyles.h2}">Microsoft Teams</h2>
-<p class="${articleStyles.p}">Hub unique pour chat, fichiers SharePoint et visio. Indispensable si vous êtes sur Microsoft 365 ; parfois perçu comme plus lourd pour les réunions ponctuelles avec des partenaires externes.</p>
+<h2 class="${articleStyles.h2}">Google Meet : l'option intégrée à Workspace</h2>
+<p class="${articleStyles.p}">Meet tire sa force de l'<strong class="${articleStyles.strong}">intégration</strong> : invitation depuis Calendar, liens dans Gmail, politiques d'organisation cohérentes. Pour une entreprise déjà sur <strong class="${articleStyles.strong}">Google Workspace</strong>, le coût marginal de la visio est souvent nul au sens « ligne budgétaire séparée » — ce qui change complètement le comparatif face à Zoom.</p>
+<h3 class="${articleStyles.h3}">Points forts</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Parcours simple pour les équipes « déjà dans Google » : moins de friction pour adopter une seule pile.</li>
+  <li class="${articleStyles.li}">Collaboration autour des documents (Docs, Drive) dans la continuité du même univers.</li>
+</ul>
+<h3 class="${articleStyles.h3}">Points de vigilance</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Pour des <strong class="${articleStyles.strong}">très grands événements</strong> hybrides ou des besoins « broadcast » avancés, vous comparerez souvent avec des offres spécialisées ou des options Zoom — le plafond « bon pour 95 % des réunions » vs « cœur de métier événementiel ».</li>
+  <li class="${articleStyles.li}">Si vos partenaires sont majoritairement sur Microsoft, l'expérience « interop » reste bonne, mais la gouvernance (fichiers, comptes invités) mérite d'être cadrée.</li>
+</ul>
+
+<h2 class="${articleStyles.h2}">Microsoft Teams : la visio au centre de M365</h2>
+<p class="${articleStyles.p}">Teams n'est pas « seulement » une visio : c'est un <strong class="${articleStyles.strong}">hub</strong> qui combine chat, réunions, fichiers SharePoint/OneDrive et téléphonie (selon options). Si vous payez <strong class="${articleStyles.strong}">Microsoft 365</strong>, la réunion en ligne est généralement <strong class="${articleStyles.strong}">déjà financée</strong> — un argument massif contre un outil parallèle si l'usage interne domine.</p>
+<h3 class="${articleStyles.h3}">Points forts</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}"><strong class="${articleStyles.strong}">Alignement conformité</strong> : politiques Microsoft, sensibilités des labels, gouvernance des équipes et des fichiers.</li>
+  <li class="${articleStyles.li}">Très pertinent lorsque Outlook/Exchange est le référentiel calendaire de l'entreprise.</li>
+</ul>
+<h3 class="${articleStyles.h3}">Points de vigilance</h3>
+<ul class="${articleStyles.ul}">
+  <li class="${articleStyles.li}">Certaines organisations perçoivent l'expérience « invité externe » comme plus lourde que Zoom pour des rendez-vous ponctuels — à valider sur un panel d'utilisateurs réels (sales, support, RH).</li>
+  <li class="${articleStyles.li}">Attention au <strong class="${articleStyles.strong}">double run</strong> Teams + Zoom : friction utilisateur + budget.</li>
+</ul>
+
+<h2 class="${articleStyles.h2}">Comparatif rapide (à adapter à votre contexte)</h2>
+<div class="overflow-x-auto mb-6">
+  <table class="min-w-full border border-slate-200 rounded-lg overflow-hidden">
+    <thead>
+      <tr class="bg-slate-50">
+        <th class="px-4 py-3 text-left text-sm font-semibold text-slate-800 border-b border-slate-200">Critère</th>
+        <th class="px-4 py-3 text-left text-sm font-semibold text-slate-800 border-b border-slate-200">Zoom</th>
+        <th class="px-4 py-3 text-left text-sm font-semibold text-slate-800 border-b border-slate-200">Meet</th>
+        <th class="px-4 py-3 text-left text-sm font-semibold text-slate-800 border-b border-slate-200">Teams</th>
+      </tr>
+    </thead>
+    <tbody class="text-slate-700 text-sm">
+      <tr class="border-b border-slate-100">
+        <td class="px-4 py-3 font-medium">Cohérence si vous avez déjà…</td>
+        <td class="px-4 py-3">Neutre (souvent add-on)</td>
+        <td class="px-4 py-3">Google Workspace</td>
+        <td class="px-4 py-3">Microsoft 365</td>
+      </tr>
+      <tr class="border-b border-slate-100">
+        <td class="px-4 py-3 font-medium">Réunions externes simples</td>
+        <td class="px-4 py-3">Très fort</td>
+        <td class="px-4 py-3">Fort</td>
+        <td class="px-4 py-3">Fort (variable selon habitudes)</td>
+      </tr>
+      <tr class="border-b border-slate-100">
+        <td class="px-4 py-3 font-medium">Risque de double paiement</td>
+        <td class="px-4 py-3">Élevé si suite déjà payée</td>
+        <td class="px-4 py-3">Faible (Workspace)</td>
+        <td class="px-4 py-3">Faible (M365)</td>
+      </tr>
+      <tr>
+        <td class="px-4 py-3 font-medium">Hub chat + fichiers + visio</td>
+        <td class="px-4 py-3">Limité (hors Zoom Team Chat)</td>
+        <td class="px-4 py-3">Via Google (Chat/Drive)</td>
+        <td class="px-4 py-3">Très intégré</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ${CTA_PLACEHOLDER}
 
-<h2 class="${articleStyles.h2}">Synthèse</h2>
-<p class="${articleStyles.p}">Évitez la multiplication des outils de visio payés en parallèle : c'est un poste de double facturation fréquent après fusions ou acquisitions.</p>
+<h2 class="${articleStyles.h2}">Synthèse acheteur</h2>
+<p class="${articleStyles.p}">Commencez par la question : <strong class="${articleStyles.strong}">payons-nous déjà</strong> une suite qui inclut une visio performante ? Si oui, la charge de la preuve pèse sur ceux qui veulent ajouter Zoom (usage métier, webinars, salles, exigence clients). Si non, comparez sur <strong class="${articleStyles.strong}">24–36 mois</strong> avec les options réellement utilisées (enregistrement cloud, webinars, téléphonie, salles). Enfin, traquez les <strong class="${articleStyles.strong}">deux outils de visio facturés</strong> pour la même population : c'est l'un des postes les plus fréquents après intégration d'entreprises ou déploiements historiques par département.</p>
 `.trim()
 
 const GRC_CONFORMITE_REGLEMENTAIRE_BODY = `
@@ -1753,56 +1900,56 @@ ${CTA_PLACEHOLDER}
 `.trim()
 
 const REVIEWS_SAAS_BIAIS_BODY = `
-<p class="${articleStyles.p}">Avant d'acheter un logiciel, 84 % des acheteurs B2B consultent G2 ou Capterra ÔÇö c'est une statistique que les deux plateformes mettent elles-m├¬mes en avant dans leurs arguments commerciaux. Ce chiffre dit quelque chose d'important : dans l'├®cosyst├¿me SaaS, la d├®cision d'achat est massivement influenc├®e par des avis en ligne. Ce qu'il ne dit pas, c'est que le mod├¿le ├®conomique qui produit ces avis est structurellement incompatible avec l'objectivit├®.</p>
+<p class="${articleStyles.p}">Avant d'acheter un logiciel, 84 % des acheteurs B2B consultent G2 ou Capterra — c'est une statistique que les deux plateformes mettent elles-mêmes en avant dans leurs arguments commerciaux. Ce chiffre dit quelque chose d'important : dans l'écosystème SaaS, la décision d'achat est massivement influencée par des avis en ligne. Ce qu'il ne dit pas, c'est que le modèle économique qui produit ces avis est structurellement incompatible avec l'objectivité.</p>
 
-<p class="${articleStyles.p}">Ce n'est pas un complot, ni une accusation facile. C'est une r├®alit├® m├®canique qu'il vaut mieux comprendre avant de choisir votre prochain CRM, HRIS ou outil de cybers├®curit├® sur la base d'une note 4,6/5.</p>
+<p class="${articleStyles.p}">Ce n'est pas un complot, ni une accusation facile. C'est une réalité mécanique qu'il vaut mieux comprendre avant de choisir votre prochain CRM, HRIS ou outil de cybersécurité sur la base d'une note 4,6/5.</p>
 
 <h2 class="${articleStyles.h2}">Comment G2 et Capterra gagnent leur argent</h2>
 
-<p class="${articleStyles.p}">G2 et Capterra (qui appartient ├á Gartner) sont des plateformes d'avis. Mais leur client principal n'est pas vous, l'acheteur. C'est l'├®diteur logiciel qui veut ├¬tre bien positionn├® dans les r├®sultats.</p>
+<p class="${articleStyles.p}">G2 et Capterra (qui appartient à Gartner) sont des plateformes d'avis. Mais leur client principal n'est pas vous, l'acheteur. C'est l'éditeur logiciel qui veut être bien positionné dans les résultats.</p>
 
-<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">Le mod├¿le pay-to-rank :</strong> pour appara├«tre en haut des listes de cat├®gorie, les ├®diteurs paient. Les "sponsored placements" repr├®sentent une part significative des revenus de ces plateformes. Un logiciel not├® 4,2/5 mais qui paye plus cher peut appara├«tre avant un logiciel not├® 4,7/5 qui ne paie pas. La nuance est parfois visible sous forme d'un label "Sponsoris├®" ou "Featured", souvent discret.</p>
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">Le modèle pay-to-rank :</strong> pour apparaître en haut des listes de catégorie, les éditeurs paient. Les "sponsored placements" représentent une part significative des revenus de ces plateformes. Un logiciel noté 4,2/5 mais qui paye plus cher peut apparaître avant un logiciel noté 4,7/5 qui ne paie pas. La nuance est parfois visible sous forme d'un label "Sponsorisé" ou "Featured", souvent discret.</p>
 
-<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">Les incentives ├á l'avis :</strong> G2 et Capterra permettent aux ├®diteurs d'offrir des r├®compenses (gift cards Amazon de 10-25 Ôé¼, acc├¿s ├á des rapports exclusifs) en ├®change d'avis. La pratique est encadr├®e ÔÇö les plateformes stipulent que la r├®compense ne doit pas conditionner le contenu de l'avis ÔÇö mais l'effet comportemental est document├® : les personnes r├®compens├®es donnent des notes plus hautes que celles qui ne le sont pas, simplement parce qu'elles se sentent r├®ciproquement oblig├®es.</p>
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">Les incentives à l'avis :</strong> G2 et Capterra permettent aux éditeurs d'offrir des récompenses (gift cards Amazon de 10-25 €, accès à des rapports exclusifs) en échange d'avis. La pratique est encadrée — les plateformes stipulent que la récompense ne doit pas conditionner le contenu de l'avis — mais l'effet comportemental est documenté : les personnes récompensées donnent des notes plus hautes que celles qui ne le sont pas, simplement parce qu'elles se sentent réciproquement obligées.</p>
 
-<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">Les campagnes de sollicitation d'avis :</strong> les ├®diteurs lancent r├®guli├¿rement des campagnes cibl├®es aupr├¿s de leurs clients les plus satisfaits pour d├®poser des avis au moment pr├®cis o├╣ ils participent ├á un classement trimestriel (les "G2 Reports"). Les clients m├®contents ne sont g├®n├®ralement pas sollicit├®s.</p>
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">Les campagnes de sollicitation d'avis :</strong> les éditeurs lancent régulièrement des campagnes ciblées auprès de leurs clients les plus satisfaits pour déposer des avis au moment précis où ils participent à un classement trimestriel (les "G2 Reports"). Les clients mécontents ne sont généralement pas sollicités.</p>
 
 <h2 class="${articleStyles.h2}">Les biais structurels</h2>
 
-<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">Le survivorship bias :</strong> qui d├®pose des avis sur G2 ? Majoritairement des utilisateurs actifs, engag├®s, souvent des power users. Les entreprises qui ont achet├® un outil et ne l'utilisent plus ÔÇö parce que l'adoption a ├®chou├®, parce que le produit ne convenait pas, parce que le ROI n'├®tait pas au rendez-vous ÔÇö ne reviennent g├®n├®ralement pas sur la plateforme pour laisser un avis n├®gatif. Elles sont pass├®es ├á autre chose. R├®sultat : les notes G2 et Capterra sur-repr├®sentent structurellement les cas de succ├¿s.</p>
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">Le survivorship bias :</strong> qui dépose des avis sur G2 ? Majoritairement des utilisateurs actifs, engagés, souvent des power users. Les entreprises qui ont acheté un outil et ne l'utilisent plus — parce que l'adoption a échoué, parce que le produit ne convenait pas, parce que le ROI n'était pas au rendez-vous — ne reviennent généralement pas sur la plateforme pour laisser un avis négatif. Elles sont passées à autre chose. Résultat : les notes G2 et Capterra sur-représentent structurellement les cas de succès.</p>
 
-<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">L'early adopter bias :</strong> un produit en croissance rapide accumule beaucoup d'avis au moment o├╣ il est encore en mode "startup agile" ÔÇö ├®quipe support r├®active, fondateurs accessibles, pricing agressif. Deux ans plus tard, une fois l'outil dominant sa cat├®gorie, l'exp├®rience client peut avoir significativement chang├®. Mais la note G2 refl├¿te encore l'enthousiasme des premiers utilisateurs.</p>
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">L'early adopter bias :</strong> un produit en croissance rapide accumule beaucoup d'avis au moment où il est encore en mode "startup agile" — équipe support réactive, fondateurs accessibles, pricing agressif. Deux ans plus tard, une fois l'outil dominant sa catégorie, l'expérience client peut avoir significativement changé. Mais la note G2 reflète encore l'enthousiasme des premiers utilisateurs.</p>
 
-<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">L'absence totale de donn├®es prix r├®els :</strong> c'est peut-├¬tre le biais le plus pr├®judiciable pour les acheteurs. Les avis G2 et Capterra ne disent rien de ce que les entreprises paient r├®ellement. Une note 4,8/5 pour un outil "excellent rapport qualit├®-prix" peut masquer des prix qui varient de 1 ├á 5 selon la taille de l'entreprise, le timing de la n├®gociation, et les add-ons inclus ou exclus. L'acheteur qui se fie ├á cette note pour anticiper son budget part avec une information fondamentalement incompl├¿te.</p>
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">L'absence totale de données prix réels :</strong> c'est peut-être le biais le plus préjudiciable pour les acheteurs. Les avis G2 et Capterra ne disent rien de ce que les entreprises paient réellement. Une note 4,8/5 pour un outil "excellent rapport qualité-prix" peut masquer des prix qui varient de 1 à 5 selon la taille de l'entreprise, le timing de la négociation, et les add-ons inclus ou exclus. L'acheteur qui se fie à cette note pour anticiper son budget part avec une information fondamentalement incomplète.</p>
 
 ${CTA_PLACEHOLDER}
 
-<h2 class="${articleStyles.h2}">Ce que les donn├®es d'achats r├®els r├®v├¿lent</h2>
+<h2 class="${articleStyles.h2}">Ce que les données d'achats réels révèlent</h2>
 
-<p class="${articleStyles.p}">Chez Side by SaaS, on part d'une pr├®misse diff├®rente : ce qui importe le plus pour un acheteur SaaS, ce n'est pas ce que les utilisateurs pensent d'un outil ÔÇö c'est ce que les entreprises similaires ├á la v├┤tre paient r├®ellement pour l'utiliser, et dans quelles conditions.</p>
+<p class="${articleStyles.p}">Chez Side by SaaS, on part d'une prémisse différente : ce qui importe le plus pour un acheteur SaaS, ce n'est pas ce que les utilisateurs pensent d'un outil — c'est ce que les entreprises similaires à la vôtre paient réellement pour l'utiliser, et dans quelles conditions.</p>
 
-<p class="${articleStyles.p}">Les donn├®es d'achats r├®els r├®v├¿lent des choses que les avis ne diront jamais :</p>
+<p class="${articleStyles.p}">Les données d'achats réels révèlent des choses que les avis ne diront jamais :</p>
 
 <ul class="${articleStyles.ul}">
-  <li class="${articleStyles.li}">Le prix m├®dian pay├® par des entreprises de votre taille pour un outil donn├® ÔÇö souvent tr├¿s diff├®rent du prix catalogue.</li>
-  <li class="${articleStyles.li}">Les add-ons qui repr├®sentent la majorit├® du co├╗t r├®el, mais qui n'apparaissent pas dans les avis (personne ne r├®dige un avis sur un line-item de facturation).</li>
-  <li class="${articleStyles.li}">Les tendances de renouvellement : est-ce que les entreprises qui ont achet├® cet outil le reconduisent ? ├Ç quel prix ?</li>
-  <li class="${articleStyles.li}">Les alternatives r├®ellement consid├®r├®es lors de l'achat ÔÇö pas celles que G2 positionne comme "alternatives" parce qu'elles payent pour ce slot.</li>
+  <li class="${articleStyles.li}">Le prix médian payé par des entreprises de votre taille pour un outil donné — souvent très différent du prix catalogue.</li>
+  <li class="${articleStyles.li}">Les add-ons qui représentent la majorité du coût réel, mais qui n'apparaissent pas dans les avis (personne ne rédige un avis sur un line-item de facturation).</li>
+  <li class="${articleStyles.li}">Les tendances de renouvellement : est-ce que les entreprises qui ont acheté cet outil le reconduisent ? À quel prix ?</li>
+  <li class="${articleStyles.li}">Les alternatives réellement considérées lors de l'achat — pas celles que G2 positionne comme "alternatives" parce qu'elles payent pour ce slot.</li>
 </ul>
 
-<p class="${articleStyles.p}">Un outil not├® 4,2/5 sur G2 mais adopt├® par 85 % des entreprises qui le testent, avec un prix m├®dian 40 % en dessous du catalogue, est objectivement plus int├®ressant qu'un outil not├® 4,8/5 avec un taux d'adoption r├®el de 45 % et des co├╗ts cach├®s qui triplent la facture en 18 mois. Les avis ne vous donnent pas cette information.</p>
+<p class="${articleStyles.p}">Un outil noté 4,2/5 sur G2 mais adopté par 85 % des entreprises qui le testent, avec un prix médian 40 % en dessous du catalogue, est objectivement plus intéressant qu'un outil noté 4,8/5 avec un taux d'adoption réel de 45 % et des coûts cachés qui triplent la facture en 18 mois. Les avis ne vous donnent pas cette information.</p>
 
-<h2 class="${articleStyles.h2}">Comment ├®valuer un SaaS s├®rieusement</h2>
+<h2 class="${articleStyles.h2}">Comment évaluer un SaaS sérieusement</h2>
 
-<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">1. Comparez ce que les entreprises paient, pas ce qu'elles notent.</strong> Cherchez des donn├®es d'achats r├®els, anonymis├®es, pour des entreprises comparables ├á la v├┤tre. C'est ce que propose Side by SaaS pour les principales cat├®gories logicielles.</p>
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">1. Comparez ce que les entreprises paient, pas ce qu'elles notent.</strong> Cherchez des données d'achats réels, anonymisées, pour des entreprises comparables à la vôtre. C'est ce que propose Side by SaaS pour les principales catégories logicielles.</p>
 
-<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">2. Identifiez les cas d'├®chec, pas seulement les cas de succ├¿s.</strong> Demandez ├á l'├®diteur des r├®f├®rences de clients qui ont rencontr├® des difficult├®s ÔÇö et comment elles ont ├®t├® r├®solues. Un ├®diteur qui ne peut vous en fournir aucun m├®rite votre m├®fiance.</p>
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">2. Identifiez les cas d'échec, pas seulement les cas de succès.</strong> Demandez à l'éditeur des références de clients qui ont rencontré des difficultés — et comment elles ont été résolues. Un éditeur qui ne peut vous en fournir aucun mérite votre méfiance.</p>
 
-<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">3. Faites un pilote structur├® avec des crit├¿res d'├®valuation d├®finis ├á l'avance.</strong> "On va tester pendant 30 jours" sans objectif d├®fini finit toujours de la m├¬me fa├ºon : une d├®cision subjective bas├®e sur qui a le plus aim├® l'interface. D├®finissez 3-5 crit├¿res chiffrables avant de commencer le POC.</p>
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">3. Faites un pilote structuré avec des critères d'évaluation définis à l'avance.</strong> "On va tester pendant 30 jours" sans objectif défini finit toujours de la même façon : une décision subjective basée sur qui a le plus aimé l'interface. Définissez 3-5 critères chiffrables avant de commencer le POC.</p>
 
-<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">4. Demandez les conditions contractuelles avant les d├®mos produit.</strong> Ce que vous signe l'├®diteur est souvent plus r├®v├®lateur de sa fa├ºon de travailler que ce qu'il vous montre en d├®mo. Clauses d'augmentation de prix, conditions d'export des donn├®es, SLA de support ÔÇö ces ├®l├®ments ne font jamais l'objet d'avis G2.</p>
+<p class="${articleStyles.p}"><strong class="${articleStyles.strong}">4. Demandez les conditions contractuelles avant les démos produit.</strong> Ce que vous signe l'éditeur est souvent plus révélateur de sa façon de travailler que ce qu'il vous montre en démo. Clauses d'augmentation de prix, conditions d'export des données, SLA de support — ces éléments ne font jamais l'objet d'avis G2.</p>
 
-<p class="${articleStyles.p}">Pr├¬t ├á comparer des outils SaaS avec des donn├®es qui comptent vraiment ? Explorez les <a href="/fr/acheteur/crm" class="text-primary-600 hover:text-primary-700 font-medium underline">donn├®es d'achats r├®els pour les CRM</a> et d'autres cat├®gories sur Side by SaaS ÔÇö des chiffres, pas des ├®toiles.</p>
+<p class="${articleStyles.p}">Prêt à comparer des outils SaaS avec des données qui comptent vraiment ? Explorez les <a href="/fr/acheteur/crm" class="text-primary-600 hover:text-primary-700 font-medium underline">données d'achats réels pour les CRM</a> et d'autres catégories sur Side by SaaS — des chiffres, pas des étoiles.</p>
 `.trim()
 
 const NOTION_CONFLUENCE_BODY = `
@@ -2177,10 +2324,10 @@ export const BLOG_POSTS: BlogPostData[] = [
   {
     id: 'art-negociation-saas-humain-2025',
     category_slug: 'benchmarks',
-    title: "L'Art de la N├®gociation SaaS : Et si on remettait l'humain au c┼ôur du contrat ?",
+    title: "L'art de la négociation SaaS : et si on remettait l'humain au cœur du contrat ?",
     slug: 'art-negociation-saas-remettre-humain-coeur-contrat',
     excerpt:
-      "Comment n├®gocier un contrat SaaS avec finesse et humanit├®. Valeur, alignement interne, clauses d'indexation : les cl├®s pour une alliance r├®ussie avec vos fournisseurs.",
+      "Comment négocier un contrat SaaS avec finesse et humanité. Valeur, alignement interne, clauses d'indexation : les clés pour une alliance réussie avec vos fournisseurs.",
     body: NEGOCIATION_SAAS_BODY.replace(CTA_PLACEHOLDER, CTA_MID_HTML),
     published_at: '2025-02-17T20:00:00Z',
     created_at: '2025-02-17T20:00:00Z',
@@ -2201,10 +2348,10 @@ export const BLOG_POSTS: BlogPostData[] = [
   {
     id: 'reviews-saas-biais-alternatives',
     category_slug: 'benchmarks',
-    title: "Pourquoi les avis G2 et Capterra sont biais├®s (et quoi utiliser ├á la place)",
+    title: "Pourquoi les avis G2 et Capterra sont biaisés (et quoi utiliser à la place)",
     slug: 'reviews-saas-biais-alternatives',
     excerpt:
-      "G2 et Capterra sont-ils fiables pour choisir un logiciel ? Analyse du mod├¿le ├®conomique, des biais structurels, et des alternatives bas├®es sur des donn├®es r├®elles.",
+      "G2 et Capterra sont-ils fiables pour choisir un logiciel ? Analyse du modèle économique, des biais structurels, et des alternatives basées sur des données réelles.",
     body: REVIEWS_SAAS_BIAIS_BODY.replace(CTA_PLACEHOLDER, CTA_MID_HTML),
     published_at: '2025-03-10T14:00:00Z',
     created_at: '2025-03-10T14:00:00Z',
@@ -2256,7 +2403,7 @@ export const BLOG_POSTS: BlogPostData[] = [
     body: JIRA_LINEAR_BODY.replace(CTA_PLACEHOLDER, CTA_MID_HTML),
     published_at: '2026-03-05T09:00:00Z',
     created_at: '2026-03-05T09:00:00Z',
-    reading_minutes: 5,
+    reading_minutes: 10,
   },
   {
     id: 'zoom-meet-teams-2026',
@@ -2268,7 +2415,7 @@ export const BLOG_POSTS: BlogPostData[] = [
     body: ZOOM_MEET_TEAMS_BODY.replace(CTA_PLACEHOLDER, CTA_MID_HTML),
     published_at: '2026-03-07T09:00:00Z',
     created_at: '2026-03-07T09:00:00Z',
-    reading_minutes: 5,
+    reading_minutes: 10,
   },
   {
     id: 'lire-grille-tarifaire-saas-2026',

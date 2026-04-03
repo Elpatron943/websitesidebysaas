@@ -20,6 +20,8 @@ const REPLACEMENTS: ReadonlyArray<readonly [from: string, to: string]> = [
   ['├┤', 'ô'],
   ['├╗', 'û'],
   ['├╣', 'ù'],
+  // UTF-8 œ (ligature) misread as two chars (e.g. c┼ôur → cœur)
+  ['┼ô', 'œ'],
 ]
 
 export function fixMojibake(input: string): string {
